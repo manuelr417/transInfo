@@ -1,0 +1,15 @@
+
+/* Class = "IBUIButton"; normalTitle = "Conectarse"; ObjectID = "3G9-Ca-4vL"; */
+"3G9-Ca-4vL.normalTitle" = "Login";
+
+/* Class = "IBUILabel"; text = "Número de Placa:"; ObjectID = "Faa-ke-CfS"; */
+"Faa-ke-CfS.text" = "Plate Number:";
+
+/* Class = "IBUILabel"; text = "Condado:"; ObjectID = "GHS-UM-w1b"; */
+"GHS-UM-w1b.text" = "County:";
+
+/* Class = "IBUILabel"; text = "Contraseña:"; ObjectID = "Rzu-ST-Jue"; */
+"Rzu-ST-Jue.text" = "Password:";
+
+/* Class = "IBUILabel"; text = "Title"; ObjectID = "lnb-h5-7Es"; */
+"lnb-h5-7Es.text" = "Title";
