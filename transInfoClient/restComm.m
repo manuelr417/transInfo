@@ -8,14 +8,15 @@
 
 #import "restComm.h"
 
+const NSInteger GET = 0;
+const NSInteger POST = 1;
+const NSInteger PUT = 2;
+const NSInteger DELETE = 3;
+
 @implementation restComm
 
-const int GET = 0;
-const int POST = 1;
-const int PUT = 2;
-const int DELETE = 3;
-
 @synthesize delegate;
+@synthesize dataToRequest;
 
 - (id)init {
     self = super.init;
@@ -23,7 +24,8 @@ const int DELETE = 3;
     if (self) {
         // Init defaults...
         self.connURL = @"http://localhost:9000/";
-        self.method = [NSNumber numberWithInt:GET];
+        self.method = @"GET";
+        self.methodInString = @{[NSNumber numberWithInteger:GET] : @"GET", [NSNumber numberWithInteger:POST] : @"POST", [NSNumber numberWithInteger:PUT] : @"PUT", [NSNumber numberWithInteger:DELETE] : @"DELETE"};
     }
     
     return self;
@@ -39,25 +41,44 @@ const int DELETE = 3;
     return self;
 }
 
-- (id)initWithURL:(NSString*)url withMethod:(int)method {
+- (id)initWithURL:(NSString*)url withMethod:(NSInteger)method {
     self = super.init;
     
     if (self) {
         self.connURL = url;
-        self.method = [NSNumber numberWithInt:method];
+        
+        switch (method) {
+            case GET:
+                self.method = @"GET";
+                break;
+            case POST:
+                self.method = @"POST";
+                break;
+            case PUT:
+                self.method = @"PUT";
+                break;
+            case DELETE:
+                self.method = @"DELETE";
+                break;
+            default:
+                break;
+        }
     }
     
     return self;
 }
 
-//- (void)makeGet:
-
 - (void)makeCall {
-    //NSString *restLink = [NSString stringWithFormat:"%@/%@", self.connURL, ]
-    
     NSURL *restURL = [NSURL URLWithString:self.connURL];
-    NSURLRequest *restRequest = [NSURLRequest requestWithURL:restURL];
-    
+    NSMutableURLRequest *restRequest = [NSMutableURLRequest requestWithURL:restURL];
+
+    if (self.dataToRequest != nil) {
+        [restRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+        restRequest.HTTPBody = [[self joinRequestWithDictionary:self.dataToRequest] dataUsingEncoding:NSUTF8StringEncoding];
+    }
+
+    restRequest.HTTPMethod = self.method;
+
     if (self.currentConnection) {
         [self.currentConnection cancel];
         self.currentConnection = nil;
@@ -68,59 +89,46 @@ const int DELETE = 3;
     self.data = [NSMutableData data];
 }
 
+- (NSMutableString*)joinRequestWithDictionary:(NSMutableDictionary*)dictionary {
+    NSMutableString *request = [[NSMutableString alloc] init];
+    
+    for (NSString* key in dictionary) {
+        NSString *value = [dictionary objectForKey:key];
+        
+        if ([request length] > 0)
+            [request appendString:@"&"];
+        
+        [request appendString:key];
+        [request appendFormat:@"=%@", [value stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    }
+    
+    return request;
+}
+
 - (void)connection:(NSURLConnection*)connection didReceiveData:(NSData *)data {
     [self.data appendData:data];
 }
 
 - (void)connection:(NSURLConnection*)connection didFailWithError:(NSError *)error {
     NSLog(@"REST ERROR: %@", error);
+    [delegate receivedError:error];
     
     self.currentConnection = nil;
-    /*[self.activityIndicator stopAnimating];
-    
-    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Connection error!"
-                                                      message:@"There was a problem connecting with the server."
-                                                     delegate:nil
-                                            cancelButtonTitle:@"OK"
-                                            otherButtonTitles:nil];
-    
-    [message show];*/
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection*)connection {
     self.currentConnection = nil;
     
     NSError *error = nil;
-    NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:self.data options:kNilOptions error:&error];
-    
+    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:self.data options:kNilOptions error:&error];
+
     if (error != nil) {
         NSLog(@"Problem parsing JSON! %@", error);
-        //[self.activityIndicator stopAnimating];
+        [delegate receivedError:error];
     } else {
-        //[self.itemList removeAllObjects];
-        NSMutableArray *elems = [[NSMutableArray alloc] init];
-        
-        for(NSDictionary *elem in jsonArray) {
-            [elems addObject:elem];
-            
-            NSLog(@"Item %@", elem);
-            
-            /*Item *item = [[Item alloc] init];
-            item.id = [[elem objectForKey:@"id"] intValue];
-            item.description = [elem valueForKey:@"description"];
-            item.isDone = ([[elem objectForKey:@"isDone"] intValue] != 0);*/
-            //NSLog(@"desc = %@, isDone = %d, isDoneAPI = %@", item.description, item.isDone, [elem valueForKey:@"isDone"]);
-            
-            //[self.itemList addObject:item];
-        }
-        
         if (delegate) {
-            NSLog(@"Count: %d", [elems count]);
-            [delegate receivedData:elems];
+            [delegate receivedData:dict];
         }
-        
-        //[self.activityIndicator stopAnimating];
-        //[self.tableView reloadData];
     }
 }
 

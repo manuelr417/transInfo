@@ -1,0 +1,30 @@
+
+/* Class = "IBUILabel"; text = "Latitud:"; ObjectID = "0sO-XV-xc1"; */
+"0sO-XV-xc1.text" = "Latitud:";
+
+/* Class = "IBUITextField"; placeholder = "Latitud"; ObjectID = "2eR-SZ-RTQ"; */
+"2eR-SZ-RTQ.placeholder" = "Latitud";
+
+/* Class = "IBUIButton"; normalTitle = "Conectarse"; ObjectID = "3G9-Ca-4vL"; */
+"3G9-Ca-4vL.normalTitle" = "Conectarse";
+
+/* Class = "IBUITextField"; placeholder = "Longitud"; ObjectID = "CfX-Bh-PNz"; */
+"CfX-Bh-PNz.placeholder" = "Longitud";
+
+/* Class = "IBUILabel"; text = "Número de Placa:"; ObjectID = "Faa-ke-CfS"; */
+"Faa-ke-CfS.text" = "Número de Placa:";
+
+/* Class = "IBUILabel"; text = "Condado:"; ObjectID = "GHS-UM-w1b"; */
+"GHS-UM-w1b.text" = "Condado:";
+
+/* Class = "IBUILabel"; text = "Contraseña:"; ObjectID = "Rzu-ST-Jue"; */
+"Rzu-ST-Jue.text" = "Contraseña:";
+
+/* Class = "IBUIButton"; normalTitle = "Colocar en el Mapa"; ObjectID = "sK2-2u-ZhV"; */
+"sK2-2u-ZhV.normalTitle" = "Colocar en el Mapa";
+
+/* Class = "IBUIButton"; normalTitle = "Actualizar a Localización Actual"; ObjectID = "wqu-sg-2BI"; */
+"wqu-sg-2BI.normalTitle" = "Actualizar a Localización Actual";
+
+/* Class = "IBUILabel"; text = "Longitud:"; ObjectID = "xp4-lE-Krd"; */
+"xp4-lE-Krd.text" = "Longitud:";

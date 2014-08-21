@@ -5,3 +5,7 @@
   Created by Omar Soto Fortuño on 6/24/14.
   Copyright (c) 2014 University of Puerto Rico Mayagüez Campus. All rights reserved.
 */
+
+"login.empty-required-field" = "Campo requerido vacío.";
+"login.empty-plate" = "El número de placa es un campo requerido.";
+"login.empty-password" = "La contraseña es un campo requerido.";

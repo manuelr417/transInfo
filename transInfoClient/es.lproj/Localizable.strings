@@ -1,0 +1,16 @@
+/* 
+  Localizable.strings
+  transinfo
+
+  Created by Omar Soto Fortuño on 6/24/14.
+  Copyright (c) 2014 University of Puerto Rico Mayagüez Campus. All rights reserved.
+*/
+
+"login.empty-required-field" = "Campo requerido vacío.";
+"login.empty-plate" = "El número de placa es un campo requerido.";
+"login.empty-password" = "La contraseña es un campo requerido.";
+"login.error.title" = "¡Ha ocurrido un error!";
+"login.error.internal" = "El servidor tuvo un problema interno.";
+"login.error.wrong-information" = "Las credenciales entradas son incorrectas.";
+"login.error.server-timeout" = "Fue imposible conectarse con el servidor. Verifique su conexión al Internet.";
+"login.error.unknown-output" = "La información suministrada por el servidor no puede ser procesada.";

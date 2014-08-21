@@ -8,26 +8,28 @@
 
 #import <Foundation/Foundation.h>
 
+extern const NSInteger GET;
+extern const NSInteger POST;
+extern const NSInteger PUT;
+extern const NSInteger DELETE;
+
 @interface restComm : NSObject
 
 @property NSURLConnection *currentConnection;
 @property NSString *connURL;
-@property NSNumber *method;
+@property NSString *method;
 @property NSMutableData *data;
 @property id delegate;
-
-extern const int GET;
-extern const int POST;
-extern const int PUT;
-extern const int DELETE;
+@property NSMutableDictionary *dataToRequest;
+@property NSDictionary *methodInString;
 
 - (id)initWithURL:(NSString*)url;
-- (id)initWithURL:(NSString*)url withMethod:(int)method;
+- (id)initWithURL:(NSString*)url withMethod:(NSInteger)method;
 - (void)makeCall;
-
 
 @end
 
 @interface NSObject(MyDelegateMethods)
-- (void) receivedData:(NSMutableArray*)data;
+- (void) receivedData:(NSDictionary*)data;
+- (void) receivedError:(NSError*)error;
 @end

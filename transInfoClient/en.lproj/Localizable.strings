@@ -5,3 +5,7 @@
   Created by Omar Soto Fortuño on 6/24/14.
   Copyright (c) 2014 University of Puerto Rico Mayagüez Campus. All rights reserved.
 */
+
+"login.empty-required-field" = "A required field is empty.";
+"login.empty-plate" = "The plate number is a required field.";
+"login.empty-password" = "The password is a required field.";
