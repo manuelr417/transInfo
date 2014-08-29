@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "MapKit/MapKit.h"
 
-@interface ReportFirstStepViewController : UIViewController
+@interface ReportFirstStepViewController : UIViewController <CLLocationManagerDelegate>
 
+@property CLLocationManager *locationManager;
 @property (nonatomic) CLLocationCoordinate2D coords;
 
 @end

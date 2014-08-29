@@ -5,13 +5,11 @@ import play.Logger;
 import play.db.DB;
 import play.libs.Json;
 import play.mvc.Controller;
+import play.mvc.Http;
 import play.mvc.Result;
 import play.mvc.Results;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,12 +28,17 @@ public class Authentication extends Controller {
         Logger.debug("doLogin()");
         ObjectNode json = Json.newObject();
         Connection conn = DB.getConnection();
-        String query = "SELECT * FROM User WHERE Username=? and Password=MD5(?);";
-        PreparedStatement stmt;
+        String query[] = {"SELECT * FROM User WHERE Username=? and Password=MD5(?);",
+                "INSERT INTO UserSession VALUES (UUID(), ?, ?, ?, NOW(), DATE_ADD(NOW(), INTERVAL 8 HOUR));",
+                "SELECT *, CONVERT_TZ(ExpirationDate, @@session.time_zone, '+00:00') as ExpirationDateGMT FROM UserSession WHERE UserID=? ORDER BY CreationDate DESC LIMIT 1;",
+                "SELECT * FROM Officer WHERE OfficerID=?;"};
+        PreparedStatement stmt[] = new PreparedStatement[4];
         ResultSet rs;
 
         try {
-            stmt = conn.prepareStatement(query);
+            for (int i = 0; i < stmt.length; i++) {
+                stmt[i] = conn.prepareStatement(query[i]);
+            }
         } catch (SQLException e) {
             json.put("success", false);
             json.put("message", "Internal Server Error");
@@ -54,12 +57,13 @@ public class Authentication extends Controller {
 
             try {
                 Logger.debug("Username " + username + ", Password: " + password);
-                stmt.setString(1, username);
-                stmt.setString(2, password);
-                rs = stmt.executeQuery();
+                stmt[0].setString(1, username);
+                stmt[0].setString(2, password);
+                rs = stmt[0].executeQuery();
 
                 if (rs.next()) {
-                    Map<String, String> out = new HashMap();
+                    String officerID = rs.getString("OfficerID");
+                    String userID = rs.getString("UserID");
 
                     ObjectNode payload = Json.newObject();
 
@@ -67,18 +71,50 @@ public class Authentication extends Controller {
                     json.put("message", "");
                     json.put("error_code", "");
 
-                    payload.put("AuthKey", "123456");
-                    payload.put("FirstName", "Omar");
-                    payload.put("LastName", "Soto Fortuno");
-                    json.put("payload", payload);
+                    payload.put("UserID", Integer.valueOf(userID));
+                    payload.put("OfficerID", Integer.valueOf(officerID));
 
-                    /* TODO:
-                        * Create UserSession
-                        * Get Officer information
-                        * Send UserSession and Officer Information
-                     */
+                    // Creating UserSession
+                    String[] userAgent = request().headers().get(Http.HeaderNames.USER_AGENT);
 
-                    return ok(toJson(json));
+                    stmt[1].setString(1, userID);
+                    stmt[1].setString(2, (userAgent.length > 0) ? userAgent[0] : "");
+                    stmt[1].setString(3, request().remoteAddress());
+
+                    if (stmt[1].executeUpdate() > 0) {
+                        stmt[2].setString(1, userID);
+
+                        rs = stmt[2].executeQuery();
+
+                        if (rs.next()) {
+                            payload.put("UserSessionUUID", rs.getString("UserSessionUUID"));
+                            payload.put("ExpirationDate", rs.getString("ExpirationDateGMT"));
+
+                            stmt[3].setString(1, officerID);
+                            rs = stmt[3].executeQuery();
+
+                            if (rs.next()) {
+                                payload.put("AgencyID", rs.getInt("AgencyID"));
+                                payload.put("PlateNumber", rs.getInt("PlateNumber"));
+                                payload.put("FirstName", rs.getString("FirstName"));
+                                payload.put("LastName", rs.getString("LastName"));
+
+                                json.put("payload", payload);
+
+                                return ok(toJson(json));
+                            } else {
+                                Logger.info("[LOGIN] Unable to get Officer information for OfficerID=" + officerID + ".");
+                            }
+                        }
+                    } else {
+                        Logger.info("[LOGIN] UserSession for UserID=" + userID + " can't be created.");
+                    }
+
+                    json.put("success", false);
+                    json.put("message", "Internal Server Error");
+                    json.put("error_code", 1);
+
+                    return internalServerError(json);
                 } else {
                     json.put("success", false);
                     json.put("message", "Wrong authentication information.");
@@ -91,7 +127,8 @@ public class Authentication extends Controller {
                 json.put("message", "Internal Server Error");
                 json.put("error_code", 1);
 
-                Logger.error("Problem executing query! " + e.getStackTrace());
+                //e.printStackTrace();
+                Logger.error("[LOGIN] Problem executing query... " + e.getLocalizedMessage());
 
                 return internalServerError(json);
             }

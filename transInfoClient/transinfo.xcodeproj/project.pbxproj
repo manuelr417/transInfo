@@ -20,6 +20,9 @@
 		D5285274195A05DD00806467 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D5285276195A05DD00806467 /* Localizable.strings */; };
 		D5285278195A09F900806467 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D528527A195A09F900806467 /* Main.storyboard */; };
 		D528528A1962E0DC00806467 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D52852891962E0DC00806467 /* MainViewController.m */; };
+		D52C29D919AB746F00294FA0 /* MainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D52C29D819AB746F00294FA0 /* MainTableViewController.m */; };
+		D52C29DB19AFD9D000294FA0 /* ComplaintTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D52C29DA19AFD9D000294FA0 /* ComplaintTableViewCell.xib */; };
+		D52C29DE19B0C42000294FA0 /* ComplaintTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D52C29DD19B0C42000294FA0 /* ComplaintTableViewCell.m */; };
 		D5DDB4511962EE9C0002F5EA /* restComm.m in Sources */ = {isa = PBXBuildFile; fileRef = D5DDB4501962EE9C0002F5EA /* restComm.m */; };
 		D5DDB453196B2F590002F5EA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5DDB452196B2F590002F5EA /* MapKit.framework */; };
 		D5DDB456196B30930002F5EA /* MapPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5DDB455196B30930002F5EA /* MapPopoverViewController.m */; };
@@ -74,6 +77,11 @@
 		D52852841961A93300806467 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D52852881962E0DC00806467 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		D52852891962E0DC00806467 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		D52C29D719AB746F00294FA0 /* MainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTableViewController.h; sourceTree = "<group>"; };
+		D52C29D819AB746F00294FA0 /* MainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTableViewController.m; sourceTree = "<group>"; };
+		D52C29DA19AFD9D000294FA0 /* ComplaintTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComplaintTableViewCell.xib; sourceTree = "<group>"; };
+		D52C29DC19B0C42000294FA0 /* ComplaintTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComplaintTableViewCell.h; sourceTree = "<group>"; };
+		D52C29DD19B0C42000294FA0 /* ComplaintTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComplaintTableViewCell.m; sourceTree = "<group>"; };
 		D5DDB44F1962EE9C0002F5EA /* restComm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = restComm.h; sourceTree = "<group>"; };
 		D5DDB4501962EE9C0002F5EA /* restComm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = restComm.m; sourceTree = "<group>"; };
 		D5DDB452196B2F590002F5EA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -146,6 +154,11 @@
 		D528522D1959CBEA00806467 = {
 			isa = PBXGroup;
 			children = (
+				D52C29DA19AFD9D000294FA0 /* ComplaintTableViewCell.xib */,
+				D52C29DC19B0C42000294FA0 /* ComplaintTableViewCell.h */,
+				D52C29DD19B0C42000294FA0 /* ComplaintTableViewCell.m */,
+				D52C29D719AB746F00294FA0 /* MainTableViewController.h */,
+				D52C29D819AB746F00294FA0 /* MainTableViewController.m */,
 				D5E8FBCF19A689B400ED72EE /* Utilities.h */,
 				D5E8FBD019A689B400ED72EE /* Utilities.m */,
 				D5E8FBCC19A53B0600ED72EE /* Config.h */,
@@ -321,6 +334,7 @@
 			files = (
 				D5285278195A09F900806467 /* Main.storyboard in Resources */,
 				D5285274195A05DD00806467 /* Localizable.strings in Resources */,
+				D52C29DB19AFD9D000294FA0 /* ComplaintTableViewCell.xib in Resources */,
 				D528524C1959CBEB00806467 /* Images.xcassets in Resources */,
 				D5DDB460196EBED50002F5EA /* GoogleMaps.bundle in Resources */,
 			);
@@ -346,8 +360,10 @@
 				D5E8FBD119A689B400ED72EE /* Utilities.m in Sources */,
 				D5DDB459196B47E80002F5EA /* CurrentLocationPin.m in Sources */,
 				D5DDB45C196B5A9D0002F5EA /* ReportFirstStepViewController.m in Sources */,
+				D52C29DE19B0C42000294FA0 /* ComplaintTableViewCell.m in Sources */,
 				D52852461959CBEB00806467 /* main.m in Sources */,
 				D528528A1962E0DC00806467 /* MainViewController.m in Sources */,
+				D52C29D919AB746F00294FA0 /* MainTableViewController.m in Sources */,
 				D5DDB4511962EE9C0002F5EA /* restComm.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -19,4 +19,13 @@
                                           otherButtonTitles:nil];
     [alert show];
 }
+
++ (NSDate*)NSDateWithMySQLDate:(NSString *)rfc3339DateTimeString {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
+    [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
+    
+    return [formatter dateFromString:rfc3339DateTimeString];
+}
+
 @end

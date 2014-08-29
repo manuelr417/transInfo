@@ -11,5 +11,6 @@
 @interface Utilities : NSObject
 
 + (void)displayAlertWithMessage:(NSString*)message withTitle:(NSString*)title;
++ (NSDate*)NSDateWithMySQLDate:(NSString *)rfc3339DateTimeString;
 
 @end

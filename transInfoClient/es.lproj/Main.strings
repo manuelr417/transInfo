@@ -12,7 +12,7 @@
 "CfX-Bh-PNz.placeholder" = "Longitud";
 
 /* Class = "IBUILabel"; text = "Número de Placa:"; ObjectID = "Faa-ke-CfS"; */
-"Faa-ke-CfS.text" = "Número de Placa:";
+"Faa-ke-CfS.text" = "Usuario:";
 
 /* Class = "IBUILabel"; text = "Condado:"; ObjectID = "GHS-UM-w1b"; */
 "GHS-UM-w1b.text" = "Condado:";

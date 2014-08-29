@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Número de Placa:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Faa-ke-CfS">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Usuario:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Faa-ke-CfS">
                                 <rect key="frame" x="234" y="357" width="300" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -55,14 +55,74 @@
                     </view>
                     <connections>
                         <outlet property="password" destination="38E-KZ-b3t" id="Jjd-Sh-P4b"/>
-                        <outlet property="plateNumber" destination="0vj-ae-NaU" id="bCh-Y3-aSk"/>
+                        <outlet property="username" destination="0vj-ae-NaU" id="eFq-ji-SRQ"/>
+                        <segue destination="xZ6-fe-6Yd" kind="modal" identifier="GoToMainNavigation" id="AfL-hf-bvq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sdq-7L-R3v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-462" y="-474"/>
+            <point key="canvasLocation" x="-1876" y="-1664"/>
         </scene>
-        <!--Report First Step View Controller-->
+        <!--Main Table View Controller - Mis Accidentes Reportados-->
+        <scene sceneID="3Dm-NI-0cA">
+            <objects>
+                <tableViewController id="HyS-RN-bAA" customClass="MainTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="cAX-1n-VWP">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="7cP-fC-pBJ">
+                                <rect key="frame" x="0.0" y="86" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7cP-fC-pBJ" id="Vzq-9C-ZhW">
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="HyS-RN-bAA" id="1iL-AU-9ja"/>
+                            <outlet property="delegate" destination="HyS-RN-bAA" id="3V3-Bd-cke"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Mis Accidentes Reportados" id="Rx9-9B-djF">
+                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="7cG-b1-hMe">
+                            <connections>
+                                <action selector="doLogout:" destination="HyS-RN-bAA" id="baz-Oa-klG"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="JWZ-6y-efc">
+                            <connections>
+                                <segue destination="PYj-VZ-Mvr" kind="push" id="dfP-zn-lMc"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="nWY-kv-t24" kind="modal" identifier="GoToLogin" id="X0B-Uk-BK4"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3ce-wF-66p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-797" y="-2849"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="s66-wR-c1B">
+            <objects>
+                <navigationController storyboardIdentifier="MainNavigationController" definesPresentationContext="YES" id="xZ6-fe-6Yd" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="UeB-LM-gZn"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="14u-lX-8KR">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="HyS-RN-bAA" kind="relationship" relationship="rootViewController" id="7P5-Na-WLX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aBe-VV-zry" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-797" y="-1664"/>
+        </scene>
+        <!--Report First Step View Controller - Información Básica del Accidente-->
         <scene sceneID="kS9-J9-emi">
             <objects>
                 <viewController id="PYj-VZ-Mvr" customClass="ReportFirstStepViewController" sceneMemberID="viewController">
@@ -75,11 +135,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sK2-2u-ZhV">
-                                <rect key="frame" x="132" y="208" width="166" height="30"/>
+                                <rect key="frame" x="123" y="410" width="166" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Colocar en el Mapa">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="Colocar en el Mapa"/>
                                 <connections>
                                     <segue destination="whp-us-fgH" kind="popover" identifier="locationPopover" popoverAnchorView="sK2-2u-ZhV" id="92b-de-EcL">
                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
@@ -87,7 +146,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Latitud" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2eR-SZ-RTQ">
-                                <rect key="frame" x="132" y="126" width="166" height="30"/>
+                                <rect key="frame" x="123" y="328" width="166" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
@@ -96,7 +155,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Longitud" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CfX-Bh-PNz">
-                                <rect key="frame" x="132" y="170" width="166" height="30"/>
+                                <rect key="frame" x="123" y="372" width="166" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" none="YES" notEnabled="YES"/>
@@ -104,17 +163,41 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t7H-Yy-MH9">
+                                <rect key="frame" x="20" y="114" width="300" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Identificador del Caso:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EqD-Zz-kKu">
+                                <rect key="frame" x="20" y="85" width="184" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9WK-av-pHR">
+                                <rect key="frame" x="20" y="195" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="crashDateEditingDidBegin:" destination="PYj-VZ-Mvr" eventType="editingDidBegin" id="Pub-La-JPD"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Información Básica del Accidente" id="ebN-pd-J51"/>
                     <connections>
+                        <outlet property="crashDate" destination="9WK-av-pHR" id="eQM-6j-TfW"/>
                         <outlet property="latitudeOutlet" destination="2eR-SZ-RTQ" id="QIR-l7-wH5"/>
                         <outlet property="longitudeOutlet" destination="CfX-Bh-PNz" id="LTD-md-6i4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6lV-ak-D7l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="455" y="-474"/>
+            <point key="canvasLocation" x="203" y="-2849"/>
         </scene>
         <!--Map Popover View Controller-->
         <scene sceneID="BgI-uz-diA">
@@ -184,7 +267,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q0H-Xh-2ZH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1396" y="-474"/>
+            <point key="canvasLocation" x="1320" y="-2849"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

@@ -12,10 +12,40 @@
 @interface ReportFirstStepViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *latitudeOutlet;
 @property (weak, nonatomic) IBOutlet UITextField *longitudeOutlet;
+@property (weak, nonatomic) IBOutlet UITextField *crashDate;
+
+@property NSDate *crashDate2;
 
 @end
 
 @implementation ReportFirstStepViewController
+- (IBAction)crashDateEditingDidBegin:(id)sender {
+    UIDatePicker *datePicker = [[UIDatePicker alloc] init];
+    
+    if (self.crashDate2 == nil) {
+        self.crashDate2 = [NSDate date];
+    }
+    
+    datePicker.date = self.crashDate2;
+    datePicker.datePickerMode = UIDatePickerModeDate;
+    [datePicker addTarget:self action:@selector(datePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
+    
+    self.crashDate.inputView = datePicker;
+}
+
+    - (IBAction)datePickerValueChanged:(id)sender {
+        
+        NSDate *pickerDate = [sender date]; //Do something with the date
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.dateFormat = @"yyyy-MM-dd";
+        
+        //NSLog(@"System time: %@", [dateFormatter stringFromDate:[NSDate date]]);
+        
+        self.crashDate.text = [dateFormatter stringFromDate:pickerDate];
+        self.crashDate2 = pickerDate;
+    }
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,16 +66,31 @@
     [self.longitudeOutlet setUserInteractionEnabled:NO];
     
     // Hardcoded values of Hospedaje Mayaguez
-    self.coords = CLLocationCoordinate2DMake(18.205290, -67.136427);
+    //self.coords = CLLocationCoordinate2DMake(18.205290, -67.136427);
+    //[self updateCoords];
+    
+    if (self.locationManager == nil) {
+        self.locationManager = [[CLLocationManager alloc] init];
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+        self.locationManager.delegate = self;
+        [self.locationManager startUpdatingLocation];
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    CLLocation *loc = [locations lastObject];
+    [self.locationManager stopUpdatingLocation];
+
+    self.coords = loc.coordinate;
     [self updateCoords];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    NSLog(@"jksjks");
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    NSLog(@"Aparece!");
+
 }
 
 - (void)updateCoords {
@@ -64,14 +109,10 @@
 
 - (void)receiveNotification:(NSNotification*)notification {
     if ([[notification name] isEqualToString:@"popoverUpdatedCoords"]) {
-        NSLog(@"Recibiendo nuevas coords!");
-        
         self.coords = CLLocationCoordinate2DMake([(NSNumber*)[[notification userInfo] objectForKey:@"latitude"] doubleValue], [(NSNumber*)[[notification userInfo] objectForKey:@"longitude"] doubleValue]);
         [self updateCoords];
         
-        NSLog(@"Se recibió...");
-        NSLog(@" lat: %f", self.coords.latitude);
-        NSLog(@" lon: %f", self.coords.longitude);
+        NSLog(@"Se recibieron coordenadas...");
         
         //[self setCoords:CLLocationCoordinate2DMake((NSNumber*)[[notification userInfo] objectForKey:@"latitude"], [[notification userInfo] objectForKey:@"longitude"])]
     } else if ([[notification name] isEqualToString:@"popoverClosed"]) {

@@ -15,18 +15,21 @@
 
 @property UIActivityIndicatorView *spinner;
 
-@property (weak, nonatomic) IBOutlet UITextField *plateNumber;
+@property (weak, nonatomic) IBOutlet UITextField *username;
 @property (weak, nonatomic) IBOutlet UITextField *password;
+
+- (void)startLoading;
+- (void)stopLoading;
 
 @end
 
 @implementation MainViewController
 
 UIActivityIndicatorView *spinner;
+NSUserDefaults *userDefaults;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    //NSLog(@"initWithNibName");
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -35,23 +38,58 @@ UIActivityIndicatorView *spinner;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    //NSLog(@"View appeared!");
+
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    userDefaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *loginInfo = [userDefaults objectForKey:@"login"];
+    
+    NSLog(@"Verifiyng!");
+    if (loginInfo != nil) {
+        /*[userDefaults removeObjectForKey:@"login"];
+         [userDefaults synchronize];
+         return;*/
+        
+        [self startLoading];
+        
+        NSDate *expirationDate = [Utilities NSDateWithMySQLDate:loginInfo[@"ExpirationDate"]];
+        
+        if ([expirationDate compare:[NSDate date]] == NSOrderedDescending) {
+            
+            
+            [self showUserInfo];
+        } else {
+            NSLog(@"Expired! %@ Actual: %@", expirationDate, [NSDate date]);
+            //[userDefaults removeObjectForKey:@"login"];
+            //[userDefaults synchronize];
+            
+            [self stopLoading];
+        }
+    } else {
+        NSLog(@"No User Defaults!");
+    }
 }
 
 - (void)receivedData:(NSDictionary *)data {
-    self.view.userInteractionEnabled = YES;
-    [self.spinner stopAnimating];
+    [self stopLoading];
 
     NSDictionary *errors = @{@1: @"login.error.internal", @2: @"login.empty-required-field", @3: @"login.error.wrong-information"};
         
     if ([data[@"success"] boolValue] == YES) {
+        // User Defaults saved!
+        [userDefaults setObject:data[@"payload"] forKey:@"login"];
+        [userDefaults synchronize];
+        
         NSLog(@"OK");
+        [self showUserInfo];
         /* TODO: Login... */
     } else {
         [Utilities displayAlertWithMessage:NSLocalizedString([errors objectForKey:data[@"error_code"]], nil) withTitle:NSLocalizedString(@"login.error.title", nil)];
@@ -59,8 +97,7 @@ UIActivityIndicatorView *spinner;
 }
 
 - (void)receivedError:(NSError *)error {
-    self.view.userInteractionEnabled = YES;
-    [self.spinner stopAnimating];
+    [self stopLoading];
     
     if ([[error domain] isEqualToString:@"NSURLErrorDomain"]) {
         [Utilities displayAlertWithMessage:NSLocalizedString(@"login.error.server-timeout", nil) withTitle:NSLocalizedString(@"login.error.title", nil)];
@@ -76,9 +113,9 @@ UIActivityIndicatorView *spinner;
 }
 
 - (IBAction)loginTouch:(id)sender {
-    if ([self.plateNumber.text length] == 0) {
+    if ([self.username.text length] == 0) {
         [Utilities displayAlertWithMessage:NSLocalizedString(@"login.empty-plate", nil) withTitle:NSLocalizedString(@"login.empty-required-field", nil)];
-        [self.plateNumber becomeFirstResponder];
+        [self.username becomeFirstResponder];
         return;
     }
     
@@ -89,7 +126,7 @@ UIActivityIndicatorView *spinner;
     }
     
     NSMutableDictionary *postData = [[NSMutableDictionary alloc] init];
-    [postData setValue:self.plateNumber.text forKey:@"username"];
+    [postData setValue:self.username.text forKey:@"username"];
     [postData setValue:self.password.text forKey:@"password"];
     
     restComm *conn = [[restComm alloc] initWithURL:[NSString stringWithFormat:@"%@login", urlAPI] withMethod:POST];
@@ -97,7 +134,12 @@ UIActivityIndicatorView *spinner;
     [conn setDelegate:self];
     [conn setDataToRequest:postData];
     
-    // Loading spinner
+    [self startLoading];
+    
+    [conn makeCall];
+}
+
+- (void)startLoading {
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     
     if (self.spinner != nil) {
@@ -109,8 +151,55 @@ UIActivityIndicatorView *spinner;
     [self.view addSubview:self.spinner];
     [self.spinner startAnimating];
     self.view.userInteractionEnabled = NO;
+}
+
+- (void)stopLoading {
+    if (self.spinner != nil) {
+        [self.spinner stopAnimating];
+    }
     
-    [conn makeCall];
+    self.view.userInteractionEnabled = YES;
+}
+
+// This is just for debugging purposes
+- (void)showUserInfo {
+    if (userDefaults != nil) {
+        userDefaults = [NSUserDefaults standardUserDefaults];
+    }
+    
+    NSDictionary *loginInfo = [userDefaults objectForKey:@"login"];
+    
+    if (loginInfo != nil) {
+        NSString *out = [NSString stringWithFormat:@"First Name: %@\nLast Name: %@\nPlate Number: %@\nAgency ID: %@", loginInfo[@"FirstName"], loginInfo[@"LastName"], loginInfo[@"PlateNumber"], loginInfo[@"AgencyID"]];
+        
+        NSLog(@"You are in!");
+        [Utilities displayAlertWithMessage:[NSString stringWithFormat:@"Welcome %@ %@, your session expires on %@", loginInfo[@"FirstName"], loginInfo[@"LastName"], loginInfo[@"ExpirationDate"]] withTitle:@"DEBUG"];
+        
+        [Utilities displayAlertWithMessage:out withTitle:@"LOGIN INFO (DEBUG)"];
+        
+        [self performSegueWithIdentifier:@"GoToMainNavigation" sender:self];
+        
+        //MainNavigationController
+        //UINavigationController *controller = [[self.view.window.rootViewController storyboard]instantiateViewControllerWithIdentifier:@"MainNavigationController"];
+        //[self.view.window.rootViewController presentViewController: controller animated:YES completion:nil];
+        
+        //[self.view.window.rootViewController storyboard]
+        
+        
+        //UIViewController *myViewController = [[MyViewController alloc] init];
+        //navigationController = [[UINavigationController alloc]
+          //                      initWithRootViewController:myViewController];
+        
+        //self.view.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+       // self.view.window.rootViewController = controller;
+        //[self.view.window makeKeyAndVisible];
+
+        
+        //[self.view.window addSubview:controller];
+        
+        
+        //[self.view.window.rootViewController presentViewController: controller animated:YES completion:nil];
+    }
 }
 
 /*

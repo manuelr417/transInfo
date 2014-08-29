@@ -24,6 +24,8 @@
 
 @implementation MapPopoverViewController
 
+CurrentLocationPin *pinAnnot;
+
 @synthesize coords;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -82,12 +84,14 @@
         // Clean annotations
         [self.mapView removeAnnotations:self.mapView.annotations];
         
-        CurrentLocationPin *pinAnnot = [[CurrentLocationPin alloc] initWithLocation:self.coords];
+        pinAnnot = [[CurrentLocationPin alloc] initWithLocation:self.coords];
         pinAnnot.identifier = @"currentLocation";
         pinAnnot.title = @"Current Location";
         pinAnnot.subtitle = [[NSString alloc] initWithFormat:@"Lat: %f Lon: %f", self.coords.latitude, self.coords.longitude];
         
         [self.mapView addAnnotation:pinAnnot];
+    } else {
+        pinAnnot.coordinate = self.coords;
     }
     
     NSDictionary *dict = @{@"latitude" : [NSNumber numberWithFloat:self.coords.latitude] , @"longitude" : [NSNumber numberWithFloat:self.coords.longitude]};
