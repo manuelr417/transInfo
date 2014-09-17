@@ -101,7 +101,7 @@ public class Authentication extends Controller {
                                 payload.put("PlateNumber", rs.getInt("PlateNumber"));
                                 payload.put("FirstName", rs.getString("FirstName"));
                                 payload.put("LastName", rs.getString("LastName"));
-                                payload.put("Test", "1");
+                                payload.put("Testt", "1");
 
                                 json.put("payload", payload);
 
