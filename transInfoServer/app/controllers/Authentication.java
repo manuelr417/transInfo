@@ -79,7 +79,7 @@ public class Authentication extends Controller {
 
                     stmt[1].setString(1, userID);
                     stmt[1].setString(2, (userAgent.length > 0) ? userAgent[0] : "");
-                    stmt[1].setString(3, "0.0.0.0");
+                    stmt[1].setString(3, "0.0.0.01111");
                     // Verify data too long...
                     //stmt[1].setString(3, request().remoteAddress());
                     //Logger.info(request().remoteAddress());
