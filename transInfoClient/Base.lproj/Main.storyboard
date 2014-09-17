@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="nWY-kv-t24">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="nWY-kv-t24">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
         <!--Main View Controller-->
@@ -48,7 +47,6 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
@@ -61,7 +59,7 @@
             </objects>
             <point key="canvasLocation" x="-2032" y="-1664"/>
         </scene>
-        <!--Main Table View Controller - Accidentes Reportados-->
+        <!--Accidentes Reportados-->
         <scene sceneID="3Dm-NI-0cA">
             <objects>
                 <tableViewController storyboardIdentifier="MainTableViewController" id="HyS-RN-bAA" customClass="MainTableViewController" sceneMemberID="viewController">
@@ -69,7 +67,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="7cP-fC-pBJ">
                                 <rect key="frame" x="0.0" y="86" width="1024" height="44"/>
@@ -132,7 +129,7 @@
             </objects>
             <point key="canvasLocation" x="-591" y="-2933"/>
         </scene>
-        <!--Report First Step View Controller - Información Básica del Accidente-->
+        <!--Información Básica del Accidente-->
         <scene sceneID="kS9-J9-emi">
             <objects>
                 <viewController storyboardIdentifier="ReportFirstStepViewController" id="PYj-VZ-Mvr" customClass="ReportFirstStepViewController" sceneMemberID="viewController">
@@ -140,7 +137,7 @@
                         <viewControllerLayoutGuide type="top" id="ufO-IR-Xid"/>
                         <viewControllerLayoutGuide type="bottom" id="RpQ-7b-7WC"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="QXB-XH-ZRh">
+                    <view key="view" contentMode="scaleToFill" id="QXB-XH-ZRh" customClass="UIScrollView">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
@@ -295,6 +292,10 @@
                                 <rect key="frame" x="20" y="544" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="didBegin:" destination="PYj-VZ-Mvr" eventType="editingDidBegin" id="VWf-NE-cMH"/>
+                                    <action selector="didEnd:" destination="PYj-VZ-Mvr" eventType="editingDidEnd" id="bhW-uU-Wut"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Peatones" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a8F-ql-5eb">
                                 <rect key="frame" x="125" y="544" width="97" height="30"/>
@@ -379,7 +380,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Latitud:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0sO-XV-xc1">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Latitud:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0sO-XV-xc1">
                                 <rect key="frame" x="20" y="20" width="83" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>

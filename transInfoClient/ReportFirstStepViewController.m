@@ -31,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *countyField;
 @property (weak, nonatomic) IBOutlet UIButton *countyButton;
 
+@property UITextField *activeField;
 
 @property (nonatomic, strong) PickerViewController *pickerView;
 @property (nonatomic, strong) UIPopoverController *pickerPopover;
@@ -45,6 +46,12 @@
 @end
 
 @implementation ReportFirstStepViewController
+
+- (void)viewDidLoad {
+    [(UIScrollView *)self.view setContentSize:CGSizeMake(320, 700)];
+    [self registerForKeyboardNotifications];
+}
+
 - (IBAction)crashDateEditingDidBegin:(id)sender {
     UIDatePickerOKView *customPicker = [[[NSBundle mainBundle] loadNibNamed:@"UIPickerOKView" owner:self options:nil] objectAtIndex:0];
     
@@ -240,6 +247,72 @@
         MapPopoverViewController *destinationController = [segue destinationViewController];
         destinationController.coords = self.coords;
     }
+    
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    self.activeField = textField;
+}
+- (IBAction)didBegin:(id)sender {
+    self.activeField = sender;
+}
+- (IBAction)didEnd:(id)sender {
+    self.activeField = nil;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    self.activeField = nil;
+}
+
+// Call this method somewhere in your view controller setup code.
+- (void)registerForKeyboardNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWasShown:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeHidden:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+}
+
+// Called when the UIKeyboardDidShowNotification is sent.
+- (void)keyboardWasShown:(NSNotification*)aNotification
+{
+    UIScrollView *scrollView = (UIScrollView*)self.view;
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    CGSize keyboardSize = [[[aNotification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    if (orientation == UIDeviceOrientationLandscapeLeft || orientation == UIDeviceOrientationLandscapeRight ) {
+        CGSize origKeySize = keyboardSize;
+        keyboardSize.height = origKeySize.width;
+        keyboardSize.width = origKeySize.height;
+    }
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0, 0, keyboardSize.height, 0);
+    scrollView.contentInset = contentInsets;
+    scrollView.scrollIndicatorInsets = contentInsets;
+    
+    // If active text field is hidden by keyboard, scroll it so it's visible
+    // Your application might not need or want this behavior.
+    CGRect rect = scrollView.frame;
+    rect.size.height -= keyboardSize.height;
+    //NSLog(@"Rect Size Height: %f", rect.size.height);
+    
+    if (!CGRectContainsPoint(rect, self.activeField.frame.origin)) {
+        CGPoint point = CGPointMake(0, self.activeField.frame.origin.y - keyboardSize.height);
+        //NSLog(@"Point Height: %f", point.y);
+        [scrollView setContentOffset:point animated:YES];
+    }
+}
+
+// Called when the UIKeyboardWillHideNotification is sent
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification
+{
+    UIScrollView* scrollView = (UIScrollView*)self.view;
+    
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    scrollView.contentInset = contentInsets;
+    scrollView.scrollIndicatorInsets = contentInsets;
 }
 
 @end
