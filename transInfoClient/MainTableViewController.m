@@ -84,14 +84,15 @@
     //XXXX-X-XXX-XXXXX
     //(Año)-(Area Policiaca… Ponce, San Juan, Fajardo)-(Número de Precinto)-(Número de Querella)
     cell.complaintNumberLabel.text = @"# 2014-1-023-00001";
-    cell.coordinatesLabel.text = @"X: 17.976434 Y: -66.600828";
+    cell.mostContributingPersonLabel.text = @"Soto Fortuño, Omar";
     cell.placeLabel.text = @"Ponce, Puerto Rico";
     cell.complaintTypeLabel.text = @"Fatal";
     
     NSDate *date = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateStyle:NSDateFormatterLongStyle];
-    NSString *dateString = [dateFormatter stringFromDate:date];
+    //[dateFormatter setDateStyle:NSDateFormatterLongStyle];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    NSString *dateString = [[NSString alloc] initWithFormat:@"%@ %@", [dateFormatter stringFromDate:date], @"7:00 A.M."];
     
     cell.dateLabel.text = dateString;
 

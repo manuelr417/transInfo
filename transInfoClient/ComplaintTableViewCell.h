@@ -11,7 +11,7 @@
 @interface ComplaintTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *complaintNumberLabel;
-@property (weak, nonatomic) IBOutlet UILabel *coordinatesLabel;
+@property (weak, nonatomic) IBOutlet UILabel *mostContributingPersonLabel;
 @property (weak, nonatomic) IBOutlet UILabel *complaintTypeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *placeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;

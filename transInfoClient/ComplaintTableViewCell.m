@@ -16,7 +16,7 @@
 
 @synthesize complaintNumberLabel;
 @synthesize complaintTypeLabel;
-@synthesize coordinatesLabel;
+@synthesize mostContributingPersonLabel;
 @synthesize placeLabel;
 @synthesize dateLabel;
 

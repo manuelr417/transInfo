@@ -10,6 +10,9 @@
 #import "Config.h"
 #import "restComm.h"
 #import "Utilities.h"
+#import "MainTableViewController.h"
+#import "ReportFirstStepViewController.h"
+#import "SplitViewController.h"
 
 @interface MainViewController ()
 
@@ -38,7 +41,15 @@ NSUserDefaults *userDefaults;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-
+    //[self.username setLeftViewMode:UITextFieldViewModeAlways];
+    //[self.username setClearButtonMode:UITextFieldViewModeWhileEditing];
+    [self.username setBorderStyle:UITextBorderStyleBezel];
+    
+    CGRect frameRect = self.username.frame;
+    frameRect.size.height = 60;
+    self.username.frame = frameRect;
+    
+    [self.username setBorderStyle:UITextBorderStyleRoundedRect];
 }
 
 - (void)viewDidLoad
@@ -146,7 +157,7 @@ NSUserDefaults *userDefaults;
         [self.spinner stopAnimating];
     }
     self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    self.spinner.center = CGPointMake(screenRect.size.width * 0.5, screenRect.size.height * 0.5);
+    self.spinner.center = CGPointMake(screenRect.size.height * 0.5, screenRect.size.width * 0.5);
     
     [self.view addSubview:self.spinner];
     [self.spinner startAnimating];
@@ -170,35 +181,48 @@ NSUserDefaults *userDefaults;
     NSDictionary *loginInfo = [userDefaults objectForKey:@"login"];
     
     if (loginInfo != nil) {
-        NSString *out = [NSString stringWithFormat:@"First Name: %@\nLast Name: %@\nPlate Number: %@\nAgency ID: %@", loginInfo[@"FirstName"], loginInfo[@"LastName"], loginInfo[@"PlateNumber"], loginInfo[@"AgencyID"]];
+        //NSString *out = [NSString stringWithFormat:@"First Name: %@\nLast Name: %@\nPlate Number: %@\nAgency ID: %@", loginInfo[@"FirstName"], loginInfo[@"LastName"], loginInfo[@"PlateNumber"], loginInfo[@"AgencyID"]];
         
         NSLog(@"You are in!");
-        [Utilities displayAlertWithMessage:[NSString stringWithFormat:@"Welcome %@ %@, your session expires on %@", loginInfo[@"FirstName"], loginInfo[@"LastName"], loginInfo[@"ExpirationDate"]] withTitle:@"DEBUG"];
+        //[Utilities displayAlertWithMessage:[NSString stringWithFormat:@"Welcome %@ %@, your session expires on %@", loginInfo[@"FirstName"], loginInfo[@"LastName"], loginInfo[@"ExpirationDate"]] withTitle:@"DEBUG"];
         
-        [Utilities displayAlertWithMessage:out withTitle:@"LOGIN INFO (DEBUG)"];
+        //[Utilities displayAlertWithMessage:out withTitle:@"LOGIN INFO (DEBUG)"];
         
-        [self performSegueWithIdentifier:@"GoToMainNavigation" sender:self];
+        //[self performSegueWithIdentifier:@"GoToMainNavigation" sender:self];
+   
+        //MainTableViewController *masterViewController = [[MainTableViewController alloc] init];
+        //UINavigationController *masterNavigationController = [[UINavigationController alloc] initWithRootViewController:masterViewController];
         
-        //MainNavigationController
-        //UINavigationController *controller = [[self.view.window.rootViewController storyboard]instantiateViewControllerWithIdentifier:@"MainNavigationController"];
-        //[self.view.window.rootViewController presentViewController: controller animated:YES completion:nil];
-        
-        //[self.view.window.rootViewController storyboard]
+        //ReportFirstStepViewController *detailViewController = [[ReportFirstStepViewController alloc] init];
+        //UINavigationController *detailNavigationController = [[UINavigationController alloc] initWithRootViewController:detailViewController];
         
         
-        //UIViewController *myViewController = [[MyViewController alloc] init];
-        //navigationController = [[UINavigationController alloc]
-          //                      initWithRootViewController:myViewController];
-        
-        //self.view.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-       // self.view.window.rootViewController = controller;
-        //[self.view.window makeKeyAndVisible];
+        UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIViewController *masterViewController = [storyBoard instantiateViewControllerWithIdentifier:@"MainNavigationController"];
 
+         UIViewController *detailViewController = [storyBoard instantiateViewControllerWithIdentifier:@"ReportFirstStepNavigationController"];
         
-        //[self.view.window addSubview:controller];
+        SplitViewController* splitViewController = [[SplitViewController alloc] init];
+       
         
+        //splitViewController.viewControllers = @[masterViewController, detailViewController];
+        splitViewController.viewControllers = @[masterViewController, detailViewController];
+        //splitViewController.delegate = self;
+        //splitViewController.delegate = [[SplitViewController alloc] init];
+        //splitViewController.delegate = splitViewController;
         
-        //[self.view.window.rootViewController presentViewController: controller animated:YES completion:nil];
+        /*UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        window.rootViewController = splitViewController;
+        window.backgroundColor = [UIColor whiteColor];
+        */
+        //self.view.window = window;
+        
+        //self.view.window.bounds = [[UIScreen mainScreen] bounds];
+        
+        self.view.window.rootViewController = splitViewController;
+        //self.view.window.backgroundColor = [UIColor whiteColor];
+        [self.view.window makeKeyAndVisible];
+        
     }
 }
 

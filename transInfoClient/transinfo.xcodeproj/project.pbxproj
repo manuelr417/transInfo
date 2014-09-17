@@ -23,6 +23,11 @@
 		D52C29D919AB746F00294FA0 /* MainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D52C29D819AB746F00294FA0 /* MainTableViewController.m */; };
 		D52C29DB19AFD9D000294FA0 /* ComplaintTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D52C29DA19AFD9D000294FA0 /* ComplaintTableViewCell.xib */; };
 		D52C29DE19B0C42000294FA0 /* ComplaintTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D52C29DD19B0C42000294FA0 /* ComplaintTableViewCell.m */; };
+		D52C29E119B75E8B00294FA0 /* SplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D52C29E019B75E8B00294FA0 /* SplitViewController.m */; };
+		D52C29E819BA253300294FA0 /* MainSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D52C29E719BA253300294FA0 /* MainSplitViewController.m */; };
+		D52C29EC19C0A95600294FA0 /* UIPickerOKView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D52C29EB19C0A95600294FA0 /* UIPickerOKView.xib */; };
+		D52C29EF19C0AB1300294FA0 /* UIDatePickerOKView.m in Sources */ = {isa = PBXBuildFile; fileRef = D52C29EE19C0AB1300294FA0 /* UIDatePickerOKView.m */; };
+		D52C29F219C1CA3B00294FA0 /* PickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D52C29F119C1CA3B00294FA0 /* PickerViewController.m */; };
 		D5DDB4511962EE9C0002F5EA /* restComm.m in Sources */ = {isa = PBXBuildFile; fileRef = D5DDB4501962EE9C0002F5EA /* restComm.m */; };
 		D5DDB453196B2F590002F5EA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5DDB452196B2F590002F5EA /* MapKit.framework */; };
 		D5DDB456196B30930002F5EA /* MapPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5DDB455196B30930002F5EA /* MapPopoverViewController.m */; };
@@ -82,6 +87,15 @@
 		D52C29DA19AFD9D000294FA0 /* ComplaintTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComplaintTableViewCell.xib; sourceTree = "<group>"; };
 		D52C29DC19B0C42000294FA0 /* ComplaintTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComplaintTableViewCell.h; sourceTree = "<group>"; };
 		D52C29DD19B0C42000294FA0 /* ComplaintTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComplaintTableViewCell.m; sourceTree = "<group>"; };
+		D52C29DF19B75E8B00294FA0 /* SplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitViewController.h; sourceTree = "<group>"; };
+		D52C29E019B75E8B00294FA0 /* SplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitViewController.m; sourceTree = "<group>"; };
+		D52C29E619BA253300294FA0 /* MainSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainSplitViewController.h; sourceTree = "<group>"; };
+		D52C29E719BA253300294FA0 /* MainSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainSplitViewController.m; sourceTree = "<group>"; };
+		D52C29EB19C0A95600294FA0 /* UIPickerOKView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UIPickerOKView.xib; sourceTree = "<group>"; };
+		D52C29ED19C0AB1300294FA0 /* UIDatePickerOKView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDatePickerOKView.h; sourceTree = "<group>"; };
+		D52C29EE19C0AB1300294FA0 /* UIDatePickerOKView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIDatePickerOKView.m; sourceTree = "<group>"; };
+		D52C29F019C1CA3B00294FA0 /* PickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerViewController.h; sourceTree = "<group>"; };
+		D52C29F119C1CA3B00294FA0 /* PickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerViewController.m; sourceTree = "<group>"; };
 		D5DDB44F1962EE9C0002F5EA /* restComm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = restComm.h; sourceTree = "<group>"; };
 		D5DDB4501962EE9C0002F5EA /* restComm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = restComm.m; sourceTree = "<group>"; };
 		D5DDB452196B2F590002F5EA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -154,10 +168,19 @@
 		D528522D1959CBEA00806467 = {
 			isa = PBXGroup;
 			children = (
+				D52C29EB19C0A95600294FA0 /* UIPickerOKView.xib */,
+				D52C29ED19C0AB1300294FA0 /* UIDatePickerOKView.h */,
+				D52C29EE19C0AB1300294FA0 /* UIDatePickerOKView.m */,
+				D52C29E619BA253300294FA0 /* MainSplitViewController.h */,
+				D52C29E719BA253300294FA0 /* MainSplitViewController.m */,
+				D52C29DF19B75E8B00294FA0 /* SplitViewController.h */,
+				D52C29E019B75E8B00294FA0 /* SplitViewController.m */,
 				D52C29DA19AFD9D000294FA0 /* ComplaintTableViewCell.xib */,
 				D52C29DC19B0C42000294FA0 /* ComplaintTableViewCell.h */,
 				D52C29DD19B0C42000294FA0 /* ComplaintTableViewCell.m */,
 				D52C29D719AB746F00294FA0 /* MainTableViewController.h */,
+				D52C29F019C1CA3B00294FA0 /* PickerViewController.h */,
+				D52C29F119C1CA3B00294FA0 /* PickerViewController.m */,
 				D52C29D819AB746F00294FA0 /* MainTableViewController.m */,
 				D5E8FBCF19A689B400ED72EE /* Utilities.h */,
 				D5E8FBD019A689B400ED72EE /* Utilities.m */,
@@ -332,6 +355,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D52C29EC19C0A95600294FA0 /* UIPickerOKView.xib in Resources */,
 				D5285278195A09F900806467 /* Main.storyboard in Resources */,
 				D5285274195A05DD00806467 /* Localizable.strings in Resources */,
 				D52C29DB19AFD9D000294FA0 /* ComplaintTableViewCell.xib in Resources */,
@@ -354,13 +378,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D52C29E819BA253300294FA0 /* MainSplitViewController.m in Sources */,
 				D528524A1959CBEB00806467 /* AppDelegate.m in Sources */,
 				D5E8FBCE19A53B0600ED72EE /* Config.m in Sources */,
 				D5DDB456196B30930002F5EA /* MapPopoverViewController.m in Sources */,
 				D5E8FBD119A689B400ED72EE /* Utilities.m in Sources */,
 				D5DDB459196B47E80002F5EA /* CurrentLocationPin.m in Sources */,
+				D52C29EF19C0AB1300294FA0 /* UIDatePickerOKView.m in Sources */,
+				D52C29F219C1CA3B00294FA0 /* PickerViewController.m in Sources */,
 				D5DDB45C196B5A9D0002F5EA /* ReportFirstStepViewController.m in Sources */,
 				D52C29DE19B0C42000294FA0 /* ComplaintTableViewCell.m in Sources */,
+				D52C29E119B75E8B00294FA0 /* SplitViewController.m in Sources */,
 				D52852461959CBEB00806467 /* main.m in Sources */,
 				D528528A1962E0DC00806467 /* MainViewController.m in Sources */,
 				D52C29D919AB746F00294FA0 /* MainTableViewController.m in Sources */,

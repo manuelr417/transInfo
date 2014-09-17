@@ -92,6 +92,7 @@ CurrentLocationPin *pinAnnot;
         [self.mapView addAnnotation:pinAnnot];
     } else {
         pinAnnot.coordinate = self.coords;
+       //[self.mapview ]
     }
     
     NSDictionary *dict = @{@"latitude" : [NSNumber numberWithFloat:self.coords.latitude] , @"longitude" : [NSNumber numberWithFloat:self.coords.longitude]};
