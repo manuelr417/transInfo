@@ -57,15 +57,12 @@ CurrentLocationPin *pinAnnot;
         self.locationManager.delegate = self;
     }
     
-    //[self.mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];*/
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivedNotification:) name:@"Step1 Coords" object:nil];
 }
 
 - (void)mapViewDidFinishLoadingMap:(MKMapView *)mapView {
     if (!self.firstMapLoad) {
         [self updateCurrentLocation:YES];
-        //[self.locationManager startUpdatingLocation];
         self.firstMapLoad = YES;
     }
 }
@@ -92,7 +89,6 @@ CurrentLocationPin *pinAnnot;
         [self.mapView addAnnotation:pinAnnot];
     } else {
         pinAnnot.coordinate = self.coords;
-       //[self.mapview ]
     }
     
     NSDictionary *dict = @{@"latitude" : [NSNumber numberWithFloat:self.coords.latitude] , @"longitude" : [NSNumber numberWithFloat:self.coords.longitude]};
@@ -104,21 +100,11 @@ CurrentLocationPin *pinAnnot;
     CLLocation *loc = [locations lastObject];
     [self.locationManager stopUpdatingLocation];
     
-    NSLog(@" lat: %f", loc.coordinate.latitude);
-    NSLog(@" lon: %f", loc.coordinate.longitude);
+    //NSLog(@" lat: %f", loc.coordinate.latitude);
+    //NSLog(@" lon: %f", loc.coordinate.longitude);
 
     self.coords = loc.coordinate;
     [self updateCurrentLocation:NO];
-                                                                                                   
-    /*GMSGeocoder *geocoder = [GMSGeocoder geocoder];
-    [geocoder reverseGeocodeCoordinate:coord
-                     completionHandler:^(GMSReverseGeocodeResponse *response, NSError *error) {
-                         //self.addr.text = response.firstResult.description;
-                         self.addr.text = [response.firstResult.lines componentsJoinedByString:@"\n"];
-                         //NSLog(response.firstResult.description);
-                     }];*/
-    
-    
 }
 
 - (MKAnnotationView*)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
@@ -137,28 +123,22 @@ CurrentLocationPin *pinAnnot;
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view didChangeDragState:(MKAnnotationViewDragState)newState fromOldState:(MKAnnotationViewDragState)oldState {
     if (newState == MKAnnotationViewDragStateEnding) {
         CLLocationCoordinate2D droppedAt = view.annotation.coordinate;
-        //NSLog(@" lat: %f", droppedAt.latitude);
-        //NSLog(@" lon: %f", droppedAt.longitude);
-        
-        //self.latitudeOutlet.text = [NSString stringWithFormat:@"%f", droppedAt.latitude];
-        //self.longitudeOutlet.text = [NSString stringWithFormat:@"%f", droppedAt.longitude];
-        
         
         self.coords = droppedAt;
-        NSLog(@"Changed Current Location!");
         [self updateCurrentLocation:NO];
     }
 }
 
 - (IBAction)getCurrentLocation:(id)sender {
     if ([sender tag] == 0) {
+        [self.locationManager requestAlwaysAuthorization];
         [self.locationManager startUpdatingLocation];
     }
 }
 
 - (void)receivedNotification:(NSNotification*)notification {
     if ([[notification name] isEqualToString:@"Step1 Coords"]) {
-        NSLog(@"Received Coords from Step 1");
+        //NSLog(@"Received Coords from Step 1");
     }
 }
 

@@ -35,5 +35,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Coordinates will be used for the Crash Report.</string>
 </dict>
 </plist>

@@ -43,9 +43,18 @@
         
         //Calculate how tall the view should be by multiplying
         //the individual row height by the total number of rows.
+        NSInteger totalRowsHeight;
         NSInteger rowsCount = [self.elementKeys count];
         NSInteger singleRowHeight = [self.tableView.delegate tableView:self.tableView heightForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-        NSInteger totalRowsHeight = rowsCount * singleRowHeight;
+        
+        if (singleRowHeight == -1) {
+            UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+            totalRowsHeight = rowsCount * cell.frame.size.height;
+        } else {
+            totalRowsHeight = rowsCount * singleRowHeight;
+        }
+        
+        //NSLog(@"Rows: %ld", (long)rowsCount);
         
         //Calculate how wide the view should be by finding how
         //wide each string is expected tobe
@@ -63,6 +72,8 @@
         
         //Add a little padding to the width
         CGFloat popoverWidth = largestLabelWidth + 100;
+        
+        //NSLog(@"Width: %f Height: %ld", popoverWidth, (long)totalRowsHeight);
         
         //Set the property to tell the popover container how big this view will be.
         self.preferredContentSize = CGSizeMake(popoverWidth, totalRowsHeight);
