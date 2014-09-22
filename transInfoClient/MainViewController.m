@@ -20,6 +20,9 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *username;
 @property (weak, nonatomic) IBOutlet UITextField *password;
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
+
+@property UIView *activeField;
 
 - (void)startLoading;
 - (void)stopLoading;
@@ -40,6 +43,18 @@ NSUserDefaults *userDefaults;
     return self;
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if (textField == self.username) {
+        [self.password becomeFirstResponder];
+        return NO;
+    } else if (textField == self.password) {
+        [self loginTouch:self.password];
+        return NO;
+    }
+    
+    return YES;
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     //[self.username setLeftViewMode:UITextFieldViewModeAlways];
     //[self.username setClearButtonMode:UITextFieldViewModeWhileEditing];
@@ -50,6 +65,9 @@ NSUserDefaults *userDefaults;
     self.username.frame = frameRect;
     
     [self.username setBorderStyle:UITextBorderStyleRoundedRect];
+    
+    self.username.delegate = self;
+    self.password.delegate = self;
 }
 
 - (void)viewDidLoad
@@ -57,6 +75,8 @@ NSUserDefaults *userDefaults;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    [self registerForKeyboardNotifications];
+    [(UIScrollView *)self.view setContentSize:CGSizeMake(700,700)];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -157,7 +177,7 @@ NSUserDefaults *userDefaults;
         [self.spinner stopAnimating];
     }
     self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    self.spinner.center = CGPointMake(screenRect.size.height * 0.5, screenRect.size.width * 0.5);
+    self.spinner.center = CGPointMake(screenRect.size.width * 0.5, screenRect.size.height * 0.5);
     
     [self.view addSubview:self.spinner];
     [self.spinner startAnimating];
@@ -188,43 +208,75 @@ NSUserDefaults *userDefaults;
         
         //[Utilities displayAlertWithMessage:out withTitle:@"LOGIN INFO (DEBUG)"];
         
-        //[self performSegueWithIdentifier:@"GoToMainNavigation" sender:self];
-   
-        //MainTableViewController *masterViewController = [[MainTableViewController alloc] init];
-        //UINavigationController *masterNavigationController = [[UINavigationController alloc] initWithRootViewController:masterViewController];
-        
-        //ReportFirstStepViewController *detailViewController = [[ReportFirstStepViewController alloc] init];
-        //UINavigationController *detailNavigationController = [[UINavigationController alloc] initWithRootViewController:detailViewController];
-        
+
         
         UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         UIViewController *masterViewController = [storyBoard instantiateViewControllerWithIdentifier:@"MainNavigationController"];
-
-         UIViewController *detailViewController = [storyBoard instantiateViewControllerWithIdentifier:@"ReportFirstStepNavigationController"];
+        UIViewController *detailViewController = [storyBoard instantiateViewControllerWithIdentifier:@"ReportTabBarController"];
         
         SplitViewController* splitViewController = [[SplitViewController alloc] init];
        
         
-        //splitViewController.viewControllers = @[masterViewController, detailViewController];
+        
         splitViewController.viewControllers = @[masterViewController, detailViewController];
-        //splitViewController.delegate = self;
-        //splitViewController.delegate = [[SplitViewController alloc] init];
-        //splitViewController.delegate = splitViewController;
-        
-        /*UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-        window.rootViewController = splitViewController;
-        window.backgroundColor = [UIColor whiteColor];
-        */
-        //self.view.window = window;
-        
-        //self.view.window.bounds = [[UIScreen mainScreen] bounds];
-        
+
         self.view.window.rootViewController = splitViewController;
         //self.view.window.backgroundColor = [UIColor whiteColor];
         [self.view.window makeKeyAndVisible];
         
     }
 }
+
+- (void)registerForKeyboardNotifications
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillBeHidden:)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+}
+
+// Called when the UIKeyboardWillShowNotification is sent.
+- (void)keyboardWillShow:(NSNotification*)aNotification
+{
+    if ([self.username isFirstResponder]) {
+        self.activeField = self.username;
+    } else if ([self.password isFirstResponder]) {
+        self.activeField = self.password;
+    } else {
+        return;
+    }
+    
+    UIScrollView *scrollView = (UIScrollView*)self.view;
+    NSDictionary* info = [aNotification userInfo];
+    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
+    scrollView.contentInset = contentInsets;
+    scrollView.scrollIndicatorInsets = contentInsets;
+    
+    // If active text field is hidden by keyboard, scroll it so it's visible
+    // Your app might not need or want this behavior.
+    CGRect aRect = self.view.frame;
+    aRect.size.height -= kbSize.height;
+    if (!CGRectContainsPoint(aRect, self.activeField.frame.origin) ) {
+        [scrollView scrollRectToVisible:self.activeField.frame animated:YES];
+    }
+}
+
+// Called when the UIKeyboardWillHideNotification is sent
+- (void)keyboardWillBeHidden:(NSNotification*)aNotification
+{
+    UIScrollView* scrollView = (UIScrollView*)self.view;
+    
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    scrollView.contentInset = contentInsets;
+    scrollView.scrollIndicatorInsets = contentInsets;
+    
+    self.activeField = nil;
+}
+
 
 /*
 #pragma mark - Navigation

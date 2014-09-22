@@ -34,15 +34,18 @@
 @property (weak, nonatomic) IBOutlet UITextField *pedestriansQuantityField;
 @property (weak, nonatomic) IBOutlet UITextField *injuredQuantityField;
 @property (weak, nonatomic) IBOutlet UITextField *fatalitiesQuantityField;
-@property (weak, nonatomic) IBOutlet UITextField *locationField;
-@property (weak, nonatomic) IBOutlet UIButton *locationButton;
+@property (weak, nonatomic) IBOutlet UITextField *nearToLocationField;
+@property (weak, nonatomic) IBOutlet UIButton *nearToLocationButton;
 @property (weak, nonatomic) IBOutlet UITextField *intersectingStreetField;
 @property (weak, nonatomic) IBOutlet UITextField *distanceField;
 @property (weak, nonatomic) IBOutlet UITextField *measurementField;
 @property (weak, nonatomic) IBOutlet UIButton *measurementButton;
 @property (weak, nonatomic) IBOutlet UITextField *directionField;
 @property (weak, nonatomic) IBOutlet UIButton *directionButton;
-
+@property (weak, nonatomic) IBOutlet UITextField *propertyField;
+@property (weak, nonatomic) IBOutlet UIButton *propertyButton;
+@property (weak, nonatomic) IBOutlet UITextField *locationField;
+@property (weak, nonatomic) IBOutlet UIButton *locationButton;
 
 @property UIView *activeField;
 
@@ -61,7 +64,7 @@
 @implementation ReportFirstStepViewController
 
 - (void)viewDidLoad {
-    [(UIScrollView *)self.view setContentSize:CGSizeMake(700,700)];
+    [(UIScrollView *)self.view setContentSize:CGSizeMake(700,850)];
     [self registerForKeyboardNotifications];
 }
 
@@ -95,9 +98,11 @@
     [self.reportTypeLookupButton setImage:[UIImage imageNamed:@"LookupIcon"] forState:UIControlStateNormal];
     [self.countyButton setImage:[UIImage imageNamed:@"LookupIcon"] forState:UIControlStateNormal];
     [self.cityButton setImage:[UIImage imageNamed:@"LookupIcon"] forState:UIControlStateNormal];
-    [self.locationButton setImage:[UIImage imageNamed:@"LookupIcon"] forState:UIControlStateNormal];
+    [self.nearToLocationButton setImage:[UIImage imageNamed:@"LookupIcon"] forState:UIControlStateNormal];
     [self.measurementButton setImage:[UIImage imageNamed:@"LookupIcon"] forState:UIControlStateNormal];
     [self.directionButton setImage:[UIImage imageNamed:@"LookupIcon"] forState:UIControlStateNormal];
+    [self.propertyButton setImage:[UIImage imageNamed:@"LookupIcon"] forState:UIControlStateNormal];
+    [self.locationButton setImage:[UIImage imageNamed:@"LookupIcon"] forState:UIControlStateNormal];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
@@ -173,7 +178,7 @@
     [self showPickerView:counties withField:self.countyField withLookupButton:self.countyButton withOutField:self.county];
 }
 
-- (IBAction)locationButtonTouchUpInside:(id)sender {
+- (IBAction)nearToLocationButtonTouchUpInside:(id)sender {
     NSMutableDictionary *locations = [[NSMutableDictionary alloc] init];
     
     // Orden alfabético
@@ -183,7 +188,7 @@
     [locations setObject:@"Puente" forKey:@"97"];
     [locations setObject:@"Otro" forKey:@"125"];
     
-    [self showPickerView:locations withField:self.locationField withLookupButton:self.locationButton withOutField:self.county];
+    [self showPickerView:locations withField:self.nearToLocationField withLookupButton:self.nearToLocationButton withOutField:self.county];
 }
 - (IBAction)measurementButtonTouchUpInside:(id)sender {
     NSMutableDictionary *measurements = [[NSMutableDictionary alloc] init];
@@ -212,6 +217,27 @@
     
     [self showPickerView:directions withField:self.directionField withLookupButton:self.directionButton withOutField:self.county];
 }
+- (IBAction)propertyButtonTouchUpInside:(id)sender {
+    NSMutableDictionary *properties = [[NSMutableDictionary alloc] init];
+    
+    // Orden alfabético
+    
+    [properties setObject:@"Propiedad Privada" forKey:@"1"];
+    [properties setObject:@"Propiedad Pública" forKey:@"2"];
+    
+    [self showPickerView:properties withField:self.propertyField withLookupButton:self.propertyButton withOutField:self.county];
+}
+- (IBAction)locationButtonTouchUpInside:(id)sender {
+    NSMutableDictionary *locations = [[NSMutableDictionary alloc] init];
+    
+    // Orden alfabético
+    
+    [locations setObject:@"Camino del tráfico, en la Carretera" forKey:@"1"];
+    [locations setObject:@"Camino del tráfico, fuera de Carretera" forKey:@"2"];
+    [locations setObject:@"Fuera del camino del Tráfico" forKey:@"3"];
+    
+    [self showPickerView:locations withField:self.locationField withLookupButton:self.locationButton withOutField:self.county];
+}
 
 - (void)showPickerView:(NSMutableDictionary*)elements withField:(UITextField*)field withLookupButton:(UIButton*)button withOutField:(NSString*)outField {
     self.pickerView = [[PickerViewController alloc] initWithStyle:UITableViewStylePlain withElementsDictionary:elements withMultipleChoice:NO];
@@ -221,7 +247,7 @@
     self.pickerView.popover = self.pickerPopover;
     self.pickerView.selectedKey = self.reportType;
     
-    [self.pickerPopover presentPopoverFromRect:button.bounds inView:button permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    [self.pickerPopover presentPopoverFromRect:button.bounds inView:button permittedArrowDirections:UIPopoverArrowDirectionUnknown animated:YES];
 }
 
 
