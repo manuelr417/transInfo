@@ -12,6 +12,7 @@
 #import "UIDatePickerOKView.h"
 #import "PickerViewController.h"
 #import "CollectionManager.h"
+#import "SWRevealViewController.h"
 
 @interface ReportFirstStepViewController ()
 
@@ -61,15 +62,26 @@
 @property (nonatomic, strong) NSString *county;
 
 @property NSMutableDictionary *collections;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 
 @end
 
 @implementation ReportFirstStepViewController
 
 - (void)viewDidLoad {
-    [(UIScrollView *)self.view setContentSize:CGSizeMake(700,850)];
+    [(UIScrollView *)self.view setContentSize:CGSizeMake(700,700)];
     [self registerForKeyboardNotifications];
     [self loadCollections];
+    
+    // Change button color
+    //self.sidebarButton.tintColor = [UIColor colorWithWhite:0.96f alpha:0.2f];
+    
+    // Set the side bar button action. When it's tapped, it'll show up the sidebar.
+    self.sidebarButton.target = self.revealViewController;
+    self.sidebarButton.action = @selector(revealToggle:);
+    
+    // Set the gesture
+    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
 }
 
 - (void)loadCollections {
@@ -120,23 +132,15 @@
     [self setCrashHourFormat];
     
     // Buttons with Lookup Icon ( Lookup Icon by taken from https://github.com/alexharris/blue-blog-theme/tree/master/img )
-    [self.reportTypeLookupButton setImage:[UIImage imageNamed:@"LookupIcon"] forState:UIControlStateNormal];
+    /*[self.reportTypeLookupButton setImage:[UIImage imageNamed:@"LookupIcon"] forState:UIControlStateNormal];
     [self.countyButton setImage:[UIImage imageNamed:@"LookupIcon"] forState:UIControlStateNormal];
     [self.cityButton setImage:[UIImage imageNamed:@"LookupIcon"] forState:UIControlStateNormal];
     [self.nearToLocationButton setImage:[UIImage imageNamed:@"LookupIcon"] forState:UIControlStateNormal];
     [self.measurementButton setImage:[UIImage imageNamed:@"LookupIcon"] forState:UIControlStateNormal];
     [self.directionButton setImage:[UIImage imageNamed:@"LookupIcon"] forState:UIControlStateNormal];
     [self.propertyButton setImage:[UIImage imageNamed:@"LookupIcon"] forState:UIControlStateNormal];
-    [self.locationButton setImage:[UIImage imageNamed:@"LookupIcon"] forState:UIControlStateNormal];
-    
-    [self.reportTypeLookupButton setHidden:YES];
-    [self.countyButton setHidden:YES];
-    [self.cityButton setHidden:YES];
-    [self.nearToLocationButton setHidden:YES];
-    [self.measurementButton setHidden:YES];
-    [self.directionButton setHidden:YES];
-    [self.propertyButton setHidden:YES];
-    [self.locationButton setHidden:YES];
+    [self.locationButton setImage:[UIImage imageNamed:@"LookupIcon"] forState:UIControlStateNormal];*/
+
     
     self.reportTypeField.delegate = self;
     self.countyField.delegate = self;

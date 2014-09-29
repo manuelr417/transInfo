@@ -211,7 +211,9 @@ NSUserDefaults *userDefaults;
 
         
         UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        UIViewController *masterViewController = [storyBoard instantiateViewControllerWithIdentifier:@"MainNavigationController"];
+        UIViewController *viewController = [storyBoard instantiateViewControllerWithIdentifier:@"RevealViewController"];
+        
+        /*UIViewController *masterViewController = [storyBoard instantiateViewControllerWithIdentifier:@"MainNavigationController"];
         UIViewController *detailViewController = [storyBoard instantiateViewControllerWithIdentifier:@"ReportTabBarController"];
         
         SplitViewController* splitViewController = [[SplitViewController alloc] init];
@@ -220,8 +222,11 @@ NSUserDefaults *userDefaults;
         
         splitViewController.viewControllers = @[masterViewController, detailViewController];
 
-        self.view.window.rootViewController = splitViewController;
+        self.view.window.rootViewController = splitViewController;*/
         //self.view.window.backgroundColor = [UIColor whiteColor];
+        
+        
+        self.view.window.rootViewController = viewController;
         [self.view.window makeKeyAndVisible];
         
     }
