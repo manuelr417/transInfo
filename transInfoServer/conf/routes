@@ -5,6 +5,7 @@
 # Home page
 GET     /                           controllers.Application.index()
 GET     /counties                   controllers.Collections.getCounties()
+GET     /reportTypes                controllers.Collections.getReportTypes()
 
 # Authentication
 POST    /login                      controllers.Authentication.doLogin()

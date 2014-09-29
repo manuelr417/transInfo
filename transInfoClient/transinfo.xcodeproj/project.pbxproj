@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D51FEBD819D9D9D200E9D39C /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D51FEBD719D9D9D200E9D39C /* SWRevealViewController.m */; };
 		D528523A1959CBEB00806467 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D52852391959CBEB00806467 /* Foundation.framework */; };
 		D528523C1959CBEB00806467 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D528523B1959CBEB00806467 /* CoreGraphics.framework */; };
 		D528523E1959CBEB00806467 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D528523D1959CBEB00806467 /* UIKit.framework */; };
@@ -28,6 +29,7 @@
 		D52C29EC19C0A95600294FA0 /* UIPickerOKView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D52C29EB19C0A95600294FA0 /* UIPickerOKView.xib */; };
 		D52C29EF19C0AB1300294FA0 /* UIDatePickerOKView.m in Sources */ = {isa = PBXBuildFile; fileRef = D52C29EE19C0AB1300294FA0 /* UIDatePickerOKView.m */; };
 		D52C29F219C1CA3B00294FA0 /* PickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D52C29F119C1CA3B00294FA0 /* PickerViewController.m */; };
+		D552535E19D4702600D8AEB6 /* CollectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D552535D19D4702600D8AEB6 /* CollectionManager.m */; };
 		D5DDB4511962EE9C0002F5EA /* restComm.m in Sources */ = {isa = PBXBuildFile; fileRef = D5DDB4501962EE9C0002F5EA /* restComm.m */; };
 		D5DDB453196B2F590002F5EA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5DDB452196B2F590002F5EA /* MapKit.framework */; };
 		D5DDB456196B30930002F5EA /* MapPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5DDB455196B30930002F5EA /* MapPopoverViewController.m */; };
@@ -62,6 +64,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D51FEBD619D9D9D200E9D39C /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		D51FEBD719D9D9D200E9D39C /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		D52852361959CBEB00806467 /* transinfo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = transinfo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D52852391959CBEB00806467 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D528523B1959CBEB00806467 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -96,6 +100,8 @@
 		D52C29EE19C0AB1300294FA0 /* UIDatePickerOKView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIDatePickerOKView.m; sourceTree = "<group>"; };
 		D52C29F019C1CA3B00294FA0 /* PickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerViewController.h; sourceTree = "<group>"; };
 		D52C29F119C1CA3B00294FA0 /* PickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerViewController.m; sourceTree = "<group>"; };
+		D552535C19D4702600D8AEB6 /* CollectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionManager.h; sourceTree = "<group>"; };
+		D552535D19D4702600D8AEB6 /* CollectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionManager.m; sourceTree = "<group>"; };
 		D5DDB44F1962EE9C0002F5EA /* restComm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = restComm.h; sourceTree = "<group>"; };
 		D5DDB4501962EE9C0002F5EA /* restComm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = restComm.m; sourceTree = "<group>"; };
 		D5DDB452196B2F590002F5EA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -165,39 +171,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D51FEBD519D9D9D200E9D39C /* SWRevealViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D51FEBD619D9D9D200E9D39C /* SWRevealViewController.h */,
+				D51FEBD719D9D9D200E9D39C /* SWRevealViewController.m */,
+			);
+			path = SWRevealViewController;
+			sourceTree = "<group>";
+		};
 		D528522D1959CBEA00806467 = {
 			isa = PBXGroup;
 			children = (
-				D52C29EB19C0A95600294FA0 /* UIPickerOKView.xib */,
-				D52C29ED19C0AB1300294FA0 /* UIDatePickerOKView.h */,
-				D52C29EE19C0AB1300294FA0 /* UIDatePickerOKView.m */,
-				D52C29E619BA253300294FA0 /* MainSplitViewController.h */,
-				D52C29E719BA253300294FA0 /* MainSplitViewController.m */,
-				D52C29DF19B75E8B00294FA0 /* SplitViewController.h */,
-				D52C29E019B75E8B00294FA0 /* SplitViewController.m */,
-				D52C29DA19AFD9D000294FA0 /* ComplaintTableViewCell.xib */,
-				D52C29DC19B0C42000294FA0 /* ComplaintTableViewCell.h */,
-				D52C29DD19B0C42000294FA0 /* ComplaintTableViewCell.m */,
-				D52C29D719AB746F00294FA0 /* MainTableViewController.h */,
-				D52C29F019C1CA3B00294FA0 /* PickerViewController.h */,
-				D52C29F119C1CA3B00294FA0 /* PickerViewController.m */,
-				D52C29D819AB746F00294FA0 /* MainTableViewController.m */,
-				D5E8FBCF19A689B400ED72EE /* Utilities.h */,
-				D5E8FBD019A689B400ED72EE /* Utilities.m */,
-				D5E8FBCC19A53B0600ED72EE /* Config.h */,
-				D5E8FBCD19A53B0600ED72EE /* Config.m */,
-				D5DDB454196B30930002F5EA /* MapPopoverViewController.h */,
-				D5DDB455196B30930002F5EA /* MapPopoverViewController.m */,
-				D5DDB457196B47E80002F5EA /* CurrentLocationPin.h */,
-				D5DDB458196B47E80002F5EA /* CurrentLocationPin.m */,
-				D5DDB44F1962EE9C0002F5EA /* restComm.h */,
-				D5DDB4501962EE9C0002F5EA /* restComm.m */,
-				D52852881962E0DC00806467 /* MainViewController.h */,
-				D52852891962E0DC00806467 /* MainViewController.m */,
+				D51FEBD519D9D9D200E9D39C /* SWRevealViewController */,
+				D5733FAD19D0B1E0009A6555 /* ViewControllers */,
+				D5733FAC19D0B1B3009A6555 /* Views */,
+				D5733FAB19D0AEAA009A6555 /* CustomViews */,
+				D5733FAE19D0B2AE009A6555 /* CustomClasses */,
 				D5285276195A05DD00806467 /* Localizable.strings */,
 				D528527A195A09F900806467 /* Main.storyboard */,
-				D5DDB45A196B5A9D0002F5EA /* ReportFirstStepViewController.h */,
-				D5DDB45B196B5A9D0002F5EA /* ReportFirstStepViewController.m */,
 				D528523F1959CBEB00806467 /* transinfo */,
 				D52852581959CBEB00806467 /* transinfoTests */,
 				D52852381959CBEB00806467 /* Frameworks */,
@@ -276,6 +268,64 @@
 				D528525A1959CBEB00806467 /* transinfoTests-Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D5733FAB19D0AEAA009A6555 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				D52C29DA19AFD9D000294FA0 /* ComplaintTableViewCell.xib */,
+				D52C29EB19C0A95600294FA0 /* UIPickerOKView.xib */,
+			);
+			name = CustomViews;
+			sourceTree = "<group>";
+		};
+		D5733FAC19D0B1B3009A6555 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D52C29ED19C0AB1300294FA0 /* UIDatePickerOKView.h */,
+				D52C29EE19C0AB1300294FA0 /* UIDatePickerOKView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		D5733FAD19D0B1E0009A6555 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				D5DDB45A196B5A9D0002F5EA /* ReportFirstStepViewController.h */,
+				D5DDB45B196B5A9D0002F5EA /* ReportFirstStepViewController.m */,
+				D52C29E619BA253300294FA0 /* MainSplitViewController.h */,
+				D52C29E719BA253300294FA0 /* MainSplitViewController.m */,
+				D52C29DF19B75E8B00294FA0 /* SplitViewController.h */,
+				D52C29E019B75E8B00294FA0 /* SplitViewController.m */,
+				D52C29F019C1CA3B00294FA0 /* PickerViewController.h */,
+				D52C29F119C1CA3B00294FA0 /* PickerViewController.m */,
+				D52852881962E0DC00806467 /* MainViewController.h */,
+				D52852891962E0DC00806467 /* MainViewController.m */,
+				D5DDB455196B30930002F5EA /* MapPopoverViewController.m */,
+				D5DDB454196B30930002F5EA /* MapPopoverViewController.h */,
+				D52C29D819AB746F00294FA0 /* MainTableViewController.m */,
+				D52C29D719AB746F00294FA0 /* MainTableViewController.h */,
+				D52C29DC19B0C42000294FA0 /* ComplaintTableViewCell.h */,
+				D52C29DD19B0C42000294FA0 /* ComplaintTableViewCell.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		D5733FAE19D0B2AE009A6555 /* CustomClasses */ = {
+			isa = PBXGroup;
+			children = (
+				D5E8FBCF19A689B400ED72EE /* Utilities.h */,
+				D5E8FBD019A689B400ED72EE /* Utilities.m */,
+				D5E8FBCC19A53B0600ED72EE /* Config.h */,
+				D5E8FBCD19A53B0600ED72EE /* Config.m */,
+				D5DDB457196B47E80002F5EA /* CurrentLocationPin.h */,
+				D5DDB458196B47E80002F5EA /* CurrentLocationPin.m */,
+				D5DDB44F1962EE9C0002F5EA /* restComm.h */,
+				D5DDB4501962EE9C0002F5EA /* restComm.m */,
+				D552535C19D4702600D8AEB6 /* CollectionManager.h */,
+				D552535D19D4702600D8AEB6 /* CollectionManager.m */,
+			);
+			name = CustomClasses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -383,11 +433,13 @@
 				D5E8FBCE19A53B0600ED72EE /* Config.m in Sources */,
 				D5DDB456196B30930002F5EA /* MapPopoverViewController.m in Sources */,
 				D5E8FBD119A689B400ED72EE /* Utilities.m in Sources */,
+				D552535E19D4702600D8AEB6 /* CollectionManager.m in Sources */,
 				D5DDB459196B47E80002F5EA /* CurrentLocationPin.m in Sources */,
 				D52C29EF19C0AB1300294FA0 /* UIDatePickerOKView.m in Sources */,
 				D52C29F219C1CA3B00294FA0 /* PickerViewController.m in Sources */,
 				D5DDB45C196B5A9D0002F5EA /* ReportFirstStepViewController.m in Sources */,
 				D52C29DE19B0C42000294FA0 /* ComplaintTableViewCell.m in Sources */,
+				D51FEBD819D9D9D200E9D39C /* SWRevealViewController.m in Sources */,
 				D52C29E119B75E8B00294FA0 /* SplitViewController.m in Sources */,
 				D52852461959CBEB00806467 /* main.m in Sources */,
 				D528528A1962E0DC00806467 /* MainViewController.m in Sources */,

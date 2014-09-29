@@ -17,6 +17,7 @@ const NSInteger DELETE = 3;
 
 @synthesize delegate;
 @synthesize dataToRequest;
+@synthesize connectionTag;
 
 - (id)init {
     self = super.init;

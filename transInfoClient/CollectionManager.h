@@ -10,4 +10,14 @@
 
 @interface CollectionManager : NSObject
 
+@property NSString *loadingCollection;
+@property NSMutableArray *loadedCollection;
+@property id delegate;
+
+- (void)getCollection:(NSString*)collection;
+
+@end
+
+@interface NSObject(collectionManagerDelegateMethods)
+- (void) receivedCollection:(NSArray*)collection withName:(NSString*)collectionName;
 @end

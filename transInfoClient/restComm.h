@@ -22,6 +22,7 @@ extern const NSInteger DELETE;
 @property id delegate;
 @property NSMutableDictionary *dataToRequest;
 @property NSDictionary *methodInString;
+@property NSString *connectionTag;
 
 - (id)initWithURL:(NSString*)url;
 - (id)initWithURL:(NSString*)url withMethod:(NSInteger)method;
@@ -29,7 +30,7 @@ extern const NSInteger DELETE;
 
 @end
 
-@interface NSObject(MyDelegateMethods)
+@interface NSObject(restCommDelegateMethods)
 - (void) receivedData:(NSDictionary*)data;
 - (void) receivedError:(NSError*)error;
 @end

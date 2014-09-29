@@ -11,6 +11,7 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import "UIDatePickerOKView.h"
 #import "PickerViewController.h"
+#import "CollectionManager.h"
 
 @interface ReportFirstStepViewController ()
 
@@ -59,6 +60,8 @@
 @property (nonatomic, strong) NSString *city;
 @property (nonatomic, strong) NSString *county;
 
+@property NSMutableDictionary *collections;
+
 @end
 
 @implementation ReportFirstStepViewController
@@ -66,6 +69,28 @@
 - (void)viewDidLoad {
     [(UIScrollView *)self.view setContentSize:CGSizeMake(700,850)];
     [self registerForKeyboardNotifications];
+    [self loadCollections];
+}
+
+- (void)loadCollections {
+    self.collections = [[NSMutableDictionary alloc] init];
+    
+    NSString *collectionName = @"reportTypes";
+    
+    [self.collections setObject:[NSDate date] forKey:collectionName];
+    CollectionManager *manager = [[CollectionManager alloc] init];
+    [manager getCollection:collectionName];
+    manager.delegate = self;
+}
+
+- (void)receivedCollection:(NSArray *)collection withName:(NSString *)collectionName {
+    [self.collections setObject:collection forKey:collectionName];
+    
+    NSLog(@"Collection: %@", collectionName);
+    
+    for (NSDictionary *elem in collection) {
+        NSLog(@"%@", elem[@"DescriptionES"]);
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -103,6 +128,24 @@
     [self.directionButton setImage:[UIImage imageNamed:@"LookupIcon"] forState:UIControlStateNormal];
     [self.propertyButton setImage:[UIImage imageNamed:@"LookupIcon"] forState:UIControlStateNormal];
     [self.locationButton setImage:[UIImage imageNamed:@"LookupIcon"] forState:UIControlStateNormal];
+    
+    [self.reportTypeLookupButton setHidden:YES];
+    [self.countyButton setHidden:YES];
+    [self.cityButton setHidden:YES];
+    [self.nearToLocationButton setHidden:YES];
+    [self.measurementButton setHidden:YES];
+    [self.directionButton setHidden:YES];
+    [self.propertyButton setHidden:YES];
+    [self.locationButton setHidden:YES];
+    
+    self.reportTypeField.delegate = self;
+    self.countyField.delegate = self;
+    self.cityField.delegate = self;
+    self.nearToLocationField.delegate = self;
+    self.measurementField.delegate = self;
+    self.directionField.delegate = self;
+    self.propertyField.delegate = self;
+    self.locationField.delegate = self;
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
@@ -121,7 +164,7 @@
     GMSGeocoder *geocoder = [GMSGeocoder geocoder];
     [geocoder reverseGeocodeCoordinate:self.coords
                      completionHandler:^(GMSReverseGeocodeResponse *response, NSError *error) {
-                         NSLog(@"%@", response);
+                         //NSLog(@"%@", response);
                          self.addressField.text = [response.firstResult.lines componentsJoinedByString:@"\n"];
                      }];
 }
@@ -145,16 +188,70 @@
     [self setCrashDateFormat];
 }
 
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    [self.view endEditing:YES];
+    
+    if (textField == self.reportTypeField) {
+        [self reportTypeButtonTouchUpInside:textField];
+        return NO;
+    } else if (textField == self.cityField) {
+        [self cityButtonTouchUpInside:textField];
+        return NO;
+    } else if (textField == self.countyField) {
+        [self countyButtonTouchUpInside:textField];
+        return NO;
+    } else if (textField == self.nearToLocationField) {
+        [self nearToLocationButtonTouchUpInside:textField];
+        return NO;
+    } else if (textField == self.measurementField) {
+        [self measurementButtonTouchUpInside:textField];
+        return NO;
+    } else if (textField == self.directionField) {
+        [self directionButtonTouchUpInside:textField];
+        return NO;
+    } else if (textField == self.propertyField) {
+        [self propertyButtonTouchUpInside:textField];
+        return NO;
+    } else if (textField == self.locationField) {
+        [self locationButtonTouchUpInside:textField];
+        return NO;
+    }
+    
+    return YES;
+}
+
 - (IBAction)reportTypeButtonTouchUpInside:(id)sender {
-    NSMutableDictionary *reportTypes = [[NSMutableDictionary alloc] init];
+    /*NSMutableDictionary *reportTypes = [[NSMutableDictionary alloc] init];
     
     [reportTypes setObject:@"Daño a la Propiedad" forKey:@"1"];
     [reportTypes setObject:@"Fatal" forKey:@"2"];
     [reportTypes setObject:@"Herido Grave" forKey:@"3"];
     [reportTypes setObject:@"Herido Leve" forKey:@"4"];
-    [reportTypes setObject:@"Posible Herido" forKey:@"5"];
+    [reportTypes setObject:@"Posible Herido" forKey:@"5"];*/
     
-    [self showPickerView:reportTypes withField:self.reportTypeField withLookupButton:self.reportTypeLookupButton withOutField:self.reportType];
+    NSLog(@"%@", self.collections);
+    
+    //if ([self.collections[@"reportTypes"] isKindOfClass:[NSArray class]]) {
+        /*NSMutableDictionary *reportTypes = [[NSMutableDictionary alloc] init];
+        
+        for (NSDictionary *elem in self.collections[@"reportTypes"]) {
+            [reportTypes setObject:[NSString stringWithFormat:@"%@", [elem objectForKey:@"DescriptionES"]] forKey:[elem objectForKey:@"ReportTypeID"]];
+        }
+        
+         NSLog(@"%@", reportTypes);*/
+        
+        NSMutableDictionary *reportTypes = [[NSMutableDictionary alloc] init];
+        
+        [reportTypes setObject:@"Daño a la Propiedad" forKey:@"1"];
+        [reportTypes setObject:@"Fatal" forKey:@"2"];
+        [reportTypes setObject:@"Herido Grave" forKey:@"3"];
+        [reportTypes setObject:@"Herido Leve" forKey:@"4"];
+        [reportTypes setObject:@"Posible Herido" forKey:@"5"];
+        
+        [self showPickerView:reportTypes withField:self.reportTypeField withLookupButton:self.reportTypeLookupButton withOutField:self.reportType];
+   /* } else {
+        NSLog(@"No collection yet");
+    }*/
 }
 
 - (IBAction)cityButtonTouchUpInside:(id)sender {
@@ -247,7 +344,9 @@
     self.pickerView.popover = self.pickerPopover;
     self.pickerView.selectedKey = self.reportType;
     
-    [self.pickerPopover presentPopoverFromRect:button.bounds inView:button permittedArrowDirections:UIPopoverArrowDirectionUnknown animated:YES];
+    //[self.pickerPopover presentPopoverFromRect:button.bounds inView:button permittedArrowDirections:UIPopoverArrowDirectionUnknown animated:YES];
+    
+    [self.pickerPopover presentPopoverFromRect:field.bounds inView:field permittedArrowDirections:UIPopoverArrowDirectionUnknown animated:YES];
 }
 
 

@@ -68,6 +68,8 @@ NSUserDefaults *userDefaults;
     
     self.username.delegate = self;
     self.password.delegate = self;
+    
+    
 }
 
 - (void)viewDidLoad
@@ -94,8 +96,6 @@ NSUserDefaults *userDefaults;
         NSDate *expirationDate = [Utilities NSDateWithMySQLDate:loginInfo[@"ExpirationDate"]];
         
         if ([expirationDate compare:[NSDate date]] == NSOrderedDescending) {
-            
-            
             [self showUserInfo];
         } else {
             NSLog(@"Expired! %@ Actual: %@", expirationDate, [NSDate date]);
