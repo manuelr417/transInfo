@@ -87,12 +87,21 @@
 - (void)loadCollections {
     self.collections = [[NSMutableDictionary alloc] init];
     
-    NSString *collectionName = @"reportTypes";
+    NSArray *collectionNames = @[@"cities", @"counties", @"directions", @"locations", @"measurements", @"nearTo", @"properties", @"reportTypes"];
+    // NSArray *collectionNames = @[@"nearTo", @"properties", @"reportTypes"];
+    NSMutableArray *collectionsManagers = [[NSMutableArray alloc] init];
+    int i = 0;
     
-    [self.collections setObject:[NSDate date] forKey:collectionName];
-    CollectionManager *manager = [[CollectionManager alloc] init];
-    [manager getCollection:collectionName];
-    manager.delegate = self;
+    //NSString *collectionName = @"reportTypes";
+    
+    for (NSString *collectionName in collectionNames) {
+        [self.collections setObject:[NSDate date] forKey:collectionName];
+        [collectionsManagers addObject:[[CollectionManager alloc] init]];
+        [collectionsManagers[i] getCollection:collectionName];
+        ((CollectionManager*)collectionsManagers[i]).delegate = self;
+        
+        i++;
+    }
 }
 
 - (void)receivedCollection:(NSArray *)collection withName:(NSString *)collectionName {
@@ -233,41 +242,63 @@
     [reportTypes setObject:@"Herido Leve" forKey:@"4"];
     [reportTypes setObject:@"Posible Herido" forKey:@"5"];*/
     
-    NSLog(@"%@", self.collections);
+    //NSLog(@"%@", self.collections);
     
-    //if ([self.collections[@"reportTypes"] isKindOfClass:[NSArray class]]) {
-        /*NSMutableDictionary *reportTypes = [[NSMutableDictionary alloc] init];
-        
-        for (NSDictionary *elem in self.collections[@"reportTypes"]) {
-            [reportTypes setObject:[NSString stringWithFormat:@"%@", [elem objectForKey:@"DescriptionES"]] forKey:[elem objectForKey:@"ReportTypeID"]];
-        }
-        
-         NSLog(@"%@", reportTypes);*/
-        
+   /* if ([self.collections[@"reportTypes"] isKindOfClass:[NSArray class]]) {
         NSMutableDictionary *reportTypes = [[NSMutableDictionary alloc] init];
         
-        [reportTypes setObject:@"Daño a la Propiedad" forKey:@"1"];
-        [reportTypes setObject:@"Fatal" forKey:@"2"];
-        [reportTypes setObject:@"Herido Grave" forKey:@"3"];
-        [reportTypes setObject:@"Herido Leve" forKey:@"4"];
-        [reportTypes setObject:@"Posible Herido" forKey:@"5"];
+        for (NSDictionary *elem in self.collections[@"reportTypes"]) {
+            [reportTypes setObject:(NSString*)[elem objectForKey:@"DescriptionES"] forKey:[NSString stringWithFormat:@"%@", [elem objectForKey:@"ReportTypeID"]]];
+        }
+        
+        //NSLog(@"%@", reportTypes);
         
         [self showPickerView:reportTypes withField:self.reportTypeField withLookupButton:self.reportTypeLookupButton withOutField:self.reportType];
-   /* } else {
-        NSLog(@"No collection yet");
+    } else {
+       // NSLog(@"No collection yet");
     }*/
+    
+    [self showCollection:@"reportTypes" withIDColumn:@"ReportTypeID" withField:self.reportTypeField];
+}
+
+- (IBAction)showCollection:(NSString*)collectionName withIDColumn:(NSString*)IDColumn withField:(id)field {
+    /*NSMutableDictionary *reportTypes = [[NSMutableDictionary alloc] init];
+     
+     [reportTypes setObject:@"Daño a la Propiedad" forKey:@"1"];
+     [reportTypes setObject:@"Fatal" forKey:@"2"];
+     [reportTypes setObject:@"Herido Grave" forKey:@"3"];
+     [reportTypes setObject:@"Herido Leve" forKey:@"4"];
+     [reportTypes setObject:@"Posible Herido" forKey:@"5"];*/
+    
+    //NSLog(@"%@", self.collections);
+    
+    if ([self.collections[collectionName] isKindOfClass:[NSArray class]]) {
+        NSMutableDictionary *collection = [[NSMutableDictionary alloc] init];
+        
+        for (NSDictionary *elem in self.collections[collectionName]) {
+            [collection setObject:(NSString*)[elem objectForKey:@"DescriptionES"] forKey:[NSString stringWithFormat:@"%@", [elem objectForKey:IDColumn]]];
+        }
+        
+        //NSLog(@"%@", reportTypes);
+        
+        [self showPickerView:collection withField:field withLookupButton:self.reportTypeLookupButton withOutField:self.reportType];
+    } else {
+        NSLog(@"No collection yet");
+    }
 }
 
 - (IBAction)cityButtonTouchUpInside:(id)sender {
-    NSMutableDictionary *cities = [[NSMutableDictionary alloc] init];
+    /*NSMutableDictionary *cities = [[NSMutableDictionary alloc] init];
     
     [cities setObject:@"Puerto Rico" forKey:@"72"];
     
-    [self showPickerView:cities withField:self.cityField withLookupButton:self.cityButton withOutField:self.city];
+    [self showPickerView:cities withField:self.cityField withLookupButton:self.cityButton withOutField:self.city];*/
+    
+    [self showCollection:@"cities" withIDColumn:@"CityID" withField:self.cityField];
 }
 
 - (IBAction)countyButtonTouchUpInside:(id)sender {
-    NSMutableDictionary *counties = [[NSMutableDictionary alloc] init];
+    /*NSMutableDictionary *counties = [[NSMutableDictionary alloc] init];
     
     // Orden alfabético
     
@@ -276,11 +307,13 @@
     [counties setObject:@"Mayagüez" forKey:@"97"];
     [counties setObject:@"San German" forKey:@"125"];
     
-    [self showPickerView:counties withField:self.countyField withLookupButton:self.countyButton withOutField:self.county];
+    [self showPickerView:counties withField:self.countyField withLookupButton:self.countyButton withOutField:self.county];*/
+    
+    [self showCollection:@"counties" withIDColumn:@"CountyID" withField:self.countyField];
 }
 
 - (IBAction)nearToLocationButtonTouchUpInside:(id)sender {
-    NSMutableDictionary *locations = [[NSMutableDictionary alloc] init];
+    /*NSMutableDictionary *locations = [[NSMutableDictionary alloc] init];
     
     // Orden alfabético
     
@@ -289,10 +322,12 @@
     [locations setObject:@"Puente" forKey:@"97"];
     [locations setObject:@"Otro" forKey:@"125"];
     
-    [self showPickerView:locations withField:self.nearToLocationField withLookupButton:self.nearToLocationButton withOutField:self.county];
+    [self showPickerView:locations withField:self.nearToLocationField withLookupButton:self.nearToLocationButton withOutField:self.county];*/
+    
+    [self showCollection:@"nearTo" withIDColumn:@"NearToID" withField:self.nearToLocationField];
 }
 - (IBAction)measurementButtonTouchUpInside:(id)sender {
-    NSMutableDictionary *measurements = [[NSMutableDictionary alloc] init];
+    /*NSMutableDictionary *measurements = [[NSMutableDictionary alloc] init];
     
     // Orden alfabético
     
@@ -300,10 +335,12 @@
     [measurements setObject:@"Metros" forKey:@"79"];
     [measurements setObject:@"En Intersección" forKey:@"97"];
     
-    [self showPickerView:measurements withField:self.measurementField withLookupButton:self.measurementButton withOutField:self.county];
+    [self showPickerView:measurements withField:self.measurementField withLookupButton:self.measurementButton withOutField:self.county];*/
+    
+    [self showCollection:@"measurements" withIDColumn:@"MeasurementID" withField:self.measurementField];
 }
 - (IBAction)directionButtonTouchUpInside:(id)sender {
-    NSMutableDictionary *directions = [[NSMutableDictionary alloc] init];
+    /*NSMutableDictionary *directions = [[NSMutableDictionary alloc] init];
     
     // Orden alfabético
 
@@ -316,20 +353,24 @@
     [directions setObject:@"Sureste" forKey:@"SE"];
     [directions setObject:@"Suroeste" forKey:@"SW"];
     
-    [self showPickerView:directions withField:self.directionField withLookupButton:self.directionButton withOutField:self.county];
+    [self showPickerView:directions withField:self.directionField withLookupButton:self.directionButton withOutField:self.county];*/
+    
+    [self showCollection:@"directions" withIDColumn:@"DirectionID" withField:self.directionField];
 }
 - (IBAction)propertyButtonTouchUpInside:(id)sender {
-    NSMutableDictionary *properties = [[NSMutableDictionary alloc] init];
+    /*NSMutableDictionary *properties = [[NSMutableDictionary alloc] init];
     
     // Orden alfabético
     
     [properties setObject:@"Propiedad Privada" forKey:@"1"];
     [properties setObject:@"Propiedad Pública" forKey:@"2"];
     
-    [self showPickerView:properties withField:self.propertyField withLookupButton:self.propertyButton withOutField:self.county];
+    [self showPickerView:properties withField:self.propertyField withLookupButton:self.propertyButton withOutField:self.county];*/
+    
+    [self showCollection:@"properties" withIDColumn:@"PropertyID" withField:self.propertyField];
 }
 - (IBAction)locationButtonTouchUpInside:(id)sender {
-    NSMutableDictionary *locations = [[NSMutableDictionary alloc] init];
+   /* NSMutableDictionary *locations = [[NSMutableDictionary alloc] init];
     
     // Orden alfabético
     
@@ -337,7 +378,9 @@
     [locations setObject:@"Camino del tráfico, fuera de Carretera" forKey:@"2"];
     [locations setObject:@"Fuera del camino del Tráfico" forKey:@"3"];
     
-    [self showPickerView:locations withField:self.locationField withLookupButton:self.locationButton withOutField:self.county];
+    [self showPickerView:locations withField:self.locationField withLookupButton:self.locationButton withOutField:self.county];*/
+    
+    [self showCollection:@"locations" withIDColumn:@"LocationID" withField:self.locationField];
 }
 
 - (void)showPickerView:(NSMutableDictionary*)elements withField:(UITextField*)field withLookupButton:(UIButton*)button withOutField:(NSString*)outField {

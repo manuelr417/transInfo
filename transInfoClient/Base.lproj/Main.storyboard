@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="nWY-kv-t24">
     <dependencies>
+        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -152,6 +153,29 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="userInfo" textLabel="SCH-8S-Gu5" detailTextLabel="YAH-WM-nTg" imageView="hzf-mf-FI0" style="IBUITableViewCellStyleSubtitle" id="O0E-Kh-YF9">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="O0E-Kh-YF9" id="6nm-HU-1hN">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Salir" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SCH-8S-Gu5">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="police_badge-50" id="hzf-mf-FI0">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </imageView>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YAH-WM-nTg">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="newReport" textLabel="eot-Uj-P8c" imageView="epR-6f-0Up" style="IBUITableViewCellStyleDefault" id="kLa-vL-54D">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kLa-vL-54D" id="Mgz-Jj-E02">
@@ -163,7 +187,7 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="New Report" id="epR-6f-0Up">
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="add_property-50" id="epR-6f-0Up">
                                             <autoresizingMask key="autoresizingMask"/>
                                         </imageView>
                                     </subviews>
@@ -180,7 +204,7 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="My Reports" id="mdh-wy-d1f">
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="filled_box-50" id="mdh-wy-d1f">
                                             <autoresizingMask key="autoresizingMask"/>
                                         </imageView>
                                     </subviews>
@@ -197,7 +221,7 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="Logout" id="wFm-OK-ijL">
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="exit-50" id="wFm-OK-ijL">
                                             <autoresizingMask key="autoresizingMask"/>
                                         </imageView>
                                     </subviews>
@@ -300,6 +324,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="wMi-yX-Dcy" kind="relationship" relationship="viewControllers" id="fhP-SQ-Wvc"/>
+                        <segue destination="jjX-QO-8RQ" kind="relationship" relationship="viewControllers" id="6PU-bm-7Dh"/>
                         <segue destination="PrN-c8-CiH" kind="relationship" relationship="viewControllers" id="fO0-Qy-EGK"/>
                         <segue destination="ham-9c-pEv" kind="relationship" relationship="viewControllers" id="tTM-61-ySK"/>
                     </connections>
@@ -658,19 +683,40 @@
             </objects>
             <point key="canvasLocation" x="1188" y="-2933"/>
         </scene>
+        <!--Condiciones-->
+        <scene sceneID="OZW-CJ-qzA">
+            <objects>
+                <viewController id="jjX-QO-8RQ" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aE2-zR-hG4"/>
+                        <viewControllerLayoutGuide type="bottom" id="MMV-KN-3Z3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="CLJ-Xf-laa">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Condiciones" image="road_closure-25" id="fFo-bS-aOQ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dcs-go-Sdy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-849" y="-72"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Crash Summary First Tab 2" width="25" height="25"/>
         <image name="DOT" width="1243" height="1258"/>
-        <image name="Logout" width="25" height="25"/>
-        <image name="My Reports" width="25" height="25"/>
-        <image name="New Report" width="25" height="25"/>
         <image name="Person Tab 1" width="25" height="25"/>
         <image name="Sidebar 2" width="22" height="17"/>
         <image name="UPRM Seal" width="1024" height="1024"/>
         <image name="Vehicle Tab 5" width="25" height="25"/>
+        <image name="add_property-50" width="25" height="25"/>
         <image name="box3" width="1876" height="1188"/>
         <image name="cars-logo" width="1284" height="505"/>
+        <image name="exit-50" width="25" height="25"/>
+        <image name="filled_box-50" width="25" height="25"/>
+        <image name="police_badge-50" width="25" height="25"/>
+        <image name="road_closure-25" width="25" height="25"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -678,6 +724,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="X0B-Uk-BK4"/>
+        <segue reference="crl-Ff-vGv"/>
     </inferredMetricsTieBreakers>
 </document>

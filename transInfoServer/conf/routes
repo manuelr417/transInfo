@@ -4,7 +4,15 @@
 
 # Home page
 GET     /                           controllers.Application.index()
+
+# Collections
+GET     /cities                     controllers.Collections.getCities()
 GET     /counties                   controllers.Collections.getCounties()
+GET     /directions                 controllers.Collections.getDirections()
+GET     /locations                  controllers.Collections.getLocations()
+GET     /measurements               controllers.Collections.getMeasurements()
+GET     /nearTo                     controllers.Collections.getNearTo()
+GET     /properties                 controllers.Collections.getProperties()
 GET     /reportTypes                controllers.Collections.getReportTypes()
 
 # Authentication

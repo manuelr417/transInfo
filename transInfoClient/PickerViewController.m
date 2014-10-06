@@ -39,7 +39,22 @@
             self.elementsDictionary = elementsDictionary;
         }
         
-        self.elementKeys = [self.elementsDictionary allKeys];
+        
+        NSArray *sortedDictionary = [self.elementsDictionary keysSortedByValueUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+            return [obj1 compare:obj2 options:NSCaseInsensitiveSearch];
+        }];
+        
+        //self.elementsDictionary = sortedDictionary;*/
+        
+        NSMutableArray *tempKeys = [[NSMutableArray alloc] init];
+        
+        for (NSString *key in sortedDictionary) {
+            
+            [tempKeys addObject:key];
+        }
+        
+        //self.elementKeys = [self.elementsDictionary allKeys];
+        self.elementKeys = tempKeys;
         
         //Calculate how tall the view should be by multiplying
         //the individual row height by the total number of rows.

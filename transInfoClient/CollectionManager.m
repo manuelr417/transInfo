@@ -32,24 +32,29 @@
     //NSLog(@"receivedData");
     
     if ([data[@"success"] boolValue] == YES) {
-        
         NSMutableArray *elems = [[NSMutableArray alloc] init];
         
         [elems addObject:[[NSDate date] dateByAddingTimeInterval:60]];
         [elems addObjectsFromArray:data[@"payload"]];
         
         // Save to Cache
-        
         NSString *filePath = [self fileNameForCollection:self.loadingCollection];
+        
+        /*for (int i = 1; i < [elems count]; i++) {
+            NSDictionary *elem = [elems objectAtIndex:i];
+            NSLog(@"%@", elem[@"DescriptionES"]);
+        }*/
         
         [elems writeToFile:filePath atomically:YES];
         
         //NSLog(@"%@", filePath);
         [self collectionLoaded:elems];
+        //NSLog(@"hola");
     } else {
         [Utilities displayAlertWithMessage:NSLocalizedString([errors objectForKey:data[@"error_code"]], nil) withTitle:NSLocalizedString(@"login.error.title", nil)];
     }
 }
+
 
 - (void)receivedError:(NSError *)error {
     // Do something with error...
@@ -110,7 +115,23 @@
     
     // send to delegate.
     [self.loadedCollection removeObjectAtIndex:0];
-    [self.delegate receivedCollection:self.loadedCollection withName:self.loadingCollection];
+    
+    NSArray *sortedArray = [self.loadedCollection sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        //NSLog(@"...%@", obj2[@"DescriptionES"]);
+        return [obj2[@"DescriptionES"] compare:obj1[@"DescriptionEN"] options:NSCaseInsensitiveSearch];
+    }];
+    
+    NSLog(@"...%@", sortedArray);
+    
+    NSMutableDictionary *collection = [[NSMutableDictionary alloc] init];
+    
+    for (NSDictionary *elem in sortedArray) {
+        [collection setObject:(NSString*)[elem objectForKey:@"DescriptionES"] forKey:[NSString stringWithFormat:@"%@", [elem objectForKey:@"ReportTypeID"]]];
+    }
+    
+    NSLog(@"...%@", collection);
+    
+    [self.delegate receivedCollection:sortedArray withName:self.loadingCollection];
 }
 
 - (NSString*)fileNameForCollection:(NSString*)collection {

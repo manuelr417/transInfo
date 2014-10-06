@@ -24,7 +24,7 @@
     self.tableView.backgroundColor = [UIColor colorWithWhite:0.2f alpha:1.0f];
     self.tableView.separatorColor = [UIColor colorWithWhite:0.15f alpha:0.2f];
     
-    self.menuItems = @[@"title", @"newReport", @"myReports", @"logout"];
+    self.menuItems = @[@"title", @"userInfo", @"newReport", @"myReports", @"logout"];
     self.tableView.alwaysBounceVertical = NO;
 }
 
@@ -64,8 +64,23 @@
     cell.textLabel.textColor = [UIColor whiteColor];
     cell.textLabel.highlightedTextColor = [UIColor blackColor];
     
-    if ([CellIdentifier isEqual: @"title"]) {
+    if ([CellIdentifier isEqual: @"title"] || [CellIdentifier isEqual:@"userInfo"]) {
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    if ([CellIdentifier isEqual:@"userInfo"]) {
+        cell.detailTextLabel.textColor = [UIColor whiteColor];
+        
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        NSDictionary *loginInfo = [userDefaults objectForKey:@"login"];
+        
+        if (loginInfo != nil) {
+            cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", loginInfo[@"FirstName"], loginInfo[@"LastName"]];
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"# %@", loginInfo[@"PlateNumber"]];
+            //NSString *out = [NSString stringWithFormat:@"First Name: %@\nLast Name: %@\nPlate Number: %@\nAgency ID: %@", loginInfo[@"FirstName"], loginInfo[@"LastName"], loginInfo[@"PlateNumber"], loginInfo[@"AgencyID"]];
+            
+        }
+        
     }
     
     return cell;
