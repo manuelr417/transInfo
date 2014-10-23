@@ -99,39 +99,10 @@
 - (void)collectionLoaded:(NSMutableArray*)elems {
     self.loadedCollection = elems;
     
-    // Debug
-    //NSLog(@"Collection...");
-    //NSLog(@"%@", elems);
-    
-    /*for (NSDictionary *elem in elems) {
-        NSLog(@"%@", elem[@"DescriptionES"]);
-    }*/
-    
-    // First object is the expiration date.
-    /*for (int i = 1; i < [elems count]; i++) {
-        NSDictionary *elem = [elems objectAtIndex:i];
-         NSLog(@"%@", elem[@"DescriptionES"]);
-    }*/
-    
-    // send to delegate.
     [self.loadedCollection removeObjectAtIndex:0];
     
-    NSArray *sortedArray = [self.loadedCollection sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-        //NSLog(@"...%@", obj2[@"DescriptionES"]);
-        return [obj2[@"DescriptionES"] compare:obj1[@"DescriptionEN"] options:NSCaseInsensitiveSearch];
-    }];
-    
-    NSLog(@"...%@", sortedArray);
-    
-    NSMutableDictionary *collection = [[NSMutableDictionary alloc] init];
-    
-    for (NSDictionary *elem in sortedArray) {
-        [collection setObject:(NSString*)[elem objectForKey:@"DescriptionES"] forKey:[NSString stringWithFormat:@"%@", [elem objectForKey:@"ReportTypeID"]]];
-    }
-    
-    NSLog(@"...%@", collection);
-    
-    [self.delegate receivedCollection:sortedArray withName:self.loadingCollection];
+    // send to delegate.
+    [self.delegate receivedCollection:self.loadedCollection withName:self.loadingCollection];
 }
 
 - (NSString*)fileNameForCollection:(NSString*)collection {

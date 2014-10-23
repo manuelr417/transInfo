@@ -12,13 +12,19 @@
 
 - (id)initWithStyle:(UITableViewStyle)style withElementsDictionary:(NSMutableDictionary*)elementsDictionary withMultipleChoice:(BOOL)isMultipleChoice;
 
-@property (nonatomic, strong) NSString *selectedKey;
+@property (nonatomic, strong) NSString *identifier;
 @property (nonatomic, strong) UITextField *outField;
 @property (nonatomic, strong) UIPopoverController *popover;
 
 @property (nonatomic, strong) NSMutableDictionary *elementsDictionary;
 @property (nonatomic, strong) NSArray *elementKeys;
+@property (nonatomic, strong) NSMutableArray *selectedElements;
 @property BOOL isMultipleChoice;
 
+@property id delegate;
 
+@end
+
+@interface NSObject(PickerViewControllerDelegateMethods)
+- (void)keysSelected:(NSArray*)keys withIdentifier:(NSString*)identifier;
 @end

@@ -107,11 +107,11 @@
 - (void)receivedCollection:(NSArray *)collection withName:(NSString *)collectionName {
     [self.collections setObject:collection forKey:collectionName];
     
-    NSLog(@"Collection: %@", collectionName);
+    NSLog(@"Received Collection: %@ (%lu elements)", collectionName, (unsigned long)[collection count]);
     
-    for (NSDictionary *elem in collection) {
+    /*for (NSDictionary *elem in collection) {
         NSLog(@"%@", elem[@"DescriptionES"]);
-    }
+    }*/
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -389,7 +389,6 @@
     
     self.pickerView.outField = field;
     self.pickerView.popover = self.pickerPopover;
-    self.pickerView.selectedKey = self.reportType;
     
     //[self.pickerPopover presentPopoverFromRect:button.bounds inView:button permittedArrowDirections:UIPopoverArrowDirectionUnknown animated:YES];
     

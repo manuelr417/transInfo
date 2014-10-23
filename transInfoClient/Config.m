@@ -13,7 +13,8 @@
     NSString *const urlAPI = @"http://Omars-MacBook-Pro-Transinfo.local:9000/";
     //NSString *const urlAPI = @"http://136.145.216.130:80/";
 #else
-    NSString *const urlAPI = @"http://127.0.0.1:9000/";
+    //NSString *const urlAPI = @"http://127.0.0.1:9000/";
+    NSString *const urlAPI = @"http://136.145.216.130:80/";
 #endif
 
 @implementation Config

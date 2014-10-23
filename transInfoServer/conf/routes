@@ -14,6 +14,10 @@ GET     /measurements               controllers.Collections.getMeasurements()
 GET     /nearTo                     controllers.Collections.getNearTo()
 GET     /properties                 controllers.Collections.getProperties()
 GET     /reportTypes                controllers.Collections.getReportTypes()
+GET     /harmfulEvents              controllers.Collections.getHarmfulEvents()
+GET     /harmfulEventCategories     controllers.Collections.getHarmfulEventCategories()
+GET     /relativeToTrafficways      controllers.Collections.getRelativeToTrafficways()
+GET     /mannerOfCollisions         controllers.Collections.getMannerOfCollisions()
 
 # Authentication
 POST    /login                      controllers.Authentication.doLogin()

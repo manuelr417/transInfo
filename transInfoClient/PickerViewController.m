@@ -14,6 +14,8 @@
 
 @implementation PickerViewController
 
+@synthesize identifier;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -39,21 +41,18 @@
             self.elementsDictionary = elementsDictionary;
         }
         
+        self.selectedElements = [[NSMutableArray alloc] init];
         
         NSArray *sortedDictionary = [self.elementsDictionary keysSortedByValueUsingComparator:^NSComparisonResult(id obj1, id obj2) {
             return [obj1 compare:obj2 options:NSCaseInsensitiveSearch];
         }];
         
-        //self.elementsDictionary = sortedDictionary;*/
-        
         NSMutableArray *tempKeys = [[NSMutableArray alloc] init];
         
         for (NSString *key in sortedDictionary) {
-            
             [tempKeys addObject:key];
         }
         
-        //self.elementKeys = [self.elementsDictionary allKeys];
         self.elementKeys = tempKeys;
         
         //Calculate how tall the view should be by multiplying
@@ -69,10 +68,8 @@
             totalRowsHeight = rowsCount * singleRowHeight;
         }
         
-        //NSLog(@"Rows: %ld", (long)rowsCount);
-        
-        //Calculate how wide the view should be by finding how
-        //wide each string is expected tobe
+        // Calculate how wide the view should be by finding how
+        // wide each string is expected tobe
         
         CGFloat largestLabelWidth = 0;
         for (NSString *elem in [self.elementsDictionary allValues]) {
@@ -85,23 +82,44 @@
             }
         }
         
-        //Add a little padding to the width
+        // Add a little padding to the width
         CGFloat popoverWidth = largestLabelWidth + 100;
         
-        //NSLog(@"Width: %f Height: %ld", popoverWidth, (long)totalRowsHeight);
-        
-        //Set the property to tell the popover container how big this view will be.
+        // Set the property to tell the popover container how big this view will be.
         self.preferredContentSize = CGSizeMake(popoverWidth, totalRowsHeight);
+        
+        if (self.isMultipleChoice) {
+            self.tableView.allowsMultipleSelection = YES;
+        }
     }
     
     return self;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    self.outField.text = [self.elementsDictionary objectForKey:[self.elementKeys objectAtIndex:indexPath.row]];
+    NSString *key = [self.elementKeys objectAtIndex:indexPath.row];
+    self.outField.text = [self.elementsDictionary objectForKey:key];
     
+    if (![self.selectedElements containsObject:key]) {
+        [self.selectedElements addObject:key];
+        if (self.delegate != nil) {
+            NSLog(@"Sending Keys Selected...");
+            [self.delegate keysSelected:self.selectedElements withIdentifier:self.identifier];
+        }
+    }
     
-    [self.popover dismissPopoverAnimated:YES];
+    if (!self.isMultipleChoice) {
+        [self.popover dismissPopoverAnimated:YES];
+    } else {
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        if (self.isMultipleChoice && cell.accessoryType == UITableViewCellAccessoryNone) {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        } else {
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
+      //  [self.activeElements setValue:@1 forKey:indexPath.row];
+        [self.tableView reloadData];
+    }
 }
 
 - (void)viewDidLoad
@@ -149,55 +167,5 @@
     
     return cell;
 }
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
