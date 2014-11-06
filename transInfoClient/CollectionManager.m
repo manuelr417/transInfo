@@ -34,7 +34,7 @@
     if ([data[@"success"] boolValue] == YES) {
         NSMutableArray *elems = [[NSMutableArray alloc] init];
         
-        [elems addObject:[[NSDate date] dateByAddingTimeInterval:60]];
+        [elems addObject:[[NSDate date] dateByAddingTimeInterval:28800]]; // 8 Hours cached!
         [elems addObjectsFromArray:data[@"payload"]];
         
         // Save to Cache

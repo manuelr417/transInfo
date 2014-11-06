@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 extern NSString *const urlAPI;
+extern NSString *const edmundsAPIKey;
+extern NSString *const edmundsVINDecoder;
 
 @interface Config : NSObject
 

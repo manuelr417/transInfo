@@ -30,13 +30,28 @@
     self.firstHarmfulEventTypeField.delegate = self;
     self.relToTrafficwayField.delegate = self;
     self.mannerOfCollisionField.delegate = self;
+    self.weatherCondition1Field.delegate = self;
+    self.weatherCondition2Field.delegate = self;
+    self.lightingConditionField.delegate = self;
+    self.environmentCircumstanceField.delegate = self;
+    self.roadSurfaceConditionField.delegate = self;
+    self.roadCircumstanceField.delegate = self;
+    self.withinInterchangeField.delegate = self;
+    self.junctionField.delegate = self;
+    self.intersectionTypeField.delegate = self;
+    self.schoolBusRelatedField.delegate = self;
+    self.workZoneRelatedField.delegate = self;
+    self.workzoneLocationField.delegate = self;
+    self.workzoneTypeField.delegate = self;
+    self.workersPresentField.delegate = self;
+    self.lawEnforcementPresentField.delegate = self;
 }
 
 - (void)loadCollections {
     self.collections = [[NSMutableDictionary alloc] init];
     
-    NSArray *collectionNames = @[@"harmfulEventCategories", @"harmfulEvents", @"relativeToTrafficways", @"mannerOfCollisions"];
-    // NSArray *collectionNames = @[@"nearTo", @"properties", @"reportTypes"];
+    NSArray *collectionNames = @[@"harmfulEventCategories", @"harmfulEvents", @"relativeToTrafficways", @"mannerOfCollisions", @"weatherConditions", @"lightingConditions", @"roadSurfaces", @"environmentConditions", @"roadCircumstances", @"withinInterchanges", @"junctions", @"intersectionTypes", @"schoolBusRelated", @"workzoneRelated", @"workzoneLocations", @"workzoneTypes", @"workersPresent", @"lawEnforcementPresent"];
+    
     NSMutableArray *collectionsManagers = [[NSMutableArray alloc] init];
     int i = 0;
     
@@ -75,17 +90,61 @@
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     [self.view endEditing:YES];
     
+    
+    
     if (textField == self.firstHarmfulEventField) {
-        [self showCollection:@"harmfulEvents" withIDColumn:@"HarmfulEventID" withField:self.firstHarmfulEventField];
+        [self showCollection:@"harmfulEvents" withIDColumn:@"HarmfulEventID" withField:textField];
         return NO;
     } else if (textField == self.firstHarmfulEventTypeField) {
-        [self showCollection:@"harmfulEventCategories" withIDColumn:@"HarmfulEventCatID" withField:self.firstHarmfulEventTypeField];
+        [self showCollection:@"harmfulEventCategories" withIDColumn:@"HarmfulEventCatID" withField:textField];
         return NO;
     } else if (textField == self.relToTrafficwayField) {
-        [self showCollection:@"relativeToTrafficways" withIDColumn:@"RelToTrafficwayID" withField:self.relToTrafficwayField];
+        [self showCollection:@"relativeToTrafficways" withIDColumn:@"RelToTrafficwayID" withField:textField];
         return NO;
     } else if (textField == self.mannerOfCollisionField) {
-        [self showCollection:@"mannerOfCollisions" withIDColumn:@"MannerOfCollisionID" withField:self.mannerOfCollisionField];
+        [self showCollection:@"mannerOfCollisions" withIDColumn:@"MannerOfCollisionID" withField:textField];
+        return NO;
+    } else if (textField == self.weatherCondition1Field || textField == self.weatherCondition2Field) {
+        [self showCollection:@"weatherConditions" withIDColumn:@"WeatherConditionID" withField:textField];
+        return NO;
+    } else if (textField == self.lightingConditionField) {
+        [self showCollection:@"lightingConditions" withIDColumn:@"LightingID" withField:textField];
+        return NO;
+    } else if (textField == self.roadSurfaceConditionField) {
+        [self showCollection:@"roadSurfaces" withIDColumn:@"RoadSurfaceID" withField:textField];
+        return NO;
+    } else if (textField == self.environmentCircumstanceField) {
+        [self showCollection:@"environmentConditions" withIDColumn:@"EnvironmentConditionID" withField:textField];
+        return NO;
+    } else if (textField == self.roadCircumstanceField) {
+        [self showCollection:@"roadCircumstances" withIDColumn:@"RoadCircumstanceID" withField:textField];
+        return NO;
+    } else if (textField == self.withinInterchangeField) {
+        [self showCollection:@"withinInterchanges" withIDColumn:@"WithinInterchangeID" withField:textField];
+        return NO;
+    } else if (textField == self.junctionField) {
+        [self showCollection:@"junctions" withIDColumn:@"JunctionID" withField:textField];
+        return NO;
+    } else if (textField == self.intersectionTypeField) {
+        [self showCollection:@"intersectionTypes" withIDColumn:@"IntersectionTypeID" withField:textField];
+        return NO;
+    } else if (textField == self.schoolBusRelatedField) {
+        [self showCollection:@"schoolBusRelated" withIDColumn:@"SchoolBusRelatedID" withField:textField];
+        return NO;
+    } else if (textField == self.workZoneRelatedField) {
+        [self showCollection:@"workzoneRelated" withIDColumn:@"WorkzoneRelatedID" withField:textField];
+        return NO;
+    } else if (textField == self.workzoneLocationField) {
+        [self showCollection:@"workzoneLocations" withIDColumn:@"WorkzoneLocationID" withField:textField];
+        return NO;
+    } else if (textField == self.workzoneTypeField) {
+        [self showCollection:@"workzoneTypes" withIDColumn:@"WorkzoneTypeID" withField:textField];
+        return NO;
+    } else if (textField == self.workersPresentField) {
+        [self showCollection:@"workersPresent" withIDColumn:@"WorkersPresentID" withField:textField];
+        return NO;
+    } else if (textField == self.lawEnforcementPresentField) {
+        [self showCollection:@"lawEnforcementPresent" withIDColumn:@"LawEnforcementPresentID" withField:textField];
         return NO;
     }
     
@@ -93,10 +152,24 @@
 }
 
 - (void)keysSelected:(NSArray *)keys withIdentifier:(NSString *)identifier {
-    NSLog(@"Recibiendo... %@", identifier);
+    NSLog(@"Recibiendo... %@ (%@)", identifier, keys);
     if ([identifier isEqualToString:@"harmfulEventCategories"]) {
         self.harmfulEventCategoryKey = keys[0];
         self.firstHarmfulEventField.text = @"";
+    } if ([identifier isEqualToString:@"workzoneRelated"]) {
+        BOOL isRelated = [keys[0]  isEqualToString:@"1"];
+        NSLog(@"isRelated = %s", (isRelated ? "Si" : "No"));
+        self.workersPresentField.enabled = isRelated;
+        self.workzoneLocationField.enabled = isRelated;
+        self.workzoneTypeField.enabled = isRelated;
+        self.lawEnforcementPresentField.enabled = isRelated;
+        
+        if (!isRelated) {
+            self.workersPresentField.text = @"";
+            self.workzoneLocationField.text = @"";
+            self.workzoneTypeField.text = @"";
+            self.lawEnforcementPresentField.text = @"";
+        }
     }
 }
 

@@ -17,3 +17,6 @@
 
 "report.second.no-harmful-event-category.msg" = "Para poder seleccionar un evento es necesario haber seleccionado un Tipo de Colisión.";
 "report.second.no-harmful-event-category.title" = "Selecciona un Tipo de Colisión";
+
+"report.third.no-person-type-category.msg" = "Para poder seleccionar el Tipo de Persona es necesario haber seleccionado la Categoría de la Persona.";
+"report.third.no-person-type-category.title" = "Selecciona la Categoría de la Persona";
