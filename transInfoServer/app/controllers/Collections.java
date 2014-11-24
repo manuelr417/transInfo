@@ -693,9 +693,10 @@ GET     /reportTypes                controllers.Collections.getReportTypes()
                 ObjectNode rec = Json.newObject();
 
                 try {
-                    rec.put("VehicleID", rs.getInt("VehicleID"));
-                    rec.put("DescriptionES", rs.getString("DescriptionES"));
-                    rec.put("DescriptionEN", rs.getString("DescriptionEN"));
+                    rec.put("VehicleTypeID", rs.getInt("id"));
+                    rec.put("VehicleYear", rs.getString("year"));
+                    rec.put("VehicleMake", rs.getString("make"));
+                    rec.put("VehicleModel", rs.getString("model"));
                 } catch (SQLException e) {
                     return null;
                 }
@@ -713,9 +714,8 @@ GET     /reportTypes                controllers.Collections.getReportTypes()
 
                 try {
                     rec.put("VehicleTypeID", rs.getInt("VehicleTypeID"));
-                    rec.put("VehicleYear", rs.getString("year"));
-                    rec.put("VehicleMake", rs.getString("make"));
-                    rec.put("VehicleModel", rs.getString("model"));
+                    rec.put("DescriptionES", rs.getString("DescriptionES"));
+                    rec.put("DescriptionEN", rs.getString("DescriptionEN"));
                 } catch (SQLException e) {
                     return null;
                 }
@@ -724,6 +724,7 @@ GET     /reportTypes                controllers.Collections.getReportTypes()
             }
         });
     }
+
 
     public static Result getCollection(String table, GetRows callback) {
         Logger.debug("getCollection(" + table + ")");
