@@ -693,7 +693,26 @@ GET     /reportTypes                controllers.Collections.getReportTypes()
                 ObjectNode rec = Json.newObject();
 
                 try {
-                    rec.put("VehicleID", rs.getInt("id"));
+                    rec.put("VehicleID", rs.getInt("VehicleID"));
+                    rec.put("DescriptionES", rs.getString("DescriptionES"));
+                    rec.put("DescriptionEN", rs.getString("DescriptionEN"));
+                } catch (SQLException e) {
+                    return null;
+                }
+
+                return rec;
+            }
+        });
+    }
+
+    public static Result getVehicleTypes() {
+        return getCollection("VehicleType", new GetRows() {
+            @Override
+            public ObjectNode getRows(ResultSet rs) {
+                ObjectNode rec = Json.newObject();
+
+                try {
+                    rec.put("VehicleTypeID", rs.getInt("VehicleTypeID"));
                     rec.put("VehicleYear", rs.getString("year"));
                     rec.put("VehicleMake", rs.getString("make"));
                     rec.put("VehicleModel", rs.getString("model"));

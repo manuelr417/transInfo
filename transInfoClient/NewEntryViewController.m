@@ -16,7 +16,7 @@
 @implementation NewEntryViewController
 
 - (IBAction)searchVehicleInformationButtonTouchUpInside:(id)sender {
-    restComm *conn = [[restComm alloc] initWithURL:[NSString stringWithFormat:edmundsVINDecoder, self.vehicleIdentificationNumber.text, edmundsAPIKey] withMethod:GET];
+    restComm *conn = [[restComm alloc] initWithURL:[NSString stringWithFormat:edmundsVINDecoder, self.vehicleIdentificationNumberField.text, edmundsAPIKey] withMethod:GET];
     
     [conn setDelegate:self];
     
@@ -64,12 +64,13 @@
     self.licenseTypeField.delegate = self;
     self.organDonorField.delegate = self;
     self.licenseExpirationDateField.delegate = self;
+    self.vehicleTypeField.delegate = self;
 }
 
 - (void)loadCollections {
     self.collections = [[NSMutableDictionary alloc] init];
     
-    NSArray *collectionNames = @[@"personTypeCategories", @"personTypes", @"driverLicenseTypes", @"genders", @"organDonor", @"vehicles"];
+    NSArray *collectionNames = @[@"personTypeCategories", @"personTypes", @"driverLicenseTypes", @"genders", @"organDonor", @"vehicles", @"vehicleTypes"];
     
     NSMutableArray *collectionsManagers = [[NSMutableArray alloc] init];
     int i = 0;
@@ -136,6 +137,9 @@
         customPicker.parent = self.licenseExpirationDateField;
             
         self.licenseExpirationDateField.inputView = customPicker;
+    } else if (textField == self.vehicleTypeField) {
+        [self showCollection:@"vehicleTypes" withIDColumn:@"VehicleTypeID" withField:textField];
+        return NO;
     }
     
     return YES;
@@ -248,8 +252,8 @@
         self.activeField = self.personZipCodeField;
     } else if ([self.personPhoneNumberField isFirstResponder]) {
         self.activeField = self.personPhoneNumberField;
-    } else if ([self.vehicleIdentificationNumber isFirstResponder]) {
-        self.activeField = self.vehicleIdentificationNumber;
+    } else if ([self.vehicleIdentificationNumberField isFirstResponder]) {
+        self.activeField = self.vehicleIdentificationNumberField;
     } else if ([self.vehicleYearField isFirstResponder]) {
         self.activeField = self.vehicleYearField;
     } else if ([self.vehicleMakeField isFirstResponder]) {

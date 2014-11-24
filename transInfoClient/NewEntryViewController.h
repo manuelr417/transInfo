@@ -31,12 +31,23 @@
 @property (weak, nonatomic) IBOutlet UITextField *personZipCodeField;
 @property (weak, nonatomic) IBOutlet UITextField *personPhoneNumberField;
 
+@property (weak, nonatomic) IBOutlet UITextField *vehicleLicensePlateField;
+@property (weak, nonatomic) IBOutlet UITextField *vehicleRegistrationStateField;
 
-@property (weak, nonatomic) IBOutlet UITextField *vehicleIdentificationNumber;
+@property (weak, nonatomic) IBOutlet UITextField *vehicleIdentificationNumberField;
 @property (weak, nonatomic) IBOutlet UIButton *searchVehicleInformationButton;
 @property (weak, nonatomic) IBOutlet UITextField *vehicleYearField;
 @property (weak, nonatomic) IBOutlet UITextField *vehicleMakeField;
 @property (weak, nonatomic) IBOutlet UITextField *vehicleModelField;
+
+@property (weak, nonatomic) IBOutlet UITextField *vehicleRegistrationNumberField;
+@property (weak, nonatomic) IBOutlet UITextField *vehicleInsuranceField;
+@property (weak, nonatomic) IBOutlet UITextField *vehicleBuyDateField;
+@property (weak, nonatomic) IBOutlet UITextField *vehicleRegistrationExpirationDateField;
+@property (weak, nonatomic) IBOutlet UITextField *vehiclePassengersField;
+@property (weak, nonatomic) IBOutlet UISwitch *driverIsOwnerSwitch;
+@property (weak, nonatomic) IBOutlet UITextField *vehicleTypeField;
+
 
 
 @property NSString *personTypeCategoryKey;

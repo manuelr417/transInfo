@@ -39,6 +39,7 @@ GET     /driverLicenseTypes         controllers.Collections.getDriverLicenseType
 GET     /genders                    controllers.Collections.getGenders()
 GET     /organDonor                 controllers.Collections.getOrganDonor()
 GET     /vehicles                   controllers.Collections.getVehicles()
+GET     /vehicleTypes               controllers.Collections.getVehicleTypes()
 
 # Authentication
 POST    /login                      controllers.Authentication.doLogin()
