@@ -7,7 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SLExpandableTableView.h"
 
-@interface PedestrianTableViewCell : UITableViewCell
+@interface PedestrianTableViewCell : UITableViewCell <UIExpandingTableViewCell>
+
+@property (nonatomic) NSString *pedestrianName;
+
+@property UIImageView *expandImageView;
+
+@property (weak, nonatomic) IBOutlet UILabel *pedestrianNameLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *pedestrianImageView;
+
+@property (nonatomic, assign, getter = isLoading) BOOL loading;
+
+@property (nonatomic, readonly) UIExpansionStyle expansionStyle;
+- (void)setExpansionStyle:(UIExpansionStyle)expansionStyle animated:(BOOL)animated;
 
 @end

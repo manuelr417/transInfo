@@ -14,6 +14,28 @@
     // Initialization code
 }
 
+/* 1 = Driver
+ * 2 = Passenger
+ */
+- (void)setMemberType:(NSInteger)memberType {
+    _memberType = memberType;
+    if (self.memberType == 1) {
+        [self.memberImageView setImage:[UIImage imageNamed:@"driver-50"]];
+    } else if (self.memberType == 2) {
+        [self.memberImageView setImage:[UIImage imageNamed:@"passenger-50"]];
+    }
+}
+
+- (void)setMemberName:(NSString *)memberName {
+    _memberName = memberName;
+    self.memberNameLabel.text = memberName;
+}
+
+- (void)setMemberDriverLicense:(NSString *)memberDriverLicense {
+    _memberDriverLicense = memberDriverLicense;
+    self.memberDriverLicenseLabel.text = [NSString stringWithFormat:@"# Licencia: %@", memberDriverLicense];
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

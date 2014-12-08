@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SLExpandableTableView.h"
 
-@interface DataEntryTableViewController : UITableViewController
+
+@interface DataEntryTableViewController : UITableViewController <SLExpandableTableViewDatasource/*, SLExpandableTableViewDelegate*/>
+
+@property NSMutableArray *vehicles;
+@property NSMutableArray *pedestrians;
 
 @end

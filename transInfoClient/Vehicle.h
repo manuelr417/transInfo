@@ -7,7 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Person.h"
 
 @interface Vehicle : NSObject
+
+@property NSString *make;
+@property NSString *model;
+@property NSString *year;
+@property NSString *registrationPlate;
+
+@property NSMutableArray *persons;
+
+- (void)addPerson:(Person*)person;
 
 @end

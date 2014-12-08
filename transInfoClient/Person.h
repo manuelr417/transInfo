@@ -10,4 +10,8 @@
 
 @interface Person : NSObject
 
+@property NSString *name;
+@property NSString *driverLicense;
+@property NSInteger type;
+
 @end

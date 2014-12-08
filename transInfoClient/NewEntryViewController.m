@@ -53,7 +53,7 @@
 }
 
 - (void)viewDidLoad {
-    [(UIScrollView *)self.view setContentSize:CGSizeMake(700,600)];
+    [(UIScrollView *)self.view setContentSize:CGSizeMake(700,1050)];
     [self registerForKeyboardNotifications];
     [self loadCollections];
 
@@ -65,6 +65,10 @@
     self.organDonorField.delegate = self;
     self.licenseExpirationDateField.delegate = self;
     self.vehicleTypeField.delegate = self;
+    self.vehicleBuyDateField.delegate = self;
+    self.vehicleRegistrationExpirationDateField.delegate = self;
+    
+    self.vehicleTypeField.enabled = NO;
 }
 
 - (void)loadCollections {
@@ -125,18 +129,19 @@
     } else if (textField == self.organDonorField) {
         [self showCollection:@"organDonor" withIDColumn:@"OrganDonorID" withField:textField];
         return NO;
-    } else if (textField == self.licenseExpirationDateField) {
+    } else if (textField == self.licenseExpirationDateField || textField == self.vehicleBuyDateField || textField == self.vehicleRegistrationExpirationDateField) {
         UIDatePickerOKView *customPicker = [[[NSBundle mainBundle] loadNibNamed:@"UIPickerOKView" owner:self options:nil] objectAtIndex:0];
         
-        if (self.licenseExpirationDate != nil) {
+        /*if (self.licenseExpirationDate != nil) {
             customPicker.datePicker.date = self.licenseExpirationDate;
-        }
+        }*/
+        
         customPicker.datePicker.datePickerMode = UIDatePickerModeDate;
         [customPicker.datePicker addTarget:self action:@selector(datePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
             
-        customPicker.parent = self.licenseExpirationDateField;
+        customPicker.parent = textField;
             
-        self.licenseExpirationDateField.inputView = customPicker;
+        textField.inputView = customPicker;
     } else if (textField == self.vehicleTypeField) {
         [self showCollection:@"vehicleTypes" withIDColumn:@"VehicleTypeID" withField:textField];
         return NO;
@@ -147,10 +152,31 @@
 
 - (IBAction)datePickerValueChanged:(id)sender {
     NSDate *pickerDate = [sender date];
-    self.licenseExpirationDate = pickerDate;
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd";
+    
+    if ([self.licenseExpirationDateField isFirstResponder]) {
+         self.licenseExpirationDate = pickerDate;
+         self.licenseExpirationDateField.text = [dateFormatter stringFromDate:self.licenseExpirationDate];
+    } else if ([self.vehicleBuyDateField isFirstResponder]) {
+         self.vehicleBuyDateField.text = [dateFormatter stringFromDate:pickerDate];
+    } else if ([self.vehicleRegistrationExpirationDateField isFirstResponder]) {
+         self.vehicleRegistrationExpirationDateField.text = [dateFormatter stringFromDate:pickerDate];
+    }
     
     [self setLicenseExpirationDateFormat];
+    
 }
+
+- (IBAction)driverIsOwnerSwitchValueChanged:(id)sender {
+    if (self.driverIsOwnerSwitch.on) {
+        self.vehicleTypeField.enabled = NO;
+    } else {
+        self.vehicleTypeField.enabled = YES;
+    }
+}
+
 
 - (void)setLicenseExpirationDateFormat {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

@@ -12,6 +12,54 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenWidth = screenRect.size.width;
+    
+    self.expandImageView = [[UIImageView alloc]initWithFrame:CGRectMake(screenWidth - 35, 7, 30, 30)];
+    self.expandImageView.image = [UIImage imageNamed:@"Arrow Right"];
+    [self addSubview:self.expandImageView];
+}
+
+- (void)setLoading:(BOOL)loading
+{
+    if (loading != _loading) {
+        _loading = loading;
+    }
+}
+
+- (void)setExpansionStyle:(UIExpansionStyle)expansionStyle animated:(BOOL)animated
+{
+    if (expansionStyle != _expansionStyle) {
+        _expansionStyle = expansionStyle;
+        
+        [self updateExpansion];
+    }
+}
+
+- (void)updateExpansion {
+    [self.expandImageView removeFromSuperview];
+    
+    if (!self.isLoading) {
+        switch (self.expansionStyle) {
+            case UIExpansionStyleExpanded:
+                self.expandImageView.image = [UIImage imageNamed:@"Arrow Down"];
+                [self addSubview:self.expandImageView];
+                break;
+            case UIExpansionStyleCollapsed:
+                self.expandImageView.image = [UIImage imageNamed:@"Arrow Right"];
+                [self addSubview:self.expandImageView];
+                break;
+        }
+    }
+}
+
+- (void)setPedestrianName:(NSString *)pedestrianName {
+    _pedestrianName = pedestrianName;
+    self.pedestrianNameLabel.text = pedestrianName;
+    self.pedestrianNameLabel.font = [UIFont systemFontOfSize:self.pedestrianNameLabel.font.pointSize];
+    //self.pedestrianNameLabel.font.systemFontSize = self.pedestrianNameLabel.font.pointSize;
+    self.pedestrianImageView.hidden = YES;
+    [self.expandImageView removeFromSuperview];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

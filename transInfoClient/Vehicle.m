@@ -10,4 +10,24 @@
 
 @implementation Vehicle
 
+@synthesize make;
+@synthesize model;
+@synthesize year;
+@synthesize registrationPlate;
+@synthesize persons;
+
+- (id)init {
+    self = [super init];
+    
+    if (self) {
+        self.persons = [[NSMutableArray alloc] init];
+    }
+    
+    return self;
+}
+
+- (void)addPerson:(Person*)person {
+    [self.persons addObject:person];
+}
+
 @end

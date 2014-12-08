@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SLExpandableTableView.h"
 
 @interface CarMembersTableViewCell : UITableViewCell
+
+@property (nonatomic) NSInteger memberType;
+@property (nonatomic) NSString *memberName;
+@property (nonatomic) NSString *memberDriverLicense;
+
+@property (weak, nonatomic) IBOutlet UIImageView *memberImageView;
+@property (weak, nonatomic) IBOutlet UILabel *memberNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *memberDriverLicenseLabel;
+
 
 @end

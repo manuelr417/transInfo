@@ -10,4 +10,8 @@
 
 @implementation Person
 
+@synthesize name;
+@synthesize driverLicense;
+@synthesize type;
+
 @end

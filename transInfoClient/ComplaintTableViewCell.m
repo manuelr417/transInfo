@@ -51,6 +51,8 @@
     [self.contentView addSubview:circleView];
     //[circleView release];
     
+    
+    
 }
 
 @end
