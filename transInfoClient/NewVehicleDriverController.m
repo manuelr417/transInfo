@@ -6,14 +6,27 @@
 //  Copyright (c) 2014 University of Puerto Rico Mayagüez Campus. All rights reserved.
 //
 
-#import "NewEntryViewController.h"
+#import "NewVehicleDriverController.h"
 #import "UIDatePickerOKView.h"
 #import "CollectionManager.h"
 #import "Utilities.h"
 #import "restComm.h"
 #import "Config.h"
 
-@implementation NewEntryViewController
+@implementation NewVehicleDriverController
+
+
+- (IBAction)addButonAction:(id)sender {
+    NSLog(@"Add car and person!");
+    
+    NSDictionary *carDictionary = @{@"vehicleMake" : self.vehicleMakeField.text, @"vehicleModel" : self.vehicleModelField.text, @"vehicleYear" : self.vehicleYearField.text, @"vehicleLicensePlate" : self.vehicleLicensePlateField.text};
+    NSDictionary *personDictionary = @{@"vehicleLicensePlate" : self.vehicleLicensePlateField.text, @"personName" : self.personNameField.text, @"licenseNumber" : self.licenseNumberField.text};
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"addCar" object:nil userInfo:carDictionary];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"addPerson" object:nil userInfo:personDictionary];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 - (IBAction)searchVehicleInformationButtonTouchUpInside:(id)sender {
     restComm *conn = [[restComm alloc] initWithURL:[NSString stringWithFormat:edmundsVINDecoder, self.vehicleIdentificationNumberField.text, edmundsAPIKey] withMethod:GET];
@@ -69,6 +82,10 @@
     self.vehicleRegistrationExpirationDateField.delegate = self;
     
     self.vehicleTypeField.enabled = NO;
+    
+    // For this view, the person will always be the driver.
+    self.personTypeField.enabled = NO;
+    self.personTypeCategoryField.enabled = NO;
 }
 
 - (void)loadCollections {
@@ -92,23 +109,31 @@
 - (void)receivedCollection:(NSArray *)collection withName:(NSString *)collectionName {
     [self.collections setObject:collection forKey:collectionName];
     
+    if ([collectionName isEqualToString:@"personTypeCategories"]) {
+        //NSLog(@"%@", collection);
+        for (NSDictionary *dict in collection) {
+            if ([[NSString stringWithFormat:@"%@", [dict objectForKey:@"PersonTypeCategoryID"]] isEqualToString:@"1"]) {
+                self.personTypeCategoryField.text = [dict objectForKey:@"DescriptionES"];
+                break;
+            }
+        }
+    } else if ([collectionName isEqualToString:@"personTypes"]) {
+        for (NSDictionary *dict in collection) {
+            if ([[NSString stringWithFormat:@"%@", [dict objectForKey:@"PersonTypeID"]] isEqualToString:@"1"]) {
+                self.personTypeField.text = [dict objectForKey:@"DescriptionES"];
+                break;
+            }
+        }
+    }
+    
+    //self.personTypeCategoryField.text = [collection objectAtIndex:@"1"];
+    //self.personTypeField.text = [collection objectAtIndex:@"1"];
+    
     NSLog(@"Received Collection: %@ (%lu elements)", collectionName, (unsigned long)[collection count]);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [self.searchVehicleInformationButton setImage:[UIImage imageNamed:@"DownloadFromCloud"] forState:UIControlStateNormal];
-    
-    /*// Border for Narrative Label
-    [self.narrativeField.layer setBorderColor:[[[UIColor grayColor] colorWithAlphaComponent:0.5] CGColor]];
-    [self.narrativeField.layer setBorderWidth:0.50];
-    self.narrativeField.layer.cornerRadius = 5;
-    self.narrativeField.clipsToBounds = YES;
-    
-    // Disable dependants fields...
-    self.workersPresentField.enabled = NO;
-    self.workzoneLocationField.enabled = NO;
-    self.workzoneTypeField.enabled = NO;
-    self.lawEnforcementPresentField.enabled = NO;*/
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {

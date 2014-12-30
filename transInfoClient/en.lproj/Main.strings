@@ -1,15 +1,434 @@
+/* Class = "IBUILabel"; text = "¿El conductor es dueño del vehículo?"; ObjectID = "0lI-EO-ZSS"; */
+"0lI-EO-ZSS.text" = "The driver is the owner of the vehicle?";
+
+/* Class = "IBUINavigationItem"; title = "Condiciones del Accidente"; ObjectID = "0no-YK-PK7"; */
+"0no-YK-PK7.title" = "Crash Conditions";
+
+/* Class = "IBUILabel"; text = "Ciudad:"; ObjectID = "0oH-bd-xoR"; */
+"0oH-bd-xoR.text" = "City:";
+
+/* Class = "IBUILabel"; text = "Latitud:"; ObjectID = "0sO-XV-xc1"; */
+"0sO-XV-xc1.text" = "Latitude:";
+
+/* Class = "IBUILabel"; text = "Ciudad:"; ObjectID = "1ky-c7-qrF"; */
+"1ky-c7-qrF.text" = "City:";
+
+/* Class = "IBUILabel"; text = "Nombre:"; ObjectID = "213-Iz-i9A"; */
+"213-Iz-i9A.text" = "Name:";
+
+/* Class = "IBUITextField"; text = "WAUFFAFM3CA000000"; ObjectID = "2UD-cx-P6P"; */
+"2UD-cx-P6P.text" = "WAUFFAFM3CA000000";
+
+/* Class = "IBUILabel"; text = "Urbanización/Barrio:"; ObjectID = "2hr-yK-46Y"; */
+"2hr-yK-46Y.text" = "Neighborhood:";
+
+/* Class = "IBUILabel"; text = "Urbanización/Barrio:"; ObjectID = "2oo-aD-fje"; */
+"2oo-aD-fje.text" = "Neighborhood:";
 
 /* Class = "IBUIButton"; normalTitle = "Conectarse"; ObjectID = "3G9-Ca-4vL"; */
 "3G9-Ca-4vL.normalTitle" = "Login";
 
-/* Class = "IBUILabel"; text = "Número de Placa:"; ObjectID = "Faa-ke-CfS"; */
-"Faa-ke-CfS.text" = "Plate Number:";
+/* Class = "IBUILabel"; text = "Aseguradora:"; ObjectID = "3Qm-mf-Cbp"; */
+"3Qm-mf-Cbp.text" = "Insurance:";
 
-/* Class = "IBUILabel"; text = "Condado:"; ObjectID = "GHS-UM-w1b"; */
-"GHS-UM-w1b.text" = "County:";
+/* Class = "IBUIBarButtonItem"; title = "Cancelar"; ObjectID = "4hk-bq-TcW"; */
+"4hk-bq-TcW.title" = "Cancel";
+
+/* Class = "IBUILabel"; text = "Número de Marbete:"; ObjectID = "5EW-yN-9oM"; */
+"5EW-yN-9oM.text" = "Plate Number:";
+
+/* Class = "IBUILabel"; text = "Estado:"; ObjectID = "5z2-I4-D8n"; */
+"5z2-I4-D8n.text" = "State:";
+
+/* Class = "IBUILabel"; text = "Tipo de Accidente:"; ObjectID = "6JS-9n-3pj"; */
+"6JS-9n-3pj.text" = "Crash Type:";
+
+/* Class = "IBUITextField"; placeholder = "Medida"; ObjectID = "7MH-de-WMM"; */
+"7MH-de-WMM.placeholder" = "Measurement Unit";
+
+/* Class = "IBUILabel"; text = "INFORMACIÓN DEL VEHÍCULO:"; ObjectID = "7sa-3J-XrO"; */
+"7sa-3J-XrO.text" = "VEHICLE INFORMATION:";
+
+/* Class = "IBUITextField"; placeholder = "Tipo de Propiedad"; ObjectID = "8RO-K4-1vH"; */
+"8RO-K4-1vH.placeholder" = "Property Type";
+
+/* Class = "IBUILabel"; text = "Fecha de Compra:"; ObjectID = "8jA-dW-zY9"; */
+"8jA-dW-zY9.text" = "Purchase Date:";
+
+/* Class = "IBUILabel"; text = "Año:"; ObjectID = "9Qx-UB-bxd"; */
+"9Qx-UB-bxd.text" = "Year:";
+
+/* Class = "IBUILabel"; text = "Número de Licencia:"; ObjectID = "ABE-jP-MO7"; */
+"ABE-jP-MO7.text" = "License Number:";
+
+/* Class = "IBUILabel"; text = "Clima:"; ObjectID = "BaF-9i-mwy"; */
+"BaF-9i-mwy.text" = "Weather:";
+
+/* Class = "IBUILabel"; text = "Donante de Organos:"; ObjectID = "CKf-hh-PaJ"; */
+"CKf-hh-PaJ.text" = "Organ Donor:";
+
+/* Class = "IBUILabel"; text = "Trabajadores Presentes:"; ObjectID = "Cmb-R4-Ynn"; */
+"Cmb-R4-Ynn.text" = "Worker's Present:";
+
+/* Class = "IBUILabel"; text = "Estado:"; ObjectID = "Cwc-Ee-CaY"; */
+"Cwc-Ee-CaY.text" = "State:";
+
+/* Class = "IBUILabel"; text = "Mis Reportes"; ObjectID = "DaE-f3-7Ag"; */
+"DaE-f3-7Ag.text" = "My Reports";
+
+/* Class = "IBUITextField"; placeholder = "Ubicación"; ObjectID = "Daa-Nz-16m"; */
+"Daa-Nz-16m.placeholder" = "Location";
+
+/* Class = "IBUITextField"; placeholder = "Evento"; ObjectID = "Dpi-bE-Kf3"; */
+"Dpi-bE-Kf3.placeholder" = "Event";
+
+/* Class = "IBUILabel"; text = "Teléfono"; ObjectID = "ELq-8f-GAa"; */
+"ELq-8f-GAa.text" = "Phone Number";
+
+/* Class = "IBUILabel"; text = "Identificador del Caso:"; ObjectID = "EqD-Zz-kKu"; */
+"EqD-Zz-kKu.text" = "Case Identifier:";
+
+/* Class = "IBUILabel"; text = "Número de Tablilla:"; ObjectID = "FUM-l0-M9D"; */
+"FUM-l0-M9D.text" = "Plate Number:";
+
+/* Class = "IBUILabel"; text = "Usuario:"; ObjectID = "Faa-ke-CfS"; */
+"Faa-ke-CfS.text" = "User:";
+
+/* Class = "IBUILabel"; text = "DETALLES DEL ACCIDENTE:"; ObjectID = "Fk1-zj-T7u"; */
+"Fk1-zj-T7u.text" = "CRASH DETAILS:";
+
+/* Class = "IBUILabel"; text = "Aseguradora:"; ObjectID = "GQr-Nd-1MV"; */
+"GQr-Nd-1MV.text" = "Insurance:";
+
+/* Class = "IBUILabel"; text = "Persona"; ObjectID = "Gdz-vY-evN"; */
+"Gdz-vY-evN.text" = "Person";
+
+/* Class = "IBUILabel"; text = "Fecha de Expiración:"; ObjectID = "Gyb-Wa-nQt"; */
+"Gyb-Wa-nQt.text" = "Expiration Date:";
+
+/* Class = "IBUILabel"; text = "Hora Desconocida"; ObjectID = "HOH-Cz-3tY"; */
+"HOH-Cz-3tY.text" = "Unknown Hour";
+
+/* Class = "IBUINavigationItem"; title = "Nueva Persona"; ObjectID = "HRV-WS-eio"; */
+"HRV-WS-eio.title" = "New Person";
+
+/* Class = "IBUILabel"; text = "Género:"; ObjectID = "If5-Xh-5Ad"; */
+"If5-Xh-5Ad.text" = "Gender:";
+
+/* Class = "IBUILabel"; text = "Número de Identificación del Vehículo (VIN):"; ObjectID = "ItE-M3-rEB"; */
+"ItE-M3-rEB.text" = "Vehicle Identification Number (VIN):";
+
+/* Class = "IBUILabel"; text = "Modelo:"; ObjectID = "J2q-j4-8ch"; */
+"J2q-j4-8ch.text" = "Model:";
+
+/* Class = "IBUILabel"; text = "Localización del Accidente:"; ObjectID = "J4a-ib-OYK"; */
+"J4a-ib-OYK.text" = "Crash Location:";
+
+/* Class = "IBUILabel"; text = "Número de Identificación del Vehículo (VIN):"; ObjectID = "J6g-RQ-a1E"; */
+"J6g-RQ-a1E.text" = "Vehicle Identification Number (VIN):";
+
+/* Class = "IBUILabel"; text = "Hora:"; ObjectID = "KA6-Vk-GEM"; */
+"KA6-Vk-GEM.text" = "Hour:";
+
+/* Class = "IBUILabel"; text = "Cantidad de Pasajeros:"; ObjectID = "KpG-R1-Prg"; */
+"KpG-R1-Prg.text" = "Passangers Quantity:";
+
+/* Class = "IBUILabel"; text = "Fecha de Expiración:"; ObjectID = "Ln3-XB-2HZ"; */
+"Ln3-XB-2HZ.text" = "Expiration Date:";
+
+/* Class = "IBUITextField"; placeholder = "Punto Cardinal"; ObjectID = "MS8-il-m8Y"; */
+"MS8-il-m8Y.placeholder" = "Cardinal Point";
+
+/* Class = "IBUILabel"; text = "CIRCUNSTANCIAS CONTRIBUYENTES:"; ObjectID = "Muz-Jp-0hQ"; */
+"Muz-Jp-0hQ.text" = "CONTRIBUTING CONDITIONS:";
+
+/* Class = "IBUILabel"; text = "Dirección y/o Calle:"; ObjectID = "N1A-dM-b8l"; */
+"N1A-dM-b8l.text" = "Address and/or Street:";
+
+/* Class = "IBUILabel"; text = "VEHÍCULO DE LA PERSONA:"; ObjectID = "NJq-BA-G8w"; */
+"NJq-BA-G8w.text" = "PERSON'S VEHICLE:";
+
+/* Class = "IBUILabel"; text = "Dirección:"; ObjectID = "O6g-dL-55q"; */
+"O6g-dL-55q.text" = "Address:";
+
+/* Class = "IBUINavigationItem"; title = "Miembros del Incidente"; ObjectID = "Q7p-4O-c4N"; */
+"Q7p-4O-c4N.title" = "Incident Members";
+
+/* Class = "IBUITextField"; placeholder = "Vehículos"; ObjectID = "Qug-Vi-wVo"; */
+"Qug-Vi-wVo.placeholder" = "Vehicles";
+
+/* Class = "IBUILabel"; text = "Nombre:"; ObjectID = "R6u-m4-mUo"; */
+"R6u-m4-mUo.text" = "Name:";
+
+/* Class = "IBUILabel"; text = "Localización del Evento:"; ObjectID = "RKL-Mh-uE5"; */
+"RKL-Mh-uE5.text" = "Event Location:";
+
+/* Class = "IBUILabel"; text = "Tipo de Licencia:"; ObjectID = "RL6-HO-upl"; */
+"RL6-HO-upl.text" = "License Type:";
+
+/* Class = "IBUINavigationItem"; title = "Accidentes Reportados"; ObjectID = "Rx9-9B-djF"; */
+"Rx9-9B-djF.title" = "Reported Crashs";
 
 /* Class = "IBUILabel"; text = "Contraseña:"; ObjectID = "Rzu-ST-Jue"; */
 "Rzu-ST-Jue.text" = "Password:";
 
-/* Class = "IBUILabel"; text = "Title"; ObjectID = "lnb-h5-7Es"; */
-"lnb-h5-7Es.text" = "Title";
+/* Class = "IBUILabel"; text = "Salir"; ObjectID = "SCH-8S-Gu5"; */
+"SCH-8S-Gu5.text" = "Exit";
+
+/* Class = "IBUITextField"; placeholder = "Condición del Pavimento"; ObjectID = "SLf-9l-bAB"; */
+"SLf-9l-bAB.placeholder" = "Road Condition";
+
+/* Class = "IBUILabel"; text = "Tipo de Vehículo:"; ObjectID = "SSh-eU-qtq"; */
+"SSh-eU-qtq.text" = "Vehicle Type:";
+
+/* Class = "IBUILabel"; text = "Número de Tablilla:"; ObjectID = "SbQ-ub-Hot"; */
+"SbQ-ub-Hot.text" = "Plate Number:";
+
+/* Class = "IBUILabel"; text = "Género:"; ObjectID = "T1h-z1-4n8"; */
+"T1h-z1-4n8.text" = "Gender:";
+
+/* Class = "IBUILabel"; text = "Pavimento:"; ObjectID = "TAr-SN-iIZ"; */
+"TAr-SN-iIZ.text" = "Road:";
+
+/* Class = "IBUILabel"; text = "Tipo de Intersección:"; ObjectID = "TkX-HV-BXg"; */
+"TkX-HV-BXg.text" = "Intersection Type:";
+
+/* Class = "IBUILabel"; text = "Tipo de Zona de Trabajo:"; ObjectID = "UPm-BM-lVi"; */
+"UPm-BM-lVi.text" = "Worker's Zone Type:";
+
+/* Class = "IBUILabel"; text = "Vehículo"; ObjectID = "Uda-Ht-s6q"; */
+"Uda-Ht-s6q.text" = "Vehicle";
+
+/* Class = "IBUILabel"; text = "Marca:"; ObjectID = "Uqz-r0-5M8"; */
+"Uqz-r0-5M8.text" = "Make:";
+
+/* Class = "IBUITabBarItem"; title = "Personas"; ObjectID = "V0b-DU-ptU"; */
+"V0b-DU-ptU.title" = "Persons";
+
+/* Class = "IBUILabel"; text = "Cerca de:"; ObjectID = "V9l-rn-E5c"; */
+"V9l-rn-E5c.text" = "Near to:";
+
+/* Class = "IBUILabel"; text = "Tipo de Persona:"; ObjectID = "WVW-Ms-uF5"; */
+"WVW-Ms-uF5.text" = "Person Type:";
+
+/* Class = "IBUILabel"; text = "Teléfono"; ObjectID = "WcH-r0-TF8"; */
+"WcH-r0-TF8.text" = "Phone Number";
+
+/* Class = "IBUILabel"; text = "Fecha de Compra:"; ObjectID = "Y2d-mE-mdh"; */
+"Y2d-mE-mdh.text" = "Purchase Date:";
+
+/* Class = "IBUILabel"; text = "Subtitle"; ObjectID = "YAH-WM-nTg"; */
+"YAH-WM-nTg.text" = "Subtitle";
+
+/* Class = "IBUILabel"; text = "Donante de Organos:"; ObjectID = "YZY-TF-lo7"; */
+"YZY-TF-lo7.text" = "Organ Donor:";
+
+/* Class = "IBUITabBarItem"; title = "Vehículos"; ObjectID = "Zff-5s-tam"; */
+"Zff-5s-tam.title" = "Vehicles";
+
+/* Class = "IBUILabel"; text = "Ambiental:"; ObjectID = "Zfw-Ki-pqh"; */
+"Zfw-Ki-pqh.text" = "Environmental:";
+
+/* Class = "IBUILabel"; text = "Zip Code:"; ObjectID = "Zyk-lN-54I"; */
+"Zyk-lN-54I.text" = "Zip Code:";
+
+/* Class = "IBUITextField"; placeholder = "Peatones"; ObjectID = "a8F-ql-5eb"; */
+"a8F-ql-5eb.placeholder" = "Pedestrians";
+
+/* Class = "IBUITextField"; placeholder = "Relación"; ObjectID = "agJ-td-3qW"; */
+"agJ-td-3qW.placeholder" = "Relation";
+
+/* Class = "IBUITabBarItem"; title = "Accidente"; ObjectID = "bYF-v3-SQx"; */
+"bYF-v3-SQx.title" = "Crash";
+
+/* Class = "IBUILabel"; text = "Fecha del Accidente:"; ObjectID = "bnd-Tg-aBT"; */
+"bnd-Tg-aBT.text" = "Crash Date:";
+
+/* Class = "IBUITextField"; placeholder = "Condición Climática 2"; ObjectID = "bw4-IE-POi"; */
+"bw4-IE-POi.placeholder" = "Weather Condition 2";
+
+/* Class = "IBUITextField"; placeholder = "Heridos"; ObjectID = "cix-T3-3Eg"; */
+"cix-T3-3Eg.placeholder" = "Injured";
+
+/* Class = "IBUILabel"; text = "Número de Marbete:"; ObjectID = "cjn-bQ-drc"; */
+"cjn-bQ-drc.text" = "Registration Number:";
+
+/* Class = "IBUILabel"; text = "Categoría de la Persona:"; ObjectID = "d7B-eD-bm0"; */
+"d7B-eD-bm0.text" = "Person Category:";
+
+/* Class = "IBUILabel"; text = "Forma de la Colisión:"; ObjectID = "dR5-Kw-6aV"; */
+"dR5-Kw-6aV.text" = "Manner of Colission:";
+
+/* Class = "IBUILabel"; text = "Cantidad de Pasajeros:"; ObjectID = "dn0-xu-N3B"; */
+"dn0-xu-N3B.text" = "Quantity of Passangers:";
+
+/* Class = "IBUINavigationItem"; title = "Información Básica del Accidente"; ObjectID = "ebN-pd-J51"; */
+"ebN-pd-J51.title" = "Crash Basic Information";
+
+/* Class = "IBUITextField"; placeholder = "Condición de la Visibilidad"; ObjectID = "ecK-kH-1DP"; */
+"ecK-kH-1DP.placeholder" = "Visibility Condition";
+
+/* Class = "IBUILabel"; text = "Nuevo Reporte"; ObjectID = "eot-Uj-P8c"; */
+"eot-Uj-P8c.text" = "New Report";
+
+/* Class = "IBUITabBarItem"; title = "Condiciones"; ObjectID = "fFo-bS-aOQ"; */
+"fFo-bS-aOQ.title" = "Conditions";
+
+/* Class = "IBUILabel"; text = "Categoría de la Persona:"; ObjectID = "fYF-JB-E5w"; */
+"fYF-JB-E5w.text" = "Person Category:";
+
+/* Class = "IBUILabel"; text = "Lugar Específico:"; ObjectID = "flU-tU-Hge"; */
+"flU-tU-Hge.text" = "Specific Place:";
+
+/* Class = "IBUIBarButtonItem"; title = "Añadir"; ObjectID = "fmv-Mn-2On"; */
+"fmv-Mn-2On.title" = "Add";
+
+/* Class = "IBUINavigationItem"; title = "Nuevo Vehículo y Conductor"; ObjectID = "fop-R6-HBl"; */
+"fop-R6-HBl.title" = "New Vehicle and Driver";
+
+/* Class = "IBUILabel"; text = "Carretera:"; ObjectID = "g4D-Ad-H6S"; */
+"g4D-Ad-H6S.text" = "Road:";
+
+/* Class = "IBUILabel"; text = "Marca:"; ObjectID = "gjA-oa-rEZ"; */
+"gjA-oa-rEZ.text" = "Make:";
+
+/* Class = "IBUILabel"; text = "Zip Code:"; ObjectID = "gqG-ZJ-pyv"; */
+"gqG-ZJ-pyv.text" = "Zip Code:";
+
+/* Class = "IBUILabel"; text = "Tipo de Licencia:"; ObjectID = "hEa-OD-g2S"; */
+"hEa-OD-g2S.text" = "License Type:";
+
+/* Class = "IBUILabel"; text = "Año:"; ObjectID = "heC-mO-dJn"; */
+"heC-mO-dJn.text" = "Year:";
+
+/* Class = "IBUITextField"; placeholder = "Circunstancia de la Carretera"; ObjectID = "iFo-mN-dq8"; */
+"iFo-mN-dq8.placeholder" = "Road Surface Conditions";
+
+/* Class = "IBUILabel"; text = "RELACIONADO A INTERSECCIÓN:"; ObjectID = "igR-0B-45a"; */
+"igR-0B-45a.text" = "RELATION TO JUNCTION:";
+
+/* Class = "IBUITextField"; placeholder = "Circunstancia Ambiental"; ObjectID = "jOy-0Z-8qC"; */
+"jOy-0Z-8qC.placeholder" = "Environmental Circumstance";
+
+/* Class = "IBUILabel"; text = "Visibilidad:"; ObjectID = "jVy-yF-pw7"; */
+"jVy-yF-pw7.text" = "Visibility:";
+
+/* Class = "IBUILabel"; text = "Número de Licencia:"; ObjectID = "jxl-dT-CQH"; */
+"jxl-dT-CQH.text" = "License Number:";
+
+/* Class = "IBUILabel"; text = "Evento Relacionado al Mayor Daño:"; ObjectID = "kZy-KF-gDD"; */
+"kZy-KF-gDD.text" = "Most Constributing Related Event:";
+
+/* Class = "IBUILabel"; text = "Clasificación del Accidente:"; ObjectID = "khq-Wv-Xii"; */
+"khq-Wv-Xii.text" = "Crash Classification:";
+
+/* Class = "IBUITextField"; placeholder = "Tipo de Colisión"; ObjectID = "lF0-7v-toO"; */
+"lF0-7v-toO.placeholder" = "Collision Type";
+
+/* Class = "IBUILabel"; text = "INFORMACIÓN DE LA LICENCIA DE CONDUCIR:"; ObjectID = "lMk-uU-4Jj"; */
+"lMk-uU-4Jj.text" = "DRIVERS LICENSE INFORMATION:";
+
+/* Class = "IBUIBarButtonItem"; title = "Añadir"; ObjectID = "lWd-Ks-hk3"; */
+"lWd-Ks-hk3.title" = "Add";
+
+/* Class = "IBUILabel"; text = "Municipio:"; ObjectID = "mBv-yV-e6S"; */
+"mBv-yV-e6S.text" = "Municipality:";
+
+/* Class = "IBUINavigationItem"; title = "Nuevo Vehículo"; ObjectID = "nGG-2U-IQt"; */
+"nGG-2U-IQt.title" = "New Vehicle";
+
+/* Class = "IBUILabel"; text = "Nombre:"; ObjectID = "nMt-xf-dcl"; */
+"nMt-xf-dcl.text" = "Name:";
+
+/* Class = "IBUILabel"; text = "INFORMACIÓN DEL VEHÍCULO:"; ObjectID = "nNk-SM-cLW"; */
+"nNk-SM-cLW.text" = "VEHICLE INFORMATION:";
+
+/* Class = "IBUILabel"; text = "Intersección a Desnivel:"; ObjectID = "ncL-14-SCm"; */
+"ncL-14-SCm.text" = "Within Interchange Area:";
+
+/* Class = "IBUILabel"; text = "¿Fue el accidente en o cerca de un área de construcción o mantenimiento?"; ObjectID = "nue-72-SSM"; */
+"nue-72-SSM.text" = "The crash was near a construction or maintenance zone?";
+
+/* Class = "IBUILabel"; text = "Tipo de Persona:"; ObjectID = "oy3-rL-wFt"; */
+"oy3-rL-wFt.text" = "Person Type:";
+
+/* Class = "IBUITextField"; text = "WAUFFAFM3CA000000"; ObjectID = "p7H-0H-3Kr"; */
+"p7H-0H-3Kr.text" = "WAUFFAFM3CA000000";
+
+/* Class = "IBUILabel"; text = "Salir"; ObjectID = "pA0-v7-gGr"; */
+"pA0-v7-gGr.text" = "Exit";
+
+/* Class = "IBUILabel"; text = "Estado:"; ObjectID = "qaU-uG-Bv9"; */
+"qaU-uG-Bv9.text" = "State:";
+
+/* Class = "IBUILabel"; text = "Fecha de Expiración:"; ObjectID = "qsZ-Zq-3O3"; */
+"qsZ-Zq-3O3.text" = "Expiration Date:";
+
+/* Class = "IBUILabel"; text = "Modelo:"; ObjectID = "r7q-dn-z9z"; */
+"r7q-dn-z9z.text" = "Model:";
+
+/* Class = "IBUILabel"; text = "Estado/País:"; ObjectID = "rCb-c6-2ns"; */
+"rCb-c6-2ns.text" = "State/Country:";
+
+/* Class = "IBUILabel"; text = "CARS"; ObjectID = "rFi-Cd-xoY"; */
+"rFi-Cd-xoY.text" = "CARS";
+
+/* Class = "IBUIBarButtonItem"; title = "Añadir"; ObjectID = "rSk-sj-1rD"; */
+"rSk-sj-1rD.title" = "Add";
+
+/* Class = "IBUILabel"; text = "Relacionado a Ómnibus Escolar:"; ObjectID = "sGP-BH-hQX"; */
+"sGP-BH-hQX.text" = "School Bus Related:";
+
+/* Class = "IBUIButton"; normalTitle = "Ubicar en el Mapa"; ObjectID = "sK2-2u-ZhV"; */
+"sK2-2u-ZhV.normalTitle" = "Locate on Map";
+
+/* Class = "IBUILabel"; text = "Estado/País:"; ObjectID = "uHn-ZF-u7t"; */
+"uHn-ZF-u7t.text" = "State/Country:";
+
+/* Class = "IBUILabel"; text = "Localización en Coordenadas:"; ObjectID = "uKp-yf-Gy8"; */
+"uKp-yf-Gy8.text" = "Location Coordinates:";
+
+/* Class = "IBUINavigationItem"; title = "¿Que desea añadir?"; ObjectID = "v5X-NH-fHA"; */
+"v5X-NH-fHA.title" = "What you want to add?";
+
+/* Class = "IBUITabBarItem"; title = "Entrada de Datos"; ObjectID = "vFm-sF-8gE"; */
+"vFm-sF-8gE.title" = "Data Entry";
+
+/* Class = "IBUILabel"; text = "INFORMACIÓN DE LA LICENCIA DE CONDUCIR:"; ObjectID = "vZr-Ne-TJx"; */
+"vZr-Ne-TJx.text" = "DRIVER LICENSE INFORMATION:";
+
+/* Class = "IBUILabel"; text = "RELACIONADO A ZONA DE CONSTRUCCIÓN O MANTENIMIENTO:"; ObjectID = "vnI-B4-DWP"; */
+"vnI-B4-DWP.text" = "RELATED TO CONSTRUCTION OR MAINTENANCE ZONE:";
+
+/* Class = "IBUILabel"; text = "Dirección y/o Calle:"; ObjectID = "voR-69-ByJ"; */
+"voR-69-ByJ.text" = "Address and/or Street:";
+
+/* Class = "IBUILabel"; text = "Distancia:"; ObjectID = "wQi-FF-NUQ"; */
+"wQi-FF-NUQ.text" = "Distance:";
+
+/* Class = "IBUILabel"; text = "Vehículo y Conductor"; ObjectID = "wat-7g-Gmz"; */
+"wat-7g-Gmz.text" = "Vehicle and Driver";
+
+/* Class = "IBUILabel"; text = "Policia Presente en el Área:"; ObjectID = "wjT-8c-6Co"; */
+"wjT-8c-6Co.text" = "Police Present in Area:";
+
+/* Class = "IBUIButton"; normalTitle = "Actualizar Localización"; ObjectID = "wqu-sg-2BI"; */
+"wqu-sg-2BI.normalTitle" = "Update Location";
+
+/* Class = "IBUILabel"; text = "Fecha de Expiración:"; ObjectID = "wsw-7X-ImM"; */
+"wsw-7X-ImM.text" = "Expiration Date:";
+
+/* Class = "IBUITextField"; placeholder = "Fatalidades"; ObjectID = "x2B-P9-OCk"; */
+"x2B-P9-OCk.placeholder" = "Fatalities";
+
+/* Class = "IBUITextField"; placeholder = "Condición Climática 1"; ObjectID = "xEZ-Jr-Tdf"; */
+"xEZ-Jr-Tdf.placeholder" = "Weather Condition 1";
+
+/* Class = "IBUILabel"; text = "CONDICIONES CONTRIBUYENTES:"; ObjectID = "xel-T9-4tE"; */
+"xel-T9-4tE.text" = "CONTRIBUTING CONDITIONS:";
+
+/* Class = "IBUILabel"; text = "Longitud:"; ObjectID = "xp4-lE-Krd"; */
+"xp4-lE-Krd.text" = "Longitude:";
+
+/* Class = "IBUILabel"; text = "Unidades Involucradas:"; ObjectID = "zyS-wC-6fz"; */
+"zyS-wC-6fz.text" = "Involved Units:";

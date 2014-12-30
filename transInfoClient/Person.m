@@ -10,8 +10,21 @@
 
 @implementation Person
 
+@synthesize typeCategoryKey;
+@synthesize typeKey;
 @synthesize name;
+@synthesize genderKey;
+@synthesize licenseTypeKey;
 @synthesize driverLicense;
-@synthesize type;
+@synthesize organDonorKey;
+@synthesize licenseExpirationDate;
+@synthesize licenseExpirationNA;
+@synthesize streetAddress;
+@synthesize neighbohood;
+@synthesize city;
+@synthesize stateCountry;
+@synthesize zipCode;
+@synthesize phoneNumber;
+@synthesize uuid;
 
 @end

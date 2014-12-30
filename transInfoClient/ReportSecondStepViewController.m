@@ -191,7 +191,7 @@
                 }
             }
             
-            [collection setObject:(NSString*)[elem objectForKey:@"DescriptionES"] forKey:[NSString stringWithFormat:@"%@", [elem objectForKey:IDColumn]]];
+            [collection setObject:(NSString*)[elem objectForKey:[Utilities collectionColumn]] forKey:[NSString stringWithFormat:@"%@", [elem objectForKey:IDColumn]]];
         }
         
         [self showPickerView:collection withField:field withIdentifier:collectionName];

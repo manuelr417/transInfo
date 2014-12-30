@@ -9,3 +9,14 @@
 "login.empty-required-field" = "Campo requerido vacío.";
 "login.empty-plate" = "El número de placa es un campo requerido.";
 "login.empty-password" = "La contraseña es un campo requerido.";
+"login.error.title" = "¡Ha ocurrido un error!";
+"login.error.internal" = "El servidor tuvo un problema interno.";
+"login.error.wrong-information" = "Las credenciales entradas son incorrectas.";
+"login.error.server-timeout" = "Fue imposible conectarse con el servidor. Verifique su conexión al Internet.";
+"login.error.unknown-output" = "La información suministrada por el servidor no puede ser procesada.";
+
+"report.second.no-harmful-event-category.msg" = "Para poder seleccionar un evento es necesario haber seleccionado un Tipo de Colisión.";
+"report.second.no-harmful-event-category.title" = "Selecciona un Tipo de Colisión";
+
+"report.third.no-person-type-category.msg" = "Para poder seleccionar el Tipo de Persona es necesario haber seleccionado la Categoría de la Persona.";
+"report.third.no-person-type-category.title" = "Selecciona la Categoría de la Persona";

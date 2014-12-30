@@ -18,10 +18,8 @@
     
     if ([self collectionIsCached:collection]) {
         //NSLog(@"Loading from Cache");
-        //[self loadFromWebService:collection];
         [self loadFromCache:collection];
     } else {
-        //NSLog(@"Loading from Collection");
         [self loadFromWebService:collection];
     }
 }
@@ -49,7 +47,6 @@
         
         //NSLog(@"%@", filePath);
         [self collectionLoaded:elems];
-        //NSLog(@"hola");
     } else {
         [Utilities displayAlertWithMessage:NSLocalizedString([errors objectForKey:data[@"error_code"]], nil) withTitle:NSLocalizedString(@"login.error.title", nil)];
     }
@@ -67,14 +64,6 @@
 
 - (void)loadFromCache:(NSString*)collection {
     NSString *filePath = [self fileNameForCollection:collection];
-    //NSLog(@"%@", filePath);
-    
-   /* NSString* content = [NSString stringWithContentsOfFile:filePath
-                                                  encoding:NSUTF8StringEncoding
-                                                     error:NULL];
-    NSLog(@"Prueba... %@",[NSDictionary dictionaryWithContentsOfFile:filePath]);
-    */
-    //[NSDictionary dictionaryF]
     
     NSMutableArray *elems = [NSMutableArray arrayWithContentsOfFile:filePath];
     NSDate *expirationDate = elems[0];

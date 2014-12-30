@@ -13,6 +13,7 @@
 #import "PickerViewController.h"
 #import "CollectionManager.h"
 #import "SWRevealViewController.h"
+#import "Utilities.h"
 
 @interface ReportFirstStepViewController ()
 
@@ -73,9 +74,6 @@
     [self registerForKeyboardNotifications];
     [self loadCollections];
     
-    // Change button color
-    //self.sidebarButton.tintColor = [UIColor colorWithWhite:0.96f alpha:0.2f];
-    
     // Set the side bar button action. When it's tapped, it'll show up the sidebar.
     self.sidebarButton.target = self.revealViewController;
     self.sidebarButton.action = @selector(revealToggle:);
@@ -88,11 +86,8 @@
     self.collections = [[NSMutableDictionary alloc] init];
     
     NSArray *collectionNames = @[@"cities", @"counties", @"directions", @"locations", @"measurements", @"nearTo", @"properties", @"reportTypes"];
-    // NSArray *collectionNames = @[@"nearTo", @"properties", @"reportTypes"];
     NSMutableArray *collectionsManagers = [[NSMutableArray alloc] init];
     int i = 0;
-    
-    //NSString *collectionName = @"reportTypes";
     
     for (NSString *collectionName in collectionNames) {
         [self.collections setObject:[NSDate date] forKey:collectionName];
@@ -110,8 +105,8 @@
     NSLog(@"Received Collection: %@ (%lu elements)", collectionName, (unsigned long)[collection count]);
     
     /*for (NSDictionary *elem in collection) {
-        NSLog(@"%@", elem[@"DescriptionES"]);
-    }*/
+     NSLog(@"%@", elem[@"DescriptionES"]);
+     }*/
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -139,17 +134,6 @@
     
     [self setCrashDateFormat];
     [self setCrashHourFormat];
-    
-    // Buttons with Lookup Icon ( Lookup Icon by taken from https://github.com/alexharris/blue-blog-theme/tree/master/img )
-    /*[self.reportTypeLookupButton setImage:[UIImage imageNamed:@"LookupIcon"] forState:UIControlStateNormal];
-    [self.countyButton setImage:[UIImage imageNamed:@"LookupIcon"] forState:UIControlStateNormal];
-    [self.cityButton setImage:[UIImage imageNamed:@"LookupIcon"] forState:UIControlStateNormal];
-    [self.nearToLocationButton setImage:[UIImage imageNamed:@"LookupIcon"] forState:UIControlStateNormal];
-    [self.measurementButton setImage:[UIImage imageNamed:@"LookupIcon"] forState:UIControlStateNormal];
-    [self.directionButton setImage:[UIImage imageNamed:@"LookupIcon"] forState:UIControlStateNormal];
-    [self.propertyButton setImage:[UIImage imageNamed:@"LookupIcon"] forState:UIControlStateNormal];
-    [self.locationButton setImage:[UIImage imageNamed:@"LookupIcon"] forState:UIControlStateNormal];*/
-
     
     self.reportTypeField.delegate = self;
     self.countyField.delegate = self;
@@ -234,152 +218,49 @@
 }
 
 - (IBAction)reportTypeButtonTouchUpInside:(id)sender {
-    /*NSMutableDictionary *reportTypes = [[NSMutableDictionary alloc] init];
-    
-    [reportTypes setObject:@"Daño a la Propiedad" forKey:@"1"];
-    [reportTypes setObject:@"Fatal" forKey:@"2"];
-    [reportTypes setObject:@"Herido Grave" forKey:@"3"];
-    [reportTypes setObject:@"Herido Leve" forKey:@"4"];
-    [reportTypes setObject:@"Posible Herido" forKey:@"5"];*/
-    
-    //NSLog(@"%@", self.collections);
-    
-   /* if ([self.collections[@"reportTypes"] isKindOfClass:[NSArray class]]) {
-        NSMutableDictionary *reportTypes = [[NSMutableDictionary alloc] init];
-        
-        for (NSDictionary *elem in self.collections[@"reportTypes"]) {
-            [reportTypes setObject:(NSString*)[elem objectForKey:@"DescriptionES"] forKey:[NSString stringWithFormat:@"%@", [elem objectForKey:@"ReportTypeID"]]];
-        }
-        
-        //NSLog(@"%@", reportTypes);
-        
-        [self showPickerView:reportTypes withField:self.reportTypeField withLookupButton:self.reportTypeLookupButton withOutField:self.reportType];
-    } else {
-       // NSLog(@"No collection yet");
-    }*/
-    
     [self showCollection:@"reportTypes" withIDColumn:@"ReportTypeID" withField:self.reportTypeField];
 }
 
 - (IBAction)showCollection:(NSString*)collectionName withIDColumn:(NSString*)IDColumn withField:(id)field {
-    /*NSMutableDictionary *reportTypes = [[NSMutableDictionary alloc] init];
-     
-     [reportTypes setObject:@"Daño a la Propiedad" forKey:@"1"];
-     [reportTypes setObject:@"Fatal" forKey:@"2"];
-     [reportTypes setObject:@"Herido Grave" forKey:@"3"];
-     [reportTypes setObject:@"Herido Leve" forKey:@"4"];
-     [reportTypes setObject:@"Posible Herido" forKey:@"5"];*/
-    
-    //NSLog(@"%@", self.collections);
-    
     if ([self.collections[collectionName] isKindOfClass:[NSArray class]]) {
         NSMutableDictionary *collection = [[NSMutableDictionary alloc] init];
         
         for (NSDictionary *elem in self.collections[collectionName]) {
-            [collection setObject:(NSString*)[elem objectForKey:@"DescriptionES"] forKey:[NSString stringWithFormat:@"%@", [elem objectForKey:IDColumn]]];
+            [collection setObject:(NSString*)[elem objectForKey:[Utilities collectionColumn]] forKey:[NSString stringWithFormat:@"%@", [elem objectForKey:IDColumn]]];
         }
         
         //NSLog(@"%@", reportTypes);
         
         [self showPickerView:collection withField:field withLookupButton:self.reportTypeLookupButton withOutField:self.reportType];
     } else {
-        NSLog(@"No collection yet");
+        NSLog(@"No collection yet... %@", collectionName);
+        CollectionManager *collManager = [[CollectionManager alloc] init];
+        [collManager getCollection:collectionName];
+        collManager.delegate = self;
     }
 }
 
 - (IBAction)cityButtonTouchUpInside:(id)sender {
-    /*NSMutableDictionary *cities = [[NSMutableDictionary alloc] init];
-    
-    [cities setObject:@"Puerto Rico" forKey:@"72"];
-    
-    [self showPickerView:cities withField:self.cityField withLookupButton:self.cityButton withOutField:self.city];*/
-    
     [self showCollection:@"cities" withIDColumn:@"CityID" withField:self.cityField];
 }
 
 - (IBAction)countyButtonTouchUpInside:(id)sender {
-    /*NSMutableDictionary *counties = [[NSMutableDictionary alloc] init];
-    
-    // Orden alfabético
-    
-    [counties setObject:@"Hormigueros" forKey:@"67"];
-    [counties setObject:@"Lajas" forKey:@"79"];
-    [counties setObject:@"Mayagüez" forKey:@"97"];
-    [counties setObject:@"San German" forKey:@"125"];
-    
-    [self showPickerView:counties withField:self.countyField withLookupButton:self.countyButton withOutField:self.county];*/
-    
     [self showCollection:@"counties" withIDColumn:@"CountyID" withField:self.countyField];
 }
 
 - (IBAction)nearToLocationButtonTouchUpInside:(id)sender {
-    /*NSMutableDictionary *locations = [[NSMutableDictionary alloc] init];
-    
-    // Orden alfabético
-    
-    [locations setObject:@"Intersección" forKey:@"67"];
-    [locations setObject:@"Calle" forKey:@"79"];
-    [locations setObject:@"Puente" forKey:@"97"];
-    [locations setObject:@"Otro" forKey:@"125"];
-    
-    [self showPickerView:locations withField:self.nearToLocationField withLookupButton:self.nearToLocationButton withOutField:self.county];*/
-    
     [self showCollection:@"nearTo" withIDColumn:@"NearToID" withField:self.nearToLocationField];
 }
 - (IBAction)measurementButtonTouchUpInside:(id)sender {
-    /*NSMutableDictionary *measurements = [[NSMutableDictionary alloc] init];
-    
-    // Orden alfabético
-    
-    [measurements setObject:@"Pies" forKey:@"67"];
-    [measurements setObject:@"Metros" forKey:@"79"];
-    [measurements setObject:@"En Intersección" forKey:@"97"];
-    
-    [self showPickerView:measurements withField:self.measurementField withLookupButton:self.measurementButton withOutField:self.county];*/
-    
     [self showCollection:@"measurements" withIDColumn:@"MeasurementID" withField:self.measurementField];
 }
 - (IBAction)directionButtonTouchUpInside:(id)sender {
-    /*NSMutableDictionary *directions = [[NSMutableDictionary alloc] init];
-    
-    // Orden alfabético
-
-    [directions setObject:@"Norte" forKey:@"N"];
-    [directions setObject:@"Sur" forKey:@"S"];
-    [directions setObject:@"Este" forKey:@"E"];
-    [directions setObject:@"Oeste" forKey:@"W"];
-    [directions setObject:@"Noreste" forKey:@"NE"];
-    [directions setObject:@"Noroeste" forKey:@"NW"];
-    [directions setObject:@"Sureste" forKey:@"SE"];
-    [directions setObject:@"Suroeste" forKey:@"SW"];
-    
-    [self showPickerView:directions withField:self.directionField withLookupButton:self.directionButton withOutField:self.county];*/
-    
     [self showCollection:@"directions" withIDColumn:@"DirectionID" withField:self.directionField];
 }
 - (IBAction)propertyButtonTouchUpInside:(id)sender {
-    /*NSMutableDictionary *properties = [[NSMutableDictionary alloc] init];
-    
-    // Orden alfabético
-    
-    [properties setObject:@"Propiedad Privada" forKey:@"1"];
-    [properties setObject:@"Propiedad Pública" forKey:@"2"];
-    
-    [self showPickerView:properties withField:self.propertyField withLookupButton:self.propertyButton withOutField:self.county];*/
-    
     [self showCollection:@"properties" withIDColumn:@"PropertyID" withField:self.propertyField];
 }
 - (IBAction)locationButtonTouchUpInside:(id)sender {
-   /* NSMutableDictionary *locations = [[NSMutableDictionary alloc] init];
-    
-    // Orden alfabético
-    
-    [locations setObject:@"Camino del tráfico, en la Carretera" forKey:@"1"];
-    [locations setObject:@"Camino del tráfico, fuera de Carretera" forKey:@"2"];
-    [locations setObject:@"Fuera del camino del Tráfico" forKey:@"3"];
-    
-    [self showPickerView:locations withField:self.locationField withLookupButton:self.locationButton withOutField:self.county];*/
-    
     [self showCollection:@"locations" withIDColumn:@"LocationID" withField:self.locationField];
 }
 
@@ -389,8 +270,6 @@
     
     self.pickerView.outField = field;
     self.pickerView.popover = self.pickerPopover;
-    
-    //[self.pickerPopover presentPopoverFromRect:button.bounds inView:button permittedArrowDirections:UIPopoverArrowDirectionUnknown animated:YES];
     
     [self.pickerPopover presentPopoverFromRect:field.bounds inView:field permittedArrowDirections:UIPopoverArrowDirectionUnknown animated:YES];
 }

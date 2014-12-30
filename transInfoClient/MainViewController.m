@@ -56,8 +56,6 @@ NSUserDefaults *userDefaults;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    //[self.username setLeftViewMode:UITextFieldViewModeAlways];
-    //[self.username setClearButtonMode:UITextFieldViewModeWhileEditing];
     [self.username setBorderStyle:UITextBorderStyleBezel];
     
     CGRect frameRect = self.username.frame;
@@ -68,8 +66,6 @@ NSUserDefaults *userDefaults;
     
     self.username.delegate = self;
     self.password.delegate = self;
-    
-    
 }
 
 - (void)viewDidLoad
@@ -85,12 +81,8 @@ NSUserDefaults *userDefaults;
     userDefaults = [NSUserDefaults standardUserDefaults];
     NSDictionary *loginInfo = [userDefaults objectForKey:@"login"];
     
-    NSLog(@"Verifiyng!");
+    //NSLog(@"Verifiyng!");
     if (loginInfo != nil) {
-        /*[userDefaults removeObjectForKey:@"login"];
-         [userDefaults synchronize];
-         return;*/
-        
         [self startLoading];
         
         NSDate *expirationDate = [Utilities NSDateWithMySQLDate:loginInfo[@"ExpirationDate"]];
@@ -119,7 +111,7 @@ NSUserDefaults *userDefaults;
         [userDefaults setObject:data[@"payload"] forKey:@"login"];
         [userDefaults synchronize];
         
-        NSLog(@"OK");
+        //NSLog(@"OK");
         [self showUserInfo];
         /* TODO: Login... */
     } else {
@@ -201,34 +193,14 @@ NSUserDefaults *userDefaults;
     NSDictionary *loginInfo = [userDefaults objectForKey:@"login"];
     
     if (loginInfo != nil) {
-        //NSString *out = [NSString stringWithFormat:@"First Name: %@\nLast Name: %@\nPlate Number: %@\nAgency ID: %@", loginInfo[@"FirstName"], loginInfo[@"LastName"], loginInfo[@"PlateNumber"], loginInfo[@"AgencyID"]];
-        
-        NSLog(@"You are in!");
+        //NSLog(@"You are in!");
         //[Utilities displayAlertWithMessage:[NSString stringWithFormat:@"Welcome %@ %@, your session expires on %@", loginInfo[@"FirstName"], loginInfo[@"LastName"], loginInfo[@"ExpirationDate"]] withTitle:@"DEBUG"];
-        
-        //[Utilities displayAlertWithMessage:out withTitle:@"LOGIN INFO (DEBUG)"];
-        
-
         
         UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         UIViewController *viewController = [storyBoard instantiateViewControllerWithIdentifier:@"RevealViewController"];
         
-        /*UIViewController *masterViewController = [storyBoard instantiateViewControllerWithIdentifier:@"MainNavigationController"];
-        UIViewController *detailViewController = [storyBoard instantiateViewControllerWithIdentifier:@"ReportTabBarController"];
-        
-        SplitViewController* splitViewController = [[SplitViewController alloc] init];
-       
-        
-        
-        splitViewController.viewControllers = @[masterViewController, detailViewController];
-
-        self.view.window.rootViewController = splitViewController;*/
-        //self.view.window.backgroundColor = [UIColor whiteColor];
-        
-        
         self.view.window.rootViewController = viewController;
         [self.view.window makeKeyAndVisible];
-        
     }
 }
 

@@ -15,4 +15,6 @@
 @property NSMutableArray *vehicles;
 @property NSMutableArray *pedestrians;
 
+@property UIPopoverController *popover;
+
 @end

@@ -41,9 +41,12 @@
 		D52C29EC19C0A95600294FA0 /* UIPickerOKView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D52C29EB19C0A95600294FA0 /* UIPickerOKView.xib */; };
 		D52C29EF19C0AB1300294FA0 /* UIDatePickerOKView.m in Sources */ = {isa = PBXBuildFile; fileRef = D52C29EE19C0AB1300294FA0 /* UIDatePickerOKView.m */; };
 		D52C29F219C1CA3B00294FA0 /* PickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D52C29F119C1CA3B00294FA0 /* PickerViewController.m */; };
+		D53472541A38777700AB670D /* NewDataEntryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D53472531A38777700AB670D /* NewDataEntryTableViewController.m */; };
 		D552535E19D4702600D8AEB6 /* CollectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D552535D19D4702600D8AEB6 /* CollectionManager.m */; };
 		D56D506D19F530F900F50237 /* ReportSecondStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D56D506C19F530F900F50237 /* ReportSecondStepViewController.m */; };
-		D5DC12B11A0BB42400A445FD /* NewEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5DC12B01A0BB42400A445FD /* NewEntryViewController.m */; };
+		D5A2E3A21A3F1D4A00F11DC3 /* NewVehicleController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5A2E3A11A3F1D4A00F11DC3 /* NewVehicleController.m */; };
+		D5A2E3A51A3F257E00F11DC3 /* NewPersonController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5A2E3A41A3F257E00F11DC3 /* NewPersonController.m */; };
+		D5DC12B11A0BB42400A445FD /* NewVehicleDriverController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5DC12B01A0BB42400A445FD /* NewVehicleDriverController.m */; };
 		D5DDB4511962EE9C0002F5EA /* restComm.m in Sources */ = {isa = PBXBuildFile; fileRef = D5DDB4501962EE9C0002F5EA /* restComm.m */; };
 		D5DDB453196B2F590002F5EA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5DDB452196B2F590002F5EA /* MapKit.framework */; };
 		D5DDB456196B30930002F5EA /* MapPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5DDB455196B30930002F5EA /* MapPopoverViewController.m */; };
@@ -135,12 +138,18 @@
 		D52C29EE19C0AB1300294FA0 /* UIDatePickerOKView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIDatePickerOKView.m; sourceTree = "<group>"; };
 		D52C29F019C1CA3B00294FA0 /* PickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerViewController.h; sourceTree = "<group>"; };
 		D52C29F119C1CA3B00294FA0 /* PickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerViewController.m; sourceTree = "<group>"; };
+		D53472521A38777700AB670D /* NewDataEntryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewDataEntryTableViewController.h; sourceTree = "<group>"; };
+		D53472531A38777700AB670D /* NewDataEntryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewDataEntryTableViewController.m; sourceTree = "<group>"; };
 		D552535C19D4702600D8AEB6 /* CollectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionManager.h; sourceTree = "<group>"; };
 		D552535D19D4702600D8AEB6 /* CollectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionManager.m; sourceTree = "<group>"; };
 		D56D506B19F530F900F50237 /* ReportSecondStepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportSecondStepViewController.h; sourceTree = "<group>"; };
 		D56D506C19F530F900F50237 /* ReportSecondStepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportSecondStepViewController.m; sourceTree = "<group>"; };
-		D5DC12AF1A0BB42400A445FD /* NewEntryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewEntryViewController.h; sourceTree = "<group>"; };
-		D5DC12B01A0BB42400A445FD /* NewEntryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewEntryViewController.m; sourceTree = "<group>"; };
+		D5A2E3A01A3F1D4A00F11DC3 /* NewVehicleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewVehicleController.h; sourceTree = "<group>"; };
+		D5A2E3A11A3F1D4A00F11DC3 /* NewVehicleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewVehicleController.m; sourceTree = "<group>"; };
+		D5A2E3A31A3F257E00F11DC3 /* NewPersonController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPersonController.h; sourceTree = "<group>"; };
+		D5A2E3A41A3F257E00F11DC3 /* NewPersonController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPersonController.m; sourceTree = "<group>"; };
+		D5DC12AF1A0BB42400A445FD /* NewVehicleDriverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewVehicleDriverController.h; sourceTree = "<group>"; };
+		D5DC12B01A0BB42400A445FD /* NewVehicleDriverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewVehicleDriverController.m; sourceTree = "<group>"; };
 		D5DDB44F1962EE9C0002F5EA /* restComm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = restComm.h; sourceTree = "<group>"; };
 		D5DDB4501962EE9C0002F5EA /* restComm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = restComm.m; sourceTree = "<group>"; };
 		D5DDB452196B2F590002F5EA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -377,8 +386,6 @@
 				D51FEBDA19D9F66900E9D39C /* SidebarViewController.m */,
 				D56D506B19F530F900F50237 /* ReportSecondStepViewController.h */,
 				D56D506C19F530F900F50237 /* ReportSecondStepViewController.m */,
-				D5DC12AF1A0BB42400A445FD /* NewEntryViewController.h */,
-				D5DC12B01A0BB42400A445FD /* NewEntryViewController.m */,
 				D519992E1A3554BF00EF2F6D /* CarTableViewCell.h */,
 				D519992F1A3554BF00EF2F6D /* CarTableViewCell.m */,
 				D51999311A3555D000EF2F6D /* CarMembersTableViewCell.h */,
@@ -387,6 +394,14 @@
 				D51999351A355B7B00EF2F6D /* DataEntryTableViewController.m */,
 				D51999391A356BD900EF2F6D /* PedestrianTableViewCell.h */,
 				D519993A1A356BD900EF2F6D /* PedestrianTableViewCell.m */,
+				D53472521A38777700AB670D /* NewDataEntryTableViewController.h */,
+				D53472531A38777700AB670D /* NewDataEntryTableViewController.m */,
+				D5DC12AF1A0BB42400A445FD /* NewVehicleDriverController.h */,
+				D5DC12B01A0BB42400A445FD /* NewVehicleDriverController.m */,
+				D5A2E3A01A3F1D4A00F11DC3 /* NewVehicleController.h */,
+				D5A2E3A11A3F1D4A00F11DC3 /* NewVehicleController.m */,
+				D5A2E3A31A3F257E00F11DC3 /* NewPersonController.h */,
+				D5A2E3A41A3F257E00F11DC3 /* NewPersonController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -514,11 +529,14 @@
 				D56D506D19F530F900F50237 /* ReportSecondStepViewController.m in Sources */,
 				D52C29E819BA253300294FA0 /* MainSplitViewController.m in Sources */,
 				D51999411A35E36700EF2F6D /* Person.m in Sources */,
+				D5A2E3A51A3F257E00F11DC3 /* NewPersonController.m in Sources */,
 				D519993E1A35E32100EF2F6D /* Vehicle.m in Sources */,
-				D5DC12B11A0BB42400A445FD /* NewEntryViewController.m in Sources */,
+				D5DC12B11A0BB42400A445FD /* NewVehicleDriverController.m in Sources */,
 				D528524A1959CBEB00806467 /* AppDelegate.m in Sources */,
+				D53472541A38777700AB670D /* NewDataEntryTableViewController.m in Sources */,
 				D5E8FBCE19A53B0600ED72EE /* Config.m in Sources */,
 				D5DDB456196B30930002F5EA /* MapPopoverViewController.m in Sources */,
+				D5A2E3A21A3F1D4A00F11DC3 /* NewVehicleController.m in Sources */,
 				D5E8FBD119A689B400ED72EE /* Utilities.m in Sources */,
 				D552535E19D4702600D8AEB6 /* CollectionManager.m in Sources */,
 				D5DDB459196B47E80002F5EA /* CurrentLocationPin.m in Sources */,

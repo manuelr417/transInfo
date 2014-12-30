@@ -12,6 +12,7 @@
 #import "PedestrianTableViewCell.h"
 #import "Vehicle.h"
 #import "Person.h"
+#include "NewPersonController.h"
 
 @interface DataEntryTableViewController ()
 
@@ -24,20 +25,190 @@
     self.vehicles = [[NSMutableArray alloc] init];
     self.pedestrians = [[NSMutableArray alloc] init];
     self.tableView = [[SLExpandableTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+}
+
+/*- (IBAction)addButonAction:(id)sender {
+ NSLog(@"Add car and person!");
+ 
+ NSDictionary *carDictionary = @{@"vehicleMake" : self.vehicleMakeField.text, @"vehicleModel" : self.vehicleModelField.text, @"vehicleYear" : self.vehicleYearField.text, @"vehicleRegistrationNumber" : self.vehicleRegistrationNumberField.text};
+ NSDictionary *personDictionary = @{@"vehicleRegistrationNumber" : self.vehicleRegistrationNumberField.text, @"personName" : self.personNameField.text, @"licenseNumber" : self.licenseNumberField.text};
+ 
+ [[NSNotificationCenter defaultCenter] postNotificationName:@"addCar" object:nil userInfo:carDictionary];
+ [[NSNotificationCenter defaultCenter] postNotificationName:@"addPerson" object:nil userInfo:personDictionary];
+ }*/
+
+- (void)receiveNotification:(NSNotification*)notification {
+    NSDictionary *dict = [notification userInfo];
     
+    if ([[notification name] isEqualToString:@"addCar"]) {
+        Vehicle *vehicle = [[Vehicle alloc] init];
+        vehicle.make = [dict objectForKey:@"vehicleMake"];
+        vehicle.model = [dict objectForKey:@"vehicleModel"];
+        vehicle.year = [dict objectForKey:@"vehicleYear"];
+        vehicle.registrationPlate = [dict objectForKey:@"vehicleLicensePlate"];
+        
+        [self.vehicles addObject:vehicle];
+        
+        [self.tableView reloadData];
+    } else if ([[notification name] isEqualToString:@"addPerson"]) {
+        NSString *personType = [dict objectForKey:@"personType"];
     
+        /*if ([dict objectForKey:@"uuid"] != nil) {
+            for (Person *p in self.pedestrians) {
+                if ([p.uuid isEqualToString:@""]) {
+                    [self.pedestrians removeObject:p];
+                    break;
+                }
+            }
+            
+            for (Vehicle *v in self.vehicles) {
+                for (Person *p in v.persons) {
+                    if ([p.uuid isEqualToString:@""]) {
+                        [self.pedestrians removeObject:p];
+                        break;
+                    }
+                }
+            }
+        }*/
+        
+        if ([personType isEqualToString:@"3"] || [personType isEqualToString:@"7"]) {
+            Person *person = [[Person alloc] init];
+
+            person.typeCategoryKey = [dict objectForKey:@"typeCategoryKey"];
+            //person.typeKey = (NSInteger)[dict objectForKey:@"typeKey"];
+            person.name = [dict objectForKey:@"name"];
+            person.genderKey = [dict objectForKey:@"genderKey"];
+            person.licenseTypeKey = [dict objectForKey:@"licenseTypeKey"];
+            person.driverLicense = [dict objectForKey:@"driverLicense"];
+            person.organDonorKey = [dict objectForKey:@"organDonorKey"];
+            person.licenseExpirationDate = [dict objectForKey:@"licenseExpirationDate"];
+            person.licenseExpirationNA = [dict objectForKey:@"licenseExpirationNA"];
+            person.streetAddress = [dict objectForKey:@"streetAddress"];
+            person.neighbohood = [dict objectForKey:@"neighbohood"];
+            person.city = [dict objectForKey:@"city"];
+            person.stateCountry = [dict objectForKey:@"stateCountry"];
+            person.zipCode = [dict objectForKey:@"zipCode"];
+            person.phoneNumber = [dict objectForKey:@"phoneNumber"];
+            person.uuid = [[NSUUID UUID] UUIDString];
+            
+            person.typeKey = 3;
+            
+            [self.pedestrians addObject:person];
+        } else {
+            
+            for (Vehicle *v in self.vehicles) {
+                if ([v.registrationPlate isEqualToString:[dict objectForKey:@"vehicleLicensePlate"]]) {
+                    Person *person = [[Person alloc] init];
+                    person.typeCategoryKey = [dict objectForKey:@"typeCategoryKey"];
+                    //person.typeKey = (NSInteger)[dict objectForKey:@"typeKey"];
+                    person.name = [dict objectForKey:@"name"];
+                    person.genderKey = [dict objectForKey:@"genderKey"];
+                    person.licenseTypeKey = [dict objectForKey:@"licenseTypeKey"];
+                    person.driverLicense = [dict objectForKey:@"driverLicense"];
+                    person.organDonorKey = [dict objectForKey:@"organDonorKey"];
+                    person.licenseExpirationDate = [dict objectForKey:@"licenseExpirationDate"];
+                    person.licenseExpirationNA = [dict objectForKey:@"licenseExpirationNA"];
+                    person.streetAddress = [dict objectForKey:@"streetAddress"];
+                    person.neighbohood = [dict objectForKey:@"neighbohood"];
+                    person.city = [dict objectForKey:@"city"];
+                    person.stateCountry = [dict objectForKey:@"stateCountry"];
+                    person.zipCode = [dict objectForKey:@"zipCode"];
+                    person.phoneNumber = [dict objectForKey:@"phoneNumber"];
+                    person.uuid = [[NSUUID UUID] UUIDString];
+                    
+                    if (personType == nil || [personType isEqualToString:@"1"]) {
+                        person.typeKey = 1; // Driver hard coded
+                    } else if ([personType isEqualToString:@"2"] || [personType isEqualToString:@"8"] || [personType isEqualToString:@"9"]) {
+                        person.typeKey = 2;
+                    } else {
+                        person.typeKey = 1; // Driver hard coded
+                    }
+                    
+                    [v addPerson:person];
+                    
+                    break;
+                }
+            }
+        }
+        
+        [self.tableView reloadData];
+    } else if ([[notification name] isEqualToString:@"requestVehicles"]) {
+        NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:self.vehicles,@"vehicles", nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"getVehicles" object:nil userInfo:info];
+    }
+}
+
+- (BOOL)tableView:(UITableView*)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.pedestrians.count > 0 && indexPath.section == [self.vehicles count] && indexPath.row == 0) {
+        return NO;
+    }
+    return YES;
+}
+
+- (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewRowAction *updateAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"Update"handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
+        NSLog(@"Update! %ld", (long)indexPath.row);
+        
+        if (indexPath.row > 0) {
+            NewPersonController *newPersonView = [self.storyboard instantiateViewControllerWithIdentifier:@"newPersonView"];
+            
+            if (self.pedestrians.count > 0 && indexPath.section == [self.vehicles count]) {
+                Person *person = [self.pedestrians objectAtIndex:indexPath.row - 1];
+                
+                [newPersonView setEditingModeFor:person forRegistrationPlate:nil];
+            } else {
+                Vehicle *vehicle = [self.vehicles objectAtIndex:indexPath.section];
+                Person *person = [[vehicle persons] objectAtIndex:indexPath.row - 1];
+                
+                [newPersonView setEditingModeFor:person forRegistrationPlate:vehicle.registrationPlate];
+            }
+            
+            self.popover = [[UIPopoverController alloc] initWithContentViewController:newPersonView];
+            
+            CGRect aFrame = [self.tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section]];
+            [self.popover presentPopoverFromRect:[self.tableView convertRect:aFrame toView:self.view] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        }
+        
+        [self.tableView setEditing:NO];
+    }];
+    updateAction.backgroundColor = [UIColor colorWithRed:0 green:204.0/255.0 blue:0 alpha:1];
+    
+    UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"Delete"  handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
+        
+        NSLog(@"Delete %ld %ld", (long)indexPath.section, (long)indexPath.row);
+        
+        if (indexPath.row == 0) {
+            [self.vehicles removeObjectAtIndex:indexPath.section];
+            [self.tableView reloadData];
+        }
+        
+        [self.tableView setEditing:NO];
+    }];
+    
+    return @[deleteAction, updateAction];
+}
+
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    /*if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+    }*/
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)loadDummyData {
     Person *person = [[Person alloc] init];
     person.name = @"Omar Soto Fortuño";
     person.driverLicense = @"4883682";
-    person.type = 1;
+    person.typeKey = 1;
     
     Person *person2 = [[Person alloc] init];
     person2.name = @"Manuel Rodríguez Martínez";
     person2.driverLicense = @"1234567";
-    person2.type = 2;
+    person2.typeKey = 2;
     
     Vehicle *vehicle = [[Vehicle alloc] init];
     vehicle.make = @"Mitsubishi";
@@ -64,7 +235,7 @@
     Person *person3 = [[Person alloc] init];
     person3.name = @"Ivette Cruzado Vélez";
     person3.driverLicense = @"1234567";
-    person3.type = 3;
+    person3.typeKey = 3;
     
     [self.pedestrians addObject:person3];
 }
@@ -78,7 +249,13 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    [self loadDummyData];
+    //[self loadDummyData];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNotification:) name:@"addCar" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNotification:) name:@"addPerson" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNotification:) name:@"requestVehicles" object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -150,7 +327,6 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
     if (self.pedestrians.count > 0) {
         return [self.vehicles count] + 1;
     } else {
@@ -159,10 +335,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
-    //return 5;
     if (section == self.vehicles.count) {
-        NSLog(@"Hola %lu", (unsigned long)self.pedestrians.count);
         return self.pedestrians.count + 1;
     } else {
         Vehicle *actual =[self.vehicles objectAtIndex:section];
@@ -173,7 +346,6 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%lu %lu", (unsigned long)self.vehicles.count, (unsigned long)[self.pedestrians count]);
     if (indexPath.section == self.vehicles.count && [self.pedestrians count] > 0) {
         static NSString *cellIdentifier = @"PedestrianCell";
         
@@ -200,7 +372,7 @@
         Vehicle *vehicle = [self.vehicles objectAtIndex:indexPath.section];
         Person *person = [vehicle.persons objectAtIndex:indexPath.row - 1];
         
-        if (person.type == 1) {
+        if (person.typeKey == 1) {
             cell.memberType = 1;
         } else {
             cell.memberType = 2;
@@ -211,50 +383,5 @@
         return cell;
     }
 }
-
-
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
-
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- } else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
- }
- */
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 @end

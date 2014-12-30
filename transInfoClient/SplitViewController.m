@@ -33,21 +33,21 @@
     // Do any additional setup after loading the view.
     
     
-        //MainTableViewController* firstVC = [[MainTableViewController alloc] init];
-        //ReportFirstStepViewController* secondVC = [[ReportFirstStepViewController alloc] init];
-        
-        //UISplitViewController* splitVC = [[UISplitViewController alloc] init];
-        //splitVC.viewControllers = [NSArray arrayWithObjects:firstVC, secondVC, nil];
+    //MainTableViewController* firstVC = [[MainTableViewController alloc] init];
+    //ReportFirstStepViewController* secondVC = [[ReportFirstStepViewController alloc] init];
+    
+    //UISplitViewController* splitVC = [[UISplitViewController alloc] init];
+    //splitVC.viewControllers = [NSArray arrayWithObjects:firstVC, secondVC, nil];
     
     //self.viewControllers = [NSArray arrayWithObjects:firstVC, secondVC, nil];
     
-       /* window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-        window.rootViewController = splitVC;
-        [window makeKeyAndVisible];*/
-        
-        //return YES;
+    /* window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+     window.rootViewController = splitVC;
+     [window makeKeyAndVisible];*/
     
-
+    //return YES;
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,14 +57,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

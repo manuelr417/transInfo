@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "PickerViewController.h"
 
-@interface NewEntryViewController : UIViewController <UITextFieldDelegate>
+@interface NewVehicleDriverController : UIViewController <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *personTypeCategoryField;
 @property (weak, nonatomic) IBOutlet UITextField *personTypeField;
 
 // Faltan cosas aquí
+@property (weak, nonatomic) IBOutlet UITextField *personNameField;
 
 @property (weak, nonatomic) IBOutlet UITextField *genderField;
 @property (weak, nonatomic) IBOutlet UITextField *licenseTypeField;

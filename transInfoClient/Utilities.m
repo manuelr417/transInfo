@@ -28,4 +28,13 @@
     return [formatter dateFromString:rfc3339DateTimeString];
 }
 
++ (NSString*)actualLanguage {
+    NSString *lang = [[[NSBundle mainBundle] preferredLocalizations] objectAtIndex:0];
+    return lang;
+}
+
++ (NSString*)collectionColumn {
+    return ([[self actualLanguage] isEqualToString:@"es"]) ? @"DescriptionES" : @"DescriptionEN";
+}
+
 @end

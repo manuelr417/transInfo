@@ -10,8 +10,21 @@
 
 @interface Person : NSObject
 
+@property NSString *typeCategoryKey;
+@property NSInteger typeKey;
 @property NSString *name;
+@property NSString *genderKey;
+@property NSString *licenseTypeKey;
 @property NSString *driverLicense;
-@property NSInteger type;
+@property NSString *organDonorKey;
+@property NSDate *licenseExpirationDate;
+@property BOOL licenseExpirationNA;
+@property NSString *streetAddress;
+@property NSString *neighbohood;
+@property NSString *city;
+@property NSString *stateCountry;
+@property NSString *zipCode;
+@property NSString *phoneNumber;
+@property NSString *uuid;
 
 @end

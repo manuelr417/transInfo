@@ -9,3 +9,14 @@
 "login.empty-required-field" = "A required field is empty.";
 "login.empty-plate" = "The plate number is a required field.";
 "login.empty-password" = "The password is a required field.";
+"login.error.title" = "An error has occurred!";
+"login.error.internal" = "The server had an internal problem.";
+"login.error.wrong-information" = "Invalid login information.";
+"login.error.server-timeout" = "Server is unreachable. Verify your internet connection.";
+"login.error.unknown-output" = "The information provided by the server can't be proccessed.";
+
+"report.second.no-harmful-event-category.msg" = "You need to choose a Harmful Category before choosing an event.";
+"report.second.no-harmful-event-category.title" = "Choose a Harmful Category";
+
+"report.third.no-person-type-category.msg" = "You need to choose a Person Type Category before choosing the Person Type.";
+"report.third.no-person-type-category.title" = "Choose a Person Type Category";

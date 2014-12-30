@@ -37,7 +37,7 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 
@@ -58,18 +58,16 @@
 @end
 
 @implementation CircleView
+
+- (void)drawRect:(CGRect)rect {
+    CGContextRef context= UIGraphicsGetCurrentContext();
     
-    - (void)drawRect:(CGRect)rect {
-        CGContextRef context= UIGraphicsGetCurrentContext();
-        
-        CGContextSetFillColorWithColor(context, [UIColor redColor].CGColor);
-        CGContextSetAlpha(context, 0.5); // 0.5
-        CGContextFillEllipseInRect(context, CGRectMake(0,0,self.frame.size.width,self.frame.size.height));
-        
-        CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);
-       // CGContextStrokeEllipseInRect(context, CGRectMake(0,0,self.frame.size.width,self.frame.size.height));
-        CGContextStrokeEllipseInRect(context, CGRectMake(1, 1, self.frame.size.width - 2, self.frame.size.height - 2));
-        
-    }
+    CGContextSetFillColorWithColor(context, [UIColor redColor].CGColor);
+    CGContextSetAlpha(context, 0.5); // 0.5
+    CGContextFillEllipseInRect(context, CGRectMake(0,0,self.frame.size.width,self.frame.size.height));
+    
+    CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);
+    CGContextStrokeEllipseInRect(context, CGRectMake(1, 1, self.frame.size.width - 2, self.frame.size.height - 2));
+}
 
 @end
