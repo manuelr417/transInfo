@@ -15,6 +15,7 @@
 @property NSString *model;
 @property NSString *year;
 @property NSString *registrationPlate;
+@property NSString *uuid;
 
 @property NSMutableArray *persons;
 

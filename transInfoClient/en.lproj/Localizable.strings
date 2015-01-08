@@ -20,3 +20,21 @@
 
 "report.third.no-person-type-category.msg" = "You need to choose a Person Type Category before choosing the Person Type.";
 "report.third.no-person-type-category.title" = "Choose a Person Type Category";
+
+"report.third.license-no" = "License #: %@";
+"report.third.plate-no" = "Registration Plate #: %@";
+
+"report.third.no-vin.msg" = "VIN information can't be found.";
+"report.third.no-vin.title" = "Problem getting the information of the VIN.";
+
+"report.third.edit-person" = "Edit Person";
+
+"report.third.required-vehicle.msg" = "The person is inside a vehicle, you need to choose it.";
+"report.third.required-vehicle.title" = "Required Vehicle!";
+
+"report.third.edit" = "Edit";
+"report.third.delete" = "Delete";
+
+"report.third.edit-vehicle" = "Edit Vehicle";
+
+"pedestrians" = "Pedestrians";

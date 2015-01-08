@@ -72,14 +72,14 @@ const NSInteger DELETE = 3;
 - (void)makeCall {
     NSURL *restURL = [NSURL URLWithString:self.connURL];
     NSMutableURLRequest *restRequest = [NSMutableURLRequest requestWithURL:restURL];
-
+    
     if (self.dataToRequest != nil) {
         [restRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
         restRequest.HTTPBody = [[self joinRequestWithDictionary:self.dataToRequest] dataUsingEncoding:NSUTF8StringEncoding];
     }
-
+    
     restRequest.HTTPMethod = self.method;
-
+    
     if (self.currentConnection) {
         [self.currentConnection cancel];
         self.currentConnection = nil;
@@ -122,7 +122,7 @@ const NSInteger DELETE = 3;
     
     NSError *error = nil;
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:self.data options:kNilOptions error:&error];
-
+    
     if (error != nil) {
         NSLog(@"Problem parsing JSON! %@", error);
         [delegate receivedError:error];

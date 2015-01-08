@@ -37,27 +37,13 @@
 }
 
 - (void)receivedData:(NSDictionary *)data {
-    //NSDictionary *errors = @{@1: @"login.error.internal", @2: @"login.empty-required-field", @3: @"login.error.wrong-information"};
-    
-    //NSLog(@"receivedData");
-    
     if (data[@"styleHolder"] != nil) {
-      /*  NSLog(@"Data... %@", data[@"styleHolder"][0][@"year"]);
-        return;*/
-        
         self.vehicleYearField.text = [NSString stringWithFormat:@"%@", data[@"styleHolder"][0][@"year"]];
         self.vehicleMakeField.text = data[@"styleHolder"][0][@"makeName"];
         self.vehicleModelField.text = data[@"styleHolder"][0][@"modelName"];
-        //NSMutableArray *elems = [[NSMutableArray alloc] init];
-        
-        //[elems addObject:[[NSDate date] dateByAddingTimeInterval:28800]]; // 8 Hours cached!
-        //[elems addObjectsFromArray:data[@"payload"]];
-        
-        //NSLog(@"hola");
     } else {
         NSLog(@"(receivedData) Error... %@", data);
-        //[Utilities displayAlertWithMessage:NSLocalizedString([errors objectForKey:data[@"error_code"]], nil) withTitle:NSLocalizedString(@"login.error.title", nil)];
-        [Utilities displayAlertWithMessage:@"No se pudo encontrar la información del VIN." withTitle:@"Problema buscando información del VIN."];
+        [Utilities displayAlertWithMessage:NSLocalizedString(@"report.third.no-vin.msg", nil) withTitle:NSLocalizedString(@"report.third.no-vin.title", nil)];
     }
 }
 
@@ -69,7 +55,7 @@
     [(UIScrollView *)self.view setContentSize:CGSizeMake(700,1050)];
     [self registerForKeyboardNotifications];
     [self loadCollections];
-
+    
     // Delegates
     self.personTypeCategoryField.delegate = self;
     self.personTypeField.delegate = self;
@@ -113,14 +99,14 @@
         //NSLog(@"%@", collection);
         for (NSDictionary *dict in collection) {
             if ([[NSString stringWithFormat:@"%@", [dict objectForKey:@"PersonTypeCategoryID"]] isEqualToString:@"1"]) {
-                self.personTypeCategoryField.text = [dict objectForKey:@"DescriptionES"];
+                self.personTypeCategoryField.text = [dict objectForKey:[Utilities collectionColumn]];
                 break;
             }
         }
     } else if ([collectionName isEqualToString:@"personTypes"]) {
         for (NSDictionary *dict in collection) {
             if ([[NSString stringWithFormat:@"%@", [dict objectForKey:@"PersonTypeID"]] isEqualToString:@"1"]) {
-                self.personTypeField.text = [dict objectForKey:@"DescriptionES"];
+                self.personTypeField.text = [dict objectForKey:[Utilities collectionColumn]];
                 break;
             }
         }
@@ -158,14 +144,14 @@
         UIDatePickerOKView *customPicker = [[[NSBundle mainBundle] loadNibNamed:@"UIPickerOKView" owner:self options:nil] objectAtIndex:0];
         
         /*if (self.licenseExpirationDate != nil) {
-            customPicker.datePicker.date = self.licenseExpirationDate;
-        }*/
+         customPicker.datePicker.date = self.licenseExpirationDate;
+         }*/
         
         customPicker.datePicker.datePickerMode = UIDatePickerModeDate;
         [customPicker.datePicker addTarget:self action:@selector(datePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
-            
+        
         customPicker.parent = textField;
-            
+        
         textField.inputView = customPicker;
     } else if (textField == self.vehicleTypeField) {
         [self showCollection:@"vehicleTypes" withIDColumn:@"VehicleTypeID" withField:textField];
@@ -182,12 +168,12 @@
     dateFormatter.dateFormat = @"yyyy-MM-dd";
     
     if ([self.licenseExpirationDateField isFirstResponder]) {
-         self.licenseExpirationDate = pickerDate;
-         self.licenseExpirationDateField.text = [dateFormatter stringFromDate:self.licenseExpirationDate];
+        self.licenseExpirationDate = pickerDate;
+        self.licenseExpirationDateField.text = [dateFormatter stringFromDate:self.licenseExpirationDate];
     } else if ([self.vehicleBuyDateField isFirstResponder]) {
-         self.vehicleBuyDateField.text = [dateFormatter stringFromDate:pickerDate];
+        self.vehicleBuyDateField.text = [dateFormatter stringFromDate:pickerDate];
     } else if ([self.vehicleRegistrationExpirationDateField isFirstResponder]) {
-         self.vehicleRegistrationExpirationDateField.text = [dateFormatter stringFromDate:pickerDate];
+        self.vehicleRegistrationExpirationDateField.text = [dateFormatter stringFromDate:pickerDate];
     }
     
     [self setLicenseExpirationDateFormat];
@@ -240,7 +226,7 @@
         
         BOOL isPersonTypes = [collectionName isEqualToString:@"personTypes"];
         
-       if (isPersonTypes && self.personTypeCategoryKey == nil) {
+        if (isPersonTypes && self.personTypeCategoryKey == nil) {
             [Utilities displayAlertWithMessage:NSLocalizedString(@"report.third.no-person-type-category.msg", nil) withTitle:NSLocalizedString(@"report.third.no-person-type-category.title", nil) ];
             return;
         }
@@ -252,7 +238,7 @@
                 }
             }
             
-            [collection setObject:(NSString*)[elem objectForKey:@"DescriptionES"] forKey:[NSString stringWithFormat:@"%@", [elem objectForKey:IDColumn]]];
+            [collection setObject:(NSString*)[elem objectForKey:[Utilities collectionColumn]] forKey:[NSString stringWithFormat:@"%@", [elem objectForKey:IDColumn]]];
         }
         
         [self showPickerView:collection withField:field withIdentifier:collectionName];
@@ -290,7 +276,7 @@
 - (void)keyboardWillShow:(NSNotification*)aNotification
 {
     if ([self.licenseExpirationDateField isFirstResponder]) {
-         self.activeField = self.licenseExpirationDateField;
+        self.activeField = self.licenseExpirationDateField;
     } else if ([self.personStreetAddressField isFirstResponder]) {
         self.activeField = self.personStreetAddressField;
     } else if ([self.personNeighbohoodField isFirstResponder]) {

@@ -7,6 +7,7 @@
 //
 
 #import "CarMembersTableViewCell.h"
+#import "Utilities.h"
 
 @implementation CarMembersTableViewCell
 
@@ -33,12 +34,12 @@
 
 - (void)setMemberDriverLicense:(NSString *)memberDriverLicense {
     _memberDriverLicense = memberDriverLicense;
-    self.memberDriverLicenseLabel.text = [NSString stringWithFormat:@"# Licencia: %@", memberDriverLicense];
+    self.memberDriverLicenseLabel.text = [NSString stringWithFormat:NSLocalizedString(@"report.third.license-no", nil), memberDriverLicense];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 

@@ -103,9 +103,9 @@ NSUserDefaults *userDefaults;
 
 - (void)receivedData:(NSDictionary *)data {
     [self stopLoading];
-
+    
     NSDictionary *errors = @{@1: @"login.error.internal", @2: @"login.empty-required-field", @3: @"login.error.wrong-information"};
-        
+    
     if ([data[@"success"] boolValue] == YES) {
         // User Defaults saved!
         [userDefaults setObject:data[@"payload"] forKey:@"login"];
@@ -256,14 +256,14 @@ NSUserDefaults *userDefaults;
 
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

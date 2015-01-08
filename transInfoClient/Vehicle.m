@@ -15,6 +15,7 @@
 @synthesize year;
 @synthesize registrationPlate;
 @synthesize persons;
+@synthesize uuid;
 
 - (id)init {
     self = [super init];

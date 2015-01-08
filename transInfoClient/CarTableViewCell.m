@@ -55,7 +55,7 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 
@@ -76,7 +76,7 @@
 
 - (void)setRegistrationPlate:(NSString *)registrationPlate {
     _registrationPlate = registrationPlate;
-    self.registrationPlateLabel.text = [NSString stringWithFormat:@"# Tablilla: %@", registrationPlate];
+    self.registrationPlateLabel.text = [NSString stringWithFormat:NSLocalizedString(@"report.third.plate-no", nil), registrationPlate];
 }
 
 - (void)updateCarDescription {

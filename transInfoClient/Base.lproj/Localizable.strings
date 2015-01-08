@@ -20,3 +20,21 @@
 
 "report.third.no-person-type-category.msg" = "Para poder seleccionar el Tipo de Persona es necesario haber seleccionado la Categoría de la Persona.";
 "report.third.no-person-type-category.title" = "Selecciona la Categoría de la Persona";
+
+"report.third.license-no" = "# Licencia: %@";
+"report.third.plate-no" = "# Tablilla: %@";
+
+"report.third.no-vin.msg" = "No se pudo encontrar la información del VIN.";
+"report.third.no-vin.title" = "Problema buscando información del VIN.";
+
+"report.third.edit-person" = "Editar Persona";
+
+"report.third.required-vehicle.msg" = "La persona está en un vehículo, tienes que seleccionarlo.";
+"report.third.required-vehicle.title" = "¡Vehículo Requerido!";
+
+"report.third.edit" = "Editar";
+"report.third.delete" = "Eliminar";
+
+"report.third.edit-vehicle" = "Editar Vehículo";
+
+"pedestrians" = "Peatones";

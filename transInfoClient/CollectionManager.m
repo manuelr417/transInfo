@@ -39,9 +39,9 @@
         NSString *filePath = [self fileNameForCollection:self.loadingCollection];
         
         /*for (int i = 1; i < [elems count]; i++) {
-            NSDictionary *elem = [elems objectAtIndex:i];
-            NSLog(@"%@", elem[@"DescriptionES"]);
-        }*/
+         NSDictionary *elem = [elems objectAtIndex:i];
+         NSLog(@"%@", elem[@"DescriptionES"]);
+         }*/
         
         [elems writeToFile:filePath atomically:YES];
         

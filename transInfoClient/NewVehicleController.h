@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PickerViewController.h"
+#import "Vehicle.h"
 
 @interface NewVehicleController : UIViewController <UITextFieldDelegate>
 
@@ -31,6 +32,9 @@
 @property (nonatomic, strong) PickerViewController *pickerView;
 @property (nonatomic, strong) UIPopoverController *pickerPopover;
 
+@property Vehicle *editingVehicle;
+
 - (void)showPickerView:(NSMutableDictionary*)elements withField:(UITextField*)field withIdentifier:(NSString*)identifier;
+- (void)setEditingModeFor:(Vehicle*)vehicle;
 
 @end

@@ -18,6 +18,8 @@
     self.expandImageView = [[UIImageView alloc]initWithFrame:CGRectMake(screenWidth - 35, 7, 30, 30)];
     self.expandImageView.image = [UIImage imageNamed:@"Arrow Right"];
     [self addSubview:self.expandImageView];
+    
+    self.pedestrianNameLabel.text = NSLocalizedString(@"pedestrians", nil);
 }
 
 - (void)setLoading:(BOOL)loading
@@ -64,7 +66,7 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 

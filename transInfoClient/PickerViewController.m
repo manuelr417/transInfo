@@ -117,7 +117,7 @@
         } else {
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
-      //  [self.activeElements setValue:@1 forKey:indexPath.row];
+        //  [self.activeElements setValue:@1 forKey:indexPath.row];
         [self.tableView reloadData];
     }
 }

@@ -35,7 +35,7 @@
 "4hk-bq-TcW.title" = "Cancel";
 
 /* Class = "IBUILabel"; text = "Número de Marbete:"; ObjectID = "5EW-yN-9oM"; */
-"5EW-yN-9oM.text" = "Plate Number:";
+"5EW-yN-9oM.text" = "Registration Number:";
 
 /* Class = "IBUILabel"; text = "Estado:"; ObjectID = "5z2-I4-D8n"; */
 "5z2-I4-D8n.text" = "State:";

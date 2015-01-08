@@ -14,15 +14,32 @@
 
 @interface NewVehicleController ()
 
+@property UINavigationBar *navigationBar;
+
 @end
 
 @implementation NewVehicleController
 
+- (void)setEditingModeFor:(Vehicle*)vehicle {
+    self.editingVehicle = vehicle;
+    
+    self.navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
+    
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"OK" style:UIBarButtonItemStyleDone target:nil action:nil];
+    UINavigationItem *item = [[UINavigationItem alloc] initWithTitle:NSLocalizedString(@"report.third.edit-vehicle", nil)];
+    item.rightBarButtonItem = rightButton;
+    item.hidesBackButton = YES;
+    [rightButton setAction:@selector(addButonAction:)];
+    
+    [self.navigationBar pushNavigationItem:item animated:NO];
+    
+    [self.view addSubview:self.navigationBar];
+}
 
 - (IBAction)addButonAction:(id)sender {
     NSLog(@"Add car!");
     
-    NSDictionary *carDictionary = @{@"vehicleMake" : self.vehicleMakeField.text, @"vehicleModel" : self.vehicleModelField.text, @"vehicleYear" : self.vehicleYearField.text, @"vehicleLicensePlate" : self.vehicleLicensePlateField.text};
+    NSDictionary *carDictionary = @{@"vehicleMake" : self.vehicleMakeField.text, @"vehicleModel" : self.vehicleModelField.text, @"vehicleYear" : self.vehicleYearField.text, @"vehicleLicensePlate" : self.vehicleLicensePlateField.text, @"uuid" : (self.editingVehicle != nil) ? self.editingVehicle.uuid : @""};
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"addCar" object:nil userInfo:carDictionary];
     
@@ -44,7 +61,7 @@
         self.vehicleModelField.text = data[@"styleHolder"][0][@"modelName"];
     } else {
         NSLog(@"(receivedData) Error... %@", data);
-        [Utilities displayAlertWithMessage:@"No se pudo encontrar la información del VIN." withTitle:@"Problema buscando información del VIN."];
+        [Utilities displayAlertWithMessage:NSLocalizedString(@"report.third.no-vin.msg", nil) withTitle:NSLocalizedString(@"report.third.no-vin.title", nil)];
     }
 }
 
@@ -60,6 +77,15 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [self.searchVehicleInformationButton setImage:[UIImage imageNamed:@"DownloadFromCloud"] forState:UIControlStateNormal];
+    
+    if (self.editingVehicle != nil) {
+        [self.navigationBar setFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
+        
+        self.vehicleLicensePlateField.text = self.editingVehicle.registrationPlate;
+        self.vehicleYearField.text = self.editingVehicle.year;
+        self.vehicleMakeField.text = self.editingVehicle.make;
+        self.vehicleModelField.text = self.editingVehicle.model;
+    }
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {

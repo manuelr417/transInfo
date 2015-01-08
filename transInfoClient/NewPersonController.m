@@ -30,7 +30,7 @@
     self.navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
     
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"OK" style:UIBarButtonItemStyleDone target:nil action:nil];
-    UINavigationItem *item = [[UINavigationItem alloc] initWithTitle:@"Editar Persona"];
+    UINavigationItem *item = [[UINavigationItem alloc] initWithTitle:NSLocalizedString(@"report.third.edit-person", nil)];
     item.rightBarButtonItem = rightButton;
     item.hidesBackButton = YES;
     [rightButton setAction:@selector(addButonAction:)];
@@ -55,7 +55,7 @@
     
     if ([self.personTypeCategoryKey isEqualToString:@"1"]) {
         if (indexPath == nil) {
-            [Utilities displayAlertWithMessage:@"La persona está en un vehículo, tienes que seleccionarlo." withTitle:@"¡Vehículo Requerido!"];
+            [Utilities displayAlertWithMessage:NSLocalizedString(@"report.third.required-vehicle.msg", nil) withTitle:NSLocalizedString(@"report.third.required-vehicle.title", nil)];
             return;
         } else {
             Vehicle *vehicle = [self.vehicles objectAtIndex:indexPath.row];
@@ -105,22 +105,26 @@
         self.personZipCodeField.text = self.editingPerson.zipCode;
         self.personPhoneNumberField.text = self.editingPerson.phoneNumber;
         
-        // NSDictionary *personDictionary = @{@"typeCategoryKey" : self.personTypeCategoryKey, @"typeKey" : self.personTypeKey, @"genderKey" : self.genderKey, @"licenseTypeKey" : self.licenseTypeKey, @"organDonorKey" : self.organDonorKey,
-        
         self.personTypeCategoryKey = self.editingPerson.typeCategoryKey;
         self.personTypeKey = [NSString stringWithFormat: @"%ld", (long)self.editingPerson.typeKey];
         self.genderKey = self.editingPerson.genderKey;
         self.licenseTypeKey = self.editingPerson.licenseTypeKey;
         self.organDonorKey = self.editingPerson.organDonorKey;
+        
+        if (self.editingPerson.typeKey == 1) {
+            [self licenseAreaIsEnabled:YES];
+        } else {
+            [self licenseAreaIsEnabled:NO];
+        }
     }
     
-     NSLog(@"Size 2: %f", self.view.frame.size.width);
+    //NSLog(@"Size 2: %f", self.view.frame.size.width);
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNotification:) name:@"getVehicles" object:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"requestVehicles" object:nil userInfo:nil];
 }
 
 - (void)viewDidLoad {
-     NSLog(@"Size 3: %f", self.view.frame.size.width);
+    //NSLog(@"Size 3: %f", self.view.frame.size.width);
     [self loadCollections];
     
     // Delegates
@@ -234,7 +238,7 @@
     
     for (NSDictionary *dict in collection) {
         if ([[NSString stringWithFormat:@"%@", [dict objectForKey:key]] isEqualToString:value]) {
-            field.text = [dict objectForKey:@"DescriptionES"];
+            field.text = [dict objectForKey:[Utilities collectionColumn]];
             break;
         }
     }
@@ -363,8 +367,16 @@
                 }
             }
             
-            [collection setObject:(NSString*)[elem objectForKey:@"DescriptionES"] forKey:[NSString stringWithFormat:@"%@", [elem objectForKey:IDColumn]]];
+            //NSLog(@"%@", elem);
+            
+            if ([elem objectForKey:[Utilities collectionColumn]] == [NSNull null]) {
+                [collection setObject:(NSString*)[elem objectForKey:@"DescriptionES"] forKey:[NSString stringWithFormat:@"%@", [elem objectForKey:IDColumn]]];
+            } else {
+                [collection setObject:(NSString*)[elem objectForKey:[Utilities collectionColumn]] forKey:[NSString stringWithFormat:@"%@", [elem objectForKey:IDColumn]]];
+            }
         }
+        
+        //NSLog(@"%@ %@ %@", collection, field, collectionName);
         
         [self showPickerView:collection withField:field withIdentifier:collectionName];
     } else {
