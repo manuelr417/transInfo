@@ -27,6 +27,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *vehicleRegistrationExpirationDateField;
 @property (weak, nonatomic) IBOutlet UITextField *vehiclePassengersField;
 
+@property NSDate *vehicleBuyDate;
+@property NSDate *vehicleRegistrationExpirationDate;
+
 @property NSString *trash;
 @property NSMutableDictionary *collections;
 @property (nonatomic, strong) PickerViewController *pickerView;

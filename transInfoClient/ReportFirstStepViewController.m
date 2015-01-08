@@ -92,8 +92,9 @@
     for (NSString *collectionName in collectionNames) {
         [self.collections setObject:[NSDate date] forKey:collectionName];
         [collectionsManagers addObject:[[CollectionManager alloc] init]];
-        [collectionsManagers[i] getCollection:collectionName];
         ((CollectionManager*)collectionsManagers[i]).delegate = self;
+        
+        [collectionsManagers[i] getCollection:collectionName];
         
         i++;
     }
@@ -233,7 +234,7 @@
         
         [self showPickerView:collection withField:field withLookupButton:self.reportTypeLookupButton withOutField:self.reportType];
     } else {
-        NSLog(@"No collection yet... %@", collectionName);
+        NSLog(@"No collection yet... %@ ... %@ ...", collectionName, self.collections[collectionName]);
         CollectionManager *collManager = [[CollectionManager alloc] init];
         [collManager getCollection:collectionName];
         collManager.delegate = self;

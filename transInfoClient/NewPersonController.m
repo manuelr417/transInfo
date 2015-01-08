@@ -35,6 +35,12 @@
     item.hidesBackButton = YES;
     [rightButton setAction:@selector(addButonAction:)];
     
+    self.personTypeCategoryKey = self.editingPerson.typeCategoryKey;
+    self.personTypeKey = [NSString stringWithFormat: @"%ld", (long)self.editingPerson.typeKey];
+    self.genderKey = self.editingPerson.genderKey;
+    self.licenseTypeKey = self.editingPerson.licenseTypeKey;
+    self.organDonorKey = self.editingPerson.organDonorKey;
+    
     [self.navigationBar pushNavigationItem:item animated:NO];
     
     [self.view addSubview:self.navigationBar];
@@ -70,7 +76,7 @@
                                        @"licenseTypeKey" : (self.licenseTypeKey == nil) ? @"-1" : self.licenseTypeKey,
                                        @"driverLicense" : (self.licenseNumberField.text == nil) ? @"" :self.licenseNumberField.text,
                                        @"organDonorKey" : (self.organDonorKey == nil) ? @"-1" : self.organDonorKey,
-                                       @"licenseExpirationDate" : (self.licenseExpirationDate == nil) ? [[NSDate alloc] init] : self.licenseExpirationDate,
+                                       @"licenseExpirationDate" : (self.licenseExpirationDate == nil) ? @"" : self.licenseExpirationDate,
                                        @"licenseExpirationNA" : @NO,
                                        @"streetAddress" : (self.personStreetAddressField.text == nil) ? @"" : self.personStreetAddressField.text,
                                        @"neighbohood" : (self.personNeighbohoodField.text == nil) ? @"" : self.personNeighbohoodField.text,
@@ -93,11 +99,14 @@
 - (void)viewWillAppear:(BOOL)animated {
     if (self.navigationBar != nil) {
         [self.navigationBar setFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
+        [(UIScrollView *)self.view setContentSize:CGSizeMake(700,800)];
         
         self.personNameField.text = self.editingPerson.name;
         self.licenseNumberField.text = self.editingPerson.driverLicense;
-        self.licenseExpirationDate = self.editingPerson.licenseExpirationDate;
-        [self setLicenseExpirationDateFormat];
+        if (self.editingPerson.licenseExpirationDate != nil) {
+            self.licenseExpirationDate = self.editingPerson.licenseExpirationDate;
+            [self setLicenseExpirationDateFormat];
+        }
         self.personStreetAddressField.text = self.editingPerson.streetAddress;
         self.personNeighbohoodField.text = self.editingPerson.neighbohood;
         self.personCityField.text = self.editingPerson.city;
@@ -189,7 +198,7 @@
 - (void)loadCollections {
     self.collections = [[NSMutableDictionary alloc] init];
     
-    NSArray *collectionNames = @[@"personTypeCategories", @"personTypes", @"driverLicenseTypes", @"genders", @"organDonor", @"vehicles", @"vehicleTypes"];
+    NSArray *collectionNames = @[@"personTypeCategories", @"personTypes", @"driverLicenseTypes", @"genders", @"organDonor", @"vehicleTypes"];
     
     NSMutableArray *collectionsManagers = [[NSMutableArray alloc] init];
     int i = 0;
@@ -197,8 +206,8 @@
     for (NSString *collectionName in collectionNames) {
         [self.collections setObject:[NSDate date] forKey:collectionName];
         [collectionsManagers addObject:[[CollectionManager alloc] init]];
-        [collectionsManagers[i] getCollection:collectionName];
         ((CollectionManager*)collectionsManagers[i]).delegate = self;
+        [collectionsManagers[i] getCollection:collectionName];
         
         i++;
     }
@@ -214,19 +223,19 @@
     
     if (self.editingPerson != nil) {
         if ([collectionName isEqualToString:@"personTypeCategories"]) {
-            [self loadDefaultForCollection:collectionName toField:self.personTypeCategoryField withKey:@"PersonTypeCategoryID" defaultValue:self.personTypeCategoryKey];
+            [self loadDefaultForCollection:collectionName toField:self.personTypeCategoryField withKey:@"PersonTypeCategoryID" defaultValue:self.editingPerson.typeCategoryKey];
         } else if ([collectionName isEqualToString:@"personTypes"]) {
             //self.personTypeField.text = [collection objectAtIndex:[self.personTypeKey longLongValue]];
-            [self loadDefaultForCollection:collectionName toField:self.personTypeField withKey:@"PersonTypeID" defaultValue:self.personTypeKey];
+            [self loadDefaultForCollection:collectionName toField:self.personTypeField withKey:@"PersonTypeID" defaultValue:[NSString stringWithFormat:@"%ld", (long)self.editingPerson.typeKey]];
         } else if ([collectionName isEqualToString:@"driverLicenseTypes"]) {
             //self.licenseTypeField.text = [collection objectAtIndex:[self.licenseTypeKey longLongValue]];
-            [self loadDefaultForCollection:collectionName toField:self.licenseTypeField withKey:@"DriverLicenseTypeID" defaultValue:self.licenseTypeKey];
+            [self loadDefaultForCollection:collectionName toField:self.licenseTypeField withKey:@"DriverLicenseTypeID" defaultValue:self.editingPerson.licenseTypeKey];
         } else if ([collectionName isEqualToString:@"genders"]) {
             //self.genderField.text = [collection objectAtIndex:[self.genderKey longLongValue]];
-            [self loadDefaultForCollection:collectionName toField:self.genderField withKey:@"GenderID" defaultValue:self.genderKey];
+            [self loadDefaultForCollection:collectionName toField:self.genderField withKey:@"GenderID" defaultValue:self.editingPerson.genderKey];
         } else if ([collectionName isEqualToString:@"organDonor"]) {
             //self.organDonorField.text = [collection objectAtIndex:[self.organDonorKey longLongValue]];
-            [self loadDefaultForCollection:collectionName toField:self.organDonorField withKey:@"OrganDonorID" defaultValue:self.organDonorKey];
+            [self loadDefaultForCollection:collectionName toField:self.organDonorField withKey:@"OrganDonorID" defaultValue:self.editingPerson.organDonorKey];
         }
     }
     
@@ -235,6 +244,8 @@
 
 - (void)loadDefaultForCollection:(NSString*)collectionName toField:(UITextField*)field withKey:(NSString*)key defaultValue:(NSString*)value {
     NSArray *collection = [self.collections objectForKey:collectionName];
+    
+    NSLog(@"Loading default for %@, value: %@", key, value);
     
     for (NSDictionary *dict in collection) {
         if ([[NSString stringWithFormat:@"%@", [dict objectForKey:key]] isEqualToString:value]) {

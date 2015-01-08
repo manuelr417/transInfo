@@ -14,6 +14,7 @@
 #import "Person.h"
 #include "NewPersonController.h"
 #include "NewVehicleController.h"
+#import "SWRevealViewController.h"
 
 @interface DataEntryTableViewController ()
 
@@ -55,11 +56,21 @@
             }
         }
         
+        NSObject *buyDate = [dict objectForKey:@"vehicleBuyDate"];
+        NSObject *expDate = [dict objectForKey:@"vehicleRegistrationExpirationDate"];
+        
         Vehicle *vehicle = [[Vehicle alloc] init];
+        vehicle.registrationPlate = [dict objectForKey:@"vehicleLicensePlate"];
+        vehicle.registrationState = [dict objectForKey:@"vehicleRegistrationState"];
+        vehicle.vehicleIdentificationNumber = [dict objectForKey:@"vehicleIdentificationNumber"];
+        vehicle.year = [dict objectForKey:@"vehicleYear"];
         vehicle.make = [dict objectForKey:@"vehicleMake"];
         vehicle.model = [dict objectForKey:@"vehicleModel"];
-        vehicle.year = [dict objectForKey:@"vehicleYear"];
-        vehicle.registrationPlate = [dict objectForKey:@"vehicleLicensePlate"];
+        vehicle.registrationNumber = [dict objectForKey:@"vehicleRegistrationNumber"];
+        vehicle.insurance = [dict objectForKey:@"vehicleInsurance"];
+        vehicle.buyDate = ([buyDate isEqual:@""]) ? nil : (NSDate*)buyDate;
+        vehicle.registrationExpirationDate = ([expDate isEqual:@""]) ? nil : (NSDate*)expDate;
+        vehicle.passangers = [dict objectForKey:@"vehiclePassengers"];
         vehicle.uuid = [[NSUUID UUID] UUIDString];
         
         if (savedPersons != nil) {
@@ -100,7 +111,7 @@
             person.licenseTypeKey = [dict objectForKey:@"licenseTypeKey"];
             person.driverLicense = [dict objectForKey:@"driverLicense"];
             person.organDonorKey = [dict objectForKey:@"organDonorKey"];
-            person.licenseExpirationDate = [dict objectForKey:@"licenseExpirationDate"];
+            person.licenseExpirationDate = ([[dict objectForKey:@"licenseExpirationDate"] isEqual:@""]) ? nil : [dict objectForKey:@"licenseExpirationDate"];
             person.licenseExpirationNA = [dict objectForKey:@"licenseExpirationNA"];
             person.streetAddress = [dict objectForKey:@"streetAddress"];
             person.neighbohood = [dict objectForKey:@"neighbohood"];
@@ -123,7 +134,7 @@
                     person.licenseTypeKey = [dict objectForKey:@"licenseTypeKey"];
                     person.driverLicense = [dict objectForKey:@"driverLicense"];
                     person.organDonorKey = [dict objectForKey:@"organDonorKey"];
-                    person.licenseExpirationDate = [dict objectForKey:@"licenseExpirationDate"];
+                    person.licenseExpirationDate = ([[dict objectForKey:@"licenseExpirationDate"] isEqual:@""]) ? nil : [dict objectForKey:@"licenseExpirationDate"];
                     person.licenseExpirationNA = [dict objectForKey:@"licenseExpirationNA"];
                     person.streetAddress = [dict objectForKey:@"streetAddress"];
                     person.neighbohood = [dict objectForKey:@"neighbohood"];
@@ -133,7 +144,6 @@
                     person.phoneNumber = [dict objectForKey:@"phoneNumber"];
                     person.uuid = [[NSUUID UUID] UUIDString];
                     person.typeKey = [personType intValue];
-
                     
                     [v addPerson:person];
                     
@@ -271,6 +281,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Set the side bar button action. When it's tapped, it'll show up the sidebar.
+    self.sideBarButton.target = self.revealViewController;
+    self.sideBarButton.action = @selector(revealToggle:);
+    
+    // Set the gesture
+    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

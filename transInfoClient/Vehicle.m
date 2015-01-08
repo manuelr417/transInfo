@@ -10,10 +10,17 @@
 
 @implementation Vehicle
 
+@synthesize registrationPlate;
+@synthesize registrationState;
+@synthesize vehicleIdentificationNumber;
+@synthesize year;
 @synthesize make;
 @synthesize model;
-@synthesize year;
-@synthesize registrationPlate;
+@synthesize registrationNumber;
+@synthesize insurance;
+@synthesize buyDate;
+@synthesize registrationExpirationDate;
+@synthesize passangers;
 @synthesize persons;
 @synthesize uuid;
 

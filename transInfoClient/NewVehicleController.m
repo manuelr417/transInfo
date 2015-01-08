@@ -39,7 +39,18 @@
 - (IBAction)addButonAction:(id)sender {
     NSLog(@"Add car!");
     
-    NSDictionary *carDictionary = @{@"vehicleMake" : self.vehicleMakeField.text, @"vehicleModel" : self.vehicleModelField.text, @"vehicleYear" : self.vehicleYearField.text, @"vehicleLicensePlate" : self.vehicleLicensePlateField.text, @"uuid" : (self.editingVehicle != nil) ? self.editingVehicle.uuid : @""};
+    NSDictionary *carDictionary = @{@"vehicleLicensePlate" : self.vehicleLicensePlateField.text,
+                                    @"vehicleRegistrationState" : self.vehicleRegistrationStateField.text,
+                                    @"vehicleIdentificationNumber" : self.vehicleIdentificationNumberField.text,
+                                    @"vehicleYear" : self.vehicleYearField.text,
+                                    @"vehicleMake" : self.vehicleMakeField.text,
+                                    @"vehicleModel" : self.vehicleModelField.text,
+                                    @"vehicleRegistrationNumber" : self.vehicleRegistrationNumberField.text,
+                                    @"vehicleInsurance" : self.vehicleInsuranceField.text,
+                                    @"vehicleBuyDate" : (self.vehicleBuyDate == nil) ? @"" : self.vehicleBuyDate,
+                                    @"vehicleRegistrationExpirationDate" : (self.vehicleRegistrationExpirationDate == nil) ? @"" : self.vehicleRegistrationExpirationDate,
+                                    @"vehiclePassengers" : self.vehiclePassengersField.text,
+                                    @"uuid" : (self.editingVehicle != nil) ? self.editingVehicle.uuid : @""};
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"addCar" object:nil userInfo:carDictionary];
     
@@ -79,12 +90,29 @@
     [self.searchVehicleInformationButton setImage:[UIImage imageNamed:@"DownloadFromCloud"] forState:UIControlStateNormal];
     
     if (self.editingVehicle != nil) {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.dateFormat = @"yyyy-MM-dd";
+        
         [self.navigationBar setFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
+        [(UIScrollView *)self.view setContentSize:CGSizeMake(700,550)];
         
         self.vehicleLicensePlateField.text = self.editingVehicle.registrationPlate;
+        self.vehicleRegistrationStateField.text = self.editingVehicle.registrationState;
+        self.vehicleIdentificationNumberField.text = self.editingVehicle.vehicleIdentificationNumber;
         self.vehicleYearField.text = self.editingVehicle.year;
         self.vehicleMakeField.text = self.editingVehicle.make;
         self.vehicleModelField.text = self.editingVehicle.model;
+        self.vehicleRegistrationNumberField.text = self.editingVehicle.registrationNumber;
+        self.vehicleInsuranceField.text = self.editingVehicle.insurance;
+        if (self.editingVehicle.buyDate != nil) {
+            self.vehicleBuyDateField.text = [dateFormatter stringFromDate:self.editingVehicle.buyDate];
+            self.vehicleBuyDate = self.editingVehicle.buyDate;
+        }
+        if (self.editingVehicle.registrationExpirationDate != nil) {
+            self.vehicleRegistrationExpirationDateField.text = [dateFormatter stringFromDate:self.editingVehicle.registrationExpirationDate];
+            self.vehicleRegistrationExpirationDate = self.editingVehicle.registrationExpirationDate;
+        }
+        self.vehiclePassengersField.text = self.editingVehicle.passangers;
     }
 }
 
@@ -112,8 +140,10 @@
     
     if ([self.vehicleBuyDateField isFirstResponder]) {
         self.vehicleBuyDateField.text = [dateFormatter stringFromDate:pickerDate];
+        self.vehicleBuyDate = pickerDate;
     } else if ([self.vehicleRegistrationExpirationDateField isFirstResponder]) {
         self.vehicleRegistrationExpirationDateField.text = [dateFormatter stringFromDate:pickerDate];
+        self.vehicleRegistrationExpirationDate = pickerDate;
     }
 }
 

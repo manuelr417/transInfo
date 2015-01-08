@@ -11,10 +11,18 @@
 
 @interface Vehicle : NSObject
 
+@property NSString *registrationPlate;
+@property NSString *registrationState;
+@property NSString *vehicleIdentificationNumber;
+@property NSString *year;
 @property NSString *make;
 @property NSString *model;
-@property NSString *year;
-@property NSString *registrationPlate;
+@property NSString *registrationNumber;
+@property NSString *insurance;
+@property NSDate *buyDate;
+@property NSDate *registrationExpirationDate;
+@property NSString *passangers;
+
 @property NSString *uuid;
 
 @property NSMutableArray *persons;

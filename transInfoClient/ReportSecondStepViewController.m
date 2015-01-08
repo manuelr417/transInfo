@@ -60,9 +60,9 @@
     for (NSString *collectionName in collectionNames) {
         [self.collections setObject:[NSDate date] forKey:collectionName];
         [collectionsManagers addObject:[[CollectionManager alloc] init]];
-        [collectionsManagers[i] getCollection:collectionName];
         ((CollectionManager*)collectionsManagers[i]).delegate = self;
-        
+        [collectionsManagers[i] getCollection:collectionName];
+ 
         i++;
     }
 }

@@ -70,10 +70,12 @@
     
     //NSLog(@"Actual: %@ Expiration: %@",[NSDate date], expirationDate);
     
-    if (expirationDate > [NSDate date]) {
+    if (expirationDate < [NSDate date]) {
         //NSLog(@"Cache expired!");
         [self loadFromWebService:collection];
     } else {
+        //NSLog(@"Loaded from Cache");
+        //NSLog(@"%@", elems);
         [self collectionLoaded:elems];
     }
 }
@@ -89,6 +91,8 @@
     self.loadedCollection = elems;
     
     [self.loadedCollection removeObjectAtIndex:0];
+    
+    NSLog(@"%@", self.loadedCollection);
     
     // send to delegate.
     [self.delegate receivedCollection:self.loadedCollection withName:self.loadingCollection];

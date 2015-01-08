@@ -564,12 +564,12 @@
         <!--Nueva Persona-->
         <scene sceneID="o3V-FQ-laN">
             <objects>
-                <viewController storyboardIdentifier="newPersonView" id="tAc-Ds-IF5" customClass="NewPersonController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="newPersonView" automaticallyAdjustsScrollViewInsets="NO" id="tAc-Ds-IF5" customClass="NewPersonController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="StF-zh-AUJ"/>
                         <viewControllerLayoutGuide type="bottom" id="mM9-3C-QzQ"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Lt1-95-19L">
+                    <view key="view" contentMode="scaleToFill" id="Lt1-95-19L" customClass="UIScrollView">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -778,12 +778,12 @@
         <!--Nuevo Vehículo-->
         <scene sceneID="YfQ-Te-Jxh">
             <objects>
-                <viewController storyboardIdentifier="newVehicleView" id="y7c-JT-ZOc" customClass="NewVehicleController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="newVehicleView" automaticallyAdjustsScrollViewInsets="NO" id="y7c-JT-ZOc" customClass="NewVehicleController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IeF-Qt-YQm"/>
                         <viewControllerLayoutGuide type="bottom" id="wSh-MF-RAX"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="LkR-bU-h1z">
+                    <view key="view" contentMode="scaleToFill" id="LkR-bU-h1z" customClass="UIScrollView">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -981,6 +981,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="sideBarButton" destination="hml-3n-aMh" id="NYO-W1-Ic0"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v9B-Yn-dbd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
