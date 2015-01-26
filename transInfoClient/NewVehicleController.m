@@ -37,7 +37,7 @@
 }
 
 - (IBAction)addButonAction:(id)sender {
-    NSLog(@"Add car!");
+    //NSLog(@"Add car!");
     
     NSDictionary *carDictionary = @{@"vehicleLicensePlate" : self.vehicleLicensePlateField.text,
                                     @"vehicleRegistrationState" : self.vehicleRegistrationStateField.text,

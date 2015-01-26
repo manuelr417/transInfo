@@ -14,9 +14,6 @@
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sideBarButton;
 
-@property NSMutableArray *vehicles;
-@property NSMutableArray *pedestrians;
-
 @property UIPopoverController *popover;
 
 @end

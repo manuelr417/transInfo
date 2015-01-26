@@ -46,6 +46,8 @@
 		D56D506D19F530F900F50237 /* ReportSecondStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D56D506C19F530F900F50237 /* ReportSecondStepViewController.m */; };
 		D5A2E3A21A3F1D4A00F11DC3 /* NewVehicleController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5A2E3A11A3F1D4A00F11DC3 /* NewVehicleController.m */; };
 		D5A2E3A51A3F257E00F11DC3 /* NewPersonController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5A2E3A41A3F257E00F11DC3 /* NewPersonController.m */; };
+		D5B947311A7633BE00E444DC /* VehiclesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B947301A7633BE00E444DC /* VehiclesTableViewController.m */; };
+		D5B947341A763A5100E444DC /* VehicleExtendedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B947331A763A5100E444DC /* VehicleExtendedViewController.m */; };
 		D5DC12B11A0BB42400A445FD /* NewVehicleDriverController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5DC12B01A0BB42400A445FD /* NewVehicleDriverController.m */; };
 		D5DDB4511962EE9C0002F5EA /* restComm.m in Sources */ = {isa = PBXBuildFile; fileRef = D5DDB4501962EE9C0002F5EA /* restComm.m */; };
 		D5DDB453196B2F590002F5EA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5DDB452196B2F590002F5EA /* MapKit.framework */; };
@@ -148,6 +150,10 @@
 		D5A2E3A11A3F1D4A00F11DC3 /* NewVehicleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewVehicleController.m; sourceTree = "<group>"; };
 		D5A2E3A31A3F257E00F11DC3 /* NewPersonController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPersonController.h; sourceTree = "<group>"; };
 		D5A2E3A41A3F257E00F11DC3 /* NewPersonController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPersonController.m; sourceTree = "<group>"; };
+		D5B9472F1A7633BE00E444DC /* VehiclesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VehiclesTableViewController.h; sourceTree = "<group>"; };
+		D5B947301A7633BE00E444DC /* VehiclesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VehiclesTableViewController.m; sourceTree = "<group>"; };
+		D5B947321A763A5100E444DC /* VehicleExtendedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VehicleExtendedViewController.h; sourceTree = "<group>"; };
+		D5B947331A763A5100E444DC /* VehicleExtendedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VehicleExtendedViewController.m; sourceTree = "<group>"; };
 		D5DC12AF1A0BB42400A445FD /* NewVehicleDriverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewVehicleDriverController.h; sourceTree = "<group>"; };
 		D5DC12B01A0BB42400A445FD /* NewVehicleDriverController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewVehicleDriverController.m; sourceTree = "<group>"; };
 		D5DDB44F1962EE9C0002F5EA /* restComm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = restComm.h; sourceTree = "<group>"; };
@@ -402,6 +408,10 @@
 				D5A2E3A11A3F1D4A00F11DC3 /* NewVehicleController.m */,
 				D5A2E3A31A3F257E00F11DC3 /* NewPersonController.h */,
 				D5A2E3A41A3F257E00F11DC3 /* NewPersonController.m */,
+				D5B9472F1A7633BE00E444DC /* VehiclesTableViewController.h */,
+				D5B947301A7633BE00E444DC /* VehiclesTableViewController.m */,
+				D5B947321A763A5100E444DC /* VehicleExtendedViewController.h */,
+				D5B947331A763A5100E444DC /* VehicleExtendedViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -541,9 +551,11 @@
 				D552535E19D4702600D8AEB6 /* CollectionManager.m in Sources */,
 				D5DDB459196B47E80002F5EA /* CurrentLocationPin.m in Sources */,
 				D52C29EF19C0AB1300294FA0 /* UIDatePickerOKView.m in Sources */,
+				D5B947341A763A5100E444DC /* VehicleExtendedViewController.m in Sources */,
 				D52C29F219C1CA3B00294FA0 /* PickerViewController.m in Sources */,
 				D51FEBDB19D9F66900E9D39C /* SidebarViewController.m in Sources */,
 				D5DDB45C196B5A9D0002F5EA /* ReportFirstStepViewController.m in Sources */,
+				D5B947311A7633BE00E444DC /* VehiclesTableViewController.m in Sources */,
 				D52C29DE19B0C42000294FA0 /* ComplaintTableViewCell.m in Sources */,
 				D519993B1A356BD900EF2F6D /* PedestrianTableViewCell.m in Sources */,
 				D51FEBD819D9D9D200E9D39C /* SWRevealViewController.m in Sources */,

@@ -40,6 +40,28 @@ GET     /genders                    controllers.Collections.getGenders()
 GET     /organDonor                 controllers.Collections.getOrganDonor()
 GET     /vehicles                   controllers.Collections.getVehicles()
 GET     /vehicleTypes               controllers.Collections.getVehicleTypes()
+# Vehicle Tab
+GET     /bodyTypes                  controllers.Collections.getBodyTypes()
+GET     /specialFunctions           controllers.Collections.getSpecialFunctions()
+GET     /emergencyUses              controllers.Collections.getEmergencyUses()
+GET     /postedSpeeds               controllers.Collections.getPostedSpeeds()
+GET     /directionsOfTravel         controllers.Collections.getDirectionsOfTravel()
+GET     /trafficwayDescriptions     controllers.Collections.getTrafficwayDescriptions()
+GET     /totalLanesCategories       controllers.Collections.getTotalLanesCategories()
+GET     /totalLanes                 controllers.Collections.getTotalLanes()
+GET     /roadwayHorizontalAlignments controllers.Collections.getRoadwayHorizontalAlignments()
+GET     /roadwayGrades              controllers.Collections.getRoadwayGrades()
+GET     /TCDWorking                 controllers.Collections.getTCDWorking()
+GET     /TCDTypes                   controllers.Collections.getTCDTypes()
+GET     /actions                    controllers.Collections.getActions()
+GET     /initialContactPoints       controllers.Collections.getInitialContactPoints()
+GET     /damagedAreas               controllers.Collections.getDamagedAreas()
+GET     /extentOfDamages            controllers.Collections.getExtentOfDamages()
+#GET     /harmfulEvents
+#GET     /harmfulEventCategories
+GET     /hitAndRun                  controllers.Collections.getHitAndRun()
+GET     /towedBy                    controllers.Collections.getTowedBy()
+GET     /vehicleCircumstances       controllers.Collections.getVehicleCircumstances()
 
 # Authentication
 POST    /login                      controllers.Authentication.doLogin()

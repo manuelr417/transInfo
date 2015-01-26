@@ -36,6 +36,10 @@
 @property NSNumber *totalNonMotorists;
 @property NSDate *creationDate;
 
+@property NSMutableArray *vehicles;
+@property NSMutableArray *pedestrians;
+
++ (id)sharedCrashSummary;
 - (NSMutableDictionary*)getDictionary;
 
 @end

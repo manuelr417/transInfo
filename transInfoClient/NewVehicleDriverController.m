@@ -17,7 +17,7 @@
 
 
 - (IBAction)addButonAction:(id)sender {
-    NSLog(@"Add car and person!");
+    //NSLog(@"Add car and person!");
     
     NSDictionary *carDictionary = @{@"vehicleMake" : self.vehicleMakeField.text, @"vehicleModel" : self.vehicleModelField.text, @"vehicleYear" : self.vehicleYearField.text, @"vehicleLicensePlate" : self.vehicleLicensePlateField.text};
     NSDictionary *personDictionary = @{@"vehicleLicensePlate" : self.vehicleLicensePlateField.text, @"personName" : self.personNameField.text, @"licenseNumber" : self.licenseNumberField.text};
@@ -115,7 +115,7 @@
     //self.personTypeCategoryField.text = [collection objectAtIndex:@"1"];
     //self.personTypeField.text = [collection objectAtIndex:@"1"];
     
-    NSLog(@"Received Collection: %@ (%lu elements)", collectionName, (unsigned long)[collection count]);
+    //NSLog(@"Received Collection: %@ (%lu elements)", collectionName, (unsigned long)[collection count]);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -197,7 +197,7 @@
 }
 
 - (void)keysSelected:(NSArray *)keys withIdentifier:(NSString *)identifier {
-    NSLog(@"Recibiendo... %@ (%@)", identifier, keys);
+    //NSLog(@"Recibiendo... %@ (%@)", identifier, keys);
     if ([identifier isEqualToString:@"personTypeCategories"]) {
         self.personTypeCategoryKey = keys[0];
         self.personTypeField.text = @"";
@@ -243,7 +243,7 @@
         
         [self showPickerView:collection withField:field withIdentifier:collectionName];
     } else {
-        NSLog(@"No collection yet... %@", collectionName);
+        NSLog(@"No collection yet... %@ (Requesting it again)", collectionName);
         CollectionManager *collManager = [[CollectionManager alloc] init];
         [collManager getCollection:collectionName];
         collManager.delegate = self;

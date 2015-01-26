@@ -10,6 +10,9 @@
 
 @implementation CrashSummary
 
+@synthesize vehicles;
+@synthesize pedestrians;
+
 - (id)init {
     self = [super init];
     
@@ -17,6 +20,9 @@
         self.reportTypeID = @-1;
         self.crashTimeUnknown = NO;
         self.creationDate = [NSDate date];
+        
+        self.vehicles = [[NSMutableArray alloc] init];
+        self.pedestrians = [[NSMutableArray alloc] init];
         
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         NSDictionary *loginInfo = [userDefaults objectForKey:@"login"];
@@ -27,6 +33,15 @@
     }
     
     return self;
+}
+
++ (id)sharedCrashSummary {
+    static CrashSummary *sharedCrashSummary = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedCrashSummary = [[self alloc] init];
+    });
+    return sharedCrashSummary;
 }
 
 - (NSMutableDictionary*)getDictionary {

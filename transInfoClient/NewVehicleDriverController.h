@@ -22,7 +22,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *licenseNumberField;
 @property (weak, nonatomic) IBOutlet UITextField *organDonorField;
 
-
 @property (weak, nonatomic) IBOutlet UITextField *licenseExpirationDateField;
 @property (weak, nonatomic) IBOutlet UISwitch *licenseExpirationDateNASwitch;
 @property (weak, nonatomic) IBOutlet UITextField *personStreetAddressField;
@@ -49,8 +48,6 @@
 @property (weak, nonatomic) IBOutlet UISwitch *driverIsOwnerSwitch;
 @property (weak, nonatomic) IBOutlet UITextField *vehicleTypeField;
 
-
-
 @property NSString *personTypeCategoryKey;
 @property NSDate *licenseExpirationDate;
 
@@ -59,8 +56,6 @@
 @property NSMutableDictionary *collections;
 @property (nonatomic, strong) PickerViewController *pickerView;
 @property (nonatomic, strong) UIPopoverController *pickerPopover;
-
-
 
 - (void)showPickerView:(NSMutableDictionary*)elements withField:(UITextField*)field withIdentifier:(NSString*)identifier;
 
