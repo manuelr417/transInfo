@@ -12,6 +12,9 @@
 
 @interface VehicleExtendedViewController ()
 
+@property NSArray *harmfulEventCategories;
+@property NSArray *harmfulEvents;
+
 @end
 
 @implementation VehicleExtendedViewController
@@ -23,7 +26,7 @@
     
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"OK" style:UIBarButtonItemStyleDone target:nil action:nil];
     // TODO
-    UINavigationItem *item = [[UINavigationItem alloc] initWithTitle:@"Información Extendida del Vehículo"];
+    UINavigationItem *item = [[UINavigationItem alloc] initWithTitle:NSLocalizedString(@"report.fourth.vehicle-extended", nil)];
     item.rightBarButtonItem = rightButton;
     item.hidesBackButton = YES;
     //[rightButton setAction:@selector(addButonAction:)];
@@ -38,15 +41,9 @@
     
     [self loadCollections];
     
-    /*
-     @property (weak, nonatomic) IBOutlet UITextField *bodyTypeField;
-     @property (weak, nonatomic) IBOutlet UITextField *directionOfTravelField;
-     @property (weak, nonatomic) IBOutlet UITextField *specialFunctionField;
-     @property (weak, nonatomic) IBOutlet UITextField *statutorySpeedMPHField;
-     @property (weak, nonatomic) IBOutlet UITextField *statutorySpeedField;
-     @property (weak, nonatomic) IBOutlet UITextField *postedSpeedMPHField;
-     @property (weak, nonatomic) IBOutlet UITextField *postedSpeedField;
-     @property (weak, nonatomic) IBOutlet UITextField *actionField;*/
+    self.harmfulEventCategories = @[self.harmfulEventCategory1Field, self.harmfulEventCategory2Field, self.harmfulEventCategory3Field, self.harmfulEventCategory4Field];
+    self.harmfulEvents = @[self.harmfulEvent1Field, self.harmfulEvent2Field, self.harmfulEvent3Field, self.harmfulEvent4Field];
+    self.harmfulEventCategoryKeys = [NSMutableArray arrayWithArray:@[@-1, @-1, @-1, @-1, @-1]];
     
     // Delegates
     self.bodyTypeField.delegate = self;
@@ -56,35 +53,35 @@
     self.statutorySpeedField.delegate = self;
     self.postedSpeedField.delegate = self;
     self.actionField.delegate = self;
+    self.trafficwayDescriptionField.delegate = self;
+    self.roadwayHorizontalAlignmentField.delegate = self;
+    self.roadwayGradeField.delegate = self;
+    self.totalLaneCategoryField.delegate = self;
+    self.totalLaneField.delegate = self;
+    self.TCDTypeField.delegate = self;
+    self.TCDWorkingField.delegate = self;
+    self.harmfulEventCategory1Field.delegate = self;
+    self.harmfulEventCategory2Field.delegate = self;
+    self.harmfulEventCategory3Field.delegate = self;
+    self.harmfulEventCategory4Field.delegate = self;
+    self.harmfulEvent1Field.delegate = self;
+    self.harmfulEvent2Field.delegate = self;
+    self.harmfulEvent3Field.delegate = self;
+    self.harmfulEvent4Field.delegate = self;
+    self.busUseField.delegate = self;
+    self.hitAndRunField.delegate = self;
+    self.towedByField.delegate = self;
+    self.vehicleCircumstance1Field.delegate = self;
+    self.vehicleCircumstance2Field.delegate = self;
+    self.initialContactPointField.delegate = self;
+    self.damagedAreasField.delegate = self;
+    self.extentOfDamageField.delegate = self;
 }
-
-/*
- GET     /bodyTypes                  controllers.Collections.getBodyTypes()
- GET     /specialFunctions           controllers.Collections.getSpecialFunctions()
- GET     /emergencyUses              controllers.Collections.getEmergencyUses()
- GET     /postedSpeeds               controllers.Collections.getPostedSpeeds()
- GET     /directionsOfTravel         controllers.Collections.getDirectionsOfTravel()
- GET     /trafficwayDescriptions     controllers.Collections.getTrafficwayDescriptions()
- GET     /totalLanesCategories       controllers.Collections.getTotalLanesCategories()
- GET     /totalLanes                 controllers.Collections.getTotalLanes()
- GET     /roadwayHorizontalAlignments controllers.Collections.getRoadwayHorizontalAlignments()
- GET     /roadwayGrades              controllers.Collections.getRoadwayGrades()
- GET     /TCDWorking                 controllers.Collections.getTCDWorking()
- GET     /TCDTypes                   controllers.Collections.getTCDTypes()
- GET     /actions                    controllers.Collections.getActions()
- GET     /initialContactPoints       controllers.Collections.getInitialContactPoints()
- GET     /damagedAreas               controllers.Collections.getDamagedAreas()
- GET     /extentOfDamages            controllers.Collections.getExtentOfDamages()
- #GET     /harmfulEvents
- #GET     /harmfulEventCategories
- GET     /hitAndRun                  controllers.Collections.getHitAndRun()
- GET     /towedBy                    controllers.Collections.getTowedBy()
- GET     /vehicleCircumstances       controllers.Collections.getVehicleCircumstances()*/
 
 - (void)loadCollections {
     self.collections = [[NSMutableDictionary alloc] init];
     
-    NSArray *collectionNames = @[@"bodyTypes", @"specialFunctions", @"emergencyUses", @"postedSpeeds", @"directionsOfTravel", @"trafficwayDescriptions", @"totalLanesCategories", @"totalLanes", @"roadwayHorizontalAlignments", @"roadwayGrades", @"TCDWorking", @"TCDTypes", @"actions"];
+    NSArray *collectionNames = @[@"bodyTypes", @"specialFunctions", @"emergencyUses", @"postedSpeeds", @"directionsOfTravel", @"trafficwayDescriptions", @"totalLanesCategories", @"totalLanes", @"roadwayHorizontalAlignments", @"roadwayGrades", @"TCDWorking", @"TCDTypes", @"actions", @"initialContactPoints", @"damagedAreas", @"extentOfDamages", @"harmfulEvents", @"harmfulEventCategories", @"hitAndRun", @"towedBy", @"schoolBusRelated", @"vehicleCircumstances"];
     
     NSMutableArray *collectionsManagers = [[NSMutableArray alloc] init];
     int i = 0;
@@ -144,8 +141,6 @@
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     [self.view endEditing:YES];
     
-    /* NSArray *collectionNames = @[@"bodyTypes", @"specialFunctions", @"emergencyUses", @"postedSpeeds", @"directionsOfTravel", @"trafficwayDescriptions", @"totalLanesCategories", @"totalLanes", @"roadwayHorizontalAlignments", @"roadwayGrades", @"TCDWorking", @"TCDTypes", @"actions"];*/
-    
     if (textField == self.bodyTypeField) {
         [self showCollection:@"bodyTypes" withIDColumn:@"BodyTypeID" withField:textField];
         return NO;
@@ -167,18 +162,78 @@
     } else if (textField == self.actionField) {
         [self showCollection:@"actions" withIDColumn:@"ActionID" withField:textField];
         return NO;
+    } else if (textField == self.trafficwayDescriptionField) {
+        [self showCollection:@"trafficwayDescriptions" withIDColumn:@"TrafficwayDescriptionID" withField:textField];
+        return NO;
+    } else if (textField == self.roadwayHorizontalAlignmentField) {
+        [self showCollection:@"roadwayHorizontalAlignments" withIDColumn:@"RoadwayHorizontalAlignmentID" withField:textField];
+        return NO;
+    } else if (textField == self.roadwayGradeField) {
+        [self showCollection:@"roadwayGrades" withIDColumn:@"RoadwayGradeID" withField:textField];
+        return NO;
+    } else if (textField == self.totalLaneCategoryField) {
+        [self showCollection:@"totalLanesCategories" withIDColumn:@"TotalLanesCategoryID" withField:textField];
+        return NO;
+    } else if (textField == self.totalLaneField) {
+        [self showCollection:@"totalLanes" withIDColumn:@"TotalLanesID" withField:textField];
+        return NO;
+    } else if (textField == self.TCDTypeField) {
+        [self showCollection:@"TCDTypes" withIDColumn:@"TCDTypeID" withField:textField];
+        return NO;
+    } else if (textField == self.TCDWorkingField) {
+        [self showCollection:@"TCDWorking" withIDColumn:@"TCDWorkingID" withField:textField];
+        return NO;
+    } else if ([self.harmfulEventCategories containsObject:textField]) {
+        [self showCollection:@"harmfulEventCategories" withIDColumn:@"HarmfulEventCatID" withField:textField];
+        return NO;
+    } else if ([self.harmfulEvents containsObject:textField]) {
+        [self showCollection:@"harmfulEvents" withIDColumn:@"HarmfulEventID" withField:textField];
+        return NO;
+    } else if (textField == self.busUseField) {
+        [self showCollection:@"schoolBusRelated" withIDColumn:@"SchoolBusRelatedID" withField:textField];
+        return NO;
+    } else if (textField == self.hitAndRunField) {
+        [self showCollection:@"hitAndRun" withIDColumn:@"HitAndRunID" withField:textField];
+        return NO;
+    } else if (textField == self.towedByField) {
+        [self showCollection:@"towedBy" withIDColumn:@"TowedByID" withField:textField];
+        return NO;
+    } else if (textField == self.vehicleCircumstance1Field || textField == self.vehicleCircumstance2Field) {
+        [self showCollection:@"vehicleCircumstances" withIDColumn:@"VehicleCircumstanceID" withField:textField];
+        return NO;
+    } else if (textField == self.initialContactPointField) {
+        [self showCollection:@"initialContactPoints" withIDColumn:@"InitialContactPointID" withField:textField];
+        return NO;
+    } else if (textField == self.damagedAreasField) {
+        [self showCollection:@"damagedAreas" withIDColumn:@"DamagedAreaID" withField:textField];
+        return NO;
+    } else if (textField == self.extentOfDamageField) {
+        [self showCollection:@"extentOfDamages" withIDColumn:@"ExtentOfDamageID" withField:textField];
+        return NO;
     }
     
     return YES;
 }
 
 - (void)keysSelected:(NSArray *)keys withIdentifier:(NSString *)identifier {
+    if ([identifier isEqualToString:@"totalLanesCategories"]) {
+        self.totalLaneCategoryKey = keys[0];
+        self.totalLaneField.text = @"";
+    } if ([identifier isEqualToString:@"harmfulEventCategories"]) {
+        NSInteger cat = [self getHarmfulEventCategoryKeyFor:self.latestField];
+        
+        [self.harmfulEventCategoryKeys replaceObjectAtIndex:cat withObject:keys[0]];
+        ((UITextField*)[self.harmfulEvents objectAtIndex:cat]).text = @"";
+        
+        /*self.totalLaneCategoryKey = keys[0];
+        self.totalLaneField.text = @"";*/
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     if (self.navigationBar != nil) {
         [self.navigationBar setFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
-        [(UIScrollView *)self.view setContentSize:CGSizeMake(700,800)];
+        [(UIScrollView *)self.view setContentSize:CGSizeMake(700,1200)];
     }
     
     if (self.editingVehicle != nil) {
@@ -196,23 +251,39 @@
 
 - (IBAction)showCollection:(NSString*)collectionName withIDColumn:(NSString*)IDColumn withField:(id)field {
     if ([self.collections[collectionName] isKindOfClass:[NSArray class]]) {
+        self.latestField = field;
+        
         NSMutableDictionary *collection = [[NSMutableDictionary alloc] init];
         
-        /*BOOL isPersonTypes = [collectionName isEqualToString:@"personTypes"];
+        NSInteger harmfulEventCategory = 0;
+        BOOL isTotalLane = [collectionName isEqualToString:@"totalLanes"];
+        BOOL isHarmfulEvent = [self.harmfulEvents containsObject:field];
         
-        if (isPersonTypes && self.personTypeCategoryKey == nil) {
-            [Utilities displayAlertWithMessage:NSLocalizedString(@"report.third.no-person-type-category.msg", nil) withTitle:NSLocalizedString(@"report.third.no-person-type-category.title", nil) ];
+        if (isTotalLane && self.totalLaneCategoryKey == nil) {
+            [Utilities displayAlertWithMessage:NSLocalizedString(@"report.fourth.no-total-lanes-category.msg", nil) withTitle:NSLocalizedString(@"report.fourth.no-total-lanes-category.title", nil) ];
             return;
-        }*/
+        }
+        
+        if (isHarmfulEvent) {
+            harmfulEventCategory = [self getHarmfulEventKeyFor:field];
+            NSLog(@"Cat Key: %ld Actual Key: %@", (long)harmfulEventCategory, [self.harmfulEventCategoryKeys objectAtIndex:harmfulEventCategory]);
+            if ([[self.harmfulEventCategoryKeys objectAtIndex:harmfulEventCategory]  isEqual:@-1]) {
+                [Utilities displayAlertWithMessage:NSLocalizedString(@"report.fourth.no-total-lanes-category.msg", nil) withTitle:NSLocalizedString(@"report.fourth.no-total-lanes-category.title", nil) ];
+                return;
+            }
+        }
         
         for (NSDictionary *elem in self.collections[collectionName]) {
-            /*if (isPersonTypes) {
-                if (![self.personTypeCategoryKey isEqualToString:[NSString stringWithFormat:@"%@", [elem objectForKey:@"PersonTypeCategoryID"]]]) {
+            if (isTotalLane) {
+                if (![self.totalLaneCategoryKey isEqualToString:[NSString stringWithFormat:@"%@", [elem objectForKey:@"TotalLanesCategoryID"]]]) {
                     continue;
                 }
-            }*/
-            
-            //NSLog(@"%@", elem);
+            } else if (isHarmfulEvent) {
+                NSLog(@"Cat: %@ Elem Cat: %@", [[self.harmfulEventCategoryKeys objectAtIndex:harmfulEventCategory] class], [[elem objectForKey:@"HarmfulEventCatID"] class]);
+                if (![[self.harmfulEventCategoryKeys objectAtIndex:harmfulEventCategory] isEqualToString:[NSString stringWithFormat:@"%@", [elem objectForKey:@"HarmfulEventCatID"]]]) {
+                    continue;
+                }
+            }
             
             [collection setObject:(NSString*)[elem objectForKey:[Utilities collectionColumn]] forKey:[NSString stringWithFormat:@"%@", [elem objectForKey:IDColumn]]];
         }
@@ -226,6 +297,34 @@
         [collManager getCollection:collectionName];
         collManager.delegate = self;
     }
+}
+
+- (NSInteger)getHarmfulEventKeyFor:(UITextField*)field {
+    NSInteger i = 0;
+    
+    for (UITextField *tf in self.harmfulEvents) {
+        if (tf == field) {
+            break;
+        }
+        
+        i++;
+    }
+    
+    return i;
+}
+
+- (NSInteger)getHarmfulEventCategoryKeyFor:(UITextField*)field {
+    NSInteger i = 0;
+    
+    for (UITextField *tf in self.harmfulEventCategories) {
+        if (tf == field) {
+            break;
+        }
+        
+        i++;
+    }
+    
+    return i;
 }
 
 - (void)showPickerView:(NSMutableDictionary*)elements withField:(UITextField*)field withIdentifier:(NSString*)identifier {

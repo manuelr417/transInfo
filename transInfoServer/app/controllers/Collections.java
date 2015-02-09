@@ -1103,7 +1103,6 @@ GET     /reportTypes                controllers.Collections.getReportTypes()
         });
     }
 
-
     public static Result getCollection(String table, GetRows callback) {
         Logger.debug("getCollection(" + table + ")");
 

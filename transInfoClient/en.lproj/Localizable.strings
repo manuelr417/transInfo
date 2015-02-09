@@ -38,3 +38,8 @@
 "report.third.edit-vehicle" = "Edit Vehicle";
 
 "pedestrians" = "Pedestrians";
+
+"report.fourth.no-total-lanes-category.msg" = "You need to choose a Lane Category before choosing the Lane Type.";
+"report.fourth.no-total-lanes-category.title" = "Choose a Lane Category";
+
+"report.fourth.vehicle-extended" = "Vehicle Extended Information";
