@@ -33,41 +33,30 @@
     CrashSummary *crashSummary = [CrashSummary sharedCrashSummary];
     
     if ([[notification name] isEqualToString:@"addCar"]) {
-        NSString *vehicleUUID = [dict objectForKey:@"uuid"];
-        NSMutableArray *savedPersons;
+        Vehicle *vehicle = [dict objectForKey:@"Vehicle"];
+        NSString *vehicleUUID = vehicle.uuid;
         
         if (vehicleUUID != nil) {
+            NSLog(@"Updating UUID: %@", vehicleUUID);
+            
             for (Vehicle *v in crashSummary.vehicles) {
                 if ([v.uuid isEqualToString:vehicleUUID]) {
-                    savedPersons = v.persons;
-                    [crashSummary.vehicles removeObject:v];
+                    NSUInteger index = [crashSummary.vehicles indexOfObject:v];
+                    
+                    NSLog(@"Found at %lu, replacing!", (unsigned long)index);
+                    
+                    [crashSummary.vehicles replaceObjectAtIndex:index withObject:vehicle];
+                    
                     break;
                 }
             }
+        } else {
+            NSLog(@"Adding new car...");
+            
+            vehicle.uuid = [[NSUUID UUID] UUIDString];
+            
+            [crashSummary.vehicles addObject:vehicle];
         }
-        
-        NSObject *buyDate = [dict objectForKey:@"vehicleBuyDate"];
-        NSObject *expDate = [dict objectForKey:@"vehicleRegistrationExpirationDate"];
-        
-        Vehicle *vehicle = [[Vehicle alloc] init];
-        vehicle.registrationPlate = [dict objectForKey:@"vehicleLicensePlate"];
-        vehicle.registrationState = [dict objectForKey:@"vehicleRegistrationState"];
-        vehicle.vehicleIdentificationNumber = [dict objectForKey:@"vehicleIdentificationNumber"];
-        vehicle.year = [dict objectForKey:@"vehicleYear"];
-        vehicle.make = [dict objectForKey:@"vehicleMake"];
-        vehicle.model = [dict objectForKey:@"vehicleModel"];
-        vehicle.registrationNumber = [dict objectForKey:@"vehicleRegistrationNumber"];
-        vehicle.insurance = [dict objectForKey:@"vehicleInsurance"];
-        vehicle.buyDate = ([buyDate isEqual:@""]) ? nil : (NSDate*)buyDate;
-        vehicle.registrationExpirationDate = ([expDate isEqual:@""]) ? nil : (NSDate*)expDate;
-        vehicle.passangers = [dict objectForKey:@"vehiclePassengers"];
-        vehicle.uuid = [[NSUUID UUID] UUIDString];
-        
-        if (savedPersons != nil) {
-            vehicle.persons = savedPersons;
-        }
-        
-        [crashSummary.vehicles addObject:vehicle];
         
         [self.tableView reloadData];
         
@@ -175,6 +164,7 @@
             [newVehicleController setEditingModeFor:vehicle];
             
             self.popover = [[UIPopoverController alloc] initWithContentViewController:newVehicleController];
+            self.popover.delegate = self;
             
             CGRect aFrame = [self.tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section]];
             [self.popover presentPopoverFromRect:[self.tableView convertRect:aFrame toView:self.view] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
@@ -208,8 +198,25 @@
     return @[deleteAction, updateAction];
 }
 
+- (BOOL)popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Closing unsaved work"
+                                                        message:@"Do you want to close this popover without saving the work done?"
+                                                       delegate:self
+                                              cancelButtonTitle:@"No"
+                                              otherButtonTitles:@"Yes", nil];
+    
+    [alert show];
+    
+    return NO;
+}
 
--(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) { // Close
+        [self.popover dismissPopoverAnimated:TRUE];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
 }
 
 - (void)dealloc {

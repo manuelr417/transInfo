@@ -27,6 +27,11 @@
 
 @property NSMutableArray *persons;
 
+
+
+
+@property NSMutableArray *damagedAreas;
+
 - (void)addPerson:(Person*)person;
 
 @end

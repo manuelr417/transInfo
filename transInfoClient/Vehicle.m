@@ -23,12 +23,14 @@
 @synthesize passangers;
 @synthesize persons;
 @synthesize uuid;
+@synthesize damagedAreas;
 
 - (id)init {
     self = [super init];
     
     if (self) {
         self.persons = [[NSMutableArray alloc] init];
+        self.damagedAreas = [[NSMutableArray alloc] init];
     }
     
     return self;

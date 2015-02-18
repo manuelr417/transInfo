@@ -98,21 +98,33 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *key = [self.elementKeys objectAtIndex:indexPath.row];
-    self.outField.text = [self.elementsDictionary objectForKey:key];
     
     if (![self.selectedElements containsObject:key]) {
         [self.selectedElements addObject:key];
-        if (self.delegate != nil) {
-            NSLog(@"Sending Keys Selected...");
-            [self.delegate keysSelected:self.selectedElements withIdentifier:self.identifier];
+    } else {
+        [self.selectedElements removeObject:key];
+    }
+    
+    if (self.isMultipleChoice && [self.selectedElements count] > 1) {
+        self.outField.text = [NSString stringWithFormat:@"(%lu seleccionados)", (unsigned long)[self.selectedElements count]];
+    } else {
+        if ([self.selectedElements count] == 0) {
+            self.outField.text = @"";
+        } else {
+            self.outField.text = [self.elementsDictionary objectForKey:key];
         }
+    }
+    
+    if (self.delegate != nil) {
+        NSLog(@"Sending Keys Selected...");
+        [self.delegate keysSelected:self.selectedElements withIdentifier:self.identifier];
     }
     
     if (!self.isMultipleChoice) {
         [self.popover dismissPopoverAnimated:YES];
     } else {
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        if (self.isMultipleChoice && cell.accessoryType == UITableViewCellAccessoryNone) {
+        if (self.isMultipleChoice && [self.selectedElements containsObject:key]) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         } else {
             cell.accessoryType = UITableViewCellAccessoryNone;
@@ -156,6 +168,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell;
+    NSString *key = [self.elementKeys objectAtIndex:indexPath.row];
     
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
@@ -165,7 +178,16 @@
     
     cell.textLabel.text = [self.elementsDictionary valueForKey:[self.elementKeys objectAtIndex:indexPath.row]];
     
+    if ([self.selectedElements containsObject:key]) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+    
     return cell;
+}
+
+- (void)loadSelectedElements:(NSMutableArray *)selectedElements {
+    self.selectedElements = selectedElements;
+    [self.tableView reloadData];
 }
 
 @end

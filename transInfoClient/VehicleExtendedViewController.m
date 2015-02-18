@@ -227,6 +227,8 @@
         
         /*self.totalLaneCategoryKey = keys[0];
         self.totalLaneField.text = @"";*/
+    } if ([identifier isEqualToString:@"damagedAreas"]) {
+        [self.editingVehicle setDamagedAreas:[NSMutableArray arrayWithArray:keys]];
     }
 }
 
@@ -290,7 +292,11 @@
         
         //NSLog(@"%@ %@ %@", collection, field, collectionName);
         
-        [self showPickerView:collection withField:field withIdentifier:collectionName];
+        if (field == self.damagedAreasField) {
+            [self showPickerView:collection withField:field withIdentifier:collectionName withMultipleChoice:YES];
+        } else {
+            [self showPickerView:collection withField:field withIdentifier:collectionName withMultipleChoice:NO];
+        }
     } else {
         NSLog(@"No collection yet... %@", collectionName);
         CollectionManager *collManager = [[CollectionManager alloc] init];
@@ -327,14 +333,18 @@
     return i;
 }
 
-- (void)showPickerView:(NSMutableDictionary*)elements withField:(UITextField*)field withIdentifier:(NSString*)identifier {
-    self.pickerView = [[PickerViewController alloc] initWithStyle:UITableViewStylePlain withElementsDictionary:elements withMultipleChoice:NO];
+- (void)showPickerView:(NSMutableDictionary*)elements withField:(UITextField*)field withIdentifier:(NSString*)identifier withMultipleChoice:(BOOL)isMultipleChoice {
+    self.pickerView = [[PickerViewController alloc] initWithStyle:UITableViewStylePlain withElementsDictionary:elements withMultipleChoice:isMultipleChoice];
     self.pickerPopover = [[UIPopoverController alloc] initWithContentViewController:self.pickerView];
     
     self.pickerView.delegate = self;
     self.pickerView.outField = field;
     self.pickerView.popover = self.pickerPopover;
     [self.pickerView setIdentifier:identifier];
+    
+    if (field == self.damagedAreasField) {
+        [self.pickerView setSelectedElements:self.editingVehicle.damagedAreas];
+    }
     
     [self.pickerPopover presentPopoverFromRect:field.bounds inView:field permittedArrowDirections:UIPopoverArrowDirectionUnknown animated:YES];
 }

@@ -37,20 +37,23 @@
 }
 
 - (IBAction)addButonAction:(id)sender {
-    //NSLog(@"Add car!");
+    if (self.editingVehicle == nil) {
+        self.editingVehicle = [[Vehicle alloc] init];
+    }
     
-    NSDictionary *carDictionary = @{@"vehicleLicensePlate" : self.vehicleLicensePlateField.text,
-                                    @"vehicleRegistrationState" : self.vehicleRegistrationStateField.text,
-                                    @"vehicleIdentificationNumber" : self.vehicleIdentificationNumberField.text,
-                                    @"vehicleYear" : self.vehicleYearField.text,
-                                    @"vehicleMake" : self.vehicleMakeField.text,
-                                    @"vehicleModel" : self.vehicleModelField.text,
-                                    @"vehicleRegistrationNumber" : self.vehicleRegistrationNumberField.text,
-                                    @"vehicleInsurance" : self.vehicleInsuranceField.text,
-                                    @"vehicleBuyDate" : (self.vehicleBuyDate == nil) ? @"" : self.vehicleBuyDate,
-                                    @"vehicleRegistrationExpirationDate" : (self.vehicleRegistrationExpirationDate == nil) ? @"" : self.vehicleRegistrationExpirationDate,
-                                    @"vehiclePassengers" : self.vehiclePassengersField.text,
-                                    @"uuid" : (self.editingVehicle != nil) ? self.editingVehicle.uuid : @""};
+    self.editingVehicle.registrationPlate = self.vehicleLicensePlateField.text;
+    self.editingVehicle.registrationState = self.vehicleRegistrationStateField.text;
+    self.editingVehicle.vehicleIdentificationNumber = self.vehicleIdentificationNumberField.text;
+    self.editingVehicle.year = self.vehicleYearField.text;
+    self.editingVehicle.make = self.vehicleMakeField.text;
+    self.editingVehicle.model = self.vehicleModelField.text;
+    self.editingVehicle.registrationNumber = self.vehicleRegistrationNumberField.text;
+    self.editingVehicle.insurance = self.vehicleInsuranceField.text;
+    self.editingVehicle.buyDate = self.vehicleBuyDate;
+    self.editingVehicle.registrationExpirationDate = self.vehicleRegistrationExpirationDate;
+    self.editingVehicle.passangers = self.vehiclePassengersField.text;
+    
+    NSDictionary *carDictionary = @{@"Vehicle" : self.editingVehicle};
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"addCar" object:nil userInfo:carDictionary];
     

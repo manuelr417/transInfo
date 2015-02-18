@@ -1103,6 +1103,226 @@ GET     /reportTypes                controllers.Collections.getReportTypes()
         });
     }
 
+    public static Result getMotorCarrierTypes() {
+        return getCollection("MotorCarrierType", new GetRows() {
+            @Override
+            public ObjectNode getRows(ResultSet rs) {
+                ObjectNode rec = Json.newObject();
+
+                try {
+                    rec.put("MotorCarrierTypeID", rs.getInt("MotorCarrierTypeID"));
+                    rec.put("DescriptionES", rs.getString("DescriptionES"));
+                    rec.put("DescriptionEN", rs.getString("DescriptionEN"));
+
+                } catch (SQLException e) {
+                    return null;
+                }
+
+                return rec;
+            }
+        });
+    }
+
+    public static Result getVehicleMovements() {
+        return getCollection("VehicleMovement", new GetRows() {
+            @Override
+            public ObjectNode getRows(ResultSet rs) {
+                ObjectNode rec = Json.newObject();
+
+                try {
+                    rec.put("VehicleMovementID", rs.getInt("VehicleMovementID"));
+                    rec.put("DescriptionES", rs.getString("DescriptionES"));
+                    rec.put("DescriptionEN", rs.getString("DescriptionEN"));
+
+                } catch (SQLException e) {
+                    return null;
+                }
+
+                return rec;
+            }
+        });
+    }
+
+    public static Result getDriverIsAuthorized() {
+        return getCollection("DriverIsAuthorized", new GetRows() {
+            @Override
+            public ObjectNode getRows(ResultSet rs) {
+                ObjectNode rec = Json.newObject();
+
+                try {
+                    rec.put("DriverIsAuthorizedID", rs.getInt("DriverIsAuthorizedID"));
+                    rec.put("DescriptionES", rs.getString("DescriptionES"));
+                    rec.put("DescriptionEN", rs.getString("DescriptionEN"));
+
+                } catch (SQLException e) {
+                    return null;
+                }
+
+                return rec;
+            }
+        });
+    }
+
+    public static Result getInspectionUpToDate() {
+        return getCollection("InspectionUpToDate", new GetRows() {
+            @Override
+            public ObjectNode getRows(ResultSet rs) {
+                ObjectNode rec = Json.newObject();
+
+                try {
+                    rec.put("InspectionUpToDateID", rs.getInt("InspectionUpToDateID"));
+                    rec.put("DescriptionES", rs.getString("DescriptionES"));
+                    rec.put("DescriptionEN", rs.getString("DescriptionEN"));
+
+                } catch (SQLException e) {
+                    return null;
+                }
+
+                return rec;
+            }
+        });
+    }
+
+    public static Result getSpecialPermits() {
+        return getCollection("SpecialPermit", new GetRows() {
+            @Override
+            public ObjectNode getRows(ResultSet rs) {
+                ObjectNode rec = Json.newObject();
+
+                try {
+                    rec.put("SpecialPermitID", rs.getInt("SpecialPermitID"));
+                    rec.put("DescriptionES", rs.getString("DescriptionES"));
+                    rec.put("DescriptionEN", rs.getString("DescriptionEN"));
+
+                } catch (SQLException e) {
+                    return null;
+                }
+
+                return rec;
+            }
+        });
+    }
+
+    public static Result getGVWRGCWR() {
+        return getCollection("GVWRGCWR", new GetRows() {
+            @Override
+            public ObjectNode getRows(ResultSet rs) {
+                ObjectNode rec = Json.newObject();
+
+                try {
+                    rec.put("GVWRGCWRID", rs.getInt("GVWRGCWRID"));
+                    rec.put("DescriptionES", rs.getString("DescriptionES"));
+                    rec.put("DescriptionEN", rs.getString("DescriptionEN"));
+
+                } catch (SQLException e) {
+                    return null;
+                }
+
+                return rec;
+            }
+        });
+    }
+
+    public static Result getConfigurations() {
+        return getCollection("Configuration", new GetRows() {
+            @Override
+            public ObjectNode getRows(ResultSet rs) {
+                ObjectNode rec = Json.newObject();
+
+                try {
+                    rec.put("ConfigurationID", rs.getInt("ConfigurationID"));
+                    rec.put("DescriptionES", rs.getString("DescriptionES"));
+                    rec.put("DescriptionEN", rs.getString("DescriptionEN"));
+
+                } catch (SQLException e) {
+                    return null;
+                }
+
+                return rec;
+            }
+        });
+    }
+
+    public static Result getCargoBodyTypes() {
+        return getCollection("CargoBodyType", new GetRows() {
+            @Override
+            public ObjectNode getRows(ResultSet rs) {
+                ObjectNode rec = Json.newObject();
+
+                try {
+                    rec.put("CargoBodyTypeID", rs.getInt("CargoBodyTypeID"));
+                    rec.put("DescriptionES", rs.getString("DescriptionES"));
+                    rec.put("DescriptionEN", rs.getString("DescriptionEN"));
+
+                } catch (SQLException e) {
+                    return null;
+                }
+
+                return rec;
+            }
+        });
+    }
+
+    public static Result getHazMatInvolved() {
+        return getCollection("HazMatInvolved", new GetRows() {
+            @Override
+            public ObjectNode getRows(ResultSet rs) {
+                ObjectNode rec = Json.newObject();
+
+                try {
+                    rec.put("HazMatInvolvedID", rs.getInt("HazMatInvolvedID"));
+                    rec.put("DescriptionES", rs.getString("DescriptionES"));
+                    rec.put("DescriptionEN", rs.getString("DescriptionEN"));
+
+                } catch (SQLException e) {
+                    return null;
+                }
+
+                return rec;
+            }
+        });
+    }
+
+    public static Result getPlacardDisplayed() {
+        return getCollection("PlacardDisplayed", new GetRows() {
+            @Override
+            public ObjectNode getRows(ResultSet rs) {
+                ObjectNode rec = Json.newObject();
+
+                try {
+                    rec.put("PlacardDisplayedID", rs.getInt("PlacardDisplayedID"));
+                    rec.put("DescriptionES", rs.getString("DescriptionES"));
+                    rec.put("DescriptionEN", rs.getString("DescriptionEN"));
+
+                } catch (SQLException e) {
+                    return null;
+                }
+
+                return rec;
+            }
+        });
+    }
+
+    public static Result getHazMatReleased() {
+        return getCollection("HazMatReleased", new GetRows() {
+            @Override
+            public ObjectNode getRows(ResultSet rs) {
+                ObjectNode rec = Json.newObject();
+
+                try {
+                    rec.put("HazMatReleasedID", rs.getInt("HazMatReleasedID"));
+                    rec.put("DescriptionES", rs.getString("DescriptionES"));
+                    rec.put("DescriptionEN", rs.getString("DescriptionEN"));
+
+                } catch (SQLException e) {
+                    return null;
+                }
+
+                return rec;
+            }
+        });
+    }
+
     public static Result getCollection(String table, GetRows callback) {
         Logger.debug("getCollection(" + table + ")");
 

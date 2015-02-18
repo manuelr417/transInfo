@@ -10,7 +10,7 @@
 #import "SLExpandableTableView.h"
 
 
-@interface DataEntryTableViewController : UITableViewController <SLExpandableTableViewDatasource/*, SLExpandableTableViewDelegate*/>
+@interface DataEntryTableViewController : UITableViewController <SLExpandableTableViewDatasource/*, SLExpandableTableViewDelegate*/, UIPopoverControllerDelegate, UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sideBarButton;
 

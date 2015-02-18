@@ -11,6 +11,7 @@
 @interface PickerViewController : UITableViewController
 
 - (id)initWithStyle:(UITableViewStyle)style withElementsDictionary:(NSMutableDictionary*)elementsDictionary withMultipleChoice:(BOOL)isMultipleChoice;
+- (void)loadSelectedElements:(NSMutableArray*)selectedElements;
 
 @property (nonatomic, strong) NSString *identifier;
 @property (nonatomic, strong) UITextField *outField;

@@ -56,8 +56,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *damagedAreasField;
 @property (weak, nonatomic) IBOutlet UITextField *extentOfDamageField;
 
-
-
 @property NSString *totalLaneCategoryKey;
 @property NSMutableArray *harmfulEventCategoryKeys;
 

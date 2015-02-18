@@ -1437,7 +1437,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Cantidad" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HFo-XR-q2O">
-                                <rect key="frame" x="24" y="545" width="97" height="30"/>
+                                <rect key="frame" x="24" y="542" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -1613,6 +1613,17 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uVy-9R-IH7">
+                                <rect key="frame" x="432" y="991" width="22" height="22"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="zFl-5d-f6l" kind="popover" popoverAnchorView="uVy-9R-IH7" id="LsC-Zx-6L4">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -1665,6 +1676,29 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eXH-R7-vgI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2754" y="-1951"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="qOP-Ai-RfZ">
+            <objects>
+                <viewController id="zFl-5d-f6l" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="AJx-hP-T0l"/>
+                        <viewControllerLayoutGuide type="bottom" id="MqJ-LF-PCt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OzH-ho-3M4">
+                        <rect key="frame" x="0.0" y="0.0" width="500" height="500"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Clockpoint_Diagrams-2" translatesAutoresizingMaskIntoConstraints="NO" id="b2o-db-fnM">
+                                <rect key="frame" x="20" y="16" width="461" height="467"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dvj-je-2Fj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3750" y="-1951"/>
         </scene>
         <!--Vehículos-->
         <scene sceneID="IaN-tb-KdL">
@@ -2354,6 +2388,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Clockpoint_Diagrams-2" width="400" height="458"/>
         <image name="Crash Summary First Tab 2" width="25" height="25"/>
         <image name="DOT" width="1243" height="1258"/>
         <image name="ID Entry Tab" width="25" height="25"/>
