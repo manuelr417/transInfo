@@ -43,3 +43,5 @@
 "report.fourth.no-total-lanes-category.title" = "Selecciona una Categoría de Carril";
 
 "report.fourth.vehicle-extended" = "Información Extendida del Vehículo";
+
+"multilist.selected" = "(%ld seleccionados)";

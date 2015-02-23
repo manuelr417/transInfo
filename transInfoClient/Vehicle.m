@@ -31,6 +31,16 @@
     if (self) {
         self.persons = [[NSMutableArray alloc] init];
         self.damagedAreas = [[NSMutableArray alloc] init];
+        
+        self.harmfulEventCategory1Key = @"-1";
+        self.harmfulEventCategory2Key = @"-1";
+        self.harmfulEventCategory3Key = @"-1";
+        self.harmfulEventCategory4Key = @"-1";
+        
+        self.harmfulEvent1Key = @"-1";
+        self.harmfulEvent2Key = @"-1";
+        self.harmfulEvent3Key = @"-1";
+        self.harmfulEvent4Key = @"-1";
     }
     
     return self;

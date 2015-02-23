@@ -196,7 +196,7 @@
     self.licenseExpirationDateField.text = [dateFormatter stringFromDate:self.licenseExpirationDate];
 }
 
-- (void)keysSelected:(NSArray *)keys withIdentifier:(NSString *)identifier {
+- (void)keysSelected:(NSArray *)keys withIdentifier:(NSString *)identifier withOutField:(UITextField *)outField {
     //NSLog(@"Recibiendo... %@ (%@)", identifier, keys);
     if ([identifier isEqualToString:@"personTypeCategories"]) {
         self.personTypeCategoryKey = keys[0];

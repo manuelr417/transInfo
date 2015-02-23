@@ -9,6 +9,7 @@
 #import "VehicleExtendedViewController.h"
 #import "CollectionManager.h"
 #import "Utilities.h"
+#import "CrashSummary.h"
 
 @interface VehicleExtendedViewController ()
 
@@ -25,15 +26,54 @@
     self.navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
     
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"OK" style:UIBarButtonItemStyleDone target:nil action:nil];
-    // TODO
+    
     UINavigationItem *item = [[UINavigationItem alloc] initWithTitle:NSLocalizedString(@"report.fourth.vehicle-extended", nil)];
     item.rightBarButtonItem = rightButton;
     item.hidesBackButton = YES;
-    //[rightButton setAction:@selector(addButonAction:)];
+    [rightButton setAction:@selector(addButonAction:)];
     
     [self.navigationBar pushNavigationItem:item animated:NO];
     
     [self.view addSubview:self.navigationBar];
+}
+
+- (IBAction)addButonAction:(id)sender {
+    self.editingVehicle.statutorySpeedMPH = self.statutorySpeedMPHField.text;
+    self.editingVehicle.postedSpeedMPH = self.postedSpeedMPHField.text;
+    self.editingVehicle.totalLanesQuantity = self.totalLanesQuantityField.text;
+    self.editingVehicle.totalAxles = self.totalAxlesField.text;
+    
+    self.editingVehicle.harmfulEventCategory1Key = self.harmfulEventCategoryKeys[0];
+    self.editingVehicle.harmfulEventCategory2Key = self.harmfulEventCategoryKeys[1];
+    self.editingVehicle.harmfulEventCategory3Key = self.harmfulEventCategoryKeys[2];
+    self.editingVehicle.harmfulEventCategory4Key = self.harmfulEventCategoryKeys[3];
+    
+    self.editingVehicle.harmfulEvent1Key = self.harmfulEventKeys[0];
+    self.editingVehicle.harmfulEvent2Key = self.harmfulEventKeys[1];
+    self.editingVehicle.harmfulEvent3Key = self.harmfulEventKeys[2];
+    self.editingVehicle.harmfulEvent4Key = self.harmfulEventKeys[3];
+    
+    CrashSummary *crashSummary = [CrashSummary sharedCrashSummary];
+    
+    NSString *vehicleUUID = self.editingVehicle.uuid;
+    
+    if (vehicleUUID != nil) {
+        NSLog(@"Updating UUID: %@", vehicleUUID);
+        
+        for (Vehicle *v in crashSummary.vehicles) {
+            if ([v.uuid isEqualToString:vehicleUUID]) {
+                NSUInteger index = [crashSummary.vehicles indexOfObject:v];
+                
+                NSLog(@"Found at %lu, replacing!", (unsigned long)index);
+                
+                [crashSummary.vehicles replaceObjectAtIndex:index withObject:self.editingVehicle];
+                
+                break;
+            }
+        }
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)viewDidLoad {
@@ -44,6 +84,12 @@
     self.harmfulEventCategories = @[self.harmfulEventCategory1Field, self.harmfulEventCategory2Field, self.harmfulEventCategory3Field, self.harmfulEventCategory4Field];
     self.harmfulEvents = @[self.harmfulEvent1Field, self.harmfulEvent2Field, self.harmfulEvent3Field, self.harmfulEvent4Field];
     self.harmfulEventCategoryKeys = [NSMutableArray arrayWithArray:@[@-1, @-1, @-1, @-1, @-1]];
+    self.harmfulEventKeys = [NSMutableArray arrayWithArray:@[@-1, @-1, @-1, @-1, @-1]];
+    
+    if (self.editingVehicle != nil) {
+        self.harmfulEventCategoryKeys = [NSMutableArray arrayWithArray:@[self.editingVehicle.harmfulEventCategory1Key, self.editingVehicle.harmfulEventCategory2Key, self.editingVehicle.harmfulEventCategory3Key,self.editingVehicle.harmfulEventCategory4Key, @-1]];
+        self.harmfulEventKeys = [NSMutableArray arrayWithArray:@[self.editingVehicle.harmfulEvent1Key, self.editingVehicle.harmfulEvent2Key, self.editingVehicle.harmfulEvent3Key, self.editingVehicle.harmfulEvent4Key, @-1]];
+    }
     
     // Delegates
     self.bodyTypeField.delegate = self;
@@ -76,12 +122,23 @@
     self.initialContactPointField.delegate = self;
     self.damagedAreasField.delegate = self;
     self.extentOfDamageField.delegate = self;
+    self.motorCarrierTypeField.delegate = self;
+    self.vehicleMovementField.delegate = self;
+    self.driverIsAuthorizedField.delegate = self;
+    self.inspectionUpToDateField.delegate = self;
+    self.specialPermitField.delegate = self;
+    self.GVWRGCWRField.delegate = self;
+    self.configurationField.delegate = self;
+    self.cargoBodyTypeField.delegate = self;
+    self.hazMatInvolvedField.delegate = self;
+    self.placardDisplayedField.delegate = self;
+    self.hazMatReleasedField.delegate = self;
 }
 
 - (void)loadCollections {
     self.collections = [[NSMutableDictionary alloc] init];
     
-    NSArray *collectionNames = @[@"bodyTypes", @"specialFunctions", @"emergencyUses", @"postedSpeeds", @"directionsOfTravel", @"trafficwayDescriptions", @"totalLanesCategories", @"totalLanes", @"roadwayHorizontalAlignments", @"roadwayGrades", @"TCDWorking", @"TCDTypes", @"actions", @"initialContactPoints", @"damagedAreas", @"extentOfDamages", @"harmfulEvents", @"harmfulEventCategories", @"hitAndRun", @"towedBy", @"schoolBusRelated", @"vehicleCircumstances"];
+    NSArray *collectionNames = @[@"bodyTypes", @"specialFunctions", @"emergencyUses", @"postedSpeeds", @"directionsOfTravel", @"trafficwayDescriptions", @"totalLanesCategories", @"totalLanes", @"roadwayHorizontalAlignments", @"roadwayGrades", @"TCDWorking", @"TCDTypes", @"actions", @"initialContactPoints", @"damagedAreas", @"extentOfDamages", @"harmfulEvents", @"harmfulEventCategories", @"hitAndRun", @"towedBy", @"schoolBusRelated", @"vehicleCircumstances", @"motorCarrierTypes", @"vehicleMovements", @"driverIsAuthorized", @"inspectionUpToDate", @"specialPermits", @"GVWRGCWR", @"configurations", @"cargoBodyTypes", @"hazMatInvolved", @"placardDisplayed", @"hazMatReleased"];
     
     NSMutableArray *collectionsManagers = [[NSMutableArray alloc] init];
     int i = 0;
@@ -99,33 +156,98 @@
 - (void)receivedCollection:(NSArray *)collection withName:(NSString *)collectionName {
     [self.collections setObject:collection forKey:collectionName];
     
-    // NSDictionary *personDictionary = @{@"typeCategoryKey" : self.personTypeCategoryKey, @"typeKey" : self.personTypeKey, @"genderKey" : self.genderKey, @"licenseTypeKey" : self.licenseTypeKey, @"organDonorKey" : self.organDonorKey,
-    //NSArray *collectionNames = @[@"personTypeCategories", @"personTypes", @"driverLicenseTypes", @"genders", @"organDonor", @"vehicles", @"vehicleTypes"];
-    
-    //NSLog(@"Received Collection %@ %@", collectionName, collection);
-    
-    /*if (self.editingPerson != nil) {
-        if ([collectionName isEqualToString:@"personTypeCategories"]) {
-            [self loadDefaultForCollection:collectionName toField:self.personTypeCategoryField withKey:@"PersonTypeCategoryID" defaultValue:self.editingPerson.typeCategoryKey];
-        } else if ([collectionName isEqualToString:@"personTypes"]) {
-            //self.personTypeField.text = [collection objectAtIndex:[self.personTypeKey longLongValue]];
-            [self loadDefaultForCollection:collectionName toField:self.personTypeField withKey:@"PersonTypeID" defaultValue:[NSString stringWithFormat:@"%ld", (long)self.editingPerson.typeKey]];
-        } else if ([collectionName isEqualToString:@"driverLicenseTypes"]) {
-            //self.licenseTypeField.text = [collection objectAtIndex:[self.licenseTypeKey longLongValue]];
-            [self loadDefaultForCollection:collectionName toField:self.licenseTypeField withKey:@"DriverLicenseTypeID" defaultValue:self.editingPerson.licenseTypeKey];
-        } else if ([collectionName isEqualToString:@"genders"]) {
-            //self.genderField.text = [collection objectAtIndex:[self.genderKey longLongValue]];
-            [self loadDefaultForCollection:collectionName toField:self.genderField withKey:@"GenderID" defaultValue:self.editingPerson.genderKey];
-        } else if ([collectionName isEqualToString:@"organDonor"]) {
-            //self.organDonorField.text = [collection objectAtIndex:[self.organDonorKey longLongValue]];
-            [self loadDefaultForCollection:collectionName toField:self.organDonorField withKey:@"OrganDonorID" defaultValue:self.editingPerson.organDonorKey];
-        }
-    }*/
-    
     NSLog(@"Received Collection: %@ (%lu elements)", collectionName, (unsigned long)[collection count]);
+    
+    if (self.editingVehicle != nil) {
+        if ([collectionName isEqualToString:@"bodyTypes"]) {
+            [self loadDefaultForCollection:collectionName toField:self.bodyTypeField withKey:@"BodyTypeID" defaultValue:self.editingVehicle.bodyTypeKey];
+        } else if ([collectionName isEqualToString:@"directionsOfTravel"]) {
+            [self loadDefaultForCollection:collectionName toField:self.directionOfTravelField withKey:@"DirectionOfTravelID" defaultValue:self.editingVehicle.directionOfTravelKey];
+        } else if ([collectionName isEqualToString:@"specialFunctions"]) {
+            [self loadDefaultForCollection:collectionName toField:self.specialFunctionField withKey:@"SpecialFunctionID" defaultValue:self.editingVehicle.specialFunctionKey];
+        } else if ([collectionName isEqualToString:@"emergencyUses"]) {
+            [self loadDefaultForCollection:collectionName toField:self.emergencyUseField withKey:@"EmergencyUseID" defaultValue:self.editingVehicle.emergencyUseKey];
+        } else if ([collectionName isEqualToString:@"postedSpeeds"]) {
+            [self loadDefaultForCollection:collectionName toField:self.statutorySpeedField withKey:@"PostedSpeedID" defaultValue:self.editingVehicle.statutorySpeedKey];
+            [self loadDefaultForCollection:collectionName toField:self.postedSpeedField withKey:@"PostedSpeedID" defaultValue:self.editingVehicle.postedSpeedKey];
+        } else if ([collectionName isEqualToString:@"actions"]) {
+            [self loadDefaultForCollection:collectionName toField:self.actionField withKey:@"ActionID" defaultValue:self.editingVehicle.actionKey];
+        } else if ([collectionName isEqualToString:@"trafficwayDescriptions"]) {
+            [self loadDefaultForCollection:collectionName toField:self.trafficwayDescriptionField withKey:@"TrafficwayDescriptionID" defaultValue:self.editingVehicle.trafficwayDescriptionKey];
+        } else if ([collectionName isEqualToString:@"roadwayHorizontalAlignments"]) {
+            [self loadDefaultForCollection:collectionName toField:self.roadwayHorizontalAlignmentField withKey:@"RoadwayHorizontalAlignmentID" defaultValue:self.editingVehicle.roadwayHorizontalAlignmentKey];
+        } else if ([collectionName isEqualToString:@"roadwayGrades"]) {
+            [self loadDefaultForCollection:collectionName toField:self.roadwayGradeField withKey:@"RoadwayGradeID" defaultValue:self.editingVehicle.roadwayGradeKey];
+        } else if ([collectionName isEqualToString:@"totalLanesCategories"]) {
+            [self loadDefaultForCollection:collectionName toField:self.totalLaneCategoryField withKey:@"TotalLanesCategoryID" defaultValue:self.editingVehicle.totalLaneCategoryKey];
+        } else if ([collectionName isEqualToString:@"totalLanes"]) {
+            [self loadDefaultForCollection:collectionName toField:self.totalLaneField withKey:@"TotalLanesID" defaultValue:self.editingVehicle.totalLaneKey];
+        } else if ([collectionName isEqualToString:@"TCDTypes"]) {
+            [self loadDefaultForCollection:collectionName toField:self.TCDTypeField withKey:@"TCDTypeID" defaultValue:self.editingVehicle.TCDTypeKey];
+        } else if ([collectionName isEqualToString:@"TCDWorking"]) {
+            [self loadDefaultForCollection:collectionName toField:self.TCDWorkingField withKey:@"TCDWorkingID" defaultValue:self.editingVehicle.TCDWorkingKey];
+        } else if ([collectionName isEqualToString:@"harmfulEventCategories"]) {
+            NSLog(@"harmfulEventCategories Key: %@", self.editingVehicle.harmfulEventCategory1Key);
+            [self loadDefaultForCollection:collectionName toField:self.harmfulEventCategory1Field withKey:@"HarmfulEventCatID" defaultValue:self.editingVehicle.harmfulEventCategory1Key];
+            [self loadDefaultForCollection:collectionName toField:self.harmfulEventCategory2Field withKey:@"HarmfulEventCatID" defaultValue:self.editingVehicle.harmfulEventCategory2Key];
+            [self loadDefaultForCollection:collectionName toField:self.harmfulEventCategory3Field withKey:@"HarmfulEventCatID" defaultValue:self.editingVehicle.harmfulEventCategory3Key];
+            [self loadDefaultForCollection:collectionName toField:self.harmfulEventCategory4Field withKey:@"HarmfulEventCatID" defaultValue:self.editingVehicle.harmfulEventCategory4Key];
+        } else if ([collectionName isEqualToString:@"harmfulEvents"]) {
+            NSLog(@"harmfulEvents Key: %@", self.editingVehicle.harmfulEvent4Key);
+            [self loadDefaultForCollection:collectionName toField:self.harmfulEvent1Field withKey:@"HarmfulEventID" defaultValue:self.editingVehicle.harmfulEvent1Key];
+            [self loadDefaultForCollection:collectionName toField:self.harmfulEvent2Field withKey:@"HarmfulEventID" defaultValue:self.editingVehicle.harmfulEvent2Key];
+            [self loadDefaultForCollection:collectionName toField:self.harmfulEvent3Field withKey:@"HarmfulEventID" defaultValue:self.editingVehicle.harmfulEvent3Key];
+            [self loadDefaultForCollection:collectionName toField:self.harmfulEvent4Field withKey:@"HarmfulEventID" defaultValue:self.editingVehicle.harmfulEvent4Key];
+        } else if ([collectionName isEqualToString:@"schoolBusRelated"]) {
+            [self loadDefaultForCollection:collectionName toField:self.busUseField withKey:@"SchoolBusRelatedID" defaultValue:self.editingVehicle.busUseKey];
+        } else if ([collectionName isEqualToString:@"hitAndRun"]) {
+            [self loadDefaultForCollection:collectionName toField:self.hitAndRunField withKey:@"HitAndRunID" defaultValue:self.editingVehicle.hitAndRunKey];
+        } else if ([collectionName isEqualToString:@"towedBy"]) {
+            [self loadDefaultForCollection:collectionName toField:self.towedByField withKey:@"TowedByID" defaultValue:self.editingVehicle.towedByKey];
+        } else if ([collectionName isEqualToString:@"vehicleCircumstances"]) {
+            [self loadDefaultForCollection:collectionName toField:self.vehicleCircumstance1Field withKey:@"VehicleCircumstanceID" defaultValue:self.editingVehicle.vehicleCircumstance1Key];
+            [self loadDefaultForCollection:collectionName toField:self.vehicleCircumstance2Field withKey:@"VehicleCircumstanceID" defaultValue:self.editingVehicle.vehicleCircumstance2Key];
+        } else if ([collectionName isEqualToString:@"initialContactPoints"]) {
+            [self loadDefaultForCollection:collectionName toField:self.initialContactPointField withKey:@"InitialContactPointID" defaultValue:self.editingVehicle.initialContactPointKey];
+        } else if ([collectionName isEqualToString:@"damagedAreas"]) {
+            self.damagedAreasField.text = [NSString stringWithFormat:NSLocalizedString(@"multilist.selected", nil), [self.editingVehicle.damagedAreas count]];
+        } else if ([collectionName isEqualToString:@"extentOfDamages"]) {
+            [self loadDefaultForCollection:collectionName toField:self.extentOfDamageField withKey:@"ExtentOfDamageID" defaultValue:self.editingVehicle.extentOfDamageKey];
+        } else if ([collectionName isEqualToString:@"motorCarrierTypes"]) {
+            [self loadDefaultForCollection:collectionName toField:self.motorCarrierTypeField withKey:@"MotorCarrierTypeID" defaultValue:self.editingVehicle.motorCarrierTypeKey];
+        } else if ([collectionName isEqualToString:@"vehicleMovements"]) {
+            [self loadDefaultForCollection:collectionName toField:self.vehicleMovementField withKey:@"VehicleMovementID" defaultValue:self.editingVehicle.vehicleMovementKey];
+        } else if ([collectionName isEqualToString:@"driverIsAuthorized"]) {
+            [self loadDefaultForCollection:collectionName toField:self.driverIsAuthorizedField withKey:@"DriverIsAuthorizedID" defaultValue:self.editingVehicle.driverIsAuthorizedKey];
+        } else if ([collectionName isEqualToString:@"inspectionUpToDate"]) {
+            [self loadDefaultForCollection:collectionName toField:self.inspectionUpToDateField withKey:@"InspectionUpToDateID" defaultValue:self.editingVehicle.inspectionUpToDateKey];
+        } else if ([collectionName isEqualToString:@"specialPermits"]) {
+            [self loadDefaultForCollection:collectionName toField:self.specialPermitField withKey:@"SpecialPermitID" defaultValue:self.editingVehicle.specialPermitKey];
+        } else if ([collectionName isEqualToString:@"GVWRGCWR"]) {
+            [self loadDefaultForCollection:collectionName toField:self.GVWRGCWRField withKey:@"GVWRGCWRID" defaultValue:self.editingVehicle.GVWRGCWRKey];
+        } else if ([collectionName isEqualToString:@"configurations"]) {
+            [self loadDefaultForCollection:collectionName toField:self.configurationField withKey:@"ConfigurationID" defaultValue:self.editingVehicle.configurationKey];
+        } else if ([collectionName isEqualToString:@"cargoBodyTypes"]) {
+            [self loadDefaultForCollection:collectionName toField:self.cargoBodyTypeField withKey:@"CargoBodyTypeID" defaultValue:self.editingVehicle.cargoBodyTypeKey];
+        } else if ([collectionName isEqualToString:@"hazMatInvolved"]) {
+            [self loadDefaultForCollection:collectionName toField:self.hazMatInvolvedField withKey:@"HazMatInvolvedID" defaultValue:self.editingVehicle.hazMatInvolvedKey];
+        } else if ([collectionName isEqualToString:@"placardDisplayed"]) {
+            [self loadDefaultForCollection:collectionName toField:self.placardDisplayedField withKey:@"PlacardDisplayedID" defaultValue:self.editingVehicle.placardDisplayedKey];
+        } else if ([collectionName isEqualToString:@"hazMatReleased"]) {
+            [self loadDefaultForCollection:collectionName toField:self.hazMatReleasedField withKey:@"HazMatReleasedID" defaultValue:self.editingVehicle.hazMatReleasedKey];
+        }
+    }
+    
+    //NSLog(@"Received Collection: %@ (%lu elements)", collectionName, (unsigned long)[collection count]);
 }
 
 - (void)loadDefaultForCollection:(NSString*)collectionName toField:(UITextField*)field withKey:(NSString*)key defaultValue:(NSString*)value {
+    
+    if ([value isEqualToString:@"-1"]) {
+        NSLog(@"Ignoring %@, value: %@", key, value);
+        return;
+    }
+    
     NSArray *collection = [self.collections objectForKey:collectionName];
     
     NSLog(@"Loading default for %@, value: %@", key, value);
@@ -210,13 +332,46 @@
     } else if (textField == self.extentOfDamageField) {
         [self showCollection:@"extentOfDamages" withIDColumn:@"ExtentOfDamageID" withField:textField];
         return NO;
+    } else if (textField == self.motorCarrierTypeField) {
+        [self showCollection:@"motorCarrierTypes" withIDColumn:@"MotorCarrierTypeID" withField:textField];
+        return NO;
+    } else if (textField == self.vehicleMovementField) {
+        [self showCollection:@"vehicleMovements" withIDColumn:@"VehicleMovementID" withField:textField];
+        return NO;
+    } else if (textField == self.driverIsAuthorizedField) {
+        [self showCollection:@"driverIsAuthorized" withIDColumn:@"DriverIsAuthorizedID" withField:textField];
+        return NO;
+    } else if (textField == self.inspectionUpToDateField) {
+        [self showCollection:@"inspectionUpToDate" withIDColumn:@"InspectionUpToDateID" withField:textField];
+        return NO;
+    } else if (textField == self.specialPermitField) {
+        [self showCollection:@"specialPermits" withIDColumn:@"SpecialPermitID" withField:textField];
+        return NO;
+    } else if (textField == self.GVWRGCWRField) {
+        [self showCollection:@"GVWRGCWR" withIDColumn:@"GVWRGCWRID" withField:textField];
+        return NO;
+    } else if (textField == self.configurationField) {
+        [self showCollection:@"configurations" withIDColumn:@"ConfigurationID" withField:textField];
+        return NO;
+    } else if (textField == self.cargoBodyTypeField) {
+        [self showCollection:@"cargoBodyTypes" withIDColumn:@"CargoBodyTypeID" withField:textField];
+        return NO;
+    } else if (textField == self.hazMatInvolvedField) {
+        [self showCollection:@"hazMatInvolved" withIDColumn:@"HazMatInvolvedID" withField:textField];
+        return NO;
+    } else if (textField == self.placardDisplayedField) {
+        [self showCollection:@"placardDisplayed" withIDColumn:@"PlacardDisplayedID" withField:textField];
+        return NO;
+    } else if (textField == self.hazMatReleasedField) {
+        [self showCollection:@"hazMatReleased" withIDColumn:@"HazMatReleasedID" withField:textField];
+        return NO;
     }
     
     return YES;
 }
 
-- (void)keysSelected:(NSArray *)keys withIdentifier:(NSString *)identifier {
-    if ([identifier isEqualToString:@"totalLanesCategories"]) {
+- (void)keysSelected:(NSArray *)keys withIdentifier:(NSString *)identifier withOutField:(UITextField *)outField {
+    /*if ([identifier isEqualToString:@"totalLanesCategories"]) {
         self.totalLaneCategoryKey = keys[0];
         self.totalLaneField.text = @"";
     } if ([identifier isEqualToString:@"harmfulEventCategories"]) {
@@ -227,15 +382,94 @@
         
         /*self.totalLaneCategoryKey = keys[0];
         self.totalLaneField.text = @"";*/
-    } if ([identifier isEqualToString:@"damagedAreas"]) {
+    /*} if ([identifier isEqualToString:@"damagedAreas"]) {
         [self.editingVehicle setDamagedAreas:[NSMutableArray arrayWithArray:keys]];
+    }*/
+    
+    if (outField == self.bodyTypeField) {
+        self.editingVehicle.bodyTypeKey = keys[0];
+    } else if (outField == self.directionOfTravelField) {
+        self.editingVehicle.directionOfTravelKey = keys[0];
+    } else if (outField == self.specialFunctionField) {
+        self.editingVehicle.specialFunctionKey = keys[0];
+    } else if (outField == self.emergencyUseField) {
+        self.editingVehicle.emergencyUseKey = keys[0];
+    } else if (outField == self.statutorySpeedField) {
+        self.editingVehicle.statutorySpeedKey = keys[0];
+    } else if (outField == self.postedSpeedField) {
+        self.editingVehicle.postedSpeedKey = keys[0];
+    } else if (outField == self.actionField) {
+        self.editingVehicle.actionKey = keys[0];
+    } else if (outField == self.trafficwayDescriptionField) {
+        self.editingVehicle.trafficwayDescriptionKey = keys[0];
+    } else if (outField == self.roadwayHorizontalAlignmentField) {
+        self.editingVehicle.roadwayHorizontalAlignmentKey = keys[0];
+    } else if (outField == self.roadwayGradeField) {
+        self.editingVehicle.roadwayGradeKey = keys[0];
+    } else if (outField == self.totalLaneCategoryField) {
+        self.editingVehicle.totalLaneCategoryKey = keys[0];
+        self.totalLaneField.text = @"";
+        self.totalLaneCategoryKey = keys[0];
+    } else if (outField == self.totalLaneField) {
+        self.editingVehicle.totalLaneKey = keys[0];
+    } else if (outField == self.TCDTypeField) {
+        self.editingVehicle.TCDTypeKey = keys[0];
+    } else if (outField == self.TCDWorkingField) {
+        self.editingVehicle.TCDWorkingKey = keys[0];
+    } else if ([self.harmfulEventCategories containsObject:outField]) {
+        NSInteger cat = [self getHarmfulEventCategoryKeyFor:outField];
+        
+        [self.harmfulEventCategoryKeys replaceObjectAtIndex:cat withObject:keys[0]];
+        ((UITextField*)[self.harmfulEvents objectAtIndex:cat]).text = @"";
+    } else if ([self.harmfulEvents containsObject:outField]) {
+        NSInteger cat = [self getHarmfulEventKeyFor:outField];
+        
+        [self.harmfulEventKeys replaceObjectAtIndex:cat withObject:keys[0]];
+    } else if (outField == self.busUseField) {
+        self.editingVehicle.busUseKey = keys[0];
+    } else if (outField == self.hitAndRunField) {
+        self.editingVehicle.hitAndRunKey = keys[0];
+    } else if (outField == self.towedByField) {
+        self.editingVehicle.towedByKey = keys[0];
+    } else if (outField == self.vehicleCircumstance1Field) {
+        self.editingVehicle.vehicleCircumstance1Key = keys[0];
+    } else if (outField == self.vehicleCircumstance2Field) {
+        self.editingVehicle.vehicleCircumstance2Key = keys[0];
+    } else if (outField == self.initialContactPointField) {
+        self.editingVehicle.initialContactPointKey = keys[0];
+    } else if (outField == self.damagedAreasField) {
+        [self.editingVehicle setDamagedAreas:[NSMutableArray arrayWithArray:keys]];
+    } else if (outField == self.extentOfDamageField) {
+        self.editingVehicle.extentOfDamageKey = keys[0];
+    } else if (outField == self.motorCarrierTypeField) {
+        self.editingVehicle.motorCarrierTypeKey = keys[0];
+    } else if (outField == self.vehicleMovementField) {
+        self.editingVehicle.vehicleMovementKey = keys[0];
+    } else if (outField == self.driverIsAuthorizedField) {
+        self.editingVehicle.driverIsAuthorizedKey = keys[0];
+    } else if (outField == self.inspectionUpToDateField) {
+        self.editingVehicle.inspectionUpToDateKey = keys[0];
+    } else if (outField == self.specialPermitField) {
+        self.editingVehicle.specialPermitKey = keys[0];
+    } else if (outField == self.GVWRGCWRField) {
+        self.editingVehicle.GVWRGCWRKey = keys[0];
+    } else if (outField == self.configurationField) {
+        self.editingVehicle.configurationKey = keys[0];
+    } else if (outField == self.cargoBodyTypeField) {
+        self.editingVehicle.cargoBodyTypeKey = keys[0];
+    } else if (outField == self.hazMatInvolvedField) {
+        self.editingVehicle.hazMatInvolvedKey = keys[0];
+    } else if (outField == self.placardDisplayedField) {
+        self.editingVehicle.placardDisplayedKey = keys[0];
+    } else if (outField == self.hazMatReleasedField) {
+        self.editingVehicle.hazMatReleasedKey = keys[0];
     }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     if (self.navigationBar != nil) {
         [self.navigationBar setFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
-        [(UIScrollView *)self.view setContentSize:CGSizeMake(700,1200)];
+        [(UIScrollView *)self.view setContentSize:CGSizeMake(700,1550)];
     }
     
     if (self.editingVehicle != nil) {
@@ -243,6 +477,11 @@
         self.vehicleYearField.text = self.editingVehicle.year;
         self.vehicleMakeField.text = self.editingVehicle.make;
         self.vehicleModelField.text = self.editingVehicle.model;
+        
+        self.statutorySpeedMPHField.text = self.editingVehicle.statutorySpeedMPH;
+        self.postedSpeedMPHField.text = self.editingVehicle.postedSpeedMPH ;
+        self.totalLanesQuantityField.text = self.editingVehicle.totalLanesQuantity;
+        self.totalAxlesField.text = self.editingVehicle.totalAxles;
     }
 }
 

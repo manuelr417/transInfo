@@ -151,7 +151,7 @@
     return YES;
 }
 
-- (void)keysSelected:(NSArray *)keys withIdentifier:(NSString *)identifier {
+- (void)keysSelected:(NSArray *)keys withIdentifier:(NSString *)identifier withOutField:(UITextField *)outField {
     NSLog(@"Recibiendo... %@ (%@)", identifier, keys);
     if ([identifier isEqualToString:@"harmfulEventCategories"]) {
         self.harmfulEventCategoryKey = keys[0];

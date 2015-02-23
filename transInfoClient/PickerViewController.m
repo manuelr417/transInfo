@@ -106,7 +106,7 @@
     }
     
     if (self.isMultipleChoice && [self.selectedElements count] > 1) {
-        self.outField.text = [NSString stringWithFormat:@"(%lu seleccionados)", (unsigned long)[self.selectedElements count]];
+        self.outField.text = [NSString stringWithFormat:NSLocalizedString(@"multilist.selected", nil), (unsigned long)[self.selectedElements count]];
     } else {
         if ([self.selectedElements count] == 0) {
             self.outField.text = @"";
@@ -117,7 +117,7 @@
     
     if (self.delegate != nil) {
         NSLog(@"Sending Keys Selected...");
-        [self.delegate keysSelected:self.selectedElements withIdentifier:self.identifier];
+        [self.delegate keysSelected:self.selectedElements withIdentifier:self.identifier withOutField:self.outField];
     }
     
     if (!self.isMultipleChoice) {

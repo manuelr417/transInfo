@@ -43,3 +43,5 @@
 "report.fourth.no-total-lanes-category.title" = "Choose a Lane Category";
 
 "report.fourth.vehicle-extended" = "Vehicle Extended Information";
+
+"multilist.selected" = "(%ld selected)";

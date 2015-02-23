@@ -56,33 +56,26 @@
 @property (weak, nonatomic) IBOutlet UITextField *damagedAreasField;
 @property (weak, nonatomic) IBOutlet UITextField *extentOfDamageField;
 
+@property (weak, nonatomic) IBOutlet UITextField *motorCarrierTypeField;
+@property (weak, nonatomic) IBOutlet UITextField *vehicleMovementField;
+@property (weak, nonatomic) IBOutlet UITextField *driverIsAuthorizedField;
+
+@property (weak, nonatomic) IBOutlet UITextField *inspectionUpToDateField;
+@property (weak, nonatomic) IBOutlet UITextField *specialPermitField;
+@property (weak, nonatomic) IBOutlet UITextField *GVWRGCWRField;
+
+@property (weak, nonatomic) IBOutlet UITextField *totalAxlesField;
+@property (weak, nonatomic) IBOutlet UITextField *configurationField;
+@property (weak, nonatomic) IBOutlet UITextField *cargoBodyTypeField;
+@property (weak, nonatomic) IBOutlet UITextField *hazMatInvolvedField;
+@property (weak, nonatomic) IBOutlet UITextField *placardDisplayedField;
+@property (weak, nonatomic) IBOutlet UITextField *hazMatReleasedField;
+
 @property NSString *totalLaneCategoryKey;
+@property NSMutableArray *harmfulEventKeys;
 @property NSMutableArray *harmfulEventCategoryKeys;
 
 @property UITextField *latestField;
-
-/*
- GET     /bodyTypes                  controllers.Collections.getBodyTypes()
- GET     /specialFunctions           controllers.Collections.getSpecialFunctions()
- GET     /emergencyUses              controllers.Collections.getEmergencyUses()
- GET     /postedSpeeds               controllers.Collections.getPostedSpeeds()
- GET     /directionsOfTravel         controllers.Collections.getDirectionsOfTravel()
- GET     /trafficwayDescriptions     controllers.Collections.getTrafficwayDescriptions()
- GET     /totalLanesCategories       controllers.Collections.getTotalLanesCategories()
- GET     /totalLanes                 controllers.Collections.getTotalLanes()
- GET     /roadwayHorizontalAlignments controllers.Collections.getRoadwayHorizontalAlignments()
- GET     /roadwayGrades              controllers.Collections.getRoadwayGrades()
- GET     /TCDWorking                 controllers.Collections.getTCDWorking()
- GET     /TCDTypes                   controllers.Collections.getTCDTypes()
- GET     /actions                    controllers.Collections.getActions()
- GET     /initialContactPoints       controllers.Collections.getInitialContactPoints()
- GET     /damagedAreas               controllers.Collections.getDamagedAreas()
- GET     /extentOfDamages            controllers.Collections.getExtentOfDamages()
- #GET     /harmfulEvents
- #GET     /harmfulEventCategories
- GET     /hitAndRun                  controllers.Collections.getHitAndRun()
- GET     /towedBy                    controllers.Collections.getTowedBy()
- GET     /vehicleCircumstances       controllers.Collections.getVehicleCircumstances()*/
 
 @property NSString *trash;
 @property UIView *activeField;

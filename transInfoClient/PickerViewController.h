@@ -27,5 +27,5 @@
 @end
 
 @interface NSObject(PickerViewControllerDelegateMethods)
-- (void)keysSelected:(NSArray*)keys withIdentifier:(NSString*)identifier;
+- (void)keysSelected:(NSArray*)keys withIdentifier:(NSString*)identifier withOutField:(UITextField*)outField;
 @end
