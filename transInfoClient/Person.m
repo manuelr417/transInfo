@@ -26,5 +26,6 @@
 @synthesize zipCode;
 @synthesize phoneNumber;
 @synthesize uuid;
+@synthesize vehicleUuid;
 
 @end

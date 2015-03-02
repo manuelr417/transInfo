@@ -23,6 +23,7 @@
 
 @property (nonatomic, assign, getter = isLoading) BOOL loading;
 
+@property (nonatomic, assign, getter = isExpandable) BOOL expandable;
 @property (nonatomic, readonly) UIExpansionStyle expansionStyle;
 - (void)setExpansionStyle:(UIExpansionStyle)expansionStyle animated:(BOOL)animated;
 

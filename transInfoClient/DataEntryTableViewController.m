@@ -62,13 +62,29 @@
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"updateVehicles" object:nil userInfo:nil];
     } else if ([[notification name] isEqualToString:@"addPerson"]) {
-        NSString *personType = [dict objectForKey:@"typeKey"];
-        NSString *personUUID = [dict objectForKey:@"uuid"];
+        Person *person = [dict objectForKey:@"Person"];
+        //NSString *personType = [dict objectForKey:@"typeKey"];
+        NSString *personType = [NSString stringWithFormat:@"%ld", (long)person.typeKey];
+        NSString *personUUID = person.uuid;
+        BOOL pedestrianAdded = NO;
+        
+        NSLog(@"Person UUID: %@", person.uuid);
         
         if (personUUID != nil) {
             for (Person *p in crashSummary.pedestrians) {
                 if ([p.uuid isEqualToString:personUUID]) {
-                    [crashSummary.pedestrians removeObject:p];
+                    NSUInteger index = [crashSummary.pedestrians indexOfObject:p];
+                    
+                    NSLog(@"Found at %lu, replacing or deleting!", (unsigned long)index);
+                    
+                    if ([personType isEqualToString:@"3"] || [personType isEqualToString:@"7"]) {
+                        [crashSummary.pedestrians replaceObjectAtIndex:index withObject:person];
+                    } else {
+                        [crashSummary.pedestrians removeObjectAtIndex:index];
+                    }
+                    
+                    pedestrianAdded = YES;
+                    
                     break;
                 }
             }
@@ -76,7 +92,13 @@
             for (Vehicle *v in crashSummary.vehicles) {
                 for (Person *p in v.persons) {
                     if ([p.uuid isEqualToString:personUUID]) {
-                        [v.persons removeObject:p];
+                        NSUInteger index = [v.persons indexOfObject:p];
+                        
+                        NSLog(@"Found at %lu in vehicle %@, replacing!", (unsigned long)index, v.uuid);
+                        
+                        //person.vehicleUuid = v.uuid;
+                        //[v.persons replaceObjectAtIndex:index withObject:person];
+                        [v.persons removeObjectAtIndex:index];
                         break;
                     }
                 }
@@ -84,11 +106,16 @@
         }
         
         if ([personType isEqualToString:@"3"] || [personType isEqualToString:@"7"]) {
-            [crashSummary.pedestrians addObject:[self personFromDict:dict]];
+            if (!pedestrianAdded) {
+                person.uuid = [[NSUUID UUID] UUIDString];
+                [crashSummary.pedestrians addObject:person];
+            }
         } else {
             for (Vehicle *v in crashSummary.vehicles) {
                 if ([v.registrationPlate isEqualToString:[dict objectForKey:@"vehicleLicensePlate"]]) {
-                    [v addPerson:[self personFromDict:dict]];
+                    person.uuid = (personUUID != nil) ? personUUID : [[NSUUID UUID] UUIDString];
+                    person.vehicleUuid = v.uuid;
+                    [v addPerson:person];
                     
                     break;
                 }
@@ -96,6 +123,8 @@
         }
         
         [self.tableView reloadData];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"updatePersons" object:nil userInfo:nil];
     } else if ([[notification name] isEqualToString:@"requestVehicles"]) {
         NSDictionary *info = [NSDictionary dictionaryWithObjectsAndKeys:crashSummary.vehicles,@"vehicles", nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"getVehicles" object:nil userInfo:info];
@@ -181,10 +210,14 @@
         if (indexPath.row == 0) {
             [crashSummary.vehicles removeObjectAtIndex:indexPath.section];
             [self.tableView reloadData];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"updateVehicles" object:nil userInfo:nil];
         } else {
+            // TODO FIX THIS DELETE
             if (indexPath.row == crashSummary.vehicles.count) { // Borrar Persona
+                /*NSLog(@"Deleting person %ld", indexPath.row - 1);
                 [crashSummary.pedestrians removeObjectAtIndex:indexPath.row - 1];
-                [self.tableView reloadData];
+                [self.tableView reloadData];*/
             } else {
                 /*Vehicle *v = [self.vehicles objectAtIndex:indexPath.section];
                 [v.persons removeObjectAtIndex:indexPath.row - 1];
@@ -257,6 +290,18 @@
 
 - (UITableViewCell<UIExpandingTableViewCell> *)tableView:(SLExpandableTableView *)tableView expandingCellForSection:(NSInteger)section
 {
+    if (self.displayEmptyCell) {
+        PedestrianTableViewCell *cell = [[PedestrianTableViewCell alloc] init];
+        
+        cell.textLabel.text = @"There are no items to be shown in this list.";
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        
+        return cell;
+    } else {
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    }
+    
     CrashSummary *crashSummary = [CrashSummary sharedCrashSummary];
     
     if (section == crashSummary.vehicles.count && crashSummary.pedestrians.count > 0) {
@@ -276,6 +321,7 @@
         if (cell == nil) {
             NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CarViewCell" owner:self options:nil];
             cell = [nib objectAtIndex:0];
+            [cell setExpandable:YES];
         }
         
         Vehicle *vehicle = [crashSummary.vehicles objectAtIndex:section];
@@ -313,8 +359,14 @@
     //NSLog(@"%@", crashSummary.pedestrians);
     
     if (crashSummary.pedestrians.count > 0) {
+        self.displayEmptyCell = NO;
         return [crashSummary.vehicles count] + 1;
     } else {
+        self.displayEmptyCell = ([crashSummary.vehicles count] == 0);
+        if (self.displayEmptyCell) {
+            return 1;
+        }
+        
         return [crashSummary.vehicles count];
     }
 }

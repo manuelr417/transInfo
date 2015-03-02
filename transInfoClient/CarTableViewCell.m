@@ -15,15 +15,22 @@
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
     
-    self.expandImageView = [[UIImageView alloc]initWithFrame:CGRectMake(screenWidth - 35, 7, 30, 30)];
-    self.expandImageView.image = [UIImage imageNamed:@"Arrow Right"];
-    [self addSubview:self.expandImageView];
+    //if (self.isExpandable) {
+        self.expandImageView = [[UIImageView alloc]initWithFrame:CGRectMake(screenWidth - 35, 7, 30, 30)];
+        self.expandImageView.image = [UIImage imageNamed:@"Arrow Right"];
+        [self addSubview:self.expandImageView];
+    //}
 }
 
-- (void)setLoading:(BOOL)loading
-{
+- (void)setLoading:(BOOL)loading {
     if (loading != _loading) {
         _loading = loading;
+    }
+}
+
+- (void)setExpandable:(BOOL)expandable {
+    if (expandable != _expandable) {
+        _expandable = expandable;
     }
 }
 

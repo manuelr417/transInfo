@@ -20,6 +20,8 @@
 		D51FEBD819D9D9D200E9D39C /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D51FEBD719D9D9D200E9D39C /* SWRevealViewController.m */; };
 		D51FEBDB19D9F66900E9D39C /* SidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D51FEBDA19D9F66900E9D39C /* SidebarViewController.m */; };
 		D51FEBDF19E329C700E9D39C /* CrashSummary.m in Sources */ = {isa = PBXBuildFile; fileRef = D51FEBDE19E329C700E9D39C /* CrashSummary.m */; };
+		D522A0AB1AA414F300BE54B8 /* PersonsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D522A0AA1AA414F300BE54B8 /* PersonsTableViewController.m */; };
+		D522A0AE1AA496CB00BE54B8 /* PersonExtendedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D522A0AD1AA496CB00BE54B8 /* PersonExtendedViewController.m */; };
 		D528523A1959CBEB00806467 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D52852391959CBEB00806467 /* Foundation.framework */; };
 		D528523C1959CBEB00806467 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D528523B1959CBEB00806467 /* CoreGraphics.framework */; };
 		D528523E1959CBEB00806467 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D528523D1959CBEB00806467 /* UIKit.framework */; };
@@ -92,7 +94,7 @@
 		D51999311A3555D000EF2F6D /* CarMembersTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarMembersTableViewCell.h; sourceTree = "<group>"; };
 		D51999321A3555D000EF2F6D /* CarMembersTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarMembersTableViewCell.m; sourceTree = "<group>"; };
 		D51999341A355B7B00EF2F6D /* DataEntryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataEntryTableViewController.h; sourceTree = "<group>"; };
-		D51999351A355B7B00EF2F6D /* DataEntryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataEntryTableViewController.m; sourceTree = "<group>"; };
+		D51999351A355B7B00EF2F6D /* DataEntryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataEntryTableViewController.m; sourceTree = "<group>"; wrapsLines = 0; };
 		D51999371A356AB900EF2F6D /* PedestrianViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PedestrianViewCell.xib; sourceTree = "<group>"; };
 		D51999391A356BD900EF2F6D /* PedestrianTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PedestrianTableViewCell.h; sourceTree = "<group>"; };
 		D519993A1A356BD900EF2F6D /* PedestrianTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PedestrianTableViewCell.m; sourceTree = "<group>"; };
@@ -106,6 +108,10 @@
 		D51FEBDA19D9F66900E9D39C /* SidebarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarViewController.m; sourceTree = "<group>"; };
 		D51FEBDD19E329C700E9D39C /* CrashSummary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrashSummary.h; sourceTree = "<group>"; };
 		D51FEBDE19E329C700E9D39C /* CrashSummary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrashSummary.m; sourceTree = "<group>"; };
+		D522A0A91AA414F300BE54B8 /* PersonsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonsTableViewController.h; sourceTree = "<group>"; };
+		D522A0AA1AA414F300BE54B8 /* PersonsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonsTableViewController.m; sourceTree = "<group>"; };
+		D522A0AC1AA496CB00BE54B8 /* PersonExtendedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonExtendedViewController.h; sourceTree = "<group>"; };
+		D522A0AD1AA496CB00BE54B8 /* PersonExtendedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonExtendedViewController.m; sourceTree = "<group>"; };
 		D52852361959CBEB00806467 /* transinfo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = transinfo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D52852391959CBEB00806467 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D528523B1959CBEB00806467 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -412,6 +418,10 @@
 				D5B947301A7633BE00E444DC /* VehiclesTableViewController.m */,
 				D5B947321A763A5100E444DC /* VehicleExtendedViewController.h */,
 				D5B947331A763A5100E444DC /* VehicleExtendedViewController.m */,
+				D522A0A91AA414F300BE54B8 /* PersonsTableViewController.h */,
+				D522A0AA1AA414F300BE54B8 /* PersonsTableViewController.m */,
+				D522A0AC1AA496CB00BE54B8 /* PersonExtendedViewController.h */,
+				D522A0AD1AA496CB00BE54B8 /* PersonExtendedViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -550,9 +560,11 @@
 				D5E8FBD119A689B400ED72EE /* Utilities.m in Sources */,
 				D552535E19D4702600D8AEB6 /* CollectionManager.m in Sources */,
 				D5DDB459196B47E80002F5EA /* CurrentLocationPin.m in Sources */,
+				D522A0AB1AA414F300BE54B8 /* PersonsTableViewController.m in Sources */,
 				D52C29EF19C0AB1300294FA0 /* UIDatePickerOKView.m in Sources */,
 				D5B947341A763A5100E444DC /* VehicleExtendedViewController.m in Sources */,
 				D52C29F219C1CA3B00294FA0 /* PickerViewController.m in Sources */,
+				D522A0AE1AA496CB00BE54B8 /* PersonExtendedViewController.m in Sources */,
 				D51FEBDB19D9F66900E9D39C /* SidebarViewController.m in Sources */,
 				D5DDB45C196B5A9D0002F5EA /* ReportFirstStepViewController.m in Sources */,
 				D5B947311A7633BE00E444DC /* VehiclesTableViewController.m in Sources */,

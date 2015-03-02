@@ -16,4 +16,6 @@
 
 @property UIPopoverController *popover;
 
+@property BOOL displayEmptyCell;
+
 @end

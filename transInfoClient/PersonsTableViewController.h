@@ -10,4 +10,10 @@
 
 @interface PersonsTableViewController : UITableViewController
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *sideBarButton;
+
+@property BOOL displayEmptyCell;
+
+@property NSMutableArray *persons;
+
 @end

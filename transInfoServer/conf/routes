@@ -74,6 +74,11 @@ GET     /hazMatInvolved             controllers.Collections.getHazMatInvolved()
 GET     /placardDisplayed           controllers.Collections.getPlacardDisplayed()
 GET     /hazMatReleased             controllers.Collections.getHazMatReleased()
 
+GET     /rows                       controllers.Collections.getRows()
+GET     /seats                      controllers.Collections.getSeats()
+GET     /seatingOthers              controllers.Collections.getSeatingOthers()
+
+
 # Authentication
 POST    /login                      controllers.Authentication.doLogin()
 

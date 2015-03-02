@@ -26,5 +26,6 @@
 @property NSString *zipCode;
 @property NSString *phoneNumber;
 @property NSString *uuid;
+@property NSString *vehicleUuid;
 
 @end

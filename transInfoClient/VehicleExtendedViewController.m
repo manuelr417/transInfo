@@ -23,7 +23,7 @@
 - (void)setEditingModeFor:(Vehicle*)vehicle {
     self.editingVehicle = vehicle;
     
-    self.navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
+    /*self.navigationBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
     
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"OK" style:UIBarButtonItemStyleDone target:nil action:nil];
     
@@ -34,10 +34,16 @@
     
     [self.navigationBar pushNavigationItem:item animated:NO];
     
-    [self.view addSubview:self.navigationBar];
+    [self.view addSubview:self.navigationBar];*/
 }
 
-- (IBAction)addButonAction:(id)sender {
+- (void)viewWillDisappear:(BOOL)animated {
+    NSLog(@"Pa fuera!");
+    [self saveChanges];
+}
+
+//- (IBAction)addButonAction:(id)sender {
+- (void)saveChanges {
     self.editingVehicle.statutorySpeedMPH = self.statutorySpeedMPHField.text;
     self.editingVehicle.postedSpeedMPH = self.postedSpeedMPHField.text;
     self.editingVehicle.totalLanesQuantity = self.totalLanesQuantityField.text;
@@ -73,7 +79,7 @@
         }
     }
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    //[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)viewDidLoad {
@@ -380,7 +386,7 @@
         [self.harmfulEventCategoryKeys replaceObjectAtIndex:cat withObject:keys[0]];
         ((UITextField*)[self.harmfulEvents objectAtIndex:cat]).text = @"";
         
-        /*self.totalLaneCategoryKey = keys[0];
+        self.totalLaneCategoryKey = keys[0];
         self.totalLaneField.text = @"";*/
     /*} if ([identifier isEqualToString:@"damagedAreas"]) {
         [self.editingVehicle setDamagedAreas:[NSMutableArray arrayWithArray:keys]];
@@ -467,10 +473,10 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    if (self.navigationBar != nil) {
-        [self.navigationBar setFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
-        [(UIScrollView *)self.view setContentSize:CGSizeMake(700,1550)];
-    }
+    //if (self.navigationBar != nil) {
+        //[self.navigationBar setFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
+        [(UIScrollView *)self.view setContentSize:CGSizeMake(700,1600)];
+    //}
     
     if (self.editingVehicle != nil) {
         self.vehicleLicensePlateField.text = self.editingVehicle.registrationPlate;
@@ -508,7 +514,7 @@
         if (isHarmfulEvent) {
             harmfulEventCategory = [self getHarmfulEventKeyFor:field];
             NSLog(@"Cat Key: %ld Actual Key: %@", (long)harmfulEventCategory, [self.harmfulEventCategoryKeys objectAtIndex:harmfulEventCategory]);
-            if ([[self.harmfulEventCategoryKeys objectAtIndex:harmfulEventCategory]  isEqual:@-1]) {
+            if ([[self.harmfulEventCategoryKeys objectAtIndex:harmfulEventCategory] isEqualToString:@"-1"]) {
                 [Utilities displayAlertWithMessage:NSLocalizedString(@"report.fourth.no-total-lanes-category.msg", nil) withTitle:NSLocalizedString(@"report.fourth.no-total-lanes-category.title", nil) ];
                 return;
             }

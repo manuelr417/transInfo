@@ -12,6 +12,7 @@
 #import "CrashSummary.h"
 #import "Vehicle.h"
 #import "VehicleExtendedViewController.h"
+#import "Utilities.h"
 
 @interface VehiclesTableViewController ()
 
@@ -36,12 +37,11 @@
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNotification:) name:@"updateVehicles" object:nil];
+    
+    //[Utilities displayAlertWithMessage:@"aja2" withTitle:@"aja2"];
 }
 
 - (void)receiveNotification:(NSNotification*)notification {
-    NSDictionary *dict = [notification userInfo];
-    CrashSummary *crashSummary = [CrashSummary sharedCrashSummary];
- 
     [self.tableView reloadData];
 }
 
@@ -58,17 +58,36 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     CrashSummary *crashSummary = [CrashSummary sharedCrashSummary];
+    
+    self.displayEmptyCell = ([crashSummary.vehicles count] == 0);
+    if (self.displayEmptyCell) {
+        return 1;
+    }
+    
     return [crashSummary.vehicles count];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.displayEmptyCell) {
+        UITableViewCell *cell = [[UITableViewCell alloc] init];
+        
+        cell.textLabel.text = @"There are no items to be shown in this list.";
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        
+        return cell;
+    } else {
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    }
+    
     static NSString *cellIdentifier = @"CarCell";
     
     CarTableViewCell *cell = (CarTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CarViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
+        
     }
     
     CrashSummary *crashSummary = [CrashSummary sharedCrashSummary];
@@ -80,20 +99,43 @@
     cell.carYear = vehicle.year;
     cell.registrationPlate = vehicle.registrationPlate;
     
+    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    [cell.expandImageView removeFromSuperview];
+    
     return cell;
 }
 
 
-- (BOOL)tableView:(UITableView*)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+/*- (BOOL)tableView:(UITableView*)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     CrashSummary *crashSummary = [CrashSummary sharedCrashSummary];
     
     if (crashSummary.pedestrians.count > 0 && indexPath.section == [crashSummary.vehicles count] && indexPath.row == 0) {
         return NO;
     }
     return YES;
+}*/
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.displayEmptyCell) {
+        return;
+    }
+    
+    [self performSegueWithIdentifier:@"EditVehicleSegue" sender:self];
 }
 
-- (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"EditVehicleSegue"]) {
+        VehicleExtendedViewController *vehicleExtendedController = segue.destinationViewController;
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        
+        CrashSummary *crashSummary = [CrashSummary sharedCrashSummary];
+        Vehicle *vehicle = [crashSummary.vehicles objectAtIndex:indexPath.section];
+        
+        [vehicleExtendedController setEditingModeFor:vehicle];
+    }
+}
+
+/*- (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewRowAction *updateAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:NSLocalizedString(@"report.third.edit", nil) handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
         CrashSummary *crashSummary = [CrashSummary sharedCrashSummary];
         
@@ -108,51 +150,14 @@
                                           
         [self.tableView setEditing:NO];
         
-        //NSLog(@"Update! %ld", (long)indexPath.row);
-        
-        /*if (indexPath.row > 0) {
-            NewPersonController *newPersonView = [self.storyboard instantiateViewControllerWithIdentifier:@"newPersonView"];
-            
-            if (crashSummary.pedestrians.count > 0 && indexPath.section == [crashSummary.vehicles count]) {
-                Person *person = [crashSummary.pedestrians objectAtIndex:indexPath.row - 1];
-                
-                [newPersonView setEditingModeFor:person forRegistrationPlate:nil];
-            } else {
-                Vehicle *vehicle = [crashSummary.vehicles objectAtIndex:indexPath.section];
-                Person *person = [[vehicle persons] objectAtIndex:indexPath.row - 1];
-                
-                [newPersonView setEditingModeFor:person forRegistrationPlate:vehicle.registrationPlate];
-            }
-            
-            self.popover = [[UIPopoverController alloc] initWithContentViewController:newPersonView];
-            
-            CGRect aFrame = [self.tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section]];
-            [self.popover presentPopoverFromRect:[self.tableView convertRect:aFrame toView:self.view] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-        } else {
-            NewVehicleController *newVehicleController = [self.storyboard instantiateViewControllerWithIdentifier:@"newVehicleView"];
-            Vehicle *vehicle = [crashSummary.vehicles objectAtIndex:indexPath.section];
-            [newVehicleController setEditingModeFor:vehicle];
-            
-            self.popover = [[UIPopoverController alloc] initWithContentViewController:newVehicleController];
-            
-            CGRect aFrame = [self.tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section]];
-            [self.popover presentPopoverFromRect:[self.tableView convertRect:aFrame toView:self.view] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-        }
-        
-        [self.tableView setEditing:NO];*/
-        
-        
     }];
     updateAction.backgroundColor = [UIColor colorWithRed:0 green:204.0/255.0 blue:0 alpha:1];
-    
-
     
     return @[updateAction];
 }
 
-
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-}
+}*/
 
 /*
 // Override to support rearranging the table view.

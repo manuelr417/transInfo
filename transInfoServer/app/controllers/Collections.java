@@ -1323,6 +1323,66 @@ GET     /reportTypes                controllers.Collections.getReportTypes()
         });
     }
 
+    public static Result getRows() {
+        return getCollection("Row", new GetRows() {
+            @Override
+            public ObjectNode getRows(ResultSet rs) {
+                ObjectNode rec = Json.newObject();
+
+                try {
+                    rec.put("RowID", rs.getInt("RowID"));
+                    rec.put("DescriptionES", rs.getString("DescriptionES"));
+                    rec.put("DescriptionEN", rs.getString("DescriptionEN"));
+
+                } catch (SQLException e) {
+                    return null;
+                }
+
+                return rec;
+            }
+        });
+    }
+
+    public static Result getSeats() {
+        return getCollection("Seat", new GetRows() {
+            @Override
+            public ObjectNode getRows(ResultSet rs) {
+                ObjectNode rec = Json.newObject();
+
+                try {
+                    rec.put("SeatID", rs.getInt("SeatID"));
+                    rec.put("DescriptionES", rs.getString("DescriptionES"));
+                    rec.put("DescriptionEN", rs.getString("DescriptionEN"));
+
+                } catch (SQLException e) {
+                    return null;
+                }
+
+                return rec;
+            }
+        });
+    }
+
+    public static Result getSeatingOthers() {
+        return getCollection("SeatingOther", new GetRows() {
+            @Override
+            public ObjectNode getRows(ResultSet rs) {
+                ObjectNode rec = Json.newObject();
+
+                try {
+                    rec.put("SeatingOtherID", rs.getInt("SeatingOtherID"));
+                    rec.put("DescriptionES", rs.getString("DescriptionES"));
+                    rec.put("DescriptionEN", rs.getString("DescriptionEN"));
+
+                } catch (SQLException e) {
+                    return null;
+                }
+
+                return rec;
+            }
+        });
+    }
+
     public static Result getCollection(String table, GetRows callback) {
         Logger.debug("getCollection(" + table + ")");
 
