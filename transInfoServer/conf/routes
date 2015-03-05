@@ -73,11 +73,18 @@ GET     /cargoBodyTypes             controllers.Collections.getCargoBodyTypes()
 GET     /hazMatInvolved             controllers.Collections.getHazMatInvolved()
 GET     /placardDisplayed           controllers.Collections.getPlacardDisplayed()
 GET     /hazMatReleased             controllers.Collections.getHazMatReleased()
-
+# Person Tab
 GET     /rows                       controllers.Collections.getRows()
 GET     /seats                      controllers.Collections.getSeats()
 GET     /seatingOthers              controllers.Collections.getSeatingOthers()
-
+GET     /restraintSystems           controllers.Collections.getRestraintSystems()
+GET     /helmetUses                 controllers.Collections.getHelmetUses()
+GET     /airbagDeployed             controllers.Collections.getAirbagDeployed()
+GET     /ejections                  controllers.Collections.getEjections()
+GET     /extrications               controllers.Collections.getExtrications()
+GET     /speedingSuspected          controllers.Collections.getSpeedingSuspected()
+GET     /contribActionsCircumstances controllers.Collections.getContribActionsCircumstances()
+GET     /distractedBy               controllers.Collections.getDistractedBy()
 
 # Authentication
 POST    /login                      controllers.Authentication.doLogin()

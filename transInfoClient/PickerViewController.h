@@ -20,6 +20,7 @@
 @property (nonatomic, strong) NSMutableDictionary *elementsDictionary;
 @property (nonatomic, strong) NSArray *elementKeys;
 @property (nonatomic, strong) NSMutableArray *selectedElements;
+@property NSNumber *selectedLimit;
 @property BOOL isMultipleChoice;
 
 @property id delegate;

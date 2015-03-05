@@ -22,6 +22,16 @@
 @property (weak, nonatomic) IBOutlet UITextField *seatField;
 @property (weak, nonatomic) IBOutlet UITextField *seatingOtherField;
 
+@property (weak, nonatomic) IBOutlet UITextField *restraintSystemField;
+@property (weak, nonatomic) IBOutlet UITextField *helmetUseField;
+
+@property (weak, nonatomic) IBOutlet UITextField *airbagDeployedField;
+@property (weak, nonatomic) IBOutlet UITextField *ejectionField;
+@property (weak, nonatomic) IBOutlet UITextField *speedingSuspectedField;
+@property (weak, nonatomic) IBOutlet UITextField *extricationField;
+@property (weak, nonatomic) IBOutlet UITextField *contribActionsCircumstancesField;
+@property (weak, nonatomic) IBOutlet UITextField *distractedByField;
+
 @property UITextField *latestField;
 
 @property NSString *trash;
@@ -33,5 +43,7 @@
 @property Person *editingPerson;
 
 - (void)setEditingModeFor:(Person*)person;
+
+@property NSMutableArray *viewElements;
 
 @end

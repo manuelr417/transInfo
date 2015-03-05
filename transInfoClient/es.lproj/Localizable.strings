@@ -45,3 +45,8 @@
 "report.fourth.vehicle-extended" = "Información Extendida del Vehículo";
 
 "multilist.selected" = "(%ld seleccionados)";
+
+"empty.list" = "No hay elementos para mostrar en ésta lista.";
+
+"picker-view.limit-violation.msg" = "Puede seleccionar solo %ld elementos.";
+"picker-view.limit-violation.title" = "¡Violación del Límite de la Lista!";

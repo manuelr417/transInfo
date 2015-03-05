@@ -64,7 +64,7 @@
     } else if ([[notification name] isEqualToString:@"addPerson"]) {
         Person *person = [dict objectForKey:@"Person"];
         //NSString *personType = [dict objectForKey:@"typeKey"];
-        NSString *personType = [NSString stringWithFormat:@"%ld", (long)person.typeKey];
+        //NSString *personType = [NSString stringWithFormat:@"%ld", (long)person.typeKey];
         NSString *personUUID = person.uuid;
         BOOL pedestrianAdded = NO;
         
@@ -77,10 +77,12 @@
                     
                     NSLog(@"Found at %lu, replacing or deleting!", (unsigned long)index);
                     
-                    if ([personType isEqualToString:@"3"] || [personType isEqualToString:@"7"]) {
+                    if ([person.typeKey isEqualToString:@"3"] || [person.typeKey isEqualToString:@"7"]) {
                         [crashSummary.pedestrians replaceObjectAtIndex:index withObject:person];
+                        NSLog(@"Replacing!");
                     } else {
                         [crashSummary.pedestrians removeObjectAtIndex:index];
+                        NSLog(@"Deleting! %@", person.typeKey);
                     }
                     
                     pedestrianAdded = YES;
@@ -105,7 +107,7 @@
             }
         }
         
-        if ([personType isEqualToString:@"3"] || [personType isEqualToString:@"7"]) {
+        if ([person.typeKey isEqualToString:@"3"] || [person.typeKey isEqualToString:@"7"]) {
             if (!pedestrianAdded) {
                 person.uuid = [[NSUUID UUID] UUIDString];
                 [crashSummary.pedestrians addObject:person];
@@ -150,7 +152,7 @@
     person.zipCode = [dict objectForKey:@"zipCode"];
     person.phoneNumber = [dict objectForKey:@"phoneNumber"];
     person.uuid = [[NSUUID UUID] UUIDString];
-    person.typeKey = [personType intValue];
+    person.typeKey = personType;
     
     return person;
 }
@@ -293,7 +295,7 @@
     if (self.displayEmptyCell) {
         PedestrianTableViewCell *cell = [[PedestrianTableViewCell alloc] init];
         
-        cell.textLabel.text = @"There are no items to be shown in this list.";
+        cell.textLabel.text = NSLocalizedString(@"empty.list", nil);
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         

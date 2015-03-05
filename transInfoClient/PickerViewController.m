@@ -7,6 +7,7 @@
 //
 
 #import "PickerViewController.h"
+#import "Utilities.h"
 
 @interface PickerViewController ()
 
@@ -15,6 +16,7 @@
 @implementation PickerViewController
 
 @synthesize identifier;
+@synthesize selectedLimit;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -24,6 +26,7 @@
         
         self.elementKeys = [NSArray array];
         self.elementsDictionary = [NSMutableDictionary dictionary];
+        self.selectedLimit = @1;
     }
     return self;
 }
@@ -100,7 +103,11 @@
     NSString *key = [self.elementKeys objectAtIndex:indexPath.row];
     
     if (![self.selectedElements containsObject:key]) {
-        [self.selectedElements addObject:key];
+        if (self.isMultipleChoice && [self.selectedLimit integerValue] != 0 && [self.selectedElements count] == [self.selectedLimit integerValue]) {
+            [Utilities displayAlertWithMessage:[NSString stringWithFormat:NSLocalizedString(@"picker-view.limit-violation.msg", nil),[self.selectedLimit integerValue]] withTitle:NSLocalizedString(@"picker-view.limit-violation.title", nil)];
+        } else {
+            [self.selectedElements addObject:key];
+        }
     } else {
         [self.selectedElements removeObject:key];
     }

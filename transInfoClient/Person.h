@@ -11,7 +11,7 @@
 @interface Person : NSObject
 
 @property NSString *typeCategoryKey;
-@property NSInteger typeKey;
+@property NSString *typeKey;
 @property NSString *name;
 @property NSString *genderKey;
 @property NSString *licenseTypeKey;
@@ -27,5 +27,18 @@
 @property NSString *phoneNumber;
 @property NSString *uuid;
 @property NSString *vehicleUuid;
+
+@property NSString *rowKey;
+@property NSString *seatKey;
+@property NSString *seatingOtherKey;
+@property NSString *restraintSystemKey;
+@property NSString *helmetUseKey;
+
+@property NSString *airbagDeployedKey;
+@property NSString *ejectionKey;
+@property NSString *speedingSuspectedKey;
+@property NSString *extricationKey;
+@property NSMutableArray *contribActionsCircumstancesKey;
+@property NSString *distractedByKey;
 
 @end

@@ -92,7 +92,7 @@
     if (self.displayEmptyCell) {
         UITableViewCell *cell = [[UITableViewCell alloc] init];
         
-        cell.textLabel.text = @"There are no items to be shown in this list.";
+        cell.textLabel.text = NSLocalizedString(@"empty.list", nil);
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         

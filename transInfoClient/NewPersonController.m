@@ -36,7 +36,7 @@
     [rightButton setAction:@selector(addButonAction:)];
     
     self.personTypeCategoryKey = self.editingPerson.typeCategoryKey;
-    self.personTypeKey = [NSString stringWithFormat: @"%ld", (long)self.editingPerson.typeKey];
+    self.personTypeKey = self.editingPerson.typeKey;
     self.genderKey = self.editingPerson.genderKey;
     self.licenseTypeKey = self.editingPerson.licenseTypeKey;
     self.organDonorKey = self.editingPerson.organDonorKey;
@@ -58,7 +58,7 @@
     NSIndexPath *indexPath = [self.vehicleTableView indexPathForSelectedRow];
     NSString *vehicleLicensePlate = @"";
     
-    NSLog(@"%@", indexPath);
+    //NSLog(@"%@", indexPath);
     
     if ([self.personTypeCategoryKey isEqualToString:@"1"]) {
         if (indexPath == nil) {
@@ -72,26 +72,8 @@
     
     Person *person = [[Person alloc] init];
     
-    /*NSDictionary *personDictionary2 = @{@"typeCategoryKey" : (self.personTypeCategoryKey == nil) ? @"-1" : self.personTypeCategoryKey,
-                                       @"typeKey" : (self.personTypeKey == nil) ? @"-1" : self.personTypeKey,
-                                       @"name" : (self.personNameField.text == nil) ? @"" : self.personNameField.text,
-                                       @"genderKey" : (self.genderKey == nil) ? @"-1" : self.genderKey,
-                                       @"licenseTypeKey" : (self.licenseTypeKey == nil) ? @"-1" : self.licenseTypeKey,
-                                       @"driverLicense" : (self.licenseNumberField.text == nil) ? @"" :self.licenseNumberField.text,
-                                       @"organDonorKey" : (self.organDonorKey == nil) ? @"-1" : self.organDonorKey,
-                                       @"licenseExpirationDate" : (self.licenseExpirationDate == nil) ? @"" : self.licenseExpirationDate,
-                                       @"licenseExpirationNA" : @NO,
-                                       @"streetAddress" : (self.personStreetAddressField.text == nil) ? @"" : self.personStreetAddressField.text,
-                                       @"neighbohood" : (self.personNeighbohoodField.text == nil) ? @"" : self.personNeighbohoodField.text,
-                                       @"city" : (self.personCityField.text == nil) ? @"" : self.personCityField.text,
-                                       @"stateCountry" : (self.personStateCountryField.text == nil) ? @"" : self.personStateCountryField.text,
-                                       @"zipCode" : (self.personZipCodeField.text == nil) ? @"" : self.personZipCodeField.text,
-                                       @"phoneNumber" : (self.personPhoneNumberField.text == nil) ? @"" : self.personPhoneNumberField.text,
-                                       @"vehicleLicensePlate" : vehicleLicensePlate,
-                                       @"uuid" : (self.navigationBar != nil) ? self.editingPerson.uuid : @""};*/
-    
     person.typeCategoryKey = (self.personTypeCategoryKey == nil) ? @"-1" : self.personTypeCategoryKey;
-    person.typeKey = (self.personTypeKey == nil) ? -1 : [self.personTypeKey intValue];
+    person.typeKey = (self.personTypeKey == nil) ? @"-1" : self.personTypeKey;
     person.name = self.personNameField.text;
     person.genderKey = (self.genderKey == nil) ? @"-1" : self.genderKey;
     person.licenseTypeKey = (self.licenseTypeKey == nil) ? @"-1" : self.licenseTypeKey;
@@ -110,62 +92,12 @@
     NSDictionary *personDictionary = @{@"Person" : person,
                                        @"vehicleLicensePlate" : vehicleLicensePlate};
     
-    NSLog(@"Sending %@", personDictionary);
+    //NSLog(@"Sending %@", personDictionary);
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"addPerson" object:nil userInfo:personDictionary];
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
-/*- (IBAction)addButonAction:(id)sender {
-    if (self.navigationBar != nil) {
-        NSLog(@"IsEditing!");
-        //return;
-    } else {
-        NSLog(@"Add person!");
-    }
-    
-    NSIndexPath *indexPath = [self.vehicleTableView indexPathForSelectedRow];
-    NSString *vehicleLicensePlate = @"";
-    
-    NSLog(@"%@", indexPath);
-    
-    if ([self.personTypeCategoryKey isEqualToString:@"1"]) {
-        if (indexPath == nil) {
-            [Utilities displayAlertWithMessage:NSLocalizedString(@"report.third.required-vehicle.msg", nil) withTitle:NSLocalizedString(@"report.third.required-vehicle.title", nil)];
-            return;
-        } else {
-            Vehicle *vehicle = [self.vehicles objectAtIndex:indexPath.row];
-            vehicleLicensePlate = vehicle.registrationPlate;
-        }
-    }
-    
-    NSDictionary *personDictionary = @{@"typeCategoryKey" : (self.personTypeCategoryKey == nil) ? @"-1" : self.personTypeCategoryKey,
-                                       @"typeKey" : (self.personTypeKey == nil) ? @"-1" : self.personTypeKey,
-                                       @"name" : (self.personNameField.text == nil) ? @"" : self.personNameField.text,
-                                       @"genderKey" : (self.genderKey == nil) ? @"-1" : self.genderKey,
-                                       @"licenseTypeKey" : (self.licenseTypeKey == nil) ? @"-1" : self.licenseTypeKey,
-                                       @"driverLicense" : (self.licenseNumberField.text == nil) ? @"" :self.licenseNumberField.text,
-                                       @"organDonorKey" : (self.organDonorKey == nil) ? @"-1" : self.organDonorKey,
-                                       @"licenseExpirationDate" : (self.licenseExpirationDate == nil) ? @"" : self.licenseExpirationDate,
-                                       @"licenseExpirationNA" : @NO,
-                                       @"streetAddress" : (self.personStreetAddressField.text == nil) ? @"" : self.personStreetAddressField.text,
-                                       @"neighbohood" : (self.personNeighbohoodField.text == nil) ? @"" : self.personNeighbohoodField.text,
-                                       @"city" : (self.personCityField.text == nil) ? @"" : self.personCityField.text,
-                                       @"stateCountry" : (self.personStateCountryField.text == nil) ? @"" : self.personStateCountryField.text,
-                                       @"zipCode" : (self.personZipCodeField.text == nil) ? @"" : self.personZipCodeField.text,
-                                       @"phoneNumber" : (self.personPhoneNumberField.text == nil) ? @"" : self.personPhoneNumberField.text,
-                                       @"vehicleLicensePlate" : vehicleLicensePlate,
-                                       @"uuid" : (self.navigationBar != nil) ? self.editingPerson.uuid : @""};
-    
-    
-    
-    NSLog(@"Sending %@", personDictionary);
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"addPerson" object:nil userInfo:personDictionary];
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
-}*/
 
 - (void)viewWillAppear:(BOOL)animated {
     if (self.navigationBar != nil) {
@@ -186,12 +118,12 @@
         self.personPhoneNumberField.text = self.editingPerson.phoneNumber;
         
         self.personTypeCategoryKey = self.editingPerson.typeCategoryKey;
-        self.personTypeKey = [NSString stringWithFormat: @"%ld", (long)self.editingPerson.typeKey];
+        self.personTypeKey = self.editingPerson.typeKey;
         self.genderKey = self.editingPerson.genderKey;
         self.licenseTypeKey = self.editingPerson.licenseTypeKey;
         self.organDonorKey = self.editingPerson.organDonorKey;
         
-        if (self.editingPerson.typeKey == 1) {
+        if ([self.editingPerson.typeKey isEqualToString:@"1"]) {
             [self licenseAreaIsEnabled:YES];
         } else {
             [self licenseAreaIsEnabled:NO];
@@ -287,9 +219,6 @@
 - (void)receivedCollection:(NSArray *)collection withName:(NSString *)collectionName {
     [self.collections setObject:collection forKey:collectionName];
     
-    // NSDictionary *personDictionary = @{@"typeCategoryKey" : self.personTypeCategoryKey, @"typeKey" : self.personTypeKey, @"genderKey" : self.genderKey, @"licenseTypeKey" : self.licenseTypeKey, @"organDonorKey" : self.organDonorKey,
-    //NSArray *collectionNames = @[@"personTypeCategories", @"personTypes", @"driverLicenseTypes", @"genders", @"organDonor", @"vehicles", @"vehicleTypes"];
-    
     //NSLog(@"Received Collection %@ %@", collectionName, collection);
     
     if (self.editingPerson != nil) {
@@ -297,7 +226,7 @@
             [self loadDefaultForCollection:collectionName toField:self.personTypeCategoryField withKey:@"PersonTypeCategoryID" defaultValue:self.editingPerson.typeCategoryKey];
         } else if ([collectionName isEqualToString:@"personTypes"]) {
             //self.personTypeField.text = [collection objectAtIndex:[self.personTypeKey longLongValue]];
-            [self loadDefaultForCollection:collectionName toField:self.personTypeField withKey:@"PersonTypeID" defaultValue:[NSString stringWithFormat:@"%ld", (long)self.editingPerson.typeKey]];
+            [self loadDefaultForCollection:collectionName toField:self.personTypeField withKey:@"PersonTypeID" defaultValue:self.editingPerson.typeKey];
         } else if ([collectionName isEqualToString:@"driverLicenseTypes"]) {
             //self.licenseTypeField.text = [collection objectAtIndex:[self.licenseTypeKey longLongValue]];
             [self loadDefaultForCollection:collectionName toField:self.licenseTypeField withKey:@"DriverLicenseTypeID" defaultValue:self.editingPerson.licenseTypeKey];
@@ -396,7 +325,7 @@
 }
 
 - (void)keysSelected:(NSArray *)keys withIdentifier:(NSString *)identifier withOutField:(UITextField *)outField {
-    NSLog(@"Recibiendo... %@ (%@)", identifier, keys);
+    //NSLog(@"Recibiendo... %@ (%@)", identifier, keys);
     if ([identifier isEqualToString:@"personTypeCategories"]) {
         self.personTypeCategoryKey = keys[0];
         self.personTypeField.text = @"";

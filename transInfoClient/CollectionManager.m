@@ -92,7 +92,7 @@
     
     [self.loadedCollection removeObjectAtIndex:0];
     
-    NSLog(@"%@", self.loadedCollection);
+    //NSLog(@"%@", self.loadedCollection);
     
     // send to delegate.
     [self.delegate receivedCollection:self.loadedCollection withName:self.loadingCollection];

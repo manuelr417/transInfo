@@ -28,4 +28,27 @@
 @synthesize uuid;
 @synthesize vehicleUuid;
 
+@synthesize rowKey;
+@synthesize seatKey;
+@synthesize seatingOtherKey;
+@synthesize restraintSystemKey;
+@synthesize helmetUseKey;
+
+@synthesize airbagDeployedKey;
+@synthesize ejectionKey;
+@synthesize speedingSuspectedKey;
+@synthesize extricationKey;
+@synthesize contribActionsCircumstancesKey;
+@synthesize distractedByKey;
+
+- (id)init {
+    self = [super init];
+    
+    if (self) {
+        self.contribActionsCircumstancesKey = [[NSMutableArray alloc] init];
+    }
+    
+    return self;
+}
+
 @end
