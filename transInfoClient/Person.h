@@ -41,4 +41,11 @@
 @property NSMutableArray *contribActionsCircumstancesKey;
 @property NSString *distractedByKey;
 
+@property NSMutableArray *conditions;
+@property NSMutableArray *actionsPriorToCrash;
+@property NSString *toFromSchool;
+@property NSMutableArray *actionsAtTimeOfCrash;
+@property NSString *nonMotoristLocation;
+@property NSString *vehicleStrikingNonMotorist;
+
 @end

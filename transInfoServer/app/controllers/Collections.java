@@ -1543,6 +1543,106 @@ GET     /reportTypes                controllers.Collections.getReportTypes()
         });
     }
 
+    public static Result getConditions() {
+        return getCollection("`Condition`", new GetRows() {
+            @Override
+            public ObjectNode getRows(ResultSet rs) {
+                ObjectNode rec = Json.newObject();
+
+                try {
+                    rec.put("ConditionID", rs.getInt("ConditionID"));
+                    rec.put("DescriptionES", rs.getString("DescriptionES"));
+                    rec.put("DescriptionEN", rs.getString("DescriptionEN"));
+
+                } catch (SQLException e) {
+                    return null;
+                }
+
+                return rec;
+            }
+        });
+    }
+
+    public static Result getActionsPriorToCrash() {
+        return getCollection("ActionPriorToCrash", new GetRows() {
+            @Override
+            public ObjectNode getRows(ResultSet rs) {
+                ObjectNode rec = Json.newObject();
+
+                try {
+                    rec.put("ActionPriorToCrashID", rs.getInt("ActionPriorToCrashID"));
+                    rec.put("DescriptionES", rs.getString("DescriptionES"));
+                    rec.put("DescriptionEN", rs.getString("DescriptionEN"));
+
+                } catch (SQLException e) {
+                    return null;
+                }
+
+                return rec;
+            }
+        });
+    }
+
+    public static Result getToFromSchool() {
+        return getCollection("ToFromSchool", new GetRows() {
+            @Override
+            public ObjectNode getRows(ResultSet rs) {
+                ObjectNode rec = Json.newObject();
+
+                try {
+                    rec.put("ToFromSchoolID", rs.getInt("ToFromSchoolID"));
+                    rec.put("DescriptionES", rs.getString("DescriptionES"));
+                    rec.put("DescriptionEN", rs.getString("DescriptionEN"));
+
+                } catch (SQLException e) {
+                    return null;
+                }
+
+                return rec;
+            }
+        });
+    }
+
+    public static Result getActionsAtTimeOfCrash() {
+        return getCollection("ActionAtTimeOfCrash", new GetRows() {
+            @Override
+            public ObjectNode getRows(ResultSet rs) {
+                ObjectNode rec = Json.newObject();
+
+                try {
+                    rec.put("ActionAtTimeOfCrashID", rs.getInt("ActionAtTimeOfCrashID"));
+                    rec.put("DescriptionES", rs.getString("DescriptionES"));
+                    rec.put("DescriptionEN", rs.getString("DescriptionEN"));
+
+                } catch (SQLException e) {
+                    return null;
+                }
+
+                return rec;
+            }
+        });
+    }
+
+    public static Result getNonMotoristLocations() {
+        return getCollection("NonMotoristLocation", new GetRows() {
+            @Override
+            public ObjectNode getRows(ResultSet rs) {
+                ObjectNode rec = Json.newObject();
+
+                try {
+                    rec.put("NonMotoristLocationID", rs.getInt("NonMotoristLocationID"));
+                    rec.put("DescriptionES", rs.getString("DescriptionES"));
+                    rec.put("DescriptionEN", rs.getString("DescriptionEN"));
+
+                } catch (SQLException e) {
+                    return null;
+                }
+
+                return rec;
+            }
+        });
+    }
+
     public static Result getCollection(String table, GetRows callback) {
         Logger.debug("getCollection(" + table + ")");
 

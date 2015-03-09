@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="nWY-kv-t24">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
@@ -1906,13 +1907,13 @@
         <!--Información Extendida de la Persona-->
         <scene sceneID="Z4I-E8-K8z">
             <objects>
-                <viewController id="j60-6X-7Mp" customClass="PersonExtendedViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="j60-6X-7Mp" customClass="PersonExtendedViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XBf-YM-BvD"/>
                         <viewControllerLayoutGuide type="bottom" id="0yL-RD-fu1"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="WPI-R4-hzl">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                    <view key="view" contentMode="scaleToFill" id="WPI-R4-hzl" customClass="UIScrollView">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1400"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="INFORMACIÓN DE LA PERSONA:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fBP-Ek-Akn">
@@ -2092,18 +2093,95 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="INFORMACIÓN PARA PEATONES, CICLISTAS Y OTROS FUERA DE VEHÍCULO DE MOTOR:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jhr-mN-cCH">
+                                <rect key="frame" x="16" y="666" width="734" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Condiciones al Momento del Accidente:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gli-Cr-n4C">
+                                <rect key="frame" x="24" y="695" width="311" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lTR-m5-Ql5">
+                                <rect key="frame" x="24" y="724" width="311" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Acciones Antes del Accidente:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aoa-sl-Opn">
+                                <rect key="frame" x="24" y="762" width="311" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="En Camino o Regresando de la Escuela (K-12):" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u7W-9N-1ye">
+                                <rect key="frame" x="343" y="762" width="359" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FVh-bY-IAU">
+                                <rect key="frame" x="24" y="791" width="311" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="15G-KU-KbA">
+                                <rect key="frame" x="343" y="791" width="366" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Acciones al Momento del Accidente:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x34-oz-Yfi">
+                                <rect key="frame" x="24" y="829" width="311" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jAV-M2-sNz">
+                                <rect key="frame" x="24" y="858" width="311" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Vehículo que Impactó al Peatón o Ciclista:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pB4-1L-Syu">
+                                <rect key="frame" x="24" y="896" width="324" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="oGy-sh-5VB">
+                                <rect key="frame" x="24" y="925" width="378" height="215"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Localización al Momento del Accidente:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j2M-l5-zC6">
+                                <rect key="frame" x="343" y="829" width="311" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="59p-kn-UrO">
+                                <rect key="frame" x="343" y="858" width="311" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Información Extendida de la Persona" id="Njd-aU-WHv"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="768" height="1400"/>
                     <connections>
+                        <outlet property="actionsAtTimeOfCrashField" destination="jAV-M2-sNz" id="mkQ-cG-lhh"/>
+                        <outlet property="actionsPriorToCrashField" destination="FVh-bY-IAU" id="ZYu-8P-YAe"/>
                         <outlet property="airbagDeployedField" destination="eJG-vp-aSy" id="yxH-g5-S8f"/>
+                        <outlet property="conditionsField" destination="lTR-m5-Ql5" id="4jb-xZ-DjG"/>
                         <outlet property="contribActionsCircumstancesField" destination="doq-NB-KdZ" id="Ujk-j7-T8S"/>
                         <outlet property="distractedByField" destination="mcL-cE-NiC" id="uZx-72-hhY"/>
                         <outlet property="ejectionField" destination="6MS-ht-xBA" id="Dgg-U1-yQy"/>
                         <outlet property="extricationField" destination="QAx-IV-OEj" id="rpW-Pr-et0"/>
                         <outlet property="genderField" destination="fMF-tt-cQf" id="u3H-KG-7je"/>
                         <outlet property="helmetUseField" destination="NOk-iz-hd3" id="Kbt-Qs-rh8"/>
+                        <outlet property="nonMotoristLocationField" destination="59p-kn-UrO" id="8XN-9u-UD4"/>
                         <outlet property="personNameField" destination="kqz-gS-3uE" id="9o2-Xq-R89"/>
                         <outlet property="personTypeCategoryField" destination="31k-GW-SIn" id="XRd-FE-xO0"/>
                         <outlet property="personTypeField" destination="Nk2-Wq-LrB" id="AB3-o6-I3f"/>
@@ -2112,11 +2190,13 @@
                         <outlet property="seatField" destination="QNc-uf-QZk" id="OtY-Ry-leO"/>
                         <outlet property="seatingOtherField" destination="FUK-jb-vtW" id="OGn-mS-rck"/>
                         <outlet property="speedingSuspectedField" destination="9wm-oy-fT7" id="BSp-Da-gqX"/>
+                        <outlet property="toFromSchoolField" destination="15G-KU-KbA" id="8ys-sa-yng"/>
+                        <outlet property="vehicleStrikingNonMotoristTable" destination="oGy-sh-5VB" id="uWF-sN-xiK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XX3-q7-2xK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2623" y="-171"/>
+            <point key="canvasLocation" x="2623" y="45"/>
         </scene>
         <!--Personas-->
         <scene sceneID="dgW-rg-KLJ">

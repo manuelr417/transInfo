@@ -85,6 +85,11 @@ GET     /extrications               controllers.Collections.getExtrications()
 GET     /speedingSuspected          controllers.Collections.getSpeedingSuspected()
 GET     /contribActionsCircumstances controllers.Collections.getContribActionsCircumstances()
 GET     /distractedBy               controllers.Collections.getDistractedBy()
+GET     /conditions                 controllers.Collections.getConditions()
+GET     /actionsPriorToCrash        controllers.Collections.getActionsPriorToCrash()
+GET     /toFromSchool               controllers.Collections.getToFromSchool()
+GET     /actionsAtTimeOfCrash       controllers.Collections.getActionsAtTimeOfCrash()
+GET     /nonMotoristLocations       controllers.Collections.getNonMotoristLocations()
 
 # Authentication
 POST    /login                      controllers.Authentication.doLogin()

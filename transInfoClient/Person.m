@@ -41,11 +41,21 @@
 @synthesize contribActionsCircumstancesKey;
 @synthesize distractedByKey;
 
+@synthesize conditions;
+@synthesize actionsPriorToCrash;
+@synthesize toFromSchool;
+@synthesize actionsAtTimeOfCrash;
+@synthesize nonMotoristLocation;
+@synthesize vehicleStrikingNonMotorist;
+
 - (id)init {
     self = [super init];
     
     if (self) {
         self.contribActionsCircumstancesKey = [[NSMutableArray alloc] init];
+        self.conditions = [[NSMutableArray alloc] init];
+        self.actionsPriorToCrash = [[NSMutableArray alloc] init];
+        self.actionsAtTimeOfCrash = [[NSMutableArray alloc] init];
     }
     
     return self;

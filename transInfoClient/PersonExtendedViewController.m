@@ -11,6 +11,8 @@
 #import "Utilities.h"
 #import "CrashSummary.h"
 #import "Vehicle.h"
+#import "CarTableViewCell.h"
+#import "PedestrianTableViewCell.h"
 
 @interface PersonExtendedViewController ()
 
@@ -160,6 +162,57 @@
                                    @"multiple" : @NO,
                                    @"multipleLimit" : @0,
                                    }];
+    
+    [self.viewElements addObject:@{
+                                   @"restMethod" : @"conditions",
+                                   @"key" : @"ConditionID",
+                                   @"field" : self.conditionsField,
+                                   @"enabled" : @YES,
+                                   @"modelAttr" : @"conditions",
+                                   @"multiple" : @YES,
+                                   @"multipleLimit" : @2,
+                                   }];
+    
+    [self.viewElements addObject:@{
+                                   @"restMethod" : @"actionsPriorToCrash",
+                                   @"key" : @"ActionPriorToCrashID",
+                                   @"field" : self.actionsPriorToCrashField,
+                                   @"enabled" : @YES,
+                                   @"modelAttr" : @"actionsPriorToCrash",
+                                   @"multiple" : @YES,
+                                   @"multipleLimit" : @2,
+                                   }];
+    
+    [self.viewElements addObject:@{
+                                   @"restMethod" : @"toFromSchool",
+                                   @"key" : @"ToFromSchoolID",
+                                   @"field" : self.toFromSchoolField,
+                                   @"enabled" : @YES,
+                                   @"modelAttr" : @"toFromSchool",
+                                   @"multiple" : @NO,
+                                   @"multipleLimit" : @0,
+                                   }];
+    
+    [self.viewElements addObject:@{
+                                   @"restMethod" : @"actionsAtTimeOfCrash",
+                                   @"key" : @"ActionAtTimeOfCrashID",
+                                   @"field" : self.actionsAtTimeOfCrashField,
+                                   @"enabled" : @YES,
+                                   @"modelAttr" : @"actionsAtTimeOfCrash",
+                                   @"multiple" : @YES,
+                                   @"multipleLimit" : @2,
+                                   }];
+    
+    [self.viewElements addObject:@{
+                                   @"restMethod" : @"nonMotoristLocations",
+                                   @"key" : @"NonMotoristLocationID",
+                                   @"field" : self.nonMotoristLocationField,
+                                   @"enabled" : @YES,
+                                   @"modelAttr" : @"nonMotoristLocation",
+                                   @"multiple" : @NO,
+                                   @"multipleLimit" : @0,
+                                   }];
+
 }
 
 - (void)viewDidLoad {
@@ -170,6 +223,9 @@
     }
     
     self.personNameField.enabled = false;
+    
+    self.vehicleStrikingNonMotoristTable.delegate = self;
+    self.vehicleStrikingNonMotoristTable.dataSource = self;
    
     [self loadViewConfiguration];
     
@@ -185,6 +241,10 @@
     }
     
     [self loadCollections];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [(UIScrollView *)self.view setContentSize:CGSizeMake(700,1400)];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -418,6 +478,67 @@
     }
     
     [self.pickerPopover presentPopoverFromRect:field.bounds inView:field permittedArrowDirections:UIPopoverArrowDirectionUnknown animated:YES];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    CrashSummary *crashSummary = [CrashSummary sharedCrashSummary];
+    
+    if ([crashSummary.vehicles count] == 0) {
+        self.displayEmptyCell = YES;
+        return 1;
+    } else {
+        self.displayEmptyCell = NO;
+        return [crashSummary.vehicles count];
+    }
+    
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.displayEmptyCell) {
+        PedestrianTableViewCell *cell = [[PedestrianTableViewCell alloc] init];
+        
+        cell.textLabel.text = NSLocalizedString(@"empty.list", nil);
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.vehicleStrikingNonMotoristTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+        
+        return cell;
+    } else {
+        self.vehicleStrikingNonMotoristTable.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    }
+    
+    static NSString *cellIdentifier = @"CarCell";
+    CrashSummary *crashSummary = [CrashSummary sharedCrashSummary];
+    
+    CarTableViewCell *cell = (CarTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CarViewCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+    }
+    
+    Vehicle *vehicle = [crashSummary.vehicles objectAtIndex:indexPath.row];
+    
+    cell.carMake = vehicle.make;
+    cell.carModel = vehicle.model;
+    cell.carYear = vehicle.year;
+    cell.registrationPlate = vehicle.registrationPlate;
+    
+    if ([vehicle.registrationPlate isEqualToString:self.editingPerson.vehicleStrikingNonMotorist]) {
+        NSLog(@"Seleccionó: %@", vehicle.registrationPlate);
+        [cell setSelected:YES];
+    }
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    CrashSummary *crashSummary = [CrashSummary sharedCrashSummary];
+    Vehicle *vehicle = [crashSummary.vehicles objectAtIndex:indexPath.row];
+    
+    self.editingPerson.vehicleStrikingNonMotorist = vehicle.registrationPlate;
 }
 
 /*

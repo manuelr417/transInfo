@@ -10,7 +10,7 @@
 #import "PickerViewController.h"
 #import "Person.h"
 
-@interface PersonExtendedViewController : UIViewController <UITextFieldDelegate>
+@interface PersonExtendedViewController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *personTypeCategoryField;
 @property (weak, nonatomic) IBOutlet UITextField *personTypeField;
@@ -32,6 +32,13 @@
 @property (weak, nonatomic) IBOutlet UITextField *contribActionsCircumstancesField;
 @property (weak, nonatomic) IBOutlet UITextField *distractedByField;
 
+@property (weak, nonatomic) IBOutlet UITextField *conditionsField;
+@property (weak, nonatomic) IBOutlet UITextField *actionsPriorToCrashField;
+@property (weak, nonatomic) IBOutlet UITextField *toFromSchoolField;
+@property (weak, nonatomic) IBOutlet UITextField *actionsAtTimeOfCrashField;
+@property (weak, nonatomic) IBOutlet UITextField *nonMotoristLocationField;
+@property (weak, nonatomic) IBOutlet UITableView *vehicleStrikingNonMotoristTable;
+
 @property UITextField *latestField;
 
 @property NSString *trash;
@@ -45,5 +52,7 @@
 - (void)setEditingModeFor:(Person*)person;
 
 @property NSMutableArray *viewElements;
+
+@property BOOL displayEmptyCell;
 
 @end
