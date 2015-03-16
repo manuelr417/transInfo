@@ -16,7 +16,7 @@
 - (void)getCollection:(NSString*)collection {
     self.loadingCollection = collection;
     
-    if ([self collectionIsCached:collection] && false) {
+    if ([self collectionIsCached:collection] /*&& false*/) {
         //NSLog(@"Loading from Cache");
         [self loadFromCache:collection];
     } else {

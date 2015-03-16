@@ -13,6 +13,7 @@
 #import "Vehicle.h"
 #import "CarTableViewCell.h"
 #import "PedestrianTableViewCell.h"
+#import "Violation.h"
 
 @interface PersonExtendedViewController ()
 
@@ -212,7 +213,98 @@
                                    @"multiple" : @NO,
                                    @"multipleLimit" : @0,
                                    }];
-
+    
+    [self.viewElements addObject:@{
+                                   @"restMethod" : @"safetyEquipments",
+                                   @"key" : @"SafetyEquipmentID",
+                                   @"field" : self.safetyEquipmentField,
+                                   @"enabled" : @YES,
+                                   @"modelAttr" : @"safetyEquipments",
+                                   @"multiple" : @YES,
+                                   @"multipleLimit" : @0,
+                                   }];
+    
+    [self.viewElements addObject:@{
+                                   @"restMethod" : @"substancesSuspected",
+                                   @"key" : @"SubstanceSuspectedID",
+                                   @"field" : self.alcoholSuspectedField,
+                                   @"enabled" : @YES,
+                                   @"modelAttr" : @"alcoholSuspectedKey",
+                                   @"multiple" : @NO,
+                                   @"multipleLimit" : @0,
+                                   @"onChange": NSStringFromSelector(@selector(updateAlcoholArea)),
+                                   }];
+    
+    [self.viewElements addObject:@{
+                                   @"restMethod" : @"testStatuses",
+                                   @"key" : @"TestStatusID",
+                                   @"field" : self.alcoholTestStatusField,
+                                   @"enabled" : @YES,
+                                   @"modelAttr" : @"alcoholTestStatusKey",
+                                   @"multiple" : @NO,
+                                   @"multipleLimit" : @0,
+                                   }];
+    
+    [self.viewElements addObject:@{
+                                   @"restMethod" : @"alcoholTestTypes",
+                                   @"key" : @"AlcoholTestTypeID",
+                                   @"field" : self.alcoholTestTypeField,
+                                   @"enabled" : @YES,
+                                   @"modelAttr" : @"alcoholTestTypeKey",
+                                   @"multiple" : @NO,
+                                   @"multipleLimit" : @0,
+                                   }];
+    
+    [self.viewElements addObject:@{
+                                   @"restMethod" : @"alcoholTestResults",
+                                   @"key" : @"AlcoholTestResultID",
+                                   @"field" : self.alcoholResultTypeField,
+                                   @"enabled" : @YES,
+                                   @"modelAttr" : @"alcoholResultTypeKey",
+                                   @"multiple" : @NO,
+                                   @"multipleLimit" : @0,
+                                   }];
+    
+    [self.viewElements addObject:@{
+                                   @"restMethod" : @"substancesSuspected",
+                                   @"key" : @"SubstanceSuspectedID",
+                                   @"field" : self.drugSuspectedField,
+                                   @"enabled" : @YES,
+                                   @"modelAttr" : @"drugSuspectedKey",
+                                   @"multiple" : @NO,
+                                   @"multipleLimit" : @0,
+                                   @"onChange": NSStringFromSelector(@selector(updateDrugArea)),
+                                   }];
+    
+    [self.viewElements addObject:@{
+                                   @"restMethod" : @"testStatuses",
+                                   @"key" : @"TestStatusID",
+                                   @"field" : self.drugTestStatusField,
+                                   @"enabled" : @YES,
+                                   @"modelAttr" : @"drugTestStatusKey",
+                                   @"multiple" : @NO,
+                                   @"multipleLimit" : @0,
+                                   }];
+    
+    [self.viewElements addObject:@{
+                                   @"restMethod" : @"drugTestTypes",
+                                   @"key" : @"DrugTestTypeID",
+                                   @"field" : self.drugTestTypeField,
+                                   @"enabled" : @YES,
+                                   @"modelAttr" : @"drugTestTypeKey",
+                                   @"multiple" : @NO,
+                                   @"multipleLimit" : @0,
+                                   }];
+    
+    [self.viewElements addObject:@{
+                                   @"restMethod" : @"drugTestResults",
+                                   @"key" : @"DrugTestResultID",
+                                   @"field" : self.drugResultField,
+                                   @"enabled" : @YES,
+                                   @"modelAttr" : @"drugResultKey",
+                                   @"multiple" : @NO,
+                                   @"multipleLimit" : @0,
+                                   }];
 }
 
 - (void)viewDidLoad {
@@ -220,12 +312,16 @@
     
     if (self.editingPerson != nil) {
         self.personNameField.text = self.editingPerson.name;
+        self.alcoholResultField.text = self.editingPerson.alcoholResult;
     }
     
     self.personNameField.enabled = false;
     
     self.vehicleStrikingNonMotoristTable.delegate = self;
     self.vehicleStrikingNonMotoristTable.dataSource = self;
+    
+    self.violationsTable.delegate = self;
+    self.violationsTable.dataSource = self;
    
     [self loadViewConfiguration];
     
@@ -234,21 +330,34 @@
         UITextField *field = elem[@"field"];
         BOOL isEnabled = ([elem[@"enabled"]  isEqual: @YES]);
         
-        NSLog(@"Elem: %@", elem);
+        NSLog(@"Setting Delegate for Element with Key: %@", elem[@"key"]);
         
         field.delegate = self;
         field.enabled = isEnabled;
     }
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNotification:) name:@"updateViolation" object:nil];
+    
     [self loadCollections];
 }
 
+- (void)receiveNotification:(NSNotification*)notification {
+    NSLog(@"Update violation!");
+    
+    NSDictionary *dict = [notification userInfo];
+    Violation *violation = [dict objectForKey:@"violation"];
+    
+    [self.editingPerson.violations addObject:violation];
+    
+    [self.violationsTable reloadData];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
-    [(UIScrollView *)self.view setContentSize:CGSizeMake(700,1400)];
+    [(UIScrollView *)self.view setContentSize:CGSizeMake(700,1900)];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    NSLog(@"Pa fuera!");
+    //NSLog(@"Pa fuera!");
     [self saveChanges];
 }
 
@@ -257,6 +366,8 @@
     CrashSummary *crashSummary = [CrashSummary sharedCrashSummary];
     
     NSString *personUUID = self.editingPerson.uuid;
+    
+    self.editingPerson.alcoholResult = self.alcoholResultField.text;
     
     if (personUUID != nil) {
         NSLog(@"Updating UUID: %@", personUUID);
@@ -290,7 +401,6 @@
             }
         }
     }
-    //[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -352,9 +462,6 @@
     if (self.editingPerson != nil) {
         for (NSDictionary *elem in self.viewElements) {
             if ([collectionName isEqualToString:elem[@"restMethod"]]) {
-                /*} else if ([collectionName isEqualToString:@"damagedAreas"]) {
-                self.damagedAreasField.text = [NSString stringWithFormat:NSLocalizedString(@"multilist.selected", nil), [self.editingVehicle.damagedAreas count]];*/
-                
                 if ([elem[@"multiple"]  isEqual: @YES]) {
                     UITextField *field = elem[@"field"];
                     NSMutableArray *array = [self.editingPerson valueForKey:elem[@"modelAttr"]];
@@ -373,10 +480,13 @@
     
     for (NSDictionary *elem in self.viewElements) {
         if (textField == elem[@"field"] && [elem[@"enabled"] isEqual: @YES]) {
+            NSLog(@"Showing collection with ID: %@ (REST: %@)", elem[@"key"], elem[@"restMethod"]);
             [self showCollection:elem[@"restMethod"] withIDColumn:elem[@"key"] withField:textField];
             return NO;
         }
     }
+    
+    NSLog(@"%@ NO!", textField);
     
     return YES;
 }
@@ -389,7 +499,54 @@
             } else {
                 [self.editingPerson setValue:(NSString*)keys[0] forKey:elem[@"modelAttr"]];
             }
+            
+            id onChange = [elem objectForKey:@"onChange"];
+            
+            if (onChange != nil) {
+                SEL selector = NSSelectorFromString(onChange);
+                
+                [self performSelector:selector withObject:nil afterDelay:0.0];
+            }
         }
+    }
+}
+
+- (void)updateAlcoholArea {
+    BOOL isEnabled = [self.editingPerson.alcoholSuspectedKey isEqualToString:@"2"];
+    
+    self.alcoholTestStatusField.enabled = isEnabled;
+    self.alcoholTestTypeField.enabled = isEnabled;
+    self.alcoholResultField.enabled = isEnabled;
+    self.alcoholResultTypeField.enabled = isEnabled;
+    
+    if (!isEnabled) {
+        self.alcoholTestStatusField.text = @"";
+        self.alcoholTestTypeField.text = @"";
+        self.alcoholResultField.text = @"";
+        self.alcoholResultTypeField.text = @"";
+        
+        self.editingPerson.alcoholTestStatusKey = nil;
+        self.editingPerson.alcoholTestTypeKey = nil;
+        self.editingPerson.alcoholResult = @"";
+        self.editingPerson.alcoholResultTypeKey = nil;
+    }
+}
+
+- (void)updateDrugArea {
+    BOOL isEnabled = [self.editingPerson.drugSuspectedKey isEqualToString:@"2"];
+    
+    self.drugTestStatusField.enabled = isEnabled;
+    self.drugTestTypeField.enabled = isEnabled;
+    self.drugResultField.enabled = isEnabled;
+    
+    if (!isEnabled) {
+        self.drugTestStatusField.text = @"";
+        self.drugTestTypeField.text = @"";
+        self.drugResultField.text = @"";
+        
+        self.editingPerson.drugTestStatusKey = nil;
+        self.editingPerson.drugTestTypeKey = nil;
+        self.editingPerson.drugResultKey = nil;
     }
 }
 
@@ -399,38 +556,9 @@
         
         NSMutableDictionary *collection = [[NSMutableDictionary alloc] init];
         
-        /*NSInteger harmfulEventCategory = 0;
-        BOOL isTotalLane = [collectionName isEqualToString:@"totalLanes"];
-        BOOL isHarmfulEvent = [self.harmfulEvents containsObject:field];
-        
-        if (isTotalLane && self.totalLaneCategoryKey == nil) {
-            [Utilities displayAlertWithMessage:NSLocalizedString(@"report.fourth.no-total-lanes-category.msg", nil) withTitle:NSLocalizedString(@"report.fourth.no-total-lanes-category.title", nil) ];
-            return;
-        }
-        
-        if (isHarmfulEvent) {
-            harmfulEventCategory = [self getHarmfulEventKeyFor:field];
-            NSLog(@"Cat Key: %ld Actual Key: %@", (long)harmfulEventCategory, [self.harmfulEventCategoryKeys objectAtIndex:harmfulEventCategory]);
-            if ([[self.harmfulEventCategoryKeys objectAtIndex:harmfulEventCategory] isEqualToString:@"-1"]) {
-                [Utilities displayAlertWithMessage:NSLocalizedString(@"report.fourth.no-total-lanes-category.msg", nil) withTitle:NSLocalizedString(@"report.fourth.no-total-lanes-category.title", nil) ];
-                return;
-            }
-        }*/
-        
-        //NSLog(@"Displaying Collection: %@",self.collections[collectionName]);
+        NSLog(@"Displaying Collection: %@", self.collections[collectionName]);
         
         for (NSDictionary *elem in self.collections[collectionName]) {
-            /*if (isTotalLane) {
-                if (![self.totalLaneCategoryKey isEqualToString:[NSString stringWithFormat:@"%@", [elem objectForKey:@"TotalLanesCategoryID"]]]) {
-                    continue;
-                }
-            } else if (isHarmfulEvent) {
-                NSLog(@"Cat: %@ Elem Cat: %@", [[self.harmfulEventCategoryKeys objectAtIndex:harmfulEventCategory] class], [[elem objectForKey:@"HarmfulEventCatID"] class]);
-                if (![[self.harmfulEventCategoryKeys objectAtIndex:harmfulEventCategory] isEqualToString:[NSString stringWithFormat:@"%@", [elem objectForKey:@"HarmfulEventCatID"]]]) {
-                    continue;
-                }
-            }*/
-            
             [collection setObject:(NSString*)[elem objectForKey:[Utilities collectionColumn]] forKey:[NSString stringWithFormat:@"%@", [elem objectForKey:IDColumn]]];
             
             NSLog(@"%@ = %@", [NSString stringWithFormat:@"%@", [elem objectForKey:IDColumn]], (NSString*)[elem objectForKey:[Utilities collectionColumn]]);
@@ -485,70 +613,107 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    CrashSummary *crashSummary = [CrashSummary sharedCrashSummary];
-    
-    if ([crashSummary.vehicles count] == 0) {
-        self.displayEmptyCell = YES;
-        return 1;
-    } else {
-        self.displayEmptyCell = NO;
-        return [crashSummary.vehicles count];
+    if (tableView == self.vehicleStrikingNonMotoristTable) {
+        CrashSummary *crashSummary = [CrashSummary sharedCrashSummary];
+        
+        if ([crashSummary.vehicles count] == 0) {
+            self.displayEmptyCell = YES;
+            return 1;
+        } else {
+            self.displayEmptyCell = NO;
+            return [crashSummary.vehicles count];
+        }
+    } else if (tableView == self.violationsTable) {
+        if ([self.editingPerson.violations count] == 0) {
+            self.displayEmptyCellViolations = YES;
+            return 1;
+        } else {
+            self.displayEmptyCellViolations = NO;
+            NSLog(@"Violations: %lu", (unsigned long)[self.editingPerson.violations count]);
+            return [self.editingPerson.violations count];
+        }
     }
     
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.displayEmptyCell) {
-        PedestrianTableViewCell *cell = [[PedestrianTableViewCell alloc] init];
+    if (tableView == self.vehicleStrikingNonMotoristTable) {
+        if (self.displayEmptyCell) {
+            PedestrianTableViewCell *cell = [[PedestrianTableViewCell alloc] init];
+            
+            cell.textLabel.text = NSLocalizedString(@"empty.list", nil);
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            self.vehicleStrikingNonMotoristTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+            
+            return cell;
+        } else {
+            self.vehicleStrikingNonMotoristTable.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        }
         
-        cell.textLabel.text = NSLocalizedString(@"empty.list", nil);
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        self.vehicleStrikingNonMotoristTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+        static NSString *cellIdentifier = @"CarCell";
+        CrashSummary *crashSummary = [CrashSummary sharedCrashSummary];
+        
+        CarTableViewCell *cell = (CarTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (cell == nil) {
+            NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CarViewCell" owner:self options:nil];
+            cell = [nib objectAtIndex:0];
+        }
+        
+        Vehicle *vehicle = [crashSummary.vehicles objectAtIndex:indexPath.row];
+        
+        cell.carMake = vehicle.make;
+        cell.carModel = vehicle.model;
+        cell.carYear = vehicle.year;
+        cell.registrationPlate = vehicle.registrationPlate;
+        
+        if ([vehicle.registrationPlate isEqualToString:self.editingPerson.vehicleStrikingNonMotorist]) {
+            NSLog(@"Seleccionó: %@", vehicle.registrationPlate);
+            //[cell setSelected:YES];
+            [self.vehicleStrikingNonMotoristTable selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionTop];
+        }
         
         return cell;
-    } else {
-        self.vehicleStrikingNonMotoristTable.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    } else if (tableView == self.violationsTable) {
+        if (self.displayEmptyCellViolations) {
+            PedestrianTableViewCell *cell = [[PedestrianTableViewCell alloc] init];
+            
+            cell.textLabel.text = NSLocalizedString(@"empty.list", nil);
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            self.violationsTable.separatorStyle = UITableViewCellSeparatorStyleNone;
+            
+            return cell;
+        } else {
+            self.violationsTable.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        }
+        
+        static NSString *cellIdentifier = @"ViolationCell";
+        
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+        }
+        
+        Violation *violation = [self.editingPerson.violations objectAtIndex:indexPath.row];
+        
+        cell.textLabel.text = violation.violationCodeField;
+        cell.detailTextLabel.text = @"Algo...";
+        //[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+        
+        return cell;
     }
     
-    static NSString *cellIdentifier = @"CarCell";
-    CrashSummary *crashSummary = [CrashSummary sharedCrashSummary];
-    
-    CarTableViewCell *cell = (CarTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CarViewCell" owner:self options:nil];
-        cell = [nib objectAtIndex:0];
-    }
-    
-    Vehicle *vehicle = [crashSummary.vehicles objectAtIndex:indexPath.row];
-    
-    cell.carMake = vehicle.make;
-    cell.carModel = vehicle.model;
-    cell.carYear = vehicle.year;
-    cell.registrationPlate = vehicle.registrationPlate;
-    
-    if ([vehicle.registrationPlate isEqualToString:self.editingPerson.vehicleStrikingNonMotorist]) {
-        NSLog(@"Seleccionó: %@", vehicle.registrationPlate);
-        [cell setSelected:YES];
-    }
-    
-    return cell;
+    return nil;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    CrashSummary *crashSummary = [CrashSummary sharedCrashSummary];
-    Vehicle *vehicle = [crashSummary.vehicles objectAtIndex:indexPath.row];
-    
-    self.editingPerson.vehicleStrikingNonMotorist = vehicle.registrationPlate;
+    if (tableView == self.vehicleStrikingNonMotoristTable) {
+        CrashSummary *crashSummary = [CrashSummary sharedCrashSummary];
+        Vehicle *vehicle = [crashSummary.vehicles objectAtIndex:indexPath.row];
+        
+        self.editingPerson.vehicleStrikingNonMotorist = vehicle.registrationPlate;
+    }
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

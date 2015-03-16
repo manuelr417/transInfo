@@ -17,6 +17,8 @@
 		D519993B1A356BD900EF2F6D /* PedestrianTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D519993A1A356BD900EF2F6D /* PedestrianTableViewCell.m */; };
 		D519993E1A35E32100EF2F6D /* Vehicle.m in Sources */ = {isa = PBXBuildFile; fileRef = D519993D1A35E32100EF2F6D /* Vehicle.m */; };
 		D51999411A35E36700EF2F6D /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = D51999401A35E36700EF2F6D /* Person.m */; };
+		D51DE1461AB70F32003588F2 /* ViolationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D51DE1451AB70F32003588F2 /* ViolationViewController.m */; };
+		D51DE1491AB71665003588F2 /* Violation.m in Sources */ = {isa = PBXBuildFile; fileRef = D51DE1481AB71665003588F2 /* Violation.m */; };
 		D51FEBD819D9D9D200E9D39C /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D51FEBD719D9D9D200E9D39C /* SWRevealViewController.m */; };
 		D51FEBDB19D9F66900E9D39C /* SidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D51FEBDA19D9F66900E9D39C /* SidebarViewController.m */; };
 		D51FEBDF19E329C700E9D39C /* CrashSummary.m in Sources */ = {isa = PBXBuildFile; fileRef = D51FEBDE19E329C700E9D39C /* CrashSummary.m */; };
@@ -102,6 +104,10 @@
 		D519993D1A35E32100EF2F6D /* Vehicle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vehicle.m; sourceTree = "<group>"; };
 		D519993F1A35E36700EF2F6D /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		D51999401A35E36700EF2F6D /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		D51DE1441AB70F32003588F2 /* ViolationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViolationViewController.h; sourceTree = "<group>"; };
+		D51DE1451AB70F32003588F2 /* ViolationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViolationViewController.m; sourceTree = "<group>"; };
+		D51DE1471AB71665003588F2 /* Violation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Violation.h; sourceTree = "<group>"; };
+		D51DE1481AB71665003588F2 /* Violation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Violation.m; sourceTree = "<group>"; };
 		D51FEBD619D9D9D200E9D39C /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		D51FEBD719D9D9D200E9D39C /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		D51FEBD919D9F66900E9D39C /* SidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarViewController.h; sourceTree = "<group>"; };
@@ -258,6 +264,8 @@
 				D519993D1A35E32100EF2F6D /* Vehicle.m */,
 				D519993F1A35E36700EF2F6D /* Person.h */,
 				D51999401A35E36700EF2F6D /* Person.m */,
+				D51DE1471AB71665003588F2 /* Violation.h */,
+				D51DE1481AB71665003588F2 /* Violation.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -422,6 +430,8 @@
 				D522A0AA1AA414F300BE54B8 /* PersonsTableViewController.m */,
 				D522A0AC1AA496CB00BE54B8 /* PersonExtendedViewController.h */,
 				D522A0AD1AA496CB00BE54B8 /* PersonExtendedViewController.m */,
+				D51DE1441AB70F32003588F2 /* ViolationViewController.h */,
+				D51DE1451AB70F32003588F2 /* ViolationViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -558,6 +568,7 @@
 				D5DDB456196B30930002F5EA /* MapPopoverViewController.m in Sources */,
 				D5A2E3A21A3F1D4A00F11DC3 /* NewVehicleController.m in Sources */,
 				D5E8FBD119A689B400ED72EE /* Utilities.m in Sources */,
+				D51DE1491AB71665003588F2 /* Violation.m in Sources */,
 				D552535E19D4702600D8AEB6 /* CollectionManager.m in Sources */,
 				D5DDB459196B47E80002F5EA /* CurrentLocationPin.m in Sources */,
 				D522A0AB1AA414F300BE54B8 /* PersonsTableViewController.m in Sources */,
@@ -566,6 +577,7 @@
 				D52C29F219C1CA3B00294FA0 /* PickerViewController.m in Sources */,
 				D522A0AE1AA496CB00BE54B8 /* PersonExtendedViewController.m in Sources */,
 				D51FEBDB19D9F66900E9D39C /* SidebarViewController.m in Sources */,
+				D51DE1461AB70F32003588F2 /* ViolationViewController.m in Sources */,
 				D5DDB45C196B5A9D0002F5EA /* ReportFirstStepViewController.m in Sources */,
 				D5B947311A7633BE00E444DC /* VehiclesTableViewController.m in Sources */,
 				D52C29DE19B0C42000294FA0 /* ComplaintTableViewCell.m in Sources */,

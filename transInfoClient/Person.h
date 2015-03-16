@@ -48,4 +48,18 @@
 @property NSString *nonMotoristLocation;
 @property NSString *vehicleStrikingNonMotorist;
 
+@property NSMutableArray *safetyEquipments;
+@property NSString *alcoholSuspectedKey;
+@property NSString *alcoholTestStatusKey;
+@property NSString *alcoholTestTypeKey;
+@property NSString *alcoholResult;
+@property NSString *alcoholResultTypeKey;
+
+@property NSString *drugSuspectedKey;
+@property NSString *drugTestStatusKey;
+@property NSString *drugTestTypeKey;
+@property NSString *drugResultKey;
+
+@property NSMutableArray *violations;
+
 @end

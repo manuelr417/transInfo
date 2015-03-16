@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="nWY-kv-t24">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="nWY-kv-t24">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <scenes>
         <!--Main View Controller-->
@@ -1913,7 +1913,7 @@
                         <viewControllerLayoutGuide type="bottom" id="0yL-RD-fu1"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="WPI-R4-hzl" customClass="UIScrollView">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1400"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="INFORMACIÓN DE LA PERSONA:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fBP-Ek-Akn">
@@ -2164,19 +2164,159 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="INFORMACIÓN PARA TODA PERSONA:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qlF-mr-ZJp">
+                                <rect key="frame" x="16" y="1148" width="320" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="¿Se sospecha el uso de Alcohol?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ttA-wN-gYx">
+                                <rect key="frame" x="24" y="1244" width="200" height="21"/>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="13"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Uso de Alcohol" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bkJ-nt-EJm">
+                                <rect key="frame" x="24" y="1273" width="200" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Estado de la Prueba:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IpC-ZV-IkW">
+                                <rect key="frame" x="48" y="1311" width="161" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pDt-go-TOP">
+                                <rect key="frame" x="48" y="1340" width="193" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tipo de Prueba:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bMj-f5-1eY">
+                                <rect key="frame" x="249" y="1311" width="123" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nHY-WY-hBH">
+                                <rect key="frame" x="249" y="1340" width="193" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Resultado" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hHj-mT-xLJ">
+                                <rect key="frame" x="450" y="1340" width="110" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Resultado de la Prueba:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xup-tG-FAi">
+                                <rect key="frame" x="450" y="1311" width="184" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tipo de Prueba" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MDK-id-Fx8">
+                                <rect key="frame" x="568" y="1340" width="151" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="¿Se sospecha el uso de Sustancias Controladas?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0uj-37-V0Y">
+                                <rect key="frame" x="24" y="1378" width="296" height="21"/>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="13"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Uso de Sustancias Controladas" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="stV-Xq-JbY">
+                                <rect key="frame" x="24" y="1407" width="233" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uqv-ye-97J">
+                                <rect key="frame" x="24" y="1206" width="324" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Equipo de Seguridad Utilizado:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e8b-RW-ZNL">
+                                <rect key="frame" x="24" y="1177" width="324" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Estado de la Prueba:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tu2-0k-4rk">
+                                <rect key="frame" x="48" y="1445" width="161" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5wi-S0-nDt">
+                                <rect key="frame" x="48" y="1474" width="193" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tipo de Prueba:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wn4-kz-9ON">
+                                <rect key="frame" x="249" y="1445" width="123" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eJF-gx-Qt1">
+                                <rect key="frame" x="249" y="1474" width="193" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Resultado de la Prueba:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jrf-or-VG0">
+                                <rect key="frame" x="450" y="1445" width="184" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="frI-iB-qEg">
+                                <rect key="frame" x="450" y="1474" width="151" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Grz-fN-CIL">
+                                <rect key="frame" x="16" y="1541" width="378" height="215"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="VIOLACIONES A LA LEY:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YtS-oq-ARY">
+                                <rect key="frame" x="16" y="1512" width="200" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hk1-YP-eA8">
+                                <rect key="frame" x="372" y="1512" width="22" height="22"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="d7g-5f-hIe" kind="popover" popoverAnchorView="Hk1-YP-eA8" id="RO6-xA-qUB">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Información Extendida de la Persona" id="Njd-aU-WHv"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="768" height="1400"/>
+                    <size key="freeformSize" width="768" height="1900"/>
                     <connections>
                         <outlet property="actionsAtTimeOfCrashField" destination="jAV-M2-sNz" id="mkQ-cG-lhh"/>
                         <outlet property="actionsPriorToCrashField" destination="FVh-bY-IAU" id="ZYu-8P-YAe"/>
                         <outlet property="airbagDeployedField" destination="eJG-vp-aSy" id="yxH-g5-S8f"/>
+                        <outlet property="alcoholResultField" destination="hHj-mT-xLJ" id="zHD-BX-kTc"/>
+                        <outlet property="alcoholResultTypeField" destination="MDK-id-Fx8" id="LIF-8T-Gog"/>
+                        <outlet property="alcoholSuspectedField" destination="bkJ-nt-EJm" id="2Ot-bj-a1z"/>
+                        <outlet property="alcoholTestStatusField" destination="pDt-go-TOP" id="hHP-mr-g8o"/>
+                        <outlet property="alcoholTestTypeField" destination="nHY-WY-hBH" id="qq6-Wg-wNg"/>
                         <outlet property="conditionsField" destination="lTR-m5-Ql5" id="4jb-xZ-DjG"/>
                         <outlet property="contribActionsCircumstancesField" destination="doq-NB-KdZ" id="Ujk-j7-T8S"/>
                         <outlet property="distractedByField" destination="mcL-cE-NiC" id="uZx-72-hhY"/>
+                        <outlet property="drugResultField" destination="frI-iB-qEg" id="afJ-dv-nfP"/>
+                        <outlet property="drugSuspectedField" destination="stV-Xq-JbY" id="Zjt-kb-dVd"/>
+                        <outlet property="drugTestStatusField" destination="5wi-S0-nDt" id="S0h-0N-vrv"/>
+                        <outlet property="drugTestTypeField" destination="eJF-gx-Qt1" id="kjs-Ps-54a"/>
                         <outlet property="ejectionField" destination="6MS-ht-xBA" id="Dgg-U1-yQy"/>
                         <outlet property="extricationField" destination="QAx-IV-OEj" id="rpW-Pr-et0"/>
                         <outlet property="genderField" destination="fMF-tt-cQf" id="u3H-KG-7je"/>
@@ -2187,16 +2327,96 @@
                         <outlet property="personTypeField" destination="Nk2-Wq-LrB" id="AB3-o6-I3f"/>
                         <outlet property="restraintSystemField" destination="dui-yk-qd9" id="9Cc-fw-Xcx"/>
                         <outlet property="rowField" destination="eWl-J6-LHe" id="gtx-sK-cQl"/>
+                        <outlet property="safetyEquipmentField" destination="Uqv-ye-97J" id="5Lm-Dk-xVt"/>
                         <outlet property="seatField" destination="QNc-uf-QZk" id="OtY-Ry-leO"/>
                         <outlet property="seatingOtherField" destination="FUK-jb-vtW" id="OGn-mS-rck"/>
                         <outlet property="speedingSuspectedField" destination="9wm-oy-fT7" id="BSp-Da-gqX"/>
                         <outlet property="toFromSchoolField" destination="15G-KU-KbA" id="8ys-sa-yng"/>
                         <outlet property="vehicleStrikingNonMotoristTable" destination="oGy-sh-5VB" id="uWF-sN-xiK"/>
+                        <outlet property="violationsTable" destination="Grz-fN-CIL" id="Wal-bF-paR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XX3-q7-2xK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2623" y="45"/>
+            <point key="canvasLocation" x="2623" y="122"/>
+        </scene>
+        <!--Violation View Controller-->
+        <scene sceneID="Apx-C2-zwk">
+            <objects>
+                <viewController id="d7g-5f-hIe" customClass="ViolationViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Yd5-1y-ElM"/>
+                        <viewControllerLayoutGuide type="bottom" id="DlP-wr-lyW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GTW-mJ-Fye">
+                        <rect key="frame" x="0.0" y="0.0" width="500" height="200"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QuX-fI-zr5">
+                                <rect key="frame" x="16" y="81" width="234" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oJe-RA-Zds">
+                                <rect key="frame" x="258" y="81" width="199" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Hora" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ggz-Ke-EvF">
+                                <rect key="frame" x="258" y="148" width="159" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Fecha" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GCa-vZ-uMS">
+                                <rect key="frame" x="16" y="148" width="234" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Número de Multa:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sd1-eA-WqK">
+                                <rect key="frame" x="16" y="52" width="138" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Número de Artículo:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bFl-Kb-z4d">
+                                <rect key="frame" x="258" y="52" width="154" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Citación al Tribunal:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfb-4f-LUw">
+                                <rect key="frame" x="16" y="119" width="151" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qzF-mo-cgc">
+                                <rect key="frame" x="0.0" y="0.0" width="500" height="44"/>
+                                <items>
+                                    <navigationItem title="Añadir Violación a la Ley" id="Nx9-cN-CdH">
+                                        <barButtonItem key="rightBarButtonItem" title="Añadir" id="nfU-Ja-GEG">
+                                            <connections>
+                                                <action selector="addButtonClicked:" destination="d7g-5f-hIe" id="c4l-3k-KEz"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="addButton" destination="nfU-Ja-GEG" id="4Jg-oq-UpN"/>
+                        <outlet property="courtCitationDate" destination="GCa-vZ-uMS" id="uIa-p0-njf"/>
+                        <outlet property="courtCitationDateField" destination="GCa-vZ-uMS" id="Z97-P6-z83"/>
+                        <outlet property="courtCitationHourField" destination="ggz-Ke-EvF" id="MXu-a0-vID"/>
+                        <outlet property="lawArticleField" destination="oJe-RA-Zds" id="DiB-Ia-fWv"/>
+                        <outlet property="violationCodeField" destination="QuX-fI-zr5" id="EhJ-qN-jln"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gwD-x4-Xal" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3349" y="122"/>
         </scene>
         <!--Personas-->
         <scene sceneID="dgW-rg-KLJ">

@@ -48,6 +48,20 @@
 @synthesize nonMotoristLocation;
 @synthesize vehicleStrikingNonMotorist;
 
+@synthesize safetyEquipments;
+@synthesize alcoholSuspectedKey;
+@synthesize alcoholTestStatusKey;
+@synthesize alcoholTestTypeKey;
+@synthesize alcoholResult;
+@synthesize alcoholResultTypeKey;
+
+@synthesize drugSuspectedKey;
+@synthesize drugTestStatusKey;
+@synthesize drugTestTypeKey;
+@synthesize drugResultKey;
+
+@synthesize violations;
+
 - (id)init {
     self = [super init];
     
@@ -56,6 +70,8 @@
         self.conditions = [[NSMutableArray alloc] init];
         self.actionsPriorToCrash = [[NSMutableArray alloc] init];
         self.actionsAtTimeOfCrash = [[NSMutableArray alloc] init];
+        self.safetyEquipments = [[NSMutableArray alloc] init];
+        self.violations = [[NSMutableArray alloc] init];
     }
     
     return self;

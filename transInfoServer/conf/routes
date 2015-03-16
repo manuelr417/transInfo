@@ -91,6 +91,22 @@ GET     /toFromSchool               controllers.Collections.getToFromSchool()
 GET     /actionsAtTimeOfCrash       controllers.Collections.getActionsAtTimeOfCrash()
 GET     /nonMotoristLocations       controllers.Collections.getNonMotoristLocations()
 
+GET     /safetyEquipments           controllers.Collections.getSafetyEquipments()
+GET     /substancesSuspected        controllers.Collections.getSubstancesSuspected()
+GET     /testStatuses               controllers.Collections.getTestStatuses()
+GET     /alcoholTestTypes           controllers.Collections.getAlcoholTestTypes()
+GET     /alcoholTestResults         controllers.Collections.getAlcoholTestResults()
+GET     /drugTestTypes              controllers.Collections.getDrugTestTypes()
+GET     /drugTestResults            controllers.Collections.getDrugTestResults()
+
+#SafetyEquipment
+#SubstanceSuspected
+#TestStatus
+#AlcoholTestType
+#AlcoholResult
+#DrugTestType
+#DrugTestResult
+
 # Authentication
 POST    /login                      controllers.Authentication.doLogin()
 

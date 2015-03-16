@@ -192,7 +192,8 @@
     cell.registrationPlate = vehicle.registrationPlate;
     
     if ([vehicle.registrationPlate isEqualToString:self.editingRegistrationPlate]) {
-        [cell setSelected:YES];
+        //[cell setSelected:YES];
+        [self.vehicleTableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionTop];
     }
     
     return cell;

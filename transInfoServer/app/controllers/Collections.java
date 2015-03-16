@@ -1643,6 +1643,156 @@ GET     /reportTypes                controllers.Collections.getReportTypes()
         });
     }
 
+    /*
+    GET     /safetyEquipments           controllers.Collections.getSafetyEquipments()
+GET     /substancesSuspected        controllers.Collections.getSubstancesSuspected()
+GET     /testStatuses               controllers.Collections.getTestStatuses()
+GET     /alcoholTestTypes           controllers.Collections.getAlcoholTestTypes()
+GET     /alcoholResults             controllers.Collections.getAlcoholResults()
+GET     /drugTestTypes              controllers.Collections.getDrugTestTypes()
+GET     /drugTestResults            controllers.Collections.getDrugTestResults()
+     */
+
+    public static Result getSafetyEquipments() {
+        return getCollection("SafetyEquipment", new GetRows() {
+            @Override
+            public ObjectNode getRows(ResultSet rs) {
+                ObjectNode rec = Json.newObject();
+
+                try {
+                    rec.put("SafetyEquipmentID", rs.getInt("SafetyEquipmentID"));
+                    rec.put("DescriptionES", rs.getString("DescriptionES"));
+                    rec.put("DescriptionEN", rs.getString("DescriptionEN"));
+
+                } catch (SQLException e) {
+                    return null;
+                }
+
+                return rec;
+            }
+        });
+    }
+
+    public static Result getSubstancesSuspected() {
+        return getCollection("SubstanceSuspected", new GetRows() {
+            @Override
+            public ObjectNode getRows(ResultSet rs) {
+                ObjectNode rec = Json.newObject();
+
+                try {
+                    rec.put("SubstanceSuspectedID", rs.getInt("SubstanceSuspectedID"));
+                    rec.put("DescriptionES", rs.getString("DescriptionES"));
+                    rec.put("DescriptionEN", rs.getString("DescriptionEN"));
+
+                } catch (SQLException e) {
+                    return null;
+                }
+
+                return rec;
+            }
+        });
+    }
+
+    public static Result getTestStatuses() {
+        return getCollection("TestStatus", new GetRows() {
+            @Override
+            public ObjectNode getRows(ResultSet rs) {
+                ObjectNode rec = Json.newObject();
+
+                try {
+                    rec.put("TestStatusID", rs.getInt("TestStatusID"));
+                    rec.put("DescriptionES", rs.getString("DescriptionES"));
+                    rec.put("DescriptionEN", rs.getString("DescriptionEN"));
+
+                } catch (SQLException e) {
+                    return null;
+                }
+
+                return rec;
+            }
+        });
+    }
+
+    public static Result getAlcoholTestTypes() {
+        return getCollection("AlcoholTestType", new GetRows() {
+            @Override
+            public ObjectNode getRows(ResultSet rs) {
+                ObjectNode rec = Json.newObject();
+
+                try {
+                    rec.put("AlcoholTestTypeID", rs.getInt("AlcoholTestTypeID"));
+                    rec.put("DescriptionES", rs.getString("DescriptionES"));
+                    rec.put("DescriptionEN", rs.getString("DescriptionEN"));
+
+                } catch (SQLException e) {
+                    return null;
+                }
+
+                return rec;
+            }
+        });
+    }
+
+    public static Result getAlcoholTestResults() {
+        return getCollection("AlcoholTestResult", new GetRows() {
+            @Override
+            public ObjectNode getRows(ResultSet rs) {
+                ObjectNode rec = Json.newObject();
+
+                try {
+                    rec.put("AlcoholTestResultID", rs.getInt("AlcoholTestResultID"));
+                    rec.put("DescriptionES", rs.getString("DescriptionES"));
+                    rec.put("DescriptionEN", rs.getString("DescriptionEN"));
+
+                } catch (SQLException e) {
+                    return null;
+                }
+
+                return rec;
+            }
+        });
+    }
+
+    public static Result getDrugTestTypes() {
+        return getCollection("DrugTestType", new GetRows() {
+            @Override
+            public ObjectNode getRows(ResultSet rs) {
+                ObjectNode rec = Json.newObject();
+
+                try {
+                    rec.put("DrugTestTypeID", rs.getInt("DrugTestTypeID"));
+                    rec.put("DescriptionES", rs.getString("DescriptionES"));
+                    rec.put("DescriptionEN", rs.getString("DescriptionEN"));
+
+                } catch (SQLException e) {
+                    return null;
+                }
+
+                return rec;
+            }
+        });
+    }
+
+    public static Result getDrugTestResults() {
+        return getCollection("DrugTestResult", new GetRows() {
+            @Override
+            public ObjectNode getRows(ResultSet rs) {
+                ObjectNode rec = Json.newObject();
+
+                try {
+                    rec.put("DrugTestResultID", rs.getInt("DrugTestResultID"));
+                    rec.put("DescriptionES", rs.getString("DescriptionES"));
+                    rec.put("DescriptionEN", rs.getString("DescriptionEN"));
+
+                } catch (SQLException e) {
+                    return null;
+                }
+
+                return rec;
+            }
+        });
+    }
+
     public static Result getCollection(String table, GetRows callback) {
         Logger.debug("getCollection(" + table + ")");
 

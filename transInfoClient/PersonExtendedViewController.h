@@ -39,6 +39,21 @@
 @property (weak, nonatomic) IBOutlet UITextField *nonMotoristLocationField;
 @property (weak, nonatomic) IBOutlet UITableView *vehicleStrikingNonMotoristTable;
 
+@property (weak, nonatomic) IBOutlet UITextField *safetyEquipmentField;
+@property (weak, nonatomic) IBOutlet UITextField *alcoholSuspectedField;
+@property (weak, nonatomic) IBOutlet UITextField *alcoholTestStatusField;
+@property (weak, nonatomic) IBOutlet UITextField *alcoholTestTypeField;
+@property (weak, nonatomic) IBOutlet UITextField *alcoholResultField;
+@property (weak, nonatomic) IBOutlet UITextField *alcoholResultTypeField;
+
+@property (weak, nonatomic) IBOutlet UITextField *drugSuspectedField;
+@property (weak, nonatomic) IBOutlet UITextField *drugTestStatusField;
+@property (weak, nonatomic) IBOutlet UITextField *drugTestTypeField;
+@property (weak, nonatomic) IBOutlet UITextField *drugResultField;
+
+@property (weak, nonatomic) IBOutlet UITableView *violationsTable;
+
+
 @property UITextField *latestField;
 
 @property NSString *trash;
@@ -54,5 +69,6 @@
 @property NSMutableArray *viewElements;
 
 @property BOOL displayEmptyCell;
+@property BOOL displayEmptyCellViolations;
 
 @end
