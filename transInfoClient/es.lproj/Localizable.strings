@@ -27,15 +27,15 @@
 "report.third.no-vin.msg" = "No se pudo encontrar la información del VIN.";
 "report.third.no-vin.title" = "Problema buscando información del VIN.";
 
-"report.third.edit-person" = "Editar Persona";
+"report.third.edit-person" = "Actualizar Persona";
 
 "report.third.required-vehicle.msg" = "La persona está en un vehículo, tienes que seleccionarlo.";
 "report.third.required-vehicle.title" = "¡Vehículo Requerido!";
 
-"report.third.edit" = "Editar";
+"report.third.edit" = "Actualizar";
 "report.third.delete" = "Eliminar";
 
-"report.third.edit-vehicle" = "Editar Vehículo";
+"report.third.edit-vehicle" = "Actualizar Vehículo";
 
 "pedestrians" = "Peatones";
 
@@ -54,3 +54,8 @@
 "violations.list.main" = "%@ (Artículo de la Ley: %@)";
 "violations.list.citation" = "Citación: %@ %@";
 "violations.list.nocitation" = "No se especificó una citación.";
+
+"violation.title.edit" = "Actualizar Infracción a la Ley";
+"violation.button.edit" = "Actualizar";
+"violation.title.add" = "Añadir Infracción a la Ley";
+"violation.button.add" = "Añadir";

@@ -14,6 +14,7 @@
 #import "CarTableViewCell.h"
 #import "PedestrianTableViewCell.h"
 #import "Violation.h"
+#import "ViolationViewController.h"
 
 @interface PersonExtendedViewController ()
 
@@ -347,7 +348,18 @@
     NSDictionary *dict = [notification userInfo];
     Violation *violation = [dict objectForKey:@"violation"];
     
-    [self.editingPerson.violations addObject:violation];
+    if (violation.uuid != nil) {
+        for (Violation *v in self.editingPerson.violations) {
+            if ([v.uuid isEqualToString:violation.uuid]) {
+                NSUInteger index = [self.editingPerson.violations indexOfObject:v];
+                [self.editingPerson.violations replaceObjectAtIndex:index withObject:violation];
+                break;
+            }
+        }
+    } else {
+        violation.uuid = [[NSUUID UUID] UUIDString];
+        [self.editingPerson.violations addObject:violation];
+    }
     
     [self.violationsTable reloadData];
 }
@@ -372,13 +384,13 @@
     if (personUUID != nil) {
         NSLog(@"Updating UUID: %@", personUUID);
         
-        for (Person *p in crashSummary.pedestrians) {
+        for (Person *p in crashSummary.individualPersons) {
             if ([p.uuid isEqualToString:personUUID]) {
-                NSUInteger index = [crashSummary.pedestrians indexOfObject:p];
+                NSUInteger index = [crashSummary.individualPersons indexOfObject:p];
                 
                 NSLog(@"Found at %lu, replacing!", (unsigned long)index);
                 
-                [crashSummary.pedestrians replaceObjectAtIndex:index withObject:self.editingPerson];
+                [crashSummary.individualPersons replaceObjectAtIndex:index withObject:self.editingPerson];
                 
                 found = YES;
                 break;
@@ -698,9 +710,9 @@
         Violation *violation = [self.editingPerson.violations objectAtIndex:indexPath.row];
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"violations.list.main", nil), violation.violationCodeField, violation.lawArticleField];
+        cell.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"violations.list.main", nil), violation.violationCode, violation.lawArticle];
 
-        if (violation.courtCitationDateField == nil || violation.courtCitationHourField == nil) {
+        if (violation.courtCitationDate == nil || violation.courtCitationTime == nil) {
             cell.detailTextLabel.text = NSLocalizedString(@"violations.list.nocitation", nil);
         } else {
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -709,7 +721,7 @@
             NSDateFormatter *dateFormatter2 = [[NSDateFormatter alloc] init];
             dateFormatter2.dateFormat = @"hh:mm a";
             
-            cell.detailTextLabel.text = [NSString stringWithFormat:NSLocalizedString(@"violations.list.citation", nil), [dateFormatter stringFromDate:violation.courtCitationDateField], [dateFormatter2 stringFromDate:violation.courtCitationHourField]];
+            cell.detailTextLabel.text = [NSString stringWithFormat:NSLocalizedString(@"violations.list.citation", nil), [dateFormatter stringFromDate:violation.courtCitationDate], [dateFormatter2 stringFromDate:violation.courtCitationTime]];
         }
 
         return cell;
@@ -725,6 +737,41 @@
         
         self.editingPerson.vehicleStrikingNonMotorist = vehicle.registrationPlate;
     }
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+}
+
+- (BOOL)tableView:(UITableView*)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return (self.violationsTable == tableView) && !self.displayEmptyCellViolations;
+}
+
+- (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (tableView == self.vehicleStrikingNonMotoristTable) {
+        return nil;
+    }
+    
+    UITableViewRowAction *updateAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:NSLocalizedString(@"report.third.edit", nil) handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
+        ViolationViewController *violationView = [self.storyboard instantiateViewControllerWithIdentifier:@"newViolationView"];
+        
+        violationView.editingViolation = [self.editingPerson.violations objectAtIndex:indexPath.row];
+        
+        self.popover = [[UIPopoverController alloc] initWithContentViewController:violationView];
+        
+        CGRect aFrame = [self.violationsTable rectForRowAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section]];
+        [self.popover presentPopoverFromRect:[self.violationsTable convertRect:aFrame toView:self.view] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        
+        [self.violationsTable setEditing:NO];
+    }];
+    updateAction.backgroundColor = [UIColor colorWithRed:0 green:204.0/255.0 blue:0 alpha:1];
+    
+    UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:NSLocalizedString(@"report.third.delete", nil)  handler:^(UITableViewRowAction *action, NSIndexPath *indexPath){
+        [self.editingPerson.violations removeObjectAtIndex:indexPath.row];
+        [self.violationsTable reloadData];
+        [self.violationsTable setEditing:NO];
+    }];
+    
+    return @[deleteAction, updateAction];
 }
 
 @end

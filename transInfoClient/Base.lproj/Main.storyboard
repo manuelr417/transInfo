@@ -2278,8 +2278,8 @@
                                 <rect key="frame" x="16" y="1541" width="378" height="215"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="VIOLACIONES A LA LEY:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YtS-oq-ARY">
-                                <rect key="frame" x="16" y="1512" width="200" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="INFRACCIONES A LA LEY:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YtS-oq-ARY">
+                                <rect key="frame" x="16" y="1512" width="213" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -2338,12 +2338,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XX3-q7-2xK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2623" y="122"/>
+            <point key="canvasLocation" x="2665" y="390"/>
         </scene>
         <!--Violation View Controller-->
         <scene sceneID="Apx-C2-zwk">
             <objects>
-                <viewController id="d7g-5f-hIe" customClass="ViolationViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="newViolationView" id="d7g-5f-hIe" customClass="ViolationViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Yd5-1y-ElM"/>
                         <viewControllerLayoutGuide type="bottom" id="DlP-wr-lyW"/>
@@ -2393,7 +2393,7 @@
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qzF-mo-cgc">
                                 <rect key="frame" x="0.0" y="0.0" width="500" height="44"/>
                                 <items>
-                                    <navigationItem title="Añadir Violación a la Ley" id="Nx9-cN-CdH">
+                                    <navigationItem title="Añadir Infracción a la Ley" id="Nx9-cN-CdH">
                                         <barButtonItem key="rightBarButtonItem" title="Añadir" id="nfU-Ja-GEG">
                                             <connections>
                                                 <action selector="addButtonClicked:" destination="d7g-5f-hIe" id="c4l-3k-KEz"/>
@@ -2409,14 +2409,15 @@
                         <outlet property="addButton" destination="nfU-Ja-GEG" id="4Jg-oq-UpN"/>
                         <outlet property="courtCitationDate" destination="GCa-vZ-uMS" id="uIa-p0-njf"/>
                         <outlet property="courtCitationDateField" destination="GCa-vZ-uMS" id="Z97-P6-z83"/>
-                        <outlet property="courtCitationHourField" destination="ggz-Ke-EvF" id="MXu-a0-vID"/>
+                        <outlet property="courtCitationTimeField" destination="ggz-Ke-EvF" id="nLq-n8-Ah7"/>
                         <outlet property="lawArticleField" destination="oJe-RA-Zds" id="DiB-Ia-fWv"/>
+                        <outlet property="navigationBar" destination="qzF-mo-cgc" id="c0I-pu-pHn"/>
                         <outlet property="violationCodeField" destination="QuX-fI-zr5" id="EhJ-qN-jln"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gwD-x4-Xal" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3349" y="122"/>
+            <point key="canvasLocation" x="3451" y="390"/>
         </scene>
         <!--Personas-->
         <scene sceneID="dgW-rg-KLJ">

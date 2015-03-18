@@ -11,7 +11,7 @@
 @implementation CrashSummary
 
 @synthesize vehicles;
-@synthesize pedestrians;
+@synthesize individualPersons;
 
 - (id)init {
     self = [super init];
@@ -22,7 +22,7 @@
         self.creationDate = [NSDate date];
         
         self.vehicles = [[NSMutableArray alloc] init];
-        self.pedestrians = [[NSMutableArray alloc] init];
+        self.individualPersons = [[NSMutableArray alloc] init];
         
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         NSDictionary *loginInfo = [userDefaults objectForKey:@"login"];
@@ -84,6 +84,16 @@
     postData[@"CrashTimeUnknown"] = (self.crashTimeUnknown == YES) ? @1 : @0;
     
     return postData;
+}
+
+- (Vehicle *)getVehicleWithUUID:(NSString *)uuid {
+    for (Vehicle *v in self.vehicles) {
+        if ([v.uuid isEqualToString:uuid]) {
+            return v;
+        }
+    }
+    
+    return nil;
 }
 
 @end

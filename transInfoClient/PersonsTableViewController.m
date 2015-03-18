@@ -42,6 +42,26 @@
     //[Utilities displayAlertWithMessage:@"aja" withTitle:@"aja"];
     
     self.persons = [[NSMutableArray alloc] init];
+    
+    // Loaod Person Types
+    self.colManager = [[CollectionManager alloc] init];
+    self.colManager.delegate = self;
+    [self.colManager getCollection:@"personTypes"];
+}
+
+- (void)receivedCollection:(NSArray *)collection withName:(NSString *)collectionName {
+    NSLog(@"Received: %@", collectionName);
+    
+    if ([collectionName isEqualToString:@"personTypes"]) {
+        self.personTypes = [[NSMutableDictionary alloc] init];
+        
+        for (NSDictionary *dict in collection) {
+            [self.personTypes setValue:[dict objectForKey:[Utilities collectionColumn]] forKey:[NSString stringWithFormat:@"%@",[dict objectForKey:@"PersonTypeID"]]];
+        }
+        
+        NSLog(@"personTypes: %@", self.personTypes);
+        [self.tableView reloadData];
+    }
 }
 
 - (void)receiveNotification:(NSNotification*)notification {
@@ -74,7 +94,7 @@
         }
     }
     
-    for (Person *p in crashSummary.pedestrians) {
+    for (Person *p in crashSummary.individualPersons) {
         [self.persons addObject:p];
         NSLog(@"%@", p.name);
     }
@@ -112,7 +132,25 @@
     Person *p = [self.persons objectAtIndex:indexPath.row];
     
     cell.textLabel.text = p.name;
-    cell.detailTextLabel.text = @"(Peatón, Conductor de XXX 999, Pasajero de XXX 999)";
+    
+    NSString *personTypeDesc = (NSString*)[self.personTypes objectForKey:p.typeKey];
+    
+    //NSLog(@"%@ %@ %@", p.typeKey, personTypeDesc, self.personTypes);
+    
+    if (personTypeDesc != nil) {
+        if (p.vehicleUuid != nil) {
+            CrashSummary *crashSummary = [CrashSummary sharedCrashSummary];
+            Vehicle *v = [crashSummary getVehicleWithUUID:p.vehicleUuid];
+            
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ in vehicle %@", personTypeDesc, v.registrationPlate];
+        } else {
+            cell.detailTextLabel.text = personTypeDesc;
+        }
+    } else {
+        //cell.detailTextLabel.text = @"(Peatón, Conductor de XXX 999, Pasajero de XXX 999)";
+        cell.detailTextLabel.text = @"";
+    }
+    
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     
     return cell;

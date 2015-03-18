@@ -20,13 +20,26 @@
     // Do any additional setup after loading the view.
     
     self.courtCitationDateField.delegate = self;
-    self.courtCitationHourField.delegate = self;
-    
-    //self.courtCitationDate = [NSDate date];
-    //self.courtCitationHour = [NSDate date];
+    self.courtCitationTimeField.delegate = self;
     
     self.courtCitationDate = [[NSDate alloc] init];
-    self.courtCitationHour = [[NSDate alloc] init];
+    self.courtCitationTime = [[NSDate alloc] init];
+    
+    if (self.editingViolation != nil) {
+        self.violationCodeField.text = self.editingViolation.violationCode;
+        self.lawArticleField.text = self.editingViolation.lawArticle;
+        self.courtCitationDate = self.editingViolation.courtCitationDate;
+        self.courtCitationTime = self.editingViolation.courtCitationTime;
+        
+        [self setCourtCitationDateFormat];
+        [self setCourtCitationTimeFormat];
+        
+        self.navigationBar.topItem.title = NSLocalizedString(@"violation.title.edit", nil);
+        self.addButton.title = NSLocalizedString(@"violation.button.edit", nil);
+    } else {
+        self.navigationBar.topItem.title = NSLocalizedString(@"violation.title.add", nil);
+        self.addButton.title = NSLocalizedString(@"violation.button.add", nil);
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,16 +60,16 @@
         self.courtCitationDateField.inputView = customPicker;
         
         //return NO;
-    } else if (textField == self.courtCitationHourField) {
+    } else if (textField == self.courtCitationTimeField) {
         UIDatePickerOKView *customPicker = [[[NSBundle mainBundle] loadNibNamed:@"UIPickerOKView" owner:self options:nil] objectAtIndex:0];
         
-        customPicker.datePicker.date = (self.courtCitationHour == nil) ? [NSDate date] : self.courtCitationHour;
+        customPicker.datePicker.date = (self.courtCitationTime == nil) ? [NSDate date] : self.courtCitationTime;
         customPicker.datePicker.datePickerMode = UIDatePickerModeTime;
         [customPicker.datePicker addTarget:self action:@selector(timePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
         
-        customPicker.parent = self.courtCitationHourField;
+        customPicker.parent = self.courtCitationTimeField;
         
-        self.courtCitationHourField.inputView = customPicker;
+        self.courtCitationTimeField.inputView = customPicker;
         
         //return NO;
     }
@@ -80,16 +93,16 @@
 
 - (IBAction)timePickerValueChanged:(id)sender {
     NSDate *pickerDate = [sender date];
-    self.courtCitationHour = pickerDate;
+    self.courtCitationTime = pickerDate;
     
-    [self setCourtCitationHourFormat];
+    [self setCourtCitationTimeFormat];
 }
 
-- (void)setCourtCitationHourFormat {
+- (void)setCourtCitationTimeFormat {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"hh:mm a";
     
-    self.courtCitationHourField.text = [dateFormatter stringFromDate:self.courtCitationHour];
+    self.courtCitationTimeField.text = [dateFormatter stringFromDate:self.courtCitationTime];
 }
 
 - (IBAction)addButtonClicked:(id)sender {
@@ -99,10 +112,10 @@
         self.editingViolation = [[Violation alloc] init];
     }
     
-    self.editingViolation.violationCodeField = self.violationCodeField.text;
-    self.editingViolation.lawArticleField = self.lawArticleField.text;
-    self.editingViolation.courtCitationDateField = self.courtCitationDate;
-    self.editingViolation.courtCitationHourField = self.courtCitationHour;
+    self.editingViolation.violationCode = self.violationCodeField.text;
+    self.editingViolation.lawArticle = self.lawArticleField.text;
+    self.editingViolation.courtCitationDate = ([self.courtCitationDateField.text isEqualToString:@""]) ? nil : self.courtCitationDate;
+    self.editingViolation.courtCitationTime = ([self.courtCitationTimeField.text isEqualToString:@""]) ? nil : self.courtCitationTime;
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"updateViolation" object:nil userInfo:@{@"violation" : self.editingViolation}];
     

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CollectionManager.h"
 
 @interface PersonsTableViewController : UITableViewController
 
@@ -15,5 +16,8 @@
 @property BOOL displayEmptyCell;
 
 @property NSMutableArray *persons;
+@property NSMutableDictionary *personTypes;
+
+@property CollectionManager *colManager;
 
 @end

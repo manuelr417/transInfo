@@ -14,13 +14,15 @@
 @property (weak, nonatomic) IBOutlet UITextField *violationCodeField;
 @property (weak, nonatomic) IBOutlet UITextField *lawArticleField;
 @property (weak, nonatomic) IBOutlet UITextField *courtCitationDateField;
-@property (weak, nonatomic) IBOutlet UITextField *courtCitationHourField;
+@property (weak, nonatomic) IBOutlet UITextField *courtCitationTimeField;
 
+
+@property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addButton;
 
 @property Violation *editingViolation;
 
 @property NSDate *courtCitationDate;
-@property NSDate *courtCitationHour;
+@property NSDate *courtCitationTime;
 
 @end

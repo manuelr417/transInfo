@@ -71,17 +71,17 @@
         NSLog(@"Person UUID: %@", person.uuid);
         
         if (personUUID != nil) {
-            for (Person *p in crashSummary.pedestrians) {
+            for (Person *p in crashSummary.individualPersons) {
                 if ([p.uuid isEqualToString:personUUID]) {
-                    NSUInteger index = [crashSummary.pedestrians indexOfObject:p];
+                    NSUInteger index = [crashSummary.individualPersons indexOfObject:p];
                     
                     NSLog(@"Found at %lu, replacing or deleting!", (unsigned long)index);
                     
                     if ([person.typeKey isEqualToString:@"3"] || [person.typeKey isEqualToString:@"7"]) {
-                        [crashSummary.pedestrians replaceObjectAtIndex:index withObject:person];
+                        [crashSummary.individualPersons replaceObjectAtIndex:index withObject:person];
                         NSLog(@"Replacing!");
                     } else {
-                        [crashSummary.pedestrians removeObjectAtIndex:index];
+                        [crashSummary.individualPersons removeObjectAtIndex:index];
                         NSLog(@"Deleting! %@", person.typeKey);
                     }
                     
@@ -110,7 +110,7 @@
         if ([person.typeKey isEqualToString:@"3"] || [person.typeKey isEqualToString:@"7"]) {
             if (!pedestrianAdded) {
                 person.uuid = [[NSUUID UUID] UUIDString];
-                [crashSummary.pedestrians addObject:person];
+                [crashSummary.individualPersons addObject:person];
             }
         } else {
             for (Vehicle *v in crashSummary.vehicles) {
@@ -160,7 +160,7 @@
 - (BOOL)tableView:(UITableView*)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     CrashSummary *crashSummary = [CrashSummary sharedCrashSummary];
     
-    if (crashSummary.pedestrians.count > 0 && indexPath.section == [crashSummary.vehicles count] && indexPath.row == 0) {
+    if (crashSummary.individualPersons.count > 0 && indexPath.section == [crashSummary.vehicles count] && indexPath.row == 0) {
         return NO;
     }
     return YES;
@@ -174,8 +174,8 @@
         if (indexPath.row > 0) {
             NewPersonController *newPersonView = [self.storyboard instantiateViewControllerWithIdentifier:@"newPersonView"];
             
-            if (crashSummary.pedestrians.count > 0 && indexPath.section == [crashSummary.vehicles count]) {
-                Person *person = [crashSummary.pedestrians objectAtIndex:indexPath.row - 1];
+            if (crashSummary.individualPersons.count > 0 && indexPath.section == [crashSummary.vehicles count]) {
+                Person *person = [crashSummary.individualPersons objectAtIndex:indexPath.row - 1];
                 
                 [newPersonView setEditingModeFor:person forRegistrationPlate:nil];
             } else {
@@ -306,7 +306,7 @@
     
     CrashSummary *crashSummary = [CrashSummary sharedCrashSummary];
     
-    if (section == crashSummary.vehicles.count && crashSummary.pedestrians.count > 0) {
+    if (section == crashSummary.vehicles.count && crashSummary.individualPersons.count > 0) {
         static NSString *cellIdentifier = @"PedestrianDivisorCell";
         
         PedestrianTableViewCell *cell = (PedestrianTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -360,7 +360,7 @@
     CrashSummary *crashSummary = [CrashSummary sharedCrashSummary];
     //NSLog(@"%@", crashSummary.pedestrians);
     
-    if (crashSummary.pedestrians.count > 0) {
+    if (crashSummary.individualPersons.count > 0) {
         self.displayEmptyCell = NO;
         return [crashSummary.vehicles count] + 1;
     } else {
@@ -377,7 +377,7 @@
     CrashSummary *crashSummary = [CrashSummary sharedCrashSummary];
     
     if (section == crashSummary.vehicles.count) {
-        return crashSummary.pedestrians.count + 1;
+        return crashSummary.individualPersons.count + 1;
     } else {
         Vehicle *actual =[crashSummary.vehicles objectAtIndex:section];
         return actual.persons.count + 1;
@@ -389,7 +389,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CrashSummary *crashSummary = [CrashSummary sharedCrashSummary];
     
-    if (indexPath.section == crashSummary.vehicles.count && [crashSummary.pedestrians count] > 0) {
+    if (indexPath.section == crashSummary.vehicles.count && [crashSummary.individualPersons count] > 0) {
         static NSString *cellIdentifier = @"PedestrianCell";
         
         PedestrianTableViewCell *cell = (PedestrianTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -398,7 +398,7 @@
             cell = [nib objectAtIndex:0];
         }
         
-        Person *person = [crashSummary.pedestrians objectAtIndex:indexPath.row - 1];
+        Person *person = [crashSummary.individualPersons objectAtIndex:indexPath.row - 1];
         
         cell.pedestrianName = person.name;
         
@@ -417,7 +417,7 @@
         
         //NSLog(@"Displaying... %ld", (long)person.typeKey);
         
-        if (person.typeKey == 1) {
+        if ([person.typeKey isEqualToString:@"1"]) {
             cell.memberType = 1;
         } else {
             cell.memberType = 2;

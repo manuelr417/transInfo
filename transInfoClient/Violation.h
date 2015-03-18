@@ -10,9 +10,11 @@
 
 @interface Violation : NSObject
 
-@property NSString *violationCodeField;
-@property NSString *lawArticleField;
-@property NSDate *courtCitationDateField;
-@property NSDate *courtCitationHourField;
+@property NSString *violationCode;
+@property NSString *lawArticle;
+@property NSDate *courtCitationDate;
+@property NSDate *courtCitationTime;
+
+@property NSString *uuid;
 
 @end

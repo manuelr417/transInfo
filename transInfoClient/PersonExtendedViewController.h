@@ -53,7 +53,6 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *violationsTable;
 
-
 @property UITextField *latestField;
 
 @property NSString *trash;
@@ -67,6 +66,8 @@
 - (void)setEditingModeFor:(Person*)person;
 
 @property NSMutableArray *viewElements;
+
+@property UIPopoverController *popover;
 
 @property BOOL displayEmptyCell;
 @property BOOL displayEmptyCellViolations;

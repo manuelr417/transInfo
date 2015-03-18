@@ -10,11 +10,12 @@
 
 @implementation Violation
 
-@synthesize violationCodeField;
-@synthesize lawArticleField;
-@synthesize courtCitationDateField;
-@synthesize courtCitationHourField;
+@synthesize violationCode;
+@synthesize lawArticle;
+@synthesize courtCitationDate;
+@synthesize courtCitationTime;
 
+@synthesize uuid;
 
 - (id)init {
     self = [super init];

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Vehicle.h"
 
 @interface CrashSummary : NSObject
 
@@ -37,9 +38,11 @@
 @property NSDate *creationDate;
 
 @property NSMutableArray *vehicles;
-@property NSMutableArray *pedestrians;
+@property NSMutableArray *individualPersons;
 
 + (id)sharedCrashSummary;
 - (NSMutableDictionary*)getDictionary;
+
+- (Vehicle*)getVehicleWithUUID:(NSString*)uuid;
 
 @end

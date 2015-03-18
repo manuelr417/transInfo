@@ -54,3 +54,8 @@
 "violations.list.main" = "%@ (Law Article: %@)";
 "violations.list.citation" = "Citation: %@ %@";
 "violations.list.nocitation" = "No citation specified.";
+
+"violation.title.edit" = "Edit Law Violation";
+"violation.button.edit" = "Edit";
+"violation.title.add" = "Add Law Violation";
+"violation.button.add" = "Add";
