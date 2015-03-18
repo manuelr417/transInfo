@@ -22,8 +22,11 @@
     self.courtCitationDateField.delegate = self;
     self.courtCitationHourField.delegate = self;
     
-    self.courtCitationDate = [NSDate date];
-    self.courtCitationHour = [NSDate date];
+    //self.courtCitationDate = [NSDate date];
+    //self.courtCitationHour = [NSDate date];
+    
+    self.courtCitationDate = [[NSDate alloc] init];
+    self.courtCitationHour = [[NSDate alloc] init];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -35,7 +38,7 @@
     if (textField == self.courtCitationDateField) {
         UIDatePickerOKView *customPicker = [[[NSBundle mainBundle] loadNibNamed:@"UIPickerOKView" owner:self options:nil] objectAtIndex:0];
         
-        customPicker.datePicker.date = self.courtCitationDate;
+        customPicker.datePicker.date = (self.courtCitationDate == nil) ? [NSDate date] : self.courtCitationDate;
         customPicker.datePicker.datePickerMode = UIDatePickerModeDate;
         [customPicker.datePicker addTarget:self action:@selector(datePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
         
@@ -47,7 +50,7 @@
     } else if (textField == self.courtCitationHourField) {
         UIDatePickerOKView *customPicker = [[[NSBundle mainBundle] loadNibNamed:@"UIPickerOKView" owner:self options:nil] objectAtIndex:0];
         
-        customPicker.datePicker.date = self.courtCitationHour;
+        customPicker.datePicker.date = (self.courtCitationHour == nil) ? [NSDate date] : self.courtCitationHour;
         customPicker.datePicker.datePickerMode = UIDatePickerModeTime;
         [customPicker.datePicker addTarget:self action:@selector(timePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
         

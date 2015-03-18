@@ -697,10 +697,21 @@
         
         Violation *violation = [self.editingPerson.violations objectAtIndex:indexPath.row];
         
-        cell.textLabel.text = violation.violationCodeField;
-        cell.detailTextLabel.text = @"Algo...";
-        //[cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.textLabel.text = [NSString stringWithFormat:NSLocalizedString(@"violations.list.main", nil), violation.violationCodeField, violation.lawArticleField];
+
+        if (violation.courtCitationDateField == nil || violation.courtCitationHourField == nil) {
+            cell.detailTextLabel.text = NSLocalizedString(@"violations.list.nocitation", nil);
+        } else {
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            dateFormatter.dateFormat = @"yyyy-MM-dd";
+            
+            NSDateFormatter *dateFormatter2 = [[NSDateFormatter alloc] init];
+            dateFormatter2.dateFormat = @"hh:mm a";
+            
+            cell.detailTextLabel.text = [NSString stringWithFormat:NSLocalizedString(@"violations.list.citation", nil), [dateFormatter stringFromDate:violation.courtCitationDateField], [dateFormatter2 stringFromDate:violation.courtCitationHourField]];
+        }
+
         return cell;
     }
     

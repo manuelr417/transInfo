@@ -50,3 +50,7 @@
 
 "picker-view.limit-violation.msg" = "You can select only %ld items.";
 "picker-view.limit-violation.title" = "List limit violation!";
+
+"violations.list.main" = "%@ (Law Article: %@)";
+"violations.list.citation" = "Citation: %@ %@";
+"violations.list.nocitation" = "No citation specified.";

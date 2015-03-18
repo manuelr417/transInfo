@@ -50,3 +50,7 @@
 
 "picker-view.limit-violation.msg" = "Puede seleccionar solo %ld elementos.";
 "picker-view.limit-violation.title" = "¡Violación del Límite de la Lista!";
+
+"violations.list.main" = "%@ (Artículo de la Ley: %@)";
+"violations.list.citation" = "Citación: %@ %@";
+"violations.list.nocitation" = "No se especificó una citación.";

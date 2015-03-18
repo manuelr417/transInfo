@@ -112,7 +112,7 @@
     Person *p = [self.persons objectAtIndex:indexPath.row];
     
     cell.textLabel.text = p.name;
-    cell.detailTextLabel.text = @"Algo...";
+    cell.detailTextLabel.text = @"(Peatón, Conductor de XXX 999, Pasajero de XXX 999)";
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     
     return cell;
