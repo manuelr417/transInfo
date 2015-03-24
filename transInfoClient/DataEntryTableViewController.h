@@ -12,6 +12,8 @@
 
 @interface DataEntryTableViewController : UITableViewController <SLExpandableTableViewDatasource/*, SLExpandableTableViewDelegate*/, UIPopoverControllerDelegate, UIAlertViewDelegate>
 
+@property NSMutableArray *individualPersons;
+
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sideBarButton;
 
 @property UIPopoverController *popover;

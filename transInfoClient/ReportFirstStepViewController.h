@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MapKit/MapKit.h"
 
-@interface ReportFirstStepViewController : UIViewController <CLLocationManagerDelegate, UITextFieldDelegate>
+@interface ReportFirstStepViewController : UIViewController <CLLocationManagerDelegate, UITextFieldDelegate, UITextViewDelegate>
 
 @property CLLocationManager *locationManager;
 @property (nonatomic) CLLocationCoordinate2D coords;

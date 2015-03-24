@@ -138,16 +138,17 @@
     //NSLog(@"%@ %@ %@", p.typeKey, personTypeDesc, self.personTypes);
     
     if (personTypeDesc != nil) {
-        if (p.vehicleUuid != nil) {
+        // Vehicle Exists and is a Motorist.
+        if (p.vehicleUuid != nil && [p.typeCategoryKey isEqualToString:@"1"]) {
             CrashSummary *crashSummary = [CrashSummary sharedCrashSummary];
             Vehicle *v = [crashSummary getVehicleWithUUID:p.vehicleUuid];
             
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ in vehicle %@", personTypeDesc, v.registrationPlate];
+            cell.detailTextLabel.text = [NSString stringWithFormat:NSLocalizedString(@"person.description.detail", nil), personTypeDesc, [v.registrationPlate uppercaseString]];
         } else {
             cell.detailTextLabel.text = personTypeDesc;
         }
     } else {
-        //cell.detailTextLabel.text = @"(Peatón, Conductor de XXX 999, Pasajero de XXX 999)";
+        // Not yet available!
         cell.detailTextLabel.text = @"";
     }
     

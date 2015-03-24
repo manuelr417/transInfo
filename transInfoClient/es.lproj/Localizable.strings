@@ -38,6 +38,8 @@
 "report.third.edit-vehicle" = "Actualizar Vehículo";
 
 "pedestrians" = "Peatones";
+"cyclists" = "Ciclistas";
+"other.persons" = "Otras Personas";
 
 "report.fourth.no-total-lanes-category.msg" = "Para poder seleccionar el Tipo de Carril es necesario haber seleccionado la Categoría del Carril.";
 "report.fourth.no-total-lanes-category.title" = "Selecciona una Categoría de Carril";
@@ -59,3 +61,5 @@
 "violation.button.edit" = "Actualizar";
 "violation.title.add" = "Añadir Infracción a la Ley";
 "violation.button.add" = "Añadir";
+
+"person.description.detail" = "%@ en vehículo con Tablilla: %@";

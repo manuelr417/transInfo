@@ -14,13 +14,15 @@
 #import "CollectionManager.h"
 #import "SWRevealViewController.h"
 #import "Utilities.h"
+#import "CrashSummary.h"
 
 @interface ReportFirstStepViewController ()
 
 - (void)setCrashDateFormat;
 - (void)setCrashHourFormat;
-- (void)showPickerView:(NSMutableDictionary*)elements withField:(UITextField*)field withLookupButton:(UIButton*)button withOutField:(NSString*)outField;
+//- (void)showPickerView:(NSMutableDictionary*)elements withField:(UITextField*)field withLookupButton:(UIButton*)button withOutField:(NSString*)outField;
 
+@property (weak, nonatomic) IBOutlet UITextField *caseIdentifierField;
 @property (weak, nonatomic) IBOutlet UITextField *latitudeField;
 @property (weak, nonatomic) IBOutlet UITextField *longitudeField;
 @property (weak, nonatomic) IBOutlet UITextField *crashDateField;
@@ -69,6 +71,34 @@
 
 @implementation ReportFirstStepViewController
 
+- (void)keysSelected:(NSArray *)keys withIdentifier:(NSString *)identifier withOutField:(UITextField *)outField {
+    CrashSummary *crashSummary = [CrashSummary sharedCrashSummary];
+    
+    if ([keys count] == 0) {
+        return;
+    }
+    
+    //NSLog(@"%@ = %@", identifier, keys[0]);
+    
+    if (outField == self.reportTypeField) {
+        crashSummary.reportTypeID = keys[0];
+    } else if (outField == self.cityField) {
+        crashSummary.cityID = keys[0];
+    } else if (outField == self.countyField) {
+        crashSummary.countyID = keys[0];
+    } else if (outField == self.nearToLocationField) {
+        crashSummary.nearToID = keys[0];
+    } else if (outField == self.measurementField) {
+        crashSummary.measurementID = keys[0];
+    } else if (outField == self.directionField) {
+        crashSummary.directionID = keys[0];
+    } else if (outField == self.propertyField) {
+        crashSummary.propertyID = keys[0];
+    } else if (outField == self.locationField) {
+        crashSummary.locationID = keys[0];
+    }
+}
+
 - (void)viewDidLoad {
     [(UIScrollView *)self.view setContentSize:CGSizeMake(700,700)];
     [self registerForKeyboardNotifications];
@@ -80,6 +110,50 @@
     
     // Set the gesture
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    
+    // Delegates
+    self.caseIdentifierField.delegate = self;
+    self.addressField.delegate = self;
+    self.vehiclesQuantityField.delegate = self;
+    self.pedestriansQuantityField.delegate = self;
+    self.injuredQuantityField.delegate = self;
+    self.fatalitiesQuantityField.delegate = self;
+    self.intersectingStreetField.delegate = self;
+    self.distanceField.delegate = self;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
+    NSString *postText = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    
+    //NSLog(@"%@", postText);
+    
+    /*self.pedestriansQuantityField.delegate = self;
+    self.injuredQuantityField.delegate = self;
+    self.fatalitiesQuantityField.delegate = self;*/
+    
+    CrashSummary *crashSummary = [CrashSummary sharedCrashSummary];
+    
+    if (textField == self.caseIdentifierField) {
+        crashSummary.caseNumber = textField.text;
+    } else if (textField == self.vehiclesQuantityField) {
+        crashSummary.totalMotorizedUnits = textField.text;
+    } else if (textField == self.intersectingStreetField) {
+        crashSummary.intersectingStreet = textField.text;
+    } else if (textField == self.distanceField) {
+        crashSummary.distance = textField.text;
+    }
+    
+    return YES;
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    NSString *postText = [textView.text stringByReplacingCharactersInRange:range withString:text];
+    
+    CrashSummary *crashSummary = [CrashSummary sharedCrashSummary];
+    crashSummary.streetHighway = postText;
+    
+    return YES;
 }
 
 - (void)loadCollections {
@@ -232,7 +306,9 @@
         
         //NSLog(@"%@", reportTypes);
         
-        [self showPickerView:collection withField:field withLookupButton:self.reportTypeLookupButton withOutField:self.reportType];
+        //[self showPickerView:collection withField:field withLookupButton:self.reportTypeLookupButton withOutField:field];
+        
+        [self showPickerView:collection withField:field withIdentifier:collectionName withMultipleChoice:NO withSelectedElements:[[NSMutableArray alloc] init] withSelectedLimit:@0];
     } else {
         NSLog(@"No collection yet... %@ ... %@ ...", collectionName, self.collections[collectionName]);
         CollectionManager *collManager = [[CollectionManager alloc] init];
@@ -265,12 +341,21 @@
     [self showCollection:@"locations" withIDColumn:@"LocationID" withField:self.locationField];
 }
 
-- (void)showPickerView:(NSMutableDictionary*)elements withField:(UITextField*)field withLookupButton:(UIButton*)button withOutField:(NSString*)outField {
-    self.pickerView = [[PickerViewController alloc] initWithStyle:UITableViewStylePlain withElementsDictionary:elements withMultipleChoice:NO];
+- (void)showPickerView:(NSMutableDictionary*)elements withField:(UITextField*)field withIdentifier:(NSString*)identifier withMultipleChoice:(BOOL)isMultipleChoice withSelectedElements:(NSMutableArray*)selectedElements withSelectedLimit:(NSNumber*)selectedLimit {
+    self.pickerView = [[PickerViewController alloc] initWithStyle:UITableViewStylePlain withElementsDictionary:elements withMultipleChoice:isMultipleChoice];
     self.pickerPopover = [[UIPopoverController alloc] initWithContentViewController:self.pickerView];
     
+    self.pickerView.delegate = self;
     self.pickerView.outField = field;
     self.pickerView.popover = self.pickerPopover;
+    [self.pickerView setIdentifier:identifier];
+    if (selectedLimit != nil) {
+        [self.pickerView setSelectedLimit:selectedLimit];
+    }
+    
+    if (selectedElements != nil) {
+        [self.pickerView setSelectedElements:selectedElements];
+    }
     
     [self.pickerPopover presentPopoverFromRect:field.bounds inView:field permittedArrowDirections:UIPopoverArrowDirectionUnknown animated:YES];
 }

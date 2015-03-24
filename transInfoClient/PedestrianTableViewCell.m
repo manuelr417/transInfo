@@ -64,6 +64,23 @@
     [self.expandImageView removeFromSuperview];
 }
 
+/* 1 = Pedestrian
+ * 2 = Cyclist
+ * 3 = Other
+ */
+- (void)setViewType:(NSInteger)viewType {
+    if (viewType == 1) {
+        self.pedestrianNameLabel.text = NSLocalizedString(@"pedestrians", nil);
+        [self.pedestrianImageView setImage:[UIImage imageNamed:@"walking-50"]];
+    } else if (viewType == 2) {
+        self.pedestrianNameLabel.text = NSLocalizedString(@"cyclists", nil);
+        [self.pedestrianImageView setImage:[UIImage imageNamed:@"Biking"]];
+    } else if (viewType == 3) {
+        self.pedestrianNameLabel.text = NSLocalizedString(@"other.persons", nil);
+        [self.pedestrianImageView setImage:[UIImage imageNamed:@"Question Mark"]];
+    }
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
     

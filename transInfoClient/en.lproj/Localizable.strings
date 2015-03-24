@@ -38,6 +38,8 @@
 "report.third.edit-vehicle" = "Edit Vehicle";
 
 "pedestrians" = "Pedestrians";
+"cyclists" = "Cyclists";
+"other.persons" = "Other Persons";
 
 "report.fourth.no-total-lanes-category.msg" = "You need to choose a Lane Category before choosing the Lane Type.";
 "report.fourth.no-total-lanes-category.title" = "Choose a Lane Category";
@@ -59,3 +61,5 @@
 "violation.button.edit" = "Edit";
 "violation.title.add" = "Add Law Violation";
 "violation.button.add" = "Add";
+
+"person.description.detail" = "%@ in vehicle with Registration Plate: %@";

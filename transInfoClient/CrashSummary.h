@@ -11,30 +11,30 @@
 
 @interface CrashSummary : NSObject
 
-@property NSNumber *reportID;
-@property NSNumber *reportTypeID;
+@property NSString *reportID;
+@property NSString *reportTypeID;
 @property NSString *caseNumber;
-@property NSNumber *officerUserID;
+@property NSString *officerUserID;
 @property NSDate *crashDate;
 @property NSDate *crashTime;
 @property BOOL crashTimeUnknown;
-@property NSNumber *latitude;
-@property NSNumber *longitude;
-@property NSNumber *cityID;
-@property NSNumber *countyID;
+@property NSString *latitude;
+@property NSString *longitude;
+@property NSString *cityID;
+@property NSString *countyID;
 @property NSString *streetHighway;
 @property NSString *distance;
-@property NSNumber *measurementID;
-@property NSNumber *directionID;
-@property NSNumber *nearToID;
+@property NSString *measurementID;
+@property NSString *directionID;
+@property NSString *nearToID;
 @property NSString *intersectingStreet;
-@property NSNumber *propertyID;
-@property NSNumber *locationID;
-@property NSNumber *totalWitnesses;
-@property NSNumber *totalMotorizedUnits;
-@property NSNumber *totalNonMotorizedUnits;
-@property NSNumber *totalMotorists;
-@property NSNumber *totalNonMotorists;
+@property NSString *propertyID;
+@property NSString *locationID;
+@property NSString *totalWitnesses;
+@property NSString *totalMotorizedUnits;
+@property NSString *totalNonMotorizedUnits;
+@property NSString *totalMotorists;
+@property NSString *totalNonMotorists;
 @property NSDate *creationDate;
 
 @property NSMutableArray *vehicles;

@@ -17,7 +17,7 @@
     self = [super init];
     
     if (self) {
-        self.reportTypeID = @-1;
+        self.reportTypeID = @"-1";
         self.crashTimeUnknown = NO;
         self.creationDate = [NSDate date];
         

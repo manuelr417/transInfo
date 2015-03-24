@@ -23,4 +23,6 @@
 @property (nonatomic, readonly) UIExpansionStyle expansionStyle;
 - (void)setExpansionStyle:(UIExpansionStyle)expansionStyle animated:(BOOL)animated;
 
+- (void)setViewType:(NSInteger)viewType;
+
 @end
