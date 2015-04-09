@@ -94,13 +94,20 @@ const NSInteger DELETE = 3;
     NSMutableString *request = [[NSMutableString alloc] init];
     
     for (NSString* key in dictionary) {
+        NSLog(@"%@", key);
         NSString *value = [dictionary objectForKey:key];
         
         if ([request length] > 0)
             [request appendString:@"&"];
         
-        [request appendString:key];
-        [request appendFormat:@"=%@", [value stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        [request appendString:[NSString stringWithFormat:@"%@", key]];
+        if ([value isKindOfClass:[NSString class]] && [value isEqualToString:@""]) {
+            [request appendString:@"="];
+        } if ([value isKindOfClass:[NSNumber class]]) {
+            [request appendFormat:@"=%@", value];
+        }  else {
+            [request appendFormat:@"=%@", [value stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+        }
     }
     
     return request;

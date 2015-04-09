@@ -8,6 +8,7 @@
 
 #import "CrashSummary.h"
 
+
 @implementation CrashSummary
 
 @synthesize vehicles;
@@ -17,6 +18,7 @@
     self = [super init];
     
     if (self) {
+        self.reportID = @"-1";
         self.reportTypeID = @"-1";
         self.crashTimeUnknown = NO;
         self.creationDate = [NSDate date];
@@ -75,15 +77,38 @@
      @property NSNumber *totalNonMotorists;
      @property NSDate *creationDate;*/
     
-    postData[@"ReportID"] = self.reportID;
-    postData[@"ReportTypeID"] = self.reportTypeID;
-    postData[@"CaseNumber"] = self.caseNumber;
-    postData[@"OfficerUserID"] = self.officerUserID;
-    postData[@"CrashDate"] = self.crashDate;
-    postData[@"CrashTime"] = self.crashTime;
+    postData[@"ReportID"] = (self.reportID != nil) ? self.reportID : @"";
+    postData[@"ReportTypeID"] = (self.reportTypeID != nil) ? self.reportTypeID : @"";
+    postData[@"CaseNumber"] = (self.caseNumber != nil) ? self.caseNumber : @"";
+    postData[@"OfficerUserID"] = (self.officerUserID != nil) ? self.officerUserID : @"";
+    postData[@"CrashDate"] = (self.crashDate != nil) ? self.crashDate : @"";
+    postData[@"CrashTime"] = (self.crashTime != nil) ? self.crashTime : @"";
     postData[@"CrashTimeUnknown"] = (self.crashTimeUnknown == YES) ? @1 : @0;
     
     return postData;
+}
+
+- (void)save {
+    if ([self.reportID isEqualToString:@"-1"]) {
+        restComm *conn = [[restComm alloc] initWithURL:[NSString stringWithFormat:@"%@%@", urlAPI, @"reports"] withMethod:POST];
+        
+        [conn setDataToRequest:[self getDictionary]];
+        [conn setDelegate:self];
+        
+        [conn makeCall];
+    }
+}
+
+- (void)receivedData:(NSDictionary *)data {
+    //NSLog(@"%@", data);
+    if (data[@"success"]) {
+        self.reportID = [NSString stringWithFormat:@"%@", data[@"payload"]];
+        NSLog(@"Saving Report ID: %@", self.reportID);
+    }
+}
+
+- (void)receivedError:(NSError *)error {
+    
 }
 
 - (Vehicle *)getVehicleWithUUID:(NSString *)uuid {

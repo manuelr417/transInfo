@@ -97,6 +97,8 @@
     } else if (outField == self.locationField) {
         crashSummary.locationID = keys[0];
     }
+    
+    [crashSummary save];
 }
 
 - (void)viewDidLoad {
@@ -135,13 +137,13 @@
     CrashSummary *crashSummary = [CrashSummary sharedCrashSummary];
     
     if (textField == self.caseIdentifierField) {
-        crashSummary.caseNumber = textField.text;
+        crashSummary.caseNumber = postText;
     } else if (textField == self.vehiclesQuantityField) {
-        crashSummary.totalMotorizedUnits = textField.text;
+        crashSummary.totalMotorizedUnits = postText;
     } else if (textField == self.intersectingStreetField) {
-        crashSummary.intersectingStreet = textField.text;
+        crashSummary.intersectingStreet = postText;
     } else if (textField == self.distanceField) {
-        crashSummary.distance = textField.text;
+        crashSummary.distance = postText;
     }
     
     return YES;

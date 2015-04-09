@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "Vehicle.h"
+#import "restComm.h"
+#import "Config.h"
 
 @interface CrashSummary : NSObject
 
@@ -44,5 +46,7 @@
 - (NSMutableDictionary*)getDictionary;
 
 - (Vehicle*)getVehicleWithUUID:(NSString*)uuid;
+
+- (void)save;
 
 @end

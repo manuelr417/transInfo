@@ -30,9 +30,11 @@
     //NSLog(@"receivedData");
     
     if ([data[@"success"] boolValue] == YES) {
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         NSMutableArray *elems = [[NSMutableArray alloc] init];
         
         [elems addObject:[[NSDate date] dateByAddingTimeInterval:28800]]; // 8 Hours cached!
+        [elems addObject:[userDefaults objectForKey:@"login"][@"UserSessionUUID"]]; // Saving UserSessionID in the Collection Cache.
         [elems addObjectsFromArray:data[@"payload"]];
         
         // Save to Cache
@@ -67,14 +69,18 @@
     
     NSMutableArray *elems = [NSMutableArray arrayWithContentsOfFile:filePath];
     NSDate *expirationDate = elems[0];
+    NSString *userSessionID = elems[1];
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     
     //NSLog(@"Actual: %@ Expiration: %@",[NSDate date], expirationDate);
+    //NSLog(@"Actual USID: %@, New USID: %@", userSessionID, [userDefaults objectForKey:@"login"][@"UserSessionUUID"]);
     
-    if (expirationDate < [NSDate date]) {
+    if (expirationDate < [NSDate date] || ![[userDefaults objectForKey:@"login"][@"UserSessionUUID"] isEqualToString:userSessionID]) {
         //NSLog(@"Cache expired!");
         [self loadFromWebService:collection];
     } else {
-        //NSLog(@"Loaded from Cache");
+       // NSLog(@"Loaded from Cache");
         //NSLog(@"%@", elems);
         [self collectionLoaded:elems];
     }
@@ -90,7 +96,8 @@
 - (void)collectionLoaded:(NSMutableArray*)elems {
     self.loadedCollection = elems;
     
-    [self.loadedCollection removeObjectAtIndex:0];
+    [self.loadedCollection removeObjectAtIndex:0]; // Remove Cache Expiration
+    [self.loadedCollection removeObjectAtIndex:0]; // Remove UserSession in Cache
     
     //NSLog(@"%@", self.loadedCollection);
     
