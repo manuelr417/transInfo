@@ -103,9 +103,19 @@ const NSInteger DELETE = 3;
         [request appendString:[NSString stringWithFormat:@"%@", key]];
         if ([value isKindOfClass:[NSString class]] && [value isEqualToString:@""]) {
             [request appendString:@"="];
-        } if ([value isKindOfClass:[NSNumber class]]) {
+        } else if ([value isKindOfClass:[NSNumber class]]) {
+            NSLog(@"Is Number!");
             [request appendFormat:@"=%@", value];
-        }  else {
+        } else if ([value isKindOfClass:[NSDate class]]) {
+            NSDateFormatter *gmtDateFormatter = [[NSDateFormatter alloc] init];
+            gmtDateFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
+            gmtDateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+            
+            NSString *dateString = [gmtDateFormatter stringFromDate:(NSDate*)value];
+            
+            [request appendFormat:@"=%@", dateString];
+        } else {
+            NSLog(@"Is String!");
             [request appendFormat:@"=%@", [value stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         }
     }

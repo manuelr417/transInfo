@@ -48,34 +48,8 @@
 
 - (NSMutableDictionary*)getDictionary {
     NSMutableDictionary *postData = [[NSMutableDictionary alloc] init];
-  /*  [postData setValue:self.username.text forKey:@"username"];
-    [postData setValue:self.password.text forKey:@"password"];*/
-    /*
-     @property NSNumber *reportID;
-     @property NSNumber *reportTypeID;
-     @property NSString *caseNumber;
-     @property NSInteger *officerUserID;
-     @property NSDate *crashDate;
-     @property NSDate *crashTime;
-     @property BOOL crashTimeUnknown;
-     @property NSNumber *latitude;
-     @property NSNumber *longitude;
-     @property NSNumber *cityID;
-     @property NSNumber *countyID;
-     @property NSString *streetHighway;
-     @property NSString *distance;
-     @property NSNumber *measurementID;
-     @property NSNumber *directionID;
-     @property NSNumber *nearToID;
-     @property NSString *intersectingStreet;
-     @property NSNumber *propertyID;
-     @property NSNumber *locationID;
-     @property NSNumber *totalWitnesses;
-     @property NSNumber *totalMotorizedUnits;
-     @property NSNumber *totalNonMotorizedUnits;
-     @property NSNumber *totalMotorists;
-     @property NSNumber *totalNonMotorists;
-     @property NSDate *creationDate;*/
+    
+    NSLog(@"Crash Date: %@", self.crashDate);
     
     postData[@"ReportID"] = (self.reportID != nil) ? self.reportID : @"";
     postData[@"ReportTypeID"] = (self.reportTypeID != nil) ? self.reportTypeID : @"";
@@ -84,19 +58,41 @@
     postData[@"CrashDate"] = (self.crashDate != nil) ? self.crashDate : @"";
     postData[@"CrashTime"] = (self.crashTime != nil) ? self.crashTime : @"";
     postData[@"CrashTimeUnknown"] = (self.crashTimeUnknown == YES) ? @1 : @0;
+    postData[@"PropertyID"] = (self.propertyID != nil) ? self.propertyID : @"";
+    postData[@"LocationID"] = (self.locationID != nil) ? self.locationID : @"";
+    
+    postData[@"VehicleQuantity"] = (self.vehicleQuantity != nil) ? self.vehicleQuantity : @"";
+    postData[@"PedestrianQuantity"] = (self.pedestrianQuantity != nil) ? self.pedestrianQuantity : @"";
+    postData[@"InjuredQuantity"] = (self.injuredQuantity != nil) ? self.injuredQuantity : @"";
+    postData[@"FatalitiesQuantity"] = (self.fatalitiesQuantity != nil) ? self.fatalitiesQuantity : @"";
+    
+    postData[@"Latitude"] = (self.latitude != nil) ? self.latitude : @"";
+    postData[@"Longitude"] = (self.longitude != nil) ? self.longitude : @"";
+    postData[@"CityID"] = (self.cityID != nil) ? self.cityID : @"";
+    postData[@"CountyID"] = (self.countyID != nil) ? self.countyID : @"";
+    postData[@"StreetHighway"] = (self.streetHighway != nil) ? self.streetHighway : @"";
+    postData[@"Distance"] = (self.distance != nil) ? self.distance : @"";
+    postData[@"MeasurementID"] = (self.measurementID != nil) ? self.measurementID : @"";
+    postData[@"DirectionID"] = (self.directionID != nil) ? self.directionID : @"";
+    postData[@"NearToID"] = (self.nearToID != nil) ? self.nearToID : @"";
+    postData[@"IntersectingStreet"] = (self.intersectingStreet != nil) ? self.intersectingStreet : @"";
     
     return postData;
 }
 
 - (void)save {
+    restComm *conn;
+    
     if ([self.reportID isEqualToString:@"-1"]) {
-        restComm *conn = [[restComm alloc] initWithURL:[NSString stringWithFormat:@"%@%@", urlAPI, @"reports"] withMethod:POST];
-        
-        [conn setDataToRequest:[self getDictionary]];
-        [conn setDelegate:self];
-        
-        [conn makeCall];
+        conn = [[restComm alloc] initWithURL:[NSString stringWithFormat:@"%@%@", urlAPI, @"reports"] withMethod:POST];
+    } else {
+        conn = [[restComm alloc] initWithURL:[NSString stringWithFormat:@"%@%@/%@", urlAPI, @"reports", self.reportID] withMethod:PUT];
     }
+    
+    [conn setDataToRequest:[self getDictionary]];
+    [conn setDelegate:self];
+    
+    [conn makeCall];
 }
 
 - (void)receivedData:(NSDictionary *)data {

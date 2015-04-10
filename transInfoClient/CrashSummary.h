@@ -39,6 +39,11 @@
 @property NSString *totalNonMotorists;
 @property NSDate *creationDate;
 
+@property NSString *vehicleQuantity;
+@property NSString *pedestrianQuantity;
+@property NSString *injuredQuantity;
+@property NSString *fatalitiesQuantity;
+
 @property NSMutableArray *vehicles;
 @property NSMutableArray *individualPersons;
 

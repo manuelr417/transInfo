@@ -125,26 +125,27 @@
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    
     NSString *postText = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    
-    //NSLog(@"%@", postText);
-    
-    /*self.pedestriansQuantityField.delegate = self;
-    self.injuredQuantityField.delegate = self;
-    self.fatalitiesQuantityField.delegate = self;*/
     
     CrashSummary *crashSummary = [CrashSummary sharedCrashSummary];
     
     if (textField == self.caseIdentifierField) {
         crashSummary.caseNumber = postText;
     } else if (textField == self.vehiclesQuantityField) {
-        crashSummary.totalMotorizedUnits = postText;
+        crashSummary.vehicleQuantity = postText;
+    } else if (textField == self.pedestriansQuantityField) {
+        crashSummary.pedestrianQuantity = postText;
+    } else if (textField == self.injuredQuantityField) {
+        crashSummary.injuredQuantity = postText;
+    } else if (textField == self.fatalitiesQuantityField) {
+        crashSummary.fatalitiesQuantity = postText;
     } else if (textField == self.intersectingStreetField) {
         crashSummary.intersectingStreet = postText;
     } else if (textField == self.distanceField) {
         crashSummary.distance = postText;
     }
+    
+    [crashSummary save];
     
     return YES;
 }
@@ -235,11 +236,19 @@
     self.latitudeField.text = [NSString stringWithFormat:@"%f", self.coords.latitude];
     self.longitudeField.text = [NSString stringWithFormat:@"%f", self.coords.longitude];
     
+    CrashSummary *crashSummary = [CrashSummary sharedCrashSummary];
+    crashSummary.latitude = self.latitudeField.text;
+    crashSummary.longitude = self.longitudeField.text;
+    [crashSummary save];
+    
     GMSGeocoder *geocoder = [GMSGeocoder geocoder];
     [geocoder reverseGeocodeCoordinate:self.coords
                      completionHandler:^(GMSReverseGeocodeResponse *response, NSError *error) {
                          //NSLog(@"%@", response);
                          self.addressField.text = [response.firstResult.lines componentsJoinedByString:@"\n"];
+                         CrashSummary *crashSummary = [CrashSummary sharedCrashSummary];
+                         crashSummary.streetHighway = self.addressField.text;
+                         [crashSummary save];
                      }];
 }
 
@@ -258,6 +267,10 @@
 - (IBAction)datePickerValueChanged:(id)sender {
     NSDate *pickerDate = [sender date];
     self.crashDate = pickerDate;
+    
+    CrashSummary *crashSummary = [CrashSummary sharedCrashSummary];
+    crashSummary.crashDate = pickerDate;
+    [crashSummary save];
     
     [self setCrashDateFormat];
 }
@@ -378,6 +391,10 @@
 - (IBAction)timePickerValueChanged:(id)sender {
     NSDate *pickerDate = [sender date];
     self.crashTime = pickerDate;
+    
+    CrashSummary *crashSummary = [CrashSummary sharedCrashSummary];
+    crashSummary.crashTime = pickerDate;
+    [crashSummary save];
     
     [self setCrashHourFormat];
 }
