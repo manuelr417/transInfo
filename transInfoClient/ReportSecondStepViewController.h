@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PickerViewController.h"
 
-@interface ReportSecondStepViewController : UIViewController <UITextFieldDelegate>
+@interface ReportSecondStepViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *firstHarmfulEventTypeField;
 @property (weak, nonatomic) IBOutlet UITextField *firstHarmfulEventField;
 @property (weak, nonatomic) IBOutlet UITextField *relToTrafficwayField;

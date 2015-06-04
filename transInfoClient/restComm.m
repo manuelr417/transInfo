@@ -94,7 +94,7 @@ const NSInteger DELETE = 3;
     NSMutableString *request = [[NSMutableString alloc] init];
     
     for (NSString* key in dictionary) {
-        NSLog(@"%@", key);
+        //NSLog(@"%@", key);
         NSString *value = [dictionary objectForKey:key];
         
         if ([request length] > 0)
@@ -104,7 +104,7 @@ const NSInteger DELETE = 3;
         if ([value isKindOfClass:[NSString class]] && [value isEqualToString:@""]) {
             [request appendString:@"="];
         } else if ([value isKindOfClass:[NSNumber class]]) {
-            NSLog(@"Is Number!");
+            //NSLog(@"Is Number!");
             [request appendFormat:@"=%@", value];
         } else if ([value isKindOfClass:[NSDate class]]) {
             NSDateFormatter *gmtDateFormatter = [[NSDateFormatter alloc] init];
@@ -114,8 +114,11 @@ const NSInteger DELETE = 3;
             NSString *dateString = [gmtDateFormatter stringFromDate:(NSDate*)value];
             
             [request appendFormat:@"=%@", dateString];
+        } else if ([value isKindOfClass:[NSArray class]] || [value isKindOfClass:[NSMutableArray class]]) {
+            NSString *arr = [((NSArray*)value) componentsJoinedByString:@","];
+            [request appendFormat:@"=%@", arr];
         } else {
-            NSLog(@"Is String!");
+            //NSLog(@"Is String!");
             [request appendFormat:@"=%@", [value stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
         }
     }

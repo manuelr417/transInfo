@@ -10,6 +10,7 @@
 #import "SWRevealViewController.h"
 #import "CollectionManager.h"
 #import "Utilities.h"
+#import "CrashSummary.h"
 
 @implementation ReportSecondStepViewController
 
@@ -45,6 +46,7 @@
     self.workzoneTypeField.delegate = self;
     self.workersPresentField.delegate = self;
     self.lawEnforcementPresentField.delegate = self;
+    self.narrativeField.delegate = self;
 }
 
 - (void)loadCollections {
@@ -62,7 +64,7 @@
         [collectionsManagers addObject:[[CollectionManager alloc] init]];
         ((CollectionManager*)collectionsManagers[i]).delegate = self;
         [collectionsManagers[i] getCollection:collectionName];
- 
+        
         i++;
     }
 }
@@ -89,8 +91,6 @@
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     [self.view endEditing:YES];
-    
-    
     
     if (textField == self.firstHarmfulEventField) {
         [self showCollection:@"harmfulEvents" withIDColumn:@"HarmfulEventID" withField:textField];
@@ -153,9 +153,14 @@
 
 - (void)keysSelected:(NSArray *)keys withIdentifier:(NSString *)identifier withOutField:(UITextField *)outField {
     NSLog(@"Recibiendo... %@ (%@)", identifier, keys);
+    
+    CrashSummary *crashSummary = [CrashSummary sharedCrashSummary];
+    
     if ([identifier isEqualToString:@"harmfulEventCategories"]) {
         self.harmfulEventCategoryKey = keys[0];
         self.firstHarmfulEventField.text = @"";
+        
+        crashSummary.crashConditions.firstHarmfulEventKey = @"";
     } if ([identifier isEqualToString:@"workzoneRelated"]) {
         BOOL isRelated = [keys[0]  isEqualToString:@"1"];
         NSLog(@"isRelated = %s", (isRelated ? "Si" : "No"));
@@ -169,7 +174,62 @@
             self.workzoneLocationField.text = @"";
             self.workzoneTypeField.text = @"";
             self.lawEnforcementPresentField.text = @"";
+            
+            crashSummary.crashConditions.workzoneLocationKey = @"";
+            crashSummary.crashConditions.workzoneTypeKey = @"";
+            crashSummary.crashConditions.workersPresentKey = @"";
+            crashSummary.crashConditions.lawEnforcementPresentKey = @"";
         }
+    }
+    
+    if (outField == self.firstHarmfulEventField) {
+        crashSummary.crashConditions.firstHarmfulEventKey = keys[0];
+    } else if (outField == self.firstHarmfulEventTypeField) {
+        crashSummary.crashConditions.firstHarmfulEventTypeKey = keys[0];
+    } else if (outField == self.relToTrafficwayField) {
+        crashSummary.crashConditions.relToTrafficwayKey = keys[0];
+    } else if (outField == self.mannerOfCollisionField) {
+        crashSummary.crashConditions.mannerOfCollisionKey = keys[0];
+    } else if (outField == self.weatherCondition1Field) {
+        crashSummary.crashConditions.weatherCondition1Key = keys[0];
+    } else if (outField == self.weatherCondition2Field) {
+        crashSummary.crashConditions.weatherCondition2Key = keys[0];
+    } else if (outField == self.lightingConditionField) {
+        crashSummary.crashConditions.lightingConditionKey = keys[0];
+    } else if (outField == self.roadSurfaceConditionField) {
+        crashSummary.crashConditions.roadSurfaceConditionKey = keys[0];
+    } else if (outField == self.environmentCircumstanceField) {
+        crashSummary.crashConditions.environmentCircumstanceKey = keys[0];
+    } else if (outField == self.roadCircumstanceField) {
+        crashSummary.crashConditions.roadCircumstanceKey = keys[0];
+    } else if (outField == self.withinInterchangeField) {
+        crashSummary.crashConditions.withinInterchangeKey = keys[0];
+    } else if (outField == self.junctionField) {
+        crashSummary.crashConditions.junctionKey = keys[0];
+    } else if (outField == self.intersectionTypeField) {
+        crashSummary.crashConditions.intersectionTypeKey = keys[0];
+    } else if (outField == self.schoolBusRelatedField) {
+        crashSummary.crashConditions.schoolBusRelatedKey = keys[0];
+    } else if (outField == self.workZoneRelatedField) {
+        crashSummary.crashConditions.workzoneRelatedKey = keys[0];
+    } else if (outField == self.workzoneLocationField) {
+        crashSummary.crashConditions.workzoneLocationKey = keys[0];
+    } else if (outField == self.workzoneTypeField) {
+        crashSummary.crashConditions.workzoneTypeKey = keys[0];
+    } else if (outField == self.workersPresentField) {
+        crashSummary.crashConditions.workersPresentKey = keys[0];
+    } else if (outField == self.lawEnforcementPresentField) {
+        crashSummary.crashConditions.lawEnforcementPresentKey = keys[0];
+    }
+    
+    [crashSummary.crashConditions save];
+}
+
+- (void)textViewDidChange:(UITextView *)textView {
+    if (textView == self.narrativeField) {
+        CrashSummary *crashSummary = [CrashSummary sharedCrashSummary];
+        crashSummary.crashConditions.narrative = self.narrativeField.text;
+        [crashSummary.crashConditions save];
     }
 }
 

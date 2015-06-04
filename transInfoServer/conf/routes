@@ -103,6 +103,10 @@ GET     /drugTestResults            controllers.Collections.getDrugTestResults()
 POST    /reports                    controllers.Report.addReport()
 PUT     /reports/:reportID          controllers.Report.updateReport(reportID: Integer)
 
+# Crash Report Conditions
+POST    /reportConditions                    controllers.ReportCondition.addReportCondition()
+PUT     /reportConditions/:reportConditionID controllers.ReportCondition.updateReportCondition(reportConditionID: Integer)
+
 # Authentication
 POST    /login                      controllers.Authentication.doLogin()
 

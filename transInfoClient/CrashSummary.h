@@ -10,6 +10,7 @@
 #import "Vehicle.h"
 #import "restComm.h"
 #import "Config.h"
+#import "CrashConditions.h"
 
 @interface CrashSummary : NSObject
 
@@ -44,10 +45,13 @@
 @property NSString *injuredQuantity;
 @property NSString *fatalitiesQuantity;
 
+@property CrashConditions *crashConditions;
+
 @property NSMutableArray *vehicles;
 @property NSMutableArray *individualPersons;
 
 + (id)sharedCrashSummary;
++ (void)resetSharedCrashSummary;
 - (NSMutableDictionary*)getDictionary;
 
 - (Vehicle*)getVehicleWithUUID:(NSString*)uuid;

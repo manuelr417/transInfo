@@ -8,11 +8,13 @@
 
 #import "CrashSummary.h"
 
-
 @implementation CrashSummary
 
+@synthesize crashConditions;
 @synthesize vehicles;
 @synthesize individualPersons;
+
+static dispatch_once_t onceToken;
 
 - (id)init {
     self = [super init];
@@ -23,8 +25,11 @@
         self.crashTimeUnknown = NO;
         self.creationDate = [NSDate date];
         
+        self.crashConditions = [[CrashConditions alloc] init];
         self.vehicles = [[NSMutableArray alloc] init];
         self.individualPersons = [[NSMutableArray alloc] init];
+        
+        self.crashConditions.crashSummary = self;
         
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         NSDictionary *loginInfo = [userDefaults objectForKey:@"login"];
@@ -39,11 +44,15 @@
 
 + (id)sharedCrashSummary {
     static CrashSummary *sharedCrashSummary = nil;
-    static dispatch_once_t onceToken;
+    //static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedCrashSummary = [[self alloc] init];
     });
     return sharedCrashSummary;
+}
+
++ (void)resetSharedCrashSummary {
+    onceToken = 0;
 }
 
 - (NSMutableDictionary*)getDictionary {
@@ -98,8 +107,10 @@
 - (void)receivedData:(NSDictionary *)data {
     //NSLog(@"%@", data);
     if (data[@"success"]) {
-        self.reportID = [NSString stringWithFormat:@"%@", data[@"payload"]];
-        NSLog(@"Saving Report ID: %@", self.reportID);
+        if ([self.reportID isEqualToString:@"-1"])
+            self.reportID = [NSString stringWithFormat:@"%@", data[@"payload"]];
+        
+        //NSLog(@"Saving Report ID: %@", self.reportID);
     }
 }
 

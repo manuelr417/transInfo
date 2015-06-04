@@ -9,6 +9,7 @@
 #import "SidebarViewController.h"
 #import "SWRevealViewController.h"
 #import "Utilities.h"
+#import "CrashSummary.h"
 
 @interface SidebarViewController ()
 
@@ -45,11 +46,15 @@
         
         //[Utilities displayAlertWithMessage:@"Logout!" withTitle:@"Debug"];
         
+        [CrashSummary resetSharedCrashSummary];
+        
         [self performSegueWithIdentifier:@"GoToLoginFromSidebar" sender:self];
     } else if ([CellIdentifier isEqualToString:@"myReports"]) {
         UIViewController *viewController = [storyBoard instantiateViewControllerWithIdentifier:@"MainNavigationController"];
         [self.revealViewController pushFrontViewController:viewController animated:YES];
     } else if ([CellIdentifier isEqualToString:@"newReport"]) {
+        [CrashSummary resetSharedCrashSummary];
+        
         UIViewController *viewController = [storyBoard instantiateViewControllerWithIdentifier:@"ReportTabBarController"];
         [self.revealViewController pushFrontViewController:viewController animated:YES];
     }
