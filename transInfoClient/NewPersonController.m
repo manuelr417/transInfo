@@ -52,7 +52,12 @@
     //      kPPUseVideoPresetHighest
     //      kPPUseVideoPresetPhoto
     // Set only one.
-    [coordinatorSettings setValue:@(YES) forKey:kPPUseVideoPresetHigh];
+    [coordinatorSettings setValue:@(YES) forKey:kPPUseVideoPresetPhoto];
+    
+    // Set this to true to scan even barcode not compliant with standards
+    // For example, malformed PDF417 barcodes which were incorrectly encoded
+    // Use only if necessary because it slows down the recognition process
+    [coordinatorSettings setValue:@(YES) forKey:kPPScanUncertainBarcodes];
     
     // Allocate the recognition coordinator object
     PPBarcodeCoordinator *coordinator = [[PPBarcodeCoordinator alloc] initWithSettings:coordinatorSettings];
@@ -69,7 +74,8 @@
     NSArray *months = @[@"ene", @"feb", @"mar", @"abr", @"may", @"jun", @"jul", @"ago", @"sep", @"oct", @"nov", @"dic"];
     
     for (PPBaseResult* result in results) {
-        if ([result resultType] == PPBaseResultTypeBarcode && [result isKindOfClass:[PPScanningResult class]]) {
+        if (([result resultType] == PPBaseResultTypeBarcode && [result isKindOfClass:[PPScanningResult class]])
+            || ([result resultType] == PPBaseResultTypeUSDL && [result isKindOfClass:[PPUSDLResult class]])) {
             PPScanningResult* scanningResult = (PPScanningResult*)result;
             
             NSData *data = scanningResult.data;
