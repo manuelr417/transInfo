@@ -17,6 +17,18 @@
 		D519993B1A356BD900EF2F6D /* PedestrianTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D519993A1A356BD900EF2F6D /* PedestrianTableViewCell.m */; };
 		D519993E1A35E32100EF2F6D /* Vehicle.m in Sources */ = {isa = PBXBuildFile; fileRef = D519993D1A35E32100EF2F6D /* Vehicle.m */; };
 		D51999411A35E36700EF2F6D /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = D51999401A35E36700EF2F6D /* Person.m */; };
+		D51C92CB1B59043800D68652 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D51C92CA1B59043700D68652 /* AudioToolbox.framework */; };
+		D51C92CD1B59044200D68652 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D51C92CC1B59044200D68652 /* CoreMedia.framework */; };
+		D51C92CF1B59044800D68652 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D51C92CE1B59044800D68652 /* CoreVideo.framework */; };
+		D51C92D11B59046900D68652 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D51C92D01B59046900D68652 /* libiconv.dylib */; };
+		D51C92DC1B5904F000D68652 /* pdf417.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D51C92D31B5904F000D68652 /* pdf417.framework */; };
+		D51C92DD1B5904F000D68652 /* de.strings in Resources */ = {isa = PBXBuildFile; fileRef = D51C92D51B5904F000D68652 /* de.strings */; };
+		D51C92DE1B5904F000D68652 /* en.strings in Resources */ = {isa = PBXBuildFile; fileRef = D51C92D61B5904F000D68652 /* en.strings */; };
+		D51C92DF1B5904F000D68652 /* hr.strings in Resources */ = {isa = PBXBuildFile; fileRef = D51C92D71B5904F000D68652 /* hr.strings */; };
+		D51C92E01B5904F000D68652 /* light.png in Resources */ = {isa = PBXBuildFile; fileRef = D51C92D81B5904F000D68652 /* light.png */; };
+		D51C92E11B5904F000D68652 /* light@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D51C92D91B5904F000D68652 /* light@2x.png */; };
+		D51C92E21B5904F000D68652 /* lighton.png in Resources */ = {isa = PBXBuildFile; fileRef = D51C92DA1B5904F000D68652 /* lighton.png */; };
+		D51C92E31B5904F000D68652 /* lighton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D51C92DB1B5904F000D68652 /* lighton@2x.png */; };
 		D51DE1461AB70F32003588F2 /* ViolationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D51DE1451AB70F32003588F2 /* ViolationViewController.m */; };
 		D51DE1491AB71665003588F2 /* Violation.m in Sources */ = {isa = PBXBuildFile; fileRef = D51DE1481AB71665003588F2 /* Violation.m */; };
 		D51FEBD819D9D9D200E9D39C /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D51FEBD719D9D9D200E9D39C /* SWRevealViewController.m */; };
@@ -105,6 +117,18 @@
 		D519993D1A35E32100EF2F6D /* Vehicle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vehicle.m; sourceTree = "<group>"; };
 		D519993F1A35E36700EF2F6D /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		D51999401A35E36700EF2F6D /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		D51C92CA1B59043700D68652 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		D51C92CC1B59044200D68652 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		D51C92CE1B59044800D68652 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		D51C92D01B59046900D68652 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		D51C92D31B5904F000D68652 /* pdf417.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = pdf417.framework; sourceTree = "<group>"; };
+		D51C92D51B5904F000D68652 /* de.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = de.strings; sourceTree = "<group>"; };
+		D51C92D61B5904F000D68652 /* en.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = en.strings; sourceTree = "<group>"; };
+		D51C92D71B5904F000D68652 /* hr.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = hr.strings; sourceTree = "<group>"; };
+		D51C92D81B5904F000D68652 /* light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = light.png; sourceTree = "<group>"; };
+		D51C92D91B5904F000D68652 /* light@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "light@2x.png"; sourceTree = "<group>"; };
+		D51C92DA1B5904F000D68652 /* lighton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lighton.png; sourceTree = "<group>"; };
+		D51C92DB1B5904F000D68652 /* lighton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lighton@2x.png"; sourceTree = "<group>"; };
 		D51DE1441AB70F32003588F2 /* ViolationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViolationViewController.h; sourceTree = "<group>"; };
 		D51DE1451AB70F32003588F2 /* ViolationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViolationViewController.m; sourceTree = "<group>"; };
 		D51DE1471AB71665003588F2 /* Violation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Violation.h; sourceTree = "<group>"; };
@@ -207,9 +231,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D5DDB478196EBF4F0002F5EA /* SystemConfiguration.framework in Frameworks */,
 				D5DDB476196EBF440002F5EA /* QuartzCore.framework in Frameworks */,
 				D5DDB474196EBF3E0002F5EA /* OpenGLES.framework in Frameworks */,
+				D51C92D11B59046900D68652 /* libiconv.dylib in Frameworks */,
+				D51C92CF1B59044800D68652 /* CoreVideo.framework in Frameworks */,
+				D51C92CD1B59044200D68652 /* CoreMedia.framework in Frameworks */,
+				D51C92CB1B59043800D68652 /* AudioToolbox.framework in Frameworks */,
+				D5DDB478196EBF4F0002F5EA /* SystemConfiguration.framework in Frameworks */,
 				D5DDB472196EBF330002F5EA /* libz.dylib in Frameworks */,
 				D5DDB470196EBF2D0002F5EA /* libicucore.dylib in Frameworks */,
 				D5DDB46E196EBF230002F5EA /* libc++.dylib in Frameworks */,
@@ -217,6 +245,7 @@
 				D5DDB46A196EBF0B0002F5EA /* GLKit.framework in Frameworks */,
 				D5DDB468196EBF060002F5EA /* CoreText.framework in Frameworks */,
 				D5DDB466196EBEFB0002F5EA /* CoreLocation.framework in Frameworks */,
+				D51C92DC1B5904F000D68652 /* pdf417.framework in Frameworks */,
 				D5DDB464196EBEF60002F5EA /* CoreData.framework in Frameworks */,
 				D5DDB462196EBEEC0002F5EA /* AVFoundation.framework in Frameworks */,
 				D5DDB453196B2F590002F5EA /* MapKit.framework in Frameworks */,
@@ -247,6 +276,29 @@
 				D519992C1A35535200EF2F6D /* SLExpandableTableView.m */,
 			);
 			path = SLExpandableTableView;
+			sourceTree = "<group>";
+		};
+		D51C92D21B5904F000D68652 /* pdf417.embeddedframework */ = {
+			isa = PBXGroup;
+			children = (
+				D51C92D31B5904F000D68652 /* pdf417.framework */,
+				D51C92D41B5904F000D68652 /* Resources */,
+			);
+			path = pdf417.embeddedframework;
+			sourceTree = "<group>";
+		};
+		D51C92D41B5904F000D68652 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D51C92D51B5904F000D68652 /* de.strings */,
+				D51C92D61B5904F000D68652 /* en.strings */,
+				D51C92D71B5904F000D68652 /* hr.strings */,
+				D51C92D81B5904F000D68652 /* light.png */,
+				D51C92D91B5904F000D68652 /* light@2x.png */,
+				D51C92DA1B5904F000D68652 /* lighton.png */,
+				D51C92DB1B5904F000D68652 /* lighton@2x.png */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		D51FEBD519D9D9D200E9D39C /* SWRevealViewController */ = {
@@ -306,6 +358,11 @@
 		D52852381959CBEB00806467 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D51C92D21B5904F000D68652 /* pdf417.embeddedframework */,
+				D51C92D01B59046900D68652 /* libiconv.dylib */,
+				D51C92CE1B59044800D68652 /* CoreVideo.framework */,
+				D51C92CC1B59044200D68652 /* CoreMedia.framework */,
+				D51C92CA1B59043700D68652 /* AudioToolbox.framework */,
 				D5DDB477196EBF4F0002F5EA /* SystemConfiguration.framework */,
 				D5DDB475196EBF440002F5EA /* QuartzCore.framework */,
 				D5DDB473196EBF3E0002F5EA /* OpenGLES.framework */,
@@ -535,13 +592,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D51C92E31B5904F000D68652 /* lighton@2x.png in Resources */,
+				D51C92DF1B5904F000D68652 /* hr.strings in Resources */,
 				D51999381A356AB900EF2F6D /* PedestrianViewCell.xib in Resources */,
 				D52C29EC19C0A95600294FA0 /* UIPickerOKView.xib in Resources */,
+				D51C92E21B5904F000D68652 /* lighton.png in Resources */,
+				D51C92DE1B5904F000D68652 /* en.strings in Resources */,
 				D5285278195A09F900806467 /* Main.storyboard in Resources */,
+				D51C92E01B5904F000D68652 /* light.png in Resources */,
 				D51999271A350A0200EF2F6D /* CarViewCell.xib in Resources */,
 				D51999291A350CB700EF2F6D /* CarMembersViewCell.xib in Resources */,
 				D5285274195A05DD00806467 /* Localizable.strings in Resources */,
+				D51C92E11B5904F000D68652 /* light@2x.png in Resources */,
 				D52C29DB19AFD9D000294FA0 /* ComplaintTableViewCell.xib in Resources */,
+				D51C92DD1B5904F000D68652 /* de.strings in Resources */,
 				D528524C1959CBEB00806467 /* Images.xcassets in Resources */,
 				D5DDB460196EBED50002F5EA /* GoogleMaps.bundle in Resources */,
 			);
@@ -726,6 +790,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/pdf417.embeddedframework",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "transinfo/transinfo-Prefix.pch";
@@ -744,6 +809,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/pdf417.embeddedframework",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "transinfo/transinfo-Prefix.pch";

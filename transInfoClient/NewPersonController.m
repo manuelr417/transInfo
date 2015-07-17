@@ -23,6 +23,133 @@
 
 @implementation NewPersonController
 
+- (IBAction)driverLicenseTouchUpInside:(id)sender {
+    NSError *error;
+    if ([PPBarcodeCoordinator isScanningUnsupported:&error]) {
+        NSString *messageString = [error localizedDescription];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning"
+                                                        message:messageString
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil, nil];
+        [alert show];
+        return;
+    }
+    
+    // Create object which stores pdf417 framework settings
+    NSMutableDictionary* coordinatorSettings = [[NSMutableDictionary alloc] init];
+    
+    // Set YES/NO for scanning pdf417 barcode standard (default YES, if available by license)
+    [coordinatorSettings setValue:@(YES) forKey:kPPRecognizePdf417Key];
+    
+    // Set YES/NO for scanning US drivers license barcode standards (default YES, if available by license)
+    [coordinatorSettings setValue:@(NO) forKey:kPPRecognizeUSDLKey];
+    
+    // There are 4 resolution modes:
+    //      kPPUseVideoPreset640x480
+    //      kPPUseVideoPresetMedium
+    //      kPPUseVideoPresetHigh
+    //      kPPUseVideoPresetHighest
+    //      kPPUseVideoPresetPhoto
+    // Set only one.
+    [coordinatorSettings setValue:@(YES) forKey:kPPUseVideoPresetHigh];
+    
+    // Allocate the recognition coordinator object
+    PPBarcodeCoordinator *coordinator = [[PPBarcodeCoordinator alloc] initWithSettings:coordinatorSettings];
+    
+    // Create camera view controller
+    UIViewController *cameraViewController = [coordinator cameraViewControllerWithDelegate:self];
+    
+    // present it modally
+    cameraViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentViewController:cameraViewController animated:YES completion:nil];
+}
+
+- (void)cameraViewController:(UIViewController<PPScanningViewController> *)cameraViewController didOutputResults:(NSArray *)results {
+    NSArray *months = @[@"ene", @"feb", @"mar", @"abr", @"may", @"jun", @"jul", @"ago", @"sep", @"oct", @"nov", @"dic"];
+    
+    for (PPBaseResult* result in results) {
+        if ([result resultType] == PPBaseResultTypeBarcode && [result isKindOfClass:[PPScanningResult class]]) {
+            PPScanningResult* scanningResult = (PPScanningResult*)result;
+            
+            NSData *data = scanningResult.data;
+            
+            NSString *string = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+            NSArray *split = [string componentsSeparatedByString:@"-"];
+            
+            if ([split count] < 10) {
+                NSLog(@"BARCODE: Not enough fields.");
+                return;
+            }
+            
+            NSString *driverLicense = split[0];
+            NSString *expirationDate = split[1];
+            NSString *firstName = [split[2] capitalizedString];
+            NSString *middleName = [split[3] capitalizedString];
+            NSString *lastName1 = [split[4] capitalizedString];
+            NSString *lastName2 = [split[5] capitalizedString];
+            NSString *sex = split[9];
+            NSString *fullName;
+            
+            NSString *day = [[expirationDate substringFromIndex:0] substringToIndex:2];
+            NSString *month = [[expirationDate substringFromIndex:2] substringToIndex:3];
+            NSString *year = [expirationDate substringFromIndex:5];
+            
+            NSDateComponents *comps = [[NSDateComponents alloc] init];
+            [comps setDay:[day integerValue]];
+            //[comps setMonth:[month integerValue]];
+            [comps setYear:[year integerValue]];
+            
+            for (int i = 0; i < [months count]; i++) {
+                if ([month isEqualToString:months[i]]) {
+                    [comps setMonth:(i + 1)];
+                    break;
+                }
+            }
+            
+            NSLog(@"day= %@, month= %@, year=%@ sex=%@", day, month, year, sex);
+            
+            if ([middleName isEqualToString:@"Null"]) {
+                fullName = [[NSString alloc] initWithFormat:@"%@ %@ %@", firstName, lastName1, lastName2, nil];
+            } else {
+                fullName = [[NSString alloc] initWithFormat:@"%@ %@ %@ %@", firstName, middleName, lastName1, lastName2, nil];
+            }
+            
+            if (self.editingPerson == nil) {
+                self.editingPerson = [[Person alloc] init];
+            }
+            
+            self.editingPerson.driverLicense = driverLicense;
+            self.editingPerson.name = fullName;
+            
+            self.licenseNumberField.text = driverLicense;
+            self.personNameField.text = fullName;
+            
+            self.licenseExpirationDate = [[NSCalendar currentCalendar] dateFromComponents:comps];
+            [self setLicenseExpirationDateFormat];
+    
+            if ([sex isEqualToString:@"M"]) {
+                self.editingPerson.genderKey = @"1";
+            } else if ([sex isEqualToString:@"F"]) {
+                self.editingPerson.genderKey = @"2";
+            } else {
+                self.editingPerson.genderKey = @"3";
+            }
+            
+            [self loadDefaultForCollection:@"genders" toField:self.genderField withKey:@"GenderID" defaultValue:self.editingPerson.genderKey];
+            
+            NSLog(@"%@", string);
+        }
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)cameraViewControllerWasClosed:(UIViewController<PPScanningViewController> *)cameraViewController {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
 - (void)setEditingModeFor:(Person*)person forRegistrationPlate:(NSString*)registrationPlate {
     self.editingPerson = person;
     self.editingRegistrationPlate = registrationPlate;

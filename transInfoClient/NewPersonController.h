@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "PickerViewController.h"
 #import "Person.h"
+#import <pdf417/PPBarcode.h>
 
-@interface NewPersonController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface NewPersonController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, PPBarcodeDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *personTypeCategoryField;
 @property (weak, nonatomic) IBOutlet UITextField *personTypeField;
