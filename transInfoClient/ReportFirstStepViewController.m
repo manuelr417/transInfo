@@ -36,6 +36,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *countyField;
 @property (weak, nonatomic) IBOutlet UIButton *countyButton;
 @property (weak, nonatomic) IBOutlet UITextField *vehiclesQuantityField;
+@property (weak, nonatomic) IBOutlet UITextField *motoristsQuantityField;
 @property (weak, nonatomic) IBOutlet UITextField *pedestriansQuantityField;
 @property (weak, nonatomic) IBOutlet UITextField *injuredQuantityField;
 @property (weak, nonatomic) IBOutlet UITextField *fatalitiesQuantityField;
@@ -50,6 +51,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *propertyField;
 @property (weak, nonatomic) IBOutlet UIButton *propertyButton;
 @property (weak, nonatomic) IBOutlet UITextField *locationField;
+@property (weak, nonatomic) IBOutlet UITextField *zoneTypeField;
+
 @property (weak, nonatomic) IBOutlet UIButton *locationButton;
 
 @property UIView *activeField;
@@ -96,6 +99,9 @@
         crashSummary.propertyID = keys[0];
     } else if (outField == self.locationField) {
         crashSummary.locationID = keys[0];
+    } else if (outField == self.zoneTypeField) {
+        crashSummary.zoneTypeID = keys[0];
+        //NSLog(@"zoneTypeID = %@", keys[0]);
     }
     
     [crashSummary save];
@@ -117,6 +123,7 @@
     self.caseIdentifierField.delegate = self;
     self.addressField.delegate = self;
     self.vehiclesQuantityField.delegate = self;
+    self.motoristsQuantityField.delegate = self;
     self.pedestriansQuantityField.delegate = self;
     self.injuredQuantityField.delegate = self;
     self.fatalitiesQuantityField.delegate = self;
@@ -133,7 +140,9 @@
         crashSummary.caseNumber = postText;
     } else if (textField == self.vehiclesQuantityField) {
         crashSummary.vehicleQuantity = postText;
-    } else if (textField == self.pedestriansQuantityField) {
+    } else if (textField == self.motoristsQuantityField) {
+        crashSummary.motoristsQuantity = postText;
+    }else if (textField == self.pedestriansQuantityField) {
         crashSummary.pedestrianQuantity = postText;
     } else if (textField == self.injuredQuantityField) {
         crashSummary.injuredQuantity = postText;
@@ -162,7 +171,7 @@
 - (void)loadCollections {
     self.collections = [[NSMutableDictionary alloc] init];
     
-    NSArray *collectionNames = @[@"cities", @"counties", @"directions", @"locations", @"measurements", @"nearTo", @"properties", @"reportTypes"];
+    NSArray *collectionNames = @[@"cities", @"counties", @"directions", @"locations", @"measurements", @"nearTo", @"properties", @"reportTypes", @"zoneTypes"];
     NSMutableArray *collectionsManagers = [[NSMutableArray alloc] init];
     int i = 0;
     
@@ -180,7 +189,7 @@
 - (void)receivedCollection:(NSArray *)collection withName:(NSString *)collectionName {
     [self.collections setObject:collection forKey:collectionName];
     
-    NSLog(@"Received Collection: %@ (%lu elements)", collectionName, (unsigned long)[collection count]);
+    //NSLog(@"Received Collection: %@ (%lu elements)", collectionName, (unsigned long)[collection count]);
     
     /*for (NSDictionary *elem in collection) {
      NSLog(@"%@", elem[@"DescriptionES"]);
@@ -189,6 +198,9 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     // Things to do BEFORE Loading the VIEW
+    
+    // Load actual Crash Summary (a new one)
+    CrashSummary *crashSummary = [CrashSummary sharedCrashSummary];
     
     // Load Location Manager if it hasn't been loaded
     if (self.locationManager == nil) {
@@ -209,6 +221,8 @@
     // Default Date and Time for Crash Report
     self.crashDate = [NSDate date];
     self.crashTime = [NSDate date];
+    crashSummary.crashDate = self.crashDate;
+    crashSummary.crashTime = self.crashTime;
     
     [self setCrashDateFormat];
     [self setCrashHourFormat];
@@ -221,6 +235,7 @@
     self.directionField.delegate = self;
     self.propertyField.delegate = self;
     self.locationField.delegate = self;
+    self.zoneTypeField.delegate = self;
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
@@ -301,6 +316,9 @@
         return NO;
     } else if (textField == self.locationField) {
         [self locationButtonTouchUpInside:textField];
+        return NO;
+    } else if (textField == self.zoneTypeField) {
+        [self showCollection:@"zoneTypes" withIDColumn:@"ZoneTypeID" withField:self.zoneTypeField];
         return NO;
     }
     

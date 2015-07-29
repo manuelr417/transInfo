@@ -110,7 +110,7 @@
     self.roadwayGradeField.delegate = self;
     self.totalLaneCategoryField.delegate = self;
     self.totalLaneField.delegate = self;
-    self.TCDTypeField.delegate = self;
+    self.TCDTypesField.delegate = self;
     self.TCDWorkingField.delegate = self;
     self.harmfulEventCategory1Field.delegate = self;
     self.harmfulEventCategory2Field.delegate = self;
@@ -189,7 +189,8 @@
         } else if ([collectionName isEqualToString:@"totalLanes"]) {
             [self loadDefaultForCollection:collectionName toField:self.totalLaneField withKey:@"TotalLanesID" defaultValue:self.editingVehicle.totalLaneKey];
         } else if ([collectionName isEqualToString:@"TCDTypes"]) {
-            [self loadDefaultForCollection:collectionName toField:self.TCDTypeField withKey:@"TCDTypeID" defaultValue:self.editingVehicle.TCDTypeKey];
+            self.TCDTypesField.text = [NSString stringWithFormat:NSLocalizedString(@"multilist.selected", nil), [self.editingVehicle.TCDTypes count]];
+            //[self loadDefaultForCollection:collectionName toField:self.TCDTypeField withKey:@"TCDTypeID" defaultValue:self.editingVehicle.TCDTypes];
         } else if ([collectionName isEqualToString:@"TCDWorking"]) {
             [self loadDefaultForCollection:collectionName toField:self.TCDWorkingField withKey:@"TCDWorkingID" defaultValue:self.editingVehicle.TCDWorkingKey];
         } else if ([collectionName isEqualToString:@"harmfulEventCategories"]) {
@@ -305,7 +306,7 @@
     } else if (textField == self.totalLaneField) {
         [self showCollection:@"totalLanes" withIDColumn:@"TotalLanesID" withField:textField];
         return NO;
-    } else if (textField == self.TCDTypeField) {
+    } else if (textField == self.TCDTypesField) {
         [self showCollection:@"TCDTypes" withIDColumn:@"TCDTypeID" withField:textField];
         return NO;
     } else if (textField == self.TCDWorkingField) {
@@ -418,8 +419,9 @@
         self.totalLaneCategoryKey = keys[0];
     } else if (outField == self.totalLaneField) {
         self.editingVehicle.totalLaneKey = keys[0];
-    } else if (outField == self.TCDTypeField) {
-        self.editingVehicle.TCDTypeKey = keys[0];
+    } else if (outField == self.TCDTypesField) {
+        //self.editingVehicle.TCDTypes = keys[0];
+        [self.editingVehicle setTCDTypes:[NSMutableArray arrayWithArray:keys]];
     } else if (outField == self.TCDWorkingField) {
         self.editingVehicle.TCDWorkingKey = keys[0];
     } else if ([self.harmfulEventCategories containsObject:outField]) {
@@ -537,7 +539,7 @@
         
         //NSLog(@"%@ %@ %@", collection, field, collectionName);
         
-        if (field == self.damagedAreasField) {
+        if (field == self.damagedAreasField || field == self.TCDTypesField) {
             [self showPickerView:collection withField:field withIdentifier:collectionName withMultipleChoice:YES];
         } else {
             [self showPickerView:collection withField:field withIdentifier:collectionName withMultipleChoice:NO];

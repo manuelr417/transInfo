@@ -1,768 +1,434 @@
+/* Class = "IBUILabel"; text = "¿El conductor es dueño del vehículo?"; ObjectID = "0lI-EO-ZSS"; */
+"0lI-EO-ZSS.text" = "The driver is the owner of the vehicle?";
 
-/* Class = "UILabel"; text = "¿El conductor es dueño del vehículo?"; ObjectID = "0lI-EO-ZSS"; */
-"0lI-EO-ZSS.text" = "¿El conductor es dueño del vehículo?";
+/* Class = "IBUINavigationItem"; title = "Condiciones del Accidente"; ObjectID = "0no-YK-PK7"; */
+"0no-YK-PK7.title" = "Crash Conditions";
 
-/* Class = "UINavigationItem"; title = "Condiciones del Accidente"; ObjectID = "0no-YK-PK7"; */
-"0no-YK-PK7.title" = "Condiciones del Accidente";
+/* Class = "IBUILabel"; text = "Ciudad:"; ObjectID = "0oH-bd-xoR"; */
+"0oH-bd-xoR.text" = "City:";
 
-/* Class = "UILabel"; text = "Ciudad:"; ObjectID = "0oH-bd-xoR"; */
-"0oH-bd-xoR.text" = "Ciudad:";
+/* Class = "IBUILabel"; text = "Latitud:"; ObjectID = "0sO-XV-xc1"; */
+"0sO-XV-xc1.text" = "Latitude:";
 
-/* Class = "UILabel"; text = "Latitud:"; ObjectID = "0sO-XV-xc1"; */
-"0sO-XV-xc1.text" = "Latitud:";
+/* Class = "IBUILabel"; text = "Ciudad:"; ObjectID = "1ky-c7-qrF"; */
+"1ky-c7-qrF.text" = "City:";
 
-/* Class = "UILabel"; text = "¿Se sospecha el uso de Sustancias Controladas?"; ObjectID = "0uj-37-V0Y"; */
-"0uj-37-V0Y.text" = "¿Se sospecha el uso de Sustancias Controladas?";
+/* Class = "IBUILabel"; text = "Nombre:"; ObjectID = "213-Iz-i9A"; */
+"213-Iz-i9A.text" = "Name:";
 
-/* Class = "UILabel"; text = "Áreas Afectadas:"; ObjectID = "1ba-OF-UAi"; */
-"1ba-OF-UAi.text" = "Áreas Afectadas:";
-
-/* Class = "UILabel"; text = "Ciudad:"; ObjectID = "1ky-c7-qrF"; */
-"1ky-c7-qrF.text" = "Ciudad:";
-
-/* Class = "UILabel"; text = "Nombre:"; ObjectID = "213-Iz-i9A"; */
-"213-Iz-i9A.text" = "Nombre:";
-
-/* Class = "UITextField"; placeholder = "Cuarto Evento"; ObjectID = "2Cg-t6-dwM"; */
-"2Cg-t6-dwM.placeholder" = "Cuarto Evento";
-
-/* Class = "UITextField"; text = "WAUFFAFM3CA000000"; ObjectID = "2UD-cx-P6P"; */
+/* Class = "IBUITextField"; text = "WAUFFAFM3CA000000"; ObjectID = "2UD-cx-P6P"; */
 "2UD-cx-P6P.text" = "WAUFFAFM3CA000000";
 
-/* Class = "UILabel"; text = "Urbanización/Barrio:"; ObjectID = "2hr-yK-46Y"; */
-"2hr-yK-46Y.text" = "Urbanización/Barrio:";
+/* Class = "IBUILabel"; text = "Urbanización/Barrio:"; ObjectID = "2hr-yK-46Y"; */
+"2hr-yK-46Y.text" = "Neighborhood:";
 
-/* Class = "UILabel"; text = "Urbanización/Barrio:"; ObjectID = "2oo-aD-fje"; */
-"2oo-aD-fje.text" = "Urbanización/Barrio:";
+/* Class = "IBUILabel"; text = "Urbanización/Barrio:"; ObjectID = "2oo-aD-fje"; */
+"2oo-aD-fje.text" = "Neighborhood:";
 
-/* Class = "UITextField"; placeholder = "Tercera Categoría de Evento"; ObjectID = "2vk-q2-IHI"; */
-"2vk-q2-IHI.placeholder" = "Tercera Categoría de Evento";
-
-/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "3G9-Ca-4vL"; */
+/* Class = "IBUIButton"; normalTitle = "Conectarse"; ObjectID = "3G9-Ca-4vL"; */
 "3G9-Ca-4vL.normalTitle" = "Login";
 
-/* Class = "UILabel"; text = "Insurance:"; ObjectID = "3Qm-mf-Cbp"; */
-"3Qm-mf-Cbp.text" = "Insurance:";
+/* Class = "IBUILabel"; text = "Aseguradora:"; ObjectID = "3Qm-mf-Cbp"; */
+"3Qm-mf-Cbp.text" = "Insurance Company:";
 
-/* Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "4hk-bq-TcW"; */
+/* Class = "IBUIBarButtonItem"; title = "Cancelar"; ObjectID = "4hk-bq-TcW"; */
 "4hk-bq-TcW.title" = "Cancel";
 
-/* Class = "UILabel"; text = "Registration Number:"; ObjectID = "5EW-yN-9oM"; */
+/* Class = "IBUILabel"; text = "Número de Marbete:"; ObjectID = "5EW-yN-9oM"; */
 "5EW-yN-9oM.text" = "Registration Number:";
 
-/* Class = "UILabel"; text = "State:"; ObjectID = "5z2-I4-D8n"; */
+/* Class = "IBUILabel"; text = "Estado:"; ObjectID = "5z2-I4-D8n"; */
 "5z2-I4-D8n.text" = "State:";
 
-/* Class = "UITextField"; placeholder = "Tipo de Carril"; ObjectID = "6J2-rj-50K"; */
-"6J2-rj-50K.placeholder" = "Tipo de Carril";
+/* Class = "IBUILabel"; text = "Tipo de Accidente:"; ObjectID = "6JS-9n-3pj"; */
+"6JS-9n-3pj.text" = "Crash Type:";
 
-/* Class = "UILabel"; text = "Tipo de Accidente:"; ObjectID = "6JS-9n-3pj"; */
-"6JS-9n-3pj.text" = "Tipo de Accidente:";
+/* Class = "IBUITextField"; placeholder = "Medida"; ObjectID = "7MH-de-WMM"; */
+"7MH-de-WMM.placeholder" = "Measurement Unit";
 
-/* Class = "UILabel"; text = "Grado del Daño:"; ObjectID = "6fo-ek-iyd"; */
-"6fo-ek-iyd.text" = "Grado del Daño:";
-
-/* Class = "UITextField"; placeholder = "Medida"; ObjectID = "7MH-de-WMM"; */
-"7MH-de-WMM.placeholder" = "Medida";
-
-/* Class = "UILabel"; text = "VEHICLE INFORMATION:"; ObjectID = "7sa-3J-XrO"; */
+/* Class = "IBUILabel"; text = "INFORMACIÓN DEL VEHÍCULO:"; ObjectID = "7sa-3J-XrO"; */
 "7sa-3J-XrO.text" = "VEHICLE INFORMATION:";
 
-/* Class = "UILabel"; text = "Cantidad de Carriles en la Carretera:"; ObjectID = "825-iy-CyF"; */
-"825-iy-CyF.text" = "Cantidad de Carriles en la Carretera:";
-
-/* Class = "UITextField"; placeholder = "Property Type"; ObjectID = "8RO-K4-1vH"; */
+/* Class = "IBUITextField"; placeholder = "Tipo de Propiedad"; ObjectID = "8RO-K4-1vH"; */
 "8RO-K4-1vH.placeholder" = "Property Type";
 
-/* Class = "UILabel"; text = "Fecha de Compra:"; ObjectID = "8jA-dW-zY9"; */
-"8jA-dW-zY9.text" = "Fecha de Compra:";
+/* Class = "IBUILabel"; text = "Fecha de Compra:"; ObjectID = "8jA-dW-zY9"; */
+"8jA-dW-zY9.text" = "Purchase Date:";
 
-/* Class = "UILabel"; text = "Year:"; ObjectID = "9Qx-UB-bxd"; */
+/* Class = "IBUILabel"; text = "Año:"; ObjectID = "9Qx-UB-bxd"; */
 "9Qx-UB-bxd.text" = "Year:";
 
-/* Class = "UILabel"; text = "License Number:"; ObjectID = "ABE-jP-MO7"; */
+/* Class = "IBUILabel"; text = "Número de Licencia:"; ObjectID = "ABE-jP-MO7"; */
 "ABE-jP-MO7.text" = "License Number:";
 
-/* Class = "UILabel"; text = "Clima:"; ObjectID = "BaF-9i-mwy"; */
-"BaF-9i-mwy.text" = "Clima:";
+/* Class = "IBUILabel"; text = "Clima:"; ObjectID = "BaF-9i-mwy"; */
+"BaF-9i-mwy.text" = "Weather:";
 
-/* Class = "UILabel"; text = "Número de Tablilla:"; ObjectID = "BtR-ck-nu6"; */
-"BtR-ck-nu6.text" = "Número de Tablilla:";
-
-/* Class = "UILabel"; text = "Organ Donor:"; ObjectID = "CKf-hh-PaJ"; */
+/* Class = "IBUILabel"; text = "Donante de Organos:"; ObjectID = "CKf-hh-PaJ"; */
 "CKf-hh-PaJ.text" = "Organ Donor:";
 
-/* Class = "UILabel"; text = "Worker's Present:"; ObjectID = "Cmb-R4-Ynn"; */
+/* Class = "IBUILabel"; text = "Trabajadores Presentes:"; ObjectID = "Cmb-R4-Ynn"; */
 "Cmb-R4-Ynn.text" = "Worker's Present:";
 
-/* Class = "UILabel"; text = "State:"; ObjectID = "Cwc-Ee-CaY"; */
+/* Class = "IBUILabel"; text = "Estado:"; ObjectID = "Cwc-Ee-CaY"; */
 "Cwc-Ee-CaY.text" = "State:";
 
-/* Class = "UILabel"; text = "INFORMACIÓN DE VEHÍCULOS COMERCIALES:"; ObjectID = "D1k-7s-23t"; */
-"D1k-7s-23t.text" = "INFORMACIÓN DE VEHÍCULOS COMERCIALES:";
+/* Class = "IBUILabel"; text = "Mis Reportes"; ObjectID = "DaE-f3-7Ag"; */
+"DaE-f3-7Ag.text" = "My Reports";
 
-/* Class = "UILabel"; text = "Activación de Bolsas de Aire:"; ObjectID = "DLJ-di-Ctr"; */
-"DLJ-di-Ctr.text" = "Activación de Bolsas de Aire:";
-
-/* Class = "UILabel"; text = "Mis Reportes"; ObjectID = "DaE-f3-7Ag"; */
-"DaE-f3-7Ag.text" = "Mis Reportes";
-
-/* Class = "UITextField"; placeholder = "Location"; ObjectID = "Daa-Nz-16m"; */
+/* Class = "IBUITextField"; placeholder = "Ubicación"; ObjectID = "Daa-Nz-16m"; */
 "Daa-Nz-16m.placeholder" = "Location";
 
-/* Class = "UILabel"; text = "INFORMACIÓN SOLO PARA OCUPANTES DE VEHÍCULO:"; ObjectID = "Dgp-25-VXb"; */
-"Dgp-25-VXb.text" = "INFORMACIÓN SOLO PARA OCUPANTES DE VEHÍCULO:";
+/* Class = "IBUITextField"; placeholder = "Evento"; ObjectID = "Dpi-bE-Kf3"; */
+"Dpi-bE-Kf3.placeholder" = "Event";
 
-/* Class = "UITextField"; placeholder = "Evento"; ObjectID = "Dpi-bE-Kf3"; */
-"Dpi-bE-Kf3.placeholder" = "Evento";
-
-/* Class = "UILabel"; text = "INFORMACIÓN DE LA CARRETERA:"; ObjectID = "Dxb-zA-Tf8"; */
-"Dxb-zA-Tf8.text" = "INFORMACIÓN DE LA CARRETERA:";
-
-/* Class = "UILabel"; text = "Phone Number"; ObjectID = "ELq-8f-GAa"; */
+/* Class = "IBUILabel"; text = "Teléfono"; ObjectID = "ELq-8f-GAa"; */
 "ELq-8f-GAa.text" = "Phone Number";
 
-/* Class = "UILabel"; text = "Tipo de Vehículo de Motor:"; ObjectID = "EVu-5e-xng"; */
-"EVu-5e-xng.text" = "Tipo de Vehículo de Motor:";
+/* Class = "IBUILabel"; text = "Identificador del Caso:"; ObjectID = "EqD-Zz-kKu"; */
+"EqD-Zz-kKu.text" = "Case Identifier:";
 
-/* Class = "UILabel"; text = "Identificador del Caso:"; ObjectID = "EqD-Zz-kKu"; */
-"EqD-Zz-kKu.text" = "Identificador del Caso:";
-
-/* Class = "UILabel"; text = "Maniobra/Acción del Vehículo de Motor:"; ObjectID = "FBM-BD-lxX"; */
-"FBM-BD-lxX.text" = "Maniobra/Acción del Vehículo de Motor:";
-
-/* Class = "UITextField"; placeholder = "MPH"; ObjectID = "FJv-tU-eD8"; */
-"FJv-tU-eD8.placeholder" = "MPH";
-
-/* Class = "UITextField"; placeholder = "Primer Evento"; ObjectID = "FOC-4Q-kUu"; */
-"FOC-4Q-kUu.placeholder" = "Primer Evento";
-
-/* Class = "UILabel"; text = "Plate Number:"; ObjectID = "FUM-l0-M9D"; */
+/* Class = "IBUILabel"; text = "Número de Tablilla:"; ObjectID = "FUM-l0-M9D"; */
 "FUM-l0-M9D.text" = "Plate Number:";
 
-/* Class = "UILabel"; text = "Usuario:"; ObjectID = "Faa-ke-CfS"; */
-"Faa-ke-CfS.text" = "Usuario:";
+/* Class = "IBUILabel"; text = "Usuario:"; ObjectID = "Faa-ke-CfS"; */
+"Faa-ke-CfS.text" = "User:";
 
-/* Class = "UITextField"; placeholder = "Tercer Evento"; ObjectID = "FfJ-dR-j1Q"; */
-"FfJ-dR-j1Q.placeholder" = "Tercer Evento";
-
-/* Class = "UILabel"; text = "CRASH DETAILS:"; ObjectID = "Fk1-zj-T7u"; */
+/* Class = "IBUILabel"; text = "DETALLES DEL ACCIDENTE:"; ObjectID = "Fk1-zj-T7u"; */
 "Fk1-zj-T7u.text" = "CRASH DETAILS:";
 
-/* Class = "UILabel"; text = "Categoría de la Persona:"; ObjectID = "GBK-Zk-l3Y"; */
-"GBK-Zk-l3Y.text" = "Categoría de la Persona:";
+/* Class = "IBUILabel"; text = "Aseguradora:"; ObjectID = "GQr-Nd-1MV"; */
+"GQr-Nd-1MV.text" = "Insurance Company:";
 
-/* Class = "UILabel"; text = "Uso del Vehículo Comercial:"; ObjectID = "GBU-ng-gxY"; */
-"GBU-ng-gxY.text" = "Uso del Vehículo Comercial:";
-
-/* Class = "UITextField"; placeholder = "Fecha"; ObjectID = "GCa-vZ-uMS"; */
-"GCa-vZ-uMS.placeholder" = "Fecha";
-
-/* Class = "UILabel"; text = "Insurance:"; ObjectID = "GQr-Nd-1MV"; */
-"GQr-Nd-1MV.text" = "Insurance:";
-
-/* Class = "UILabel"; text = "Person"; ObjectID = "Gdz-vY-evN"; */
+/* Class = "IBUILabel"; text = "Persona"; ObjectID = "Gdz-vY-evN"; */
 "Gdz-vY-evN.text" = "Person";
 
-/* Class = "UILabel"; text = "¿Hubo derrame del Material Peligroso debido al choque?"; ObjectID = "Gta-i1-mu9"; */
-"Gta-i1-mu9.text" = "¿Hubo derrame del Material Peligroso debido al choque?";
+/* Class = "IBUILabel"; text = "Fecha de Expiración:"; ObjectID = "Gyb-Wa-nQt"; */
+"Gyb-Wa-nQt.text" = "Expiration Date:";
 
-/* Class = "UILabel"; text = "Fecha de Expiración:"; ObjectID = "Gyb-Wa-nQt"; */
-"Gyb-Wa-nQt.text" = "Fecha de Expiración:";
-
-/* Class = "UITextField"; placeholder = "Cantidad"; ObjectID = "HFo-XR-q2O"; */
-"HFo-XR-q2O.placeholder" = "Cantidad";
-
-/* Class = "UILabel"; text = "Unknown Hour"; ObjectID = "HOH-Cz-3tY"; */
+/* Class = "IBUILabel"; text = "Hora Desconocida"; ObjectID = "HOH-Cz-3tY"; */
 "HOH-Cz-3tY.text" = "Unknown Hour";
 
-/* Class = "UINavigationItem"; title = "Nueva Persona"; ObjectID = "HRV-WS-eio"; */
-"HRV-WS-eio.title" = "Nueva Persona";
+/* Class = "IBUINavigationItem"; title = "Nueva Persona"; ObjectID = "HRV-WS-eio"; */
+"HRV-WS-eio.title" = "New Person";
 
-/* Class = "UILabel"; text = "Defectos Mecánicos del Vehículo:"; ObjectID = "IHi-hX-Wzt"; */
-"IHi-hX-Wzt.text" = "Defectos Mecánicos del Vehículo:";
-
-/* Class = "UILabel"; text = "Gender:"; ObjectID = "If5-Xh-5Ad"; */
+/* Class = "IBUILabel"; text = "Género:"; ObjectID = "If5-Xh-5Ad"; */
 "If5-Xh-5Ad.text" = "Gender:";
 
-/* Class = "UILabel"; text = "Tipo de Control de Tránsito: "; ObjectID = "Ife-yf-HrZ"; */
-"Ife-yf-HrZ.text" = "Tipo de Control de Tránsito: ";
-
-/* Class = "UILabel"; text = "Estado de la Prueba:"; ObjectID = "IpC-ZV-IkW"; */
-"IpC-ZV-IkW.text" = "Estado de la Prueba:";
-
-/* Class = "UILabel"; text = "Vehicle Identification Number (VIN):"; ObjectID = "ItE-M3-rEB"; */
+/* Class = "IBUILabel"; text = "Número de Identificación del Vehículo (VIN):"; ObjectID = "ItE-M3-rEB"; */
 "ItE-M3-rEB.text" = "Vehicle Identification Number (VIN):";
 
-/* Class = "UILabel"; text = "Modelo:"; ObjectID = "J2q-j4-8ch"; */
-"J2q-j4-8ch.text" = "Modelo:";
+/* Class = "IBUILabel"; text = "Modelo:"; ObjectID = "J2q-j4-8ch"; */
+"J2q-j4-8ch.text" = "Model:";
 
-/* Class = "UILabel"; text = "Crash Location:"; ObjectID = "J4a-ib-OYK"; */
+/* Class = "IBUILabel"; text = "Localización del Accidente:"; ObjectID = "J4a-ib-OYK"; */
 "J4a-ib-OYK.text" = "Crash Location:";
 
-/* Class = "UILabel"; text = "Vehicle Identification Number (VIN):"; ObjectID = "J6g-RQ-a1E"; */
+/* Class = "IBUILabel"; text = "Número de Identificación del Vehículo (VIN):"; ObjectID = "J6g-RQ-a1E"; */
 "J6g-RQ-a1E.text" = "Vehicle Identification Number (VIN):";
 
-/* Class = "UILabel"; text = "INFORMACIÓN PARA PEATONES, CICLISTAS Y OTROS FUERA DE VEHÍCULO DE MOTOR:"; ObjectID = "Jhr-mN-cCH"; */
-"Jhr-mN-cCH.text" = "INFORMACIÓN PARA PEATONES, CICLISTAS Y OTROS FUERA DE VEHÍCULO DE MOTOR:";
-
-/* Class = "UILabel"; text = "Función Especial del Vehículo de Motor en Transporte:"; ObjectID = "Jun-bQ-dfg"; */
-"Jun-bQ-dfg.text" = "Función Especial del Vehículo de Motor en Transporte:";
-
-/* Class = "UILabel"; text = "Hour:"; ObjectID = "KA6-Vk-GEM"; */
+/* Class = "IBUILabel"; text = "Hora:"; ObjectID = "KA6-Vk-GEM"; */
 "KA6-Vk-GEM.text" = "Hour:";
 
-/* Class = "UILabel"; text = "Cantidad de Pasajeros:"; ObjectID = "KpG-R1-Prg"; */
-"KpG-R1-Prg.text" = "Cantidad de Pasajeros:";
+/* Class = "IBUILabel"; text = "Cantidad de Pasajeros:"; ObjectID = "KpG-R1-Prg"; */
+"KpG-R1-Prg.text" = "Passangers Quantity:";
 
-/* Class = "UILabel"; text = "Año:"; ObjectID = "L1L-Na-UHq"; */
-"L1L-Na-UHq.text" = "Año:";
+/* Class = "IBUILabel"; text = "Fecha de Expiración:"; ObjectID = "Ln3-XB-2HZ"; */
+"Ln3-XB-2HZ.text" = "Expiration Date:";
 
-/* Class = "UILabel"; text = "¿Abandonó el Lugar?"; ObjectID = "LEM-di-qrM"; */
-"LEM-di-qrM.text" = "¿Abandonó el Lugar?";
-
-/* Class = "UILabel"; text = "Fecha de Expiración:"; ObjectID = "Ln3-XB-2HZ"; */
-"Ln3-XB-2HZ.text" = "Fecha de Expiración:";
-
-/* Class = "UITextField"; placeholder = "Tipo de Prueba"; ObjectID = "MDK-id-Fx8"; */
-"MDK-id-Fx8.placeholder" = "Tipo de Prueba";
-
-/* Class = "UITextField"; placeholder = "Cardinal Point"; ObjectID = "MS8-il-m8Y"; */
+/* Class = "IBUITextField"; placeholder = "Punto Cardinal"; ObjectID = "MS8-il-m8Y"; */
 "MS8-il-m8Y.placeholder" = "Cardinal Point";
 
-/* Class = "UILabel"; text = "¿Remolcado por Daños?"; ObjectID = "Mfv-f2-5wI"; */
-"Mfv-f2-5wI.text" = "¿Remolcado por Daños?";
+/* Class = "IBUILabel"; text = "CIRCUNSTANCIAS CONTRIBUYENTES:"; ObjectID = "Muz-Jp-0hQ"; */
+"Muz-Jp-0hQ.text" = "CONTRIBUTING CONDITIONS:";
 
-/* Class = "UILabel"; text = "CIRCUNSTANCIAS CONTRIBUYENTES:"; ObjectID = "Muz-Jp-0hQ"; */
-"Muz-Jp-0hQ.text" = "CIRCUNSTANCIAS CONTRIBUYENTES:";
-
-/* Class = "UILabel"; text = "Address and/or Street:"; ObjectID = "N1A-dM-b8l"; */
+/* Class = "IBUILabel"; text = "Dirección y/o Calle:"; ObjectID = "N1A-dM-b8l"; */
 "N1A-dM-b8l.text" = "Address and/or Street:";
 
-/* Class = "UILabel"; text = "PERSON'S VEHICLE:"; ObjectID = "NJq-BA-G8w"; */
+/* Class = "IBUILabel"; text = "VEHÍCULO DE LA PERSONA:"; ObjectID = "NJq-BA-G8w"; */
 "NJq-BA-G8w.text" = "PERSON'S VEHICLE:";
 
-/* Class = "UILabel"; text = "Uso de Casco de Motoclicleta:"; ObjectID = "NdO-zX-y7g"; */
-"NdO-zX-y7g.text" = "Uso de Casco de Motoclicleta:";
-
-/* Class = "UINavigationItem"; title = "Información Extendida de la Persona"; ObjectID = "Njd-aU-WHv"; */
-"Njd-aU-WHv.title" = "Información Extendida de la Persona";
-
-/* Class = "UILabel"; text = "Cantidad Total de Ejes:"; ObjectID = "Nvs-gY-AKj"; */
-"Nvs-gY-AKj.text" = "Cantidad Total de Ejes:";
-
-/* Class = "UINavigationItem"; title = "Añadir Infracción a la Ley"; ObjectID = "Nx9-cN-CdH"; */
-"Nx9-cN-CdH.title" = "Añadir Infracción a la Ley";
-
-/* Class = "UILabel"; text = "Address:"; ObjectID = "O6g-dL-55q"; */
+/* Class = "IBUILabel"; text = "Dirección:"; ObjectID = "O6g-dL-55q"; */
 "O6g-dL-55q.text" = "Address:";
 
-/* Class = "UILabel"; text = "Uso de Vehículo de Motor de Emergencia:"; ObjectID = "POA-aS-2qU"; */
-"POA-aS-2qU.text" = "Uso de Vehículo de Motor de Emergencia:";
-
-/* Class = "UILabel"; text = "¿Vehículo contiene Materíal Peligroso?"; ObjectID = "Pd6-a9-UWr"; */
-"Pd6-a9-UWr.text" = "¿Vehículo contiene Materíal Peligroso?";
-
-/* Class = "UILabel"; text = "Alineamiento:"; ObjectID = "Q5b-RQ-JEB"; */
-"Q5b-RQ-JEB.text" = "Alineamiento:";
-
-/* Class = "UINavigationItem"; title = "Incident Members"; ObjectID = "Q7p-4O-c4N"; */
+/* Class = "IBUINavigationItem"; title = "Miembros del Incidente"; ObjectID = "Q7p-4O-c4N"; */
 "Q7p-4O-c4N.title" = "Incident Members";
 
-/* Class = "UILabel"; text = "¿Conductor autorizado?"; ObjectID = "QrW-Ma-YCt"; */
-"QrW-Ma-YCt.text" = "¿Conductor autorizado?";
-
-/* Class = "UITextField"; placeholder = "Vehicles"; ObjectID = "Qug-Vi-wVo"; */
+/* Class = "IBUITextField"; placeholder = "Vehículos"; ObjectID = "Qug-Vi-wVo"; */
 "Qug-Vi-wVo.placeholder" = "Vehicles";
 
-/* Class = "UILabel"; text = "Name:"; ObjectID = "R6u-m4-mUo"; */
+/* Class = "IBUILabel"; text = "Nombre:"; ObjectID = "R6u-m4-mUo"; */
 "R6u-m4-mUo.text" = "Name:";
 
-/* Class = "UILabel"; text = "Event Location:"; ObjectID = "RKL-Mh-uE5"; */
+/* Class = "IBUILabel"; text = "Localización del Evento:"; ObjectID = "RKL-Mh-uE5"; */
 "RKL-Mh-uE5.text" = "Event Location:";
 
-/* Class = "UILabel"; text = "Tipo de Licencia:"; ObjectID = "RL6-HO-upl"; */
-"RL6-HO-upl.text" = "Tipo de Licencia:";
+/* Class = "IBUILabel"; text = "Tipo de Licencia:"; ObjectID = "RL6-HO-upl"; */
+"RL6-HO-upl.text" = "License Type:";
 
-/* Class = "UILabel"; text = "Sistema de Retención:"; ObjectID = "RgD-zu-tun"; */
-"RgD-zu-tun.text" = "Sistema de Retención:";
-
-/* Class = "UINavigationItem"; title = "Reported Crashs"; ObjectID = "Rx9-9B-djF"; */
+/* Class = "IBUINavigationItem"; title = "Accidentes Reportados"; ObjectID = "Rx9-9B-djF"; */
 "Rx9-9B-djF.title" = "Reported Crashs";
 
-/* Class = "UILabel"; text = "Password:"; ObjectID = "Rzu-ST-Jue"; */
+/* Class = "IBUILabel"; text = "Contraseña:"; ObjectID = "Rzu-ST-Jue"; */
 "Rzu-ST-Jue.text" = "Password:";
 
-/* Class = "UILabel"; text = "Salir"; ObjectID = "SCH-8S-Gu5"; */
-"SCH-8S-Gu5.text" = "Salir";
+/* Class = "IBUILabel"; text = "Salir"; ObjectID = "SCH-8S-Gu5"; */
+"SCH-8S-Gu5.text" = "Exit";
 
-/* Class = "UITextField"; placeholder = "Condición del Pavimento"; ObjectID = "SLf-9l-bAB"; */
-"SLf-9l-bAB.placeholder" = "Condición del Pavimento";
+/* Class = "IBUITextField"; placeholder = "Condición del Pavimento"; ObjectID = "SLf-9l-bAB"; */
+"SLf-9l-bAB.placeholder" = "Road Condition";
 
-/* Class = "UILabel"; text = "Tipo de Vehículo:"; ObjectID = "SSh-eU-qtq"; */
-"SSh-eU-qtq.text" = "Tipo de Vehículo:";
+/* Class = "IBUILabel"; text = "Tipo de Vehículo:"; ObjectID = "SSh-eU-qtq"; */
+"SSh-eU-qtq.text" = "Vehicle Type:";
 
-/* Class = "UILabel"; text = "Número de Tablilla:"; ObjectID = "SbQ-ub-Hot"; */
-"SbQ-ub-Hot.text" = "Número de Tablilla:";
+/* Class = "IBUILabel"; text = "Número de Tablilla:"; ObjectID = "SbQ-ub-Hot"; */
+"SbQ-ub-Hot.text" = "Plate Number:";
 
-/* Class = "UILabel"; text = "Número de Multa:"; ObjectID = "Sd1-eA-WqK"; */
-"Sd1-eA-WqK.text" = "Número de Multa:";
+/* Class = "IBUILabel"; text = "Género:"; ObjectID = "T1h-z1-4n8"; */
+"T1h-z1-4n8.text" = "Gender:";
 
-/* Class = "UITextField"; placeholder = "Primer Defecto Mecánico"; ObjectID = "SdK-B7-rTp"; */
-"SdK-B7-rTp.placeholder" = "Primer Defecto Mecánico";
+/* Class = "IBUILabel"; text = "Pavimento:"; ObjectID = "TAr-SN-iIZ"; */
+"TAr-SN-iIZ.text" = "Pavement Condition:";
 
-/* Class = "UILabel"; text = "Nombre:"; ObjectID = "SeT-KX-0ry"; */
-"SeT-KX-0ry.text" = "Nombre:";
+/* Class = "IBUILabel"; text = "Tipo de Intersección:"; ObjectID = "TkX-HV-BXg"; */
+"TkX-HV-BXg.text" = "Intersection Type:";
 
-/* Class = "UILabel"; text = "Subtitle"; ObjectID = "T19-la-hhS"; */
-"T19-la-hhS.text" = "Subtitle";
-
-/* Class = "UILabel"; text = "Género:"; ObjectID = "T1h-z1-4n8"; */
-"T1h-z1-4n8.text" = "Género:";
-
-/* Class = "UILabel"; text = "Road:"; ObjectID = "TAr-SN-iIZ"; */
-"TAr-SN-iIZ.text" = "Road:";
-
-/* Class = "UILabel"; text = "Fila:"; ObjectID = "TWc-eD-H1b"; */
-"TWc-eD-H1b.text" = "Fila:";
-
-/* Class = "UILabel"; text = "Tipo de Intersección:"; ObjectID = "TkX-HV-BXg"; */
-"TkX-HV-BXg.text" = "Tipo de Intersección:";
-
-/* Class = "UILabel"; text = "¿En Operación o Perdido?"; ObjectID = "Tp1-ml-oOm"; */
-"Tp1-ml-oOm.text" = "¿En Operación o Perdido?";
-
-/* Class = "UILabel"; text = "Estado de la Prueba:"; ObjectID = "Tu2-0k-4rk"; */
-"Tu2-0k-4rk.text" = "Estado de la Prueba:";
-
-/* Class = "UILabel"; text = "Worker's Zone Type:"; ObjectID = "UPm-BM-lVi"; */
+/* Class = "IBUILabel"; text = "Tipo de Zona de Trabajo:"; ObjectID = "UPm-BM-lVi"; */
 "UPm-BM-lVi.text" = "Worker's Zone Type:";
 
-/* Class = "UILabel"; text = "Vehículo"; ObjectID = "Uda-Ht-s6q"; */
-"Uda-Ht-s6q.text" = "Vehículo";
+/* Class = "IBUILabel"; text = "Vehículo"; ObjectID = "Uda-Ht-s6q"; */
+"Uda-Ht-s6q.text" = "Vehicle";
 
-/* Class = "UILabel"; text = "Make:"; ObjectID = "Uqz-r0-5M8"; */
+/* Class = "IBUILabel"; text = "Marca:"; ObjectID = "Uqz-r0-5M8"; */
 "Uqz-r0-5M8.text" = "Make:";
 
-/* Class = "UILabel"; text = "Near to:"; ObjectID = "V9l-rn-E5c"; */
+/* Class = "IBUITabBarItem"; title = "Personas"; ObjectID = "V0b-DU-ptU"; */
+"V0b-DU-ptU.title" = "Persons";
+
+/* Class = "IBUILabel"; text = "Cerca de:"; ObjectID = "V9l-rn-E5c"; */
 "V9l-rn-E5c.text" = "Near to:";
 
-/* Class = "UILabel"; text = "¿La Inspección está al día?"; ObjectID = "WE8-Ki-j55"; */
-"WE8-Ki-j55.text" = "¿La Inspección está al día?";
+/* Class = "IBUILabel"; text = "Tipo de Persona:"; ObjectID = "WVW-Ms-uF5"; */
+"WVW-Ms-uF5.text" = "Person Type:";
 
-/* Class = "UILabel"; text = "Descripción de la Carretera:"; ObjectID = "WGO-4Q-Baz"; */
-"WGO-4Q-Baz.text" = "Descripción de la Carretera:";
-
-/* Class = "UILabel"; text = "Permiso Especial (Permiso de Arrastre DTOP/DOT):"; ObjectID = "WNn-wH-eul"; */
-"WNn-wH-eul.text" = "Permiso Especial (Permiso de Arrastre DTOP/DOT):";
-
-/* Class = "UILabel"; text = "Tipo de Persona:"; ObjectID = "WVW-Ms-uF5"; */
-"WVW-Ms-uF5.text" = "Tipo de Persona:";
-
-/* Class = "UILabel"; text = "Phone Number"; ObjectID = "WcH-r0-TF8"; */
+/* Class = "IBUILabel"; text = "Teléfono"; ObjectID = "WcH-r0-TF8"; */
 "WcH-r0-TF8.text" = "Phone Number";
 
-/* Class = "UILabel"; text = "Tipo de Persona:"; ObjectID = "Wgu-WR-uq9"; */
-"Wgu-WR-uq9.text" = "Tipo de Persona:";
+/* Class = "IBUILabel"; text = "Fecha de Compra:"; ObjectID = "Y2d-mE-mdh"; */
+"Y2d-mE-mdh.text" = "Purchase Date:";
 
-/* Class = "UILabel"; text = "Tipo de Prueba:"; ObjectID = "Wn4-kz-9ON"; */
-"Wn4-kz-9ON.text" = "Tipo de Prueba:";
-
-/* Class = "UITextField"; placeholder = "Segunda Categoría de Evento"; ObjectID = "XAI-6o-8UA"; */
-"XAI-6o-8UA.placeholder" = "Segunda Categoría de Evento";
-
-/* Class = "UILabel"; text = "Fecha de Compra:"; ObjectID = "Y2d-mE-mdh"; */
-"Y2d-mE-mdh.text" = "Fecha de Compra:";
-
-/* Class = "UILabel"; text = "Subtitle"; ObjectID = "YAH-WM-nTg"; */
+/* Class = "IBUILabel"; text = "Subtitle"; ObjectID = "YAH-WM-nTg"; */
 "YAH-WM-nTg.text" = "Subtitle";
 
-/* Class = "UILabel"; text = "Donante de Organos:"; ObjectID = "YZY-TF-lo7"; */
-"YZY-TF-lo7.text" = "Donante de Organos:";
+/* Class = "IBUILabel"; text = "Donante de Organos:"; ObjectID = "YZY-TF-lo7"; */
+"YZY-TF-lo7.text" = "Organ Donor:";
 
-/* Class = "UILabel"; text = "INFRACCIONES A LA LEY:"; ObjectID = "YtS-oq-ARY"; */
-"YtS-oq-ARY.text" = "INFRACCIONES A LA LEY:";
+/* Class = "IBUITabBarItem"; title = "Vehículos"; ObjectID = "Zff-5s-tam"; */
+"Zff-5s-tam.title" = "Vehicles";
 
-/* Class = "UITabBarItem"; title = "Personas"; ObjectID = "ZFN-ch-oej"; */
-"ZFN-ch-oej.title" = "Personas";
-
-/* Class = "UILabel"; text = "Environmental:"; ObjectID = "Zfw-Ki-pqh"; */
+/* Class = "IBUILabel"; text = "Ambiental:"; ObjectID = "Zfw-Ki-pqh"; */
 "Zfw-Ki-pqh.text" = "Environmental:";
 
-/* Class = "UILabel"; text = "Zip Code:"; ObjectID = "Zyk-lN-54I"; */
+/* Class = "IBUILabel"; text = "Zip Code:"; ObjectID = "Zyk-lN-54I"; */
 "Zyk-lN-54I.text" = "Zip Code:";
 
-/* Class = "UITextField"; placeholder = "Pedestrians"; ObjectID = "a8F-ql-5eb"; */
+/* Class = "IBUITextField"; placeholder = "Peatones"; ObjectID = "a8F-ql-5eb"; */
 "a8F-ql-5eb.placeholder" = "Pedestrians";
 
-/* Class = "UILabel"; text = "Peso Bruto (incluyendo Remolques):"; ObjectID = "aGm-0J-ffy"; */
-"aGm-0J-ffy.text" = "Peso Bruto (incluyendo Remolques):";
+/* Class = "IBUITextField"; placeholder = "Relación"; ObjectID = "agJ-td-3qW"; */
+"agJ-td-3qW.placeholder" = "Relation";
 
-/* Class = "UILabel"; text = "Género:"; ObjectID = "ab4-Ep-h2w"; */
-"ab4-Ep-h2w.text" = "Género:";
-
-/* Class = "UITextField"; placeholder = "Relación"; ObjectID = "agJ-td-3qW"; */
-"agJ-td-3qW.placeholder" = "Relación";
-
-/* Class = "UILabel"; text = "Acciones Antes del Accidente:"; ObjectID = "aoa-sl-Opn"; */
-"aoa-sl-Opn.text" = "Acciones Antes del Accidente:";
-
-/* Class = "UILabel"; text = "Número de Artículo:"; ObjectID = "bFl-Kb-z4d"; */
-"bFl-Kb-z4d.text" = "Número de Artículo:";
-
-/* Class = "UILabel"; text = "Tipo de Prueba:"; ObjectID = "bMj-f5-1eY"; */
-"bMj-f5-1eY.text" = "Tipo de Prueba:";
-
-/* Class = "UITabBarItem"; title = "Crash"; ObjectID = "bYF-v3-SQx"; */
+/* Class = "IBUITabBarItem"; title = "Accidente"; ObjectID = "bYF-v3-SQx"; */
 "bYF-v3-SQx.title" = "Crash";
 
-/* Class = "UITextField"; placeholder = "Uso de Alcohol"; ObjectID = "bkJ-nt-EJm"; */
-"bkJ-nt-EJm.placeholder" = "Uso de Alcohol";
-
-/* Class = "UILabel"; text = "Crash Date:"; ObjectID = "bnd-Tg-aBT"; */
+/* Class = "IBUILabel"; text = "Fecha del Accidente:"; ObjectID = "bnd-Tg-aBT"; */
 "bnd-Tg-aBT.text" = "Crash Date:";
 
-/* Class = "UITextField"; placeholder = "Weather Condition 2"; ObjectID = "bw4-IE-POi"; */
+/* Class = "IBUITextField"; placeholder = "Condición Climática 2"; ObjectID = "bw4-IE-POi"; */
 "bw4-IE-POi.placeholder" = "Weather Condition 2";
 
-/* Class = "UILabel"; text = "Uso del Bus:"; ObjectID = "c8n-k1-WRT"; */
-"c8n-k1-WRT.text" = "Uso del Bus:";
+/* Class = "IBUITextField"; placeholder = "Heridos"; ObjectID = "cix-T3-3Eg"; */
+"cix-T3-3Eg.placeholder" = "Injured";
 
-/* Class = "UITextField"; placeholder = "Heridos"; ObjectID = "cix-T3-3Eg"; */
-"cix-T3-3Eg.placeholder" = "Heridos";
+/* Class = "IBUILabel"; text = "Número de Marbete:"; ObjectID = "cjn-bQ-drc"; */
+"cjn-bQ-drc.text" = "Registration Number:";
 
-/* Class = "UILabel"; text = "Velocidad Máxima Rotulada:"; ObjectID = "cji-hq-FIQ"; */
-"cji-hq-FIQ.text" = "Velocidad Máxima Rotulada:";
+/* Class = "IBUILabel"; text = "Categoría de la Persona:"; ObjectID = "d7B-eD-bm0"; */
+"d7B-eD-bm0.text" = "Person Category:";
 
-/* Class = "UILabel"; text = "Número de Marbete:"; ObjectID = "cjn-bQ-drc"; */
-"cjn-bQ-drc.text" = "Número de Marbete:";
+/* Class = "IBUILabel"; text = "Forma de la Colisión:"; ObjectID = "dR5-Kw-6aV"; */
+"dR5-Kw-6aV.text" = "Manner of Colission:";
 
-/* Class = "UILabel"; text = "Categoría de la Persona:"; ObjectID = "d7B-eD-bm0"; */
-"d7B-eD-bm0.text" = "Categoría de la Persona:";
+/* Class = "IBUILabel"; text = "Cantidad de Pasajeros:"; ObjectID = "dn0-xu-N3B"; */
+"dn0-xu-N3B.text" = "Occupants:";
 
-/* Class = "UILabel"; text = "Forma de la Colisión:"; ObjectID = "dR5-Kw-6aV"; */
-"dR5-Kw-6aV.text" = "Forma de la Colisión:";
+/* Class = "IBUINavigationItem"; title = "Información Básica del Accidente"; ObjectID = "ebN-pd-J51"; */
+"ebN-pd-J51.title" = "Crash Basic Information";
 
-/* Class = "UILabel"; text = "Quantity of Passangers:"; ObjectID = "dn0-xu-N3B"; */
-"dn0-xu-N3B.text" = "Quantity of Passangers:";
-
-/* Class = "UILabel"; text = "Equipo de Seguridad Utilizado:"; ObjectID = "e8b-RW-ZNL"; */
-"e8b-RW-ZNL.text" = "Equipo de Seguridad Utilizado:";
-
-/* Class = "UILabel"; text = "Otra Localización:"; ObjectID = "eAp-h7-ODe"; */
-"eAp-h7-ODe.text" = "Otra Localización:";
-
-/* Class = "UINavigationItem"; title = "Información Básica del Accidente"; ObjectID = "ebN-pd-J51"; */
-"ebN-pd-J51.title" = "Información Básica del Accidente";
-
-/* Class = "UITextField"; placeholder = "Visibility Condition"; ObjectID = "ecK-kH-1DP"; */
+/* Class = "IBUITextField"; placeholder = "Condición de la Visibilidad"; ObjectID = "ecK-kH-1DP"; */
 "ecK-kH-1DP.placeholder" = "Visibility Condition";
 
-/* Class = "UILabel"; text = "INFORMACIÓN SOBRE LOS EVENTOS:"; ObjectID = "ee3-tp-NTJ"; */
-"ee3-tp-NTJ.text" = "INFORMACIÓN SOBRE LOS EVENTOS:";
+/* Class = "IBUILabel"; text = "Nuevo Reporte"; ObjectID = "eot-Uj-P8c"; */
+"eot-Uj-P8c.text" = "New Report";
 
-/* Class = "UILabel"; text = "Nuevo Reporte"; ObjectID = "eot-Uj-P8c"; */
-"eot-Uj-P8c.text" = "Nuevo Reporte";
+/* Class = "IBUITabBarItem"; title = "Condiciones"; ObjectID = "fFo-bS-aOQ"; */
+"fFo-bS-aOQ.title" = "Conditions";
 
-/* Class = "UILabel"; text = "INFORMACIÓN DE LA PERSONA:"; ObjectID = "fBP-Ek-Akn"; */
-"fBP-Ek-Akn.text" = "INFORMACIÓN DE LA PERSONA:";
-
-/* Class = "UITabBarItem"; title = "Condiciones"; ObjectID = "fFo-bS-aOQ"; */
-"fFo-bS-aOQ.title" = "Condiciones";
-
-/* Class = "UINavigationController"; title = "Vehículos"; ObjectID = "fH4-dJ-7W5"; */
-"fH4-dJ-7W5.title" = "Vehículos";
-
-/* Class = "UILabel"; text = "Person Category:"; ObjectID = "fYF-JB-E5w"; */
+/* Class = "IBUILabel"; text = "Categoría de la Persona:"; ObjectID = "fYF-JB-E5w"; */
 "fYF-JB-E5w.text" = "Person Category:";
 
-/* Class = "UILabel"; text = "Secuencia de los Eventos:"; ObjectID = "fj4-rJ-vaM"; */
-"fj4-rJ-vaM.text" = "Secuencia de los Eventos:";
+/* Class = "IBUILabel"; text = "Lugar Específico:"; ObjectID = "flU-tU-Hge"; */
+"flU-tU-Hge.text" = "Specific Location:";
 
-/* Class = "UILabel"; text = "Specific Place:"; ObjectID = "flU-tU-Hge"; */
-"flU-tU-Hge.text" = "Specific Place:";
-
-/* Class = "UIBarButtonItem"; title = "Add"; ObjectID = "fmv-Mn-2On"; */
+/* Class = "IBUIBarButtonItem"; title = "Añadir"; ObjectID = "fmv-Mn-2On"; */
 "fmv-Mn-2On.title" = "Add";
 
-/* Class = "UINavigationItem"; title = "New Vehicle and Driver"; ObjectID = "fop-R6-HBl"; */
+/* Class = "IBUINavigationItem"; title = "Nuevo Vehículo y Conductor"; ObjectID = "fop-R6-HBl"; */
 "fop-R6-HBl.title" = "New Vehicle and Driver";
 
-/* Class = "UITextField"; placeholder = "Segundo Evento"; ObjectID = "ftZ-A3-PhA"; */
-"ftZ-A3-PhA.placeholder" = "Segundo Evento";
-
-/* Class = "UILabel"; text = "Road:"; ObjectID = "g4D-Ad-H6S"; */
+/* Class = "IBUILabel"; text = "Carretera:"; ObjectID = "g4D-Ad-H6S"; */
 "g4D-Ad-H6S.text" = "Road:";
 
-/* Class = "UILabel"; text = "Extracción:"; ObjectID = "gSZ-XP-eIT"; */
-"gSZ-XP-eIT.text" = "Extracción:";
+/* Class = "IBUILabel"; text = "Marca:"; ObjectID = "gjA-oa-rEZ"; */
+"gjA-oa-rEZ.text" = "Make:";
 
-/* Class = "UITextField"; placeholder = "Hora"; ObjectID = "ggz-Ke-EvF"; */
-"ggz-Ke-EvF.placeholder" = "Hora";
-
-/* Class = "UILabel"; text = "Marca:"; ObjectID = "gjA-oa-rEZ"; */
-"gjA-oa-rEZ.text" = "Marca:";
-
-/* Class = "UILabel"; text = "¿Vehículo en Movimiento?"; ObjectID = "gkK-D5-GLp"; */
-"gkK-D5-GLp.text" = "¿Vehículo en Movimiento?";
-
-/* Class = "UILabel"; text = "Condiciones al Momento del Accidente:"; ObjectID = "gli-Cr-n4C"; */
-"gli-Cr-n4C.text" = "Condiciones al Momento del Accidente:";
-
-/* Class = "UILabel"; text = "Zip Code:"; ObjectID = "gqG-ZJ-pyv"; */
+/* Class = "IBUILabel"; text = "Zip Code:"; ObjectID = "gqG-ZJ-pyv"; */
 "gqG-ZJ-pyv.text" = "Zip Code:";
 
-/* Class = "UILabel"; text = "Tipo de Licencia:"; ObjectID = "hEa-OD-g2S"; */
-"hEa-OD-g2S.text" = "Tipo de Licencia:";
+/* Class = "IBUILabel"; text = "Tipo de Licencia:"; ObjectID = "hEa-OD-g2S"; */
+"hEa-OD-g2S.text" = "License Type:";
 
-/* Class = "UITextField"; placeholder = "Resultado"; ObjectID = "hHj-mT-xLJ"; */
-"hHj-mT-xLJ.placeholder" = "Resultado";
-
-/* Class = "UILabel"; text = "Year:"; ObjectID = "heC-mO-dJn"; */
+/* Class = "IBUILabel"; text = "Año:"; ObjectID = "heC-mO-dJn"; */
 "heC-mO-dJn.text" = "Year:";
 
-/* Class = "UINavigationItem"; title = "Vehículos"; ObjectID = "hfn-yQ-aTK"; */
-"hfn-yQ-aTK.title" = "Vehículos";
+/* Class = "IBUITextField"; placeholder = "Circunstancia de la Carretera"; ObjectID = "iFo-mN-dq8"; */
+"iFo-mN-dq8.placeholder" = "Road Circumstances";
 
-/* Class = "UILabel"; text = "Expulsión:"; ObjectID = "hm4-od-g0P"; */
-"hm4-od-g0P.text" = "Expulsión:";
-
-/* Class = "UITextField"; placeholder = "Circunstancia de la Carretera"; ObjectID = "iFo-mN-dq8"; */
-"iFo-mN-dq8.placeholder" = "Circunstancia de la Carretera";
-
-/* Class = "UILabel"; text = "RELATION TO JUNCTION:"; ObjectID = "igR-0B-45a"; */
+/* Class = "IBUILabel"; text = "RELACIONADO A INTERSECCIÓN:"; ObjectID = "igR-0B-45a"; */
 "igR-0B-45a.text" = "RELATION TO JUNCTION:";
 
-/* Class = "UILabel"; text = "Localización al Momento del Accidente:"; ObjectID = "j2M-l5-zC6"; */
-"j2M-l5-zC6.text" = "Localización al Momento del Accidente:";
-
-/* Class = "UILabel"; text = "INFORMACIÓN DEL VEHÍCULO:"; ObjectID = "j9s-4H-qRe"; */
-"j9s-4H-qRe.text" = "INFORMACIÓN DEL VEHÍCULO:";
-
-/* Class = "UITextField"; placeholder = "Environmental Circumstance"; ObjectID = "jOy-0Z-8qC"; */
+/* Class = "IBUITextField"; placeholder = "Circunstancia Ambiental"; ObjectID = "jOy-0Z-8qC"; */
 "jOy-0Z-8qC.placeholder" = "Environmental Circumstance";
 
-/* Class = "UILabel"; text = "Visibility:"; ObjectID = "jVy-yF-pw7"; */
+/* Class = "IBUILabel"; text = "Visibilidad:"; ObjectID = "jVy-yF-pw7"; */
 "jVy-yF-pw7.text" = "Visibility:";
 
-/* Class = "UINavigationItem"; title = "Personas"; ObjectID = "jnq-dK-SP1"; */
-"jnq-dK-SP1.title" = "Personas";
+/* Class = "IBUILabel"; text = "Número de Licencia:"; ObjectID = "jxl-dT-CQH"; */
+"jxl-dT-CQH.text" = "License Number:";
 
-/* Class = "UILabel"; text = "Punto Inicial de Contacto:"; ObjectID = "joJ-h9-ZOp"; */
-"joJ-h9-ZOp.text" = "Punto Inicial de Contacto:";
-
-/* Class = "UILabel"; text = "Modelo:"; ObjectID = "jqh-8H-n2i"; */
-"jqh-8H-n2i.text" = "Modelo:";
-
-/* Class = "UILabel"; text = "Resultado de la Prueba:"; ObjectID = "jrf-or-VG0"; */
-"jrf-or-VG0.text" = "Resultado de la Prueba:";
-
-/* Class = "UILabel"; text = "Número de Licencia:"; ObjectID = "jxl-dT-CQH"; */
-"jxl-dT-CQH.text" = "Número de Licencia:";
-
-/* Class = "UILabel"; text = "Most Constributing Related Event:"; ObjectID = "kZy-KF-gDD"; */
+/* Class = "IBUILabel"; text = "Evento Relacionado al Mayor Daño:"; ObjectID = "kZy-KF-gDD"; */
 "kZy-KF-gDD.text" = "Most Constributing Related Event:";
 
-/* Class = "UILabel"; text = "Crash Classification:"; ObjectID = "khq-Wv-Xii"; */
+/* Class = "IBUILabel"; text = "Clasificación del Accidente:"; ObjectID = "khq-Wv-Xii"; */
 "khq-Wv-Xii.text" = "Crash Classification:";
 
-/* Class = "UITextField"; placeholder = "Cuarta Categoría de Evento"; ObjectID = "kq4-Cd-Bjo"; */
-"kq4-Cd-Bjo.placeholder" = "Cuarta Categoría de Evento";
-
-/* Class = "UILabel"; text = "Circunstancias del Conductor antes del Accidente:"; ObjectID = "l8l-zh-HSV"; */
-"l8l-zh-HSV.text" = "Circunstancias del Conductor antes del Accidente:";
-
-/* Class = "UITextField"; placeholder = "Collision Type"; ObjectID = "lF0-7v-toO"; */
+/* Class = "IBUITextField"; placeholder = "Tipo de Colisión"; ObjectID = "lF0-7v-toO"; */
 "lF0-7v-toO.placeholder" = "Collision Type";
 
-/* Class = "UILabel"; text = "INFORMACIÓN DE LA LICENCIA DE CONDUCIR:"; ObjectID = "lMk-uU-4Jj"; */
-"lMk-uU-4Jj.text" = "INFORMACIÓN DE LA LICENCIA DE CONDUCIR:";
+/* Class = "IBUILabel"; text = "INFORMACIÓN DE LA LICENCIA DE CONDUCIR:"; ObjectID = "lMk-uU-4Jj"; */
+"lMk-uU-4Jj.text" = "DRIVERS LICENSE INFORMATION:";
 
-/* Class = "UIBarButtonItem"; title = "Añadir"; ObjectID = "lWd-Ks-hk3"; */
-"lWd-Ks-hk3.title" = "Añadir";
+/* Class = "IBUIBarButtonItem"; title = "Añadir"; ObjectID = "lWd-Ks-hk3"; */
+"lWd-Ks-hk3.title" = "Add";
 
-/* Class = "UILabel"; text = "Title"; ObjectID = "lbU-KT-XQa"; */
-"lbU-KT-XQa.text" = "Title";
+/* Class = "IBUILabel"; text = "Municipio:"; ObjectID = "mBv-yV-e6S"; */
+"mBv-yV-e6S.text" = "Municipality:";
 
-/* Class = "UILabel"; text = "Municipio:"; ObjectID = "mBv-yV-e6S"; */
-"mBv-yV-e6S.text" = "Municipio:";
-
-/* Class = "UITextField"; placeholder = "Segundo Defecto Mecánico"; ObjectID = "n1l-Hb-TVe"; */
-"n1l-Hb-TVe.placeholder" = "Segundo Defecto Mecánico";
-
-/* Class = "UINavigationItem"; title = "New Vehicle"; ObjectID = "nGG-2U-IQt"; */
+/* Class = "IBUINavigationItem"; title = "Nuevo Vehículo"; ObjectID = "nGG-2U-IQt"; */
 "nGG-2U-IQt.title" = "New Vehicle";
 
-/* Class = "UILabel"; text = "Name:"; ObjectID = "nMt-xf-dcl"; */
+/* Class = "IBUILabel"; text = "Nombre:"; ObjectID = "nMt-xf-dcl"; */
 "nMt-xf-dcl.text" = "Name:";
 
-/* Class = "UILabel"; text = "VEHICLE INFORMATION:"; ObjectID = "nNk-SM-cLW"; */
+/* Class = "IBUILabel"; text = "INFORMACIÓN DEL VEHÍCULO:"; ObjectID = "nNk-SM-cLW"; */
 "nNk-SM-cLW.text" = "VEHICLE INFORMATION:";
 
-/* Class = "UILabel"; text = "Inclinación:"; ObjectID = "nOz-AL-num"; */
-"nOz-AL-num.text" = "Inclinación:";
-
-/* Class = "UILabel"; text = "Within Interchange Area:"; ObjectID = "ncL-14-SCm"; */
+/* Class = "IBUILabel"; text = "Intersección a Desnivel:"; ObjectID = "ncL-14-SCm"; */
 "ncL-14-SCm.text" = "Within Interchange Area:";
 
-/* Class = "UIBarButtonItem"; title = "Añadir"; ObjectID = "nfU-Ja-GEG"; */
-"nfU-Ja-GEG.title" = "Añadir";
-
-/* Class = "UILabel"; text = "INFORMACIÓN SOBRE MATERIAL PELIGROSO:"; ObjectID = "noK-Ib-egs"; */
-"noK-Ib-egs.text" = "INFORMACIÓN SOBRE MATERIAL PELIGROSO:";
-
-/* Class = "UILabel"; text = "Asiento:"; ObjectID = "ntE-ih-1zl"; */
-"ntE-ih-1zl.text" = "Asiento:";
-
-/* Class = "UILabel"; text = "The crash was near a construction or maintenance zone?"; ObjectID = "nue-72-SSM"; */
+/* Class = "IBUILabel"; text = "¿Fue el accidente en o cerca de un área de construcción o mantenimiento?"; ObjectID = "nue-72-SSM"; */
 "nue-72-SSM.text" = "The crash was near a construction or maintenance zone?";
 
-/* Class = "UITextField"; placeholder = "Categoría de Carril"; ObjectID = "o5y-3k-2i1"; */
-"o5y-3k-2i1.placeholder" = "Categoría de Carril";
-
-/* Class = "UILabel"; text = "Person Type:"; ObjectID = "oy3-rL-wFt"; */
+/* Class = "IBUILabel"; text = "Tipo de Persona:"; ObjectID = "oy3-rL-wFt"; */
 "oy3-rL-wFt.text" = "Person Type:";
 
-/* Class = "UITextField"; text = "WAUFFAFM3CA000000"; ObjectID = "p7H-0H-3Kr"; */
+/* Class = "IBUITextField"; text = "WAUFFAFM3CA000000"; ObjectID = "p7H-0H-3Kr"; */
 "p7H-0H-3Kr.text" = "WAUFFAFM3CA000000";
 
-/* Class = "UILabel"; text = "Exit"; ObjectID = "pA0-v7-gGr"; */
+/* Class = "IBUILabel"; text = "Salir"; ObjectID = "pA0-v7-gGr"; */
 "pA0-v7-gGr.text" = "Exit";
 
-/* Class = "UILabel"; text = "Vehículo que Impactó al Peatón o Ciclista:"; ObjectID = "pB4-1L-Syu"; */
-"pB4-1L-Syu.text" = "Vehículo que Impactó al Peatón o Ciclista:";
-
-/* Class = "UILabel"; text = "State:"; ObjectID = "qaU-uG-Bv9"; */
+/* Class = "IBUILabel"; text = "Estado:"; ObjectID = "qaU-uG-Bv9"; */
 "qaU-uG-Bv9.text" = "State:";
 
-/* Class = "UILabel"; text = "INFORMACIÓN PARA TODA PERSONA:"; ObjectID = "qlF-mr-ZJp"; */
-"qlF-mr-ZJp.text" = "INFORMACIÓN PARA TODA PERSONA:";
-
-/* Class = "UILabel"; text = "Expiration Date:"; ObjectID = "qsZ-Zq-3O3"; */
+/* Class = "IBUILabel"; text = "Fecha de Expiración:"; ObjectID = "qsZ-Zq-3O3"; */
 "qsZ-Zq-3O3.text" = "Expiration Date:";
 
-/* Class = "UILabel"; text = "Model:"; ObjectID = "r7q-dn-z9z"; */
+/* Class = "IBUILabel"; text = "Modelo:"; ObjectID = "r7q-dn-z9z"; */
 "r7q-dn-z9z.text" = "Model:";
 
-/* Class = "UILabel"; text = "Estado/País:"; ObjectID = "rCb-c6-2ns"; */
-"rCb-c6-2ns.text" = "Estado/País:";
+/* Class = "IBUILabel"; text = "Estado/País:"; ObjectID = "rCb-c6-2ns"; */
+"rCb-c6-2ns.text" = "State/Country:";
 
-/* Class = "UILabel"; text = "CARS"; ObjectID = "rFi-Cd-xoY"; */
+/* Class = "IBUILabel"; text = "CARS"; ObjectID = "rFi-Cd-xoY"; */
 "rFi-Cd-xoY.text" = "CARS";
 
-/* Class = "UIBarButtonItem"; title = "Add"; ObjectID = "rSk-sj-1rD"; */
+/* Class = "IBUIBarButtonItem"; title = "Añadir"; ObjectID = "rSk-sj-1rD"; */
 "rSk-sj-1rD.title" = "Add";
 
-/* Class = "UILabel"; text = "Número de Identificación en el Diamante:"; ObjectID = "rVr-mT-NQX"; */
-"rVr-mT-NQX.text" = "Número de Identificación en el Diamante:";
+/* Class = "IBUILabel"; text = "Relacionado a Ómnibus Escolar:"; ObjectID = "sGP-BH-hQX"; */
+"sGP-BH-hQX.text" = "School Bus Related:";
 
-/* Class = "UILabel"; text = "Relacionado a Ómnibus Escolar:"; ObjectID = "sGP-BH-hQX"; */
-"sGP-BH-hQX.text" = "Relacionado a Ómnibus Escolar:";
+/* Class = "IBUIButton"; normalTitle = "Ubicar en el Mapa"; ObjectID = "sK2-2u-ZhV"; */
+"sK2-2u-ZhV.normalTitle" = "Locate on Map";
 
-/* Class = "UIButton"; normalTitle = "Ubicar en el Mapa"; ObjectID = "sK2-2u-ZhV"; */
-"sK2-2u-ZhV.normalTitle" = "Ubicar en el Mapa";
-
-/* Class = "UILabel"; text = "Configuración del Vehículo:"; ObjectID = "sPR-UX-SJd"; */
-"sPR-UX-SJd.text" = "Configuración del Vehículo:";
-
-/* Class = "UITextField"; placeholder = "Uso de Sustancias Controladas"; ObjectID = "stV-Xq-JbY"; */
-"stV-Xq-JbY.placeholder" = "Uso de Sustancias Controladas";
-
-/* Class = "UINavigationItem"; title = "Información Extendida del Vehículo"; ObjectID = "tVV-oA-P1P"; */
-"tVV-oA-P1P.title" = "Información Extendida del Vehículo";
-
-/* Class = "UILabel"; text = "Marca:"; ObjectID = "tfw-dd-LaP"; */
-"tfw-dd-LaP.text" = "Marca:";
-
-/* Class = "UILabel"; text = "¿Se sospecha el uso de Alcohol?"; ObjectID = "ttA-wN-gYx"; */
-"ttA-wN-gYx.text" = "¿Se sospecha el uso de Alcohol?";
-
-/* Class = "UILabel"; text = "En Camino o Regresando de la Escuela (K-12):"; ObjectID = "u7W-9N-1ye"; */
-"u7W-9N-1ye.text" = "En Camino o Regresando de la Escuela (K-12):";
-
-/* Class = "UILabel"; text = "State/Country:"; ObjectID = "uHn-ZF-u7t"; */
+/* Class = "IBUILabel"; text = "Estado/País:"; ObjectID = "uHn-ZF-u7t"; */
 "uHn-ZF-u7t.text" = "State/Country:";
 
-/* Class = "UILabel"; text = "Location Coordinates:"; ObjectID = "uKp-yf-Gy8"; */
+/* Class = "IBUILabel"; text = "Localización en Coordenadas:"; ObjectID = "uKp-yf-Gy8"; */
 "uKp-yf-Gy8.text" = "Location Coordinates:";
 
-/* Class = "UINavigationItem"; title = "¿Que desea añadir?"; ObjectID = "v5X-NH-fHA"; */
-"v5X-NH-fHA.title" = "¿Que desea añadir?";
+/* Class = "IBUINavigationItem"; title = "¿Que desea añadir?"; ObjectID = "v5X-NH-fHA"; */
+"v5X-NH-fHA.title" = "What you want to add?";
 
-/* Class = "UITabBarItem"; title = "Entrada de Datos"; ObjectID = "vFm-sF-8gE"; */
-"vFm-sF-8gE.title" = "Entrada de Datos";
+/* Class = "IBUITabBarItem"; title = "Entrada de Datos"; ObjectID = "vFm-sF-8gE"; */
+"vFm-sF-8gE.title" = "Data Entry";
 
-/* Class = "UILabel"; text = "INFORMACIÓN DE LA LICENCIA DE CONDUCIR:"; ObjectID = "vZr-Ne-TJx"; */
-"vZr-Ne-TJx.text" = "INFORMACIÓN DE LA LICENCIA DE CONDUCIR:";
+/* Class = "IBUILabel"; text = "INFORMACIÓN DE LA LICENCIA DE CONDUCIR:"; ObjectID = "vZr-Ne-TJx"; */
+"vZr-Ne-TJx.text" = "DRIVER LICENSE INFORMATION:";
 
-/* Class = "UILabel"; text = "Conductor Distraido por:"; ObjectID = "veT-dN-24J"; */
-"veT-dN-24J.text" = "Conductor Distraido por:";
+/* Class = "IBUILabel"; text = "RELACIONADO A ZONA DE CONSTRUCCIÓN O MANTENIMIENTO:"; ObjectID = "vnI-B4-DWP"; */
+"vnI-B4-DWP.text" = "RELATED TO CONSTRUCTION OR MAINTENANCE ZONE:";
 
-/* Class = "UILabel"; text = "RELACIONADO A ZONA DE CONSTRUCCIÓN O MANTENIMIENTO:"; ObjectID = "vnI-B4-DWP"; */
-"vnI-B4-DWP.text" = "RELACIONADO A ZONA DE CONSTRUCCIÓN O MANTENIMIENTO:";
-
-/* Class = "UILabel"; text = "Address and/or Street:"; ObjectID = "voR-69-ByJ"; */
+/* Class = "IBUILabel"; text = "Dirección y/o Calle:"; ObjectID = "voR-69-ByJ"; */
 "voR-69-ByJ.text" = "Address and/or Street:";
 
-/* Class = "UILabel"; text = "Relacionado a la Velocidad:"; ObjectID = "vri-GG-Vpm"; */
-"vri-GG-Vpm.text" = "Relacionado a la Velocidad:";
-
-/* Class = "UILabel"; text = "Distance:"; ObjectID = "wQi-FF-NUQ"; */
+/* Class = "IBUILabel"; text = "Distancia:"; ObjectID = "wQi-FF-NUQ"; */
 "wQi-FF-NUQ.text" = "Distance:";
 
-/* Class = "UILabel"; text = "Velocidad del Vehículo:"; ObjectID = "wZs-np-srs"; */
-"wZs-np-srs.text" = "Velocidad del Vehículo:";
+/* Class = "IBUILabel"; text = "Vehículo y Conductor"; ObjectID = "wat-7g-Gmz"; */
+"wat-7g-Gmz.text" = "Vehicle and Driver";
 
-/* Class = "UILabel"; text = "Tipo de Vehículo de Carga:"; ObjectID = "wZt-Pn-LS6"; */
-"wZt-Pn-LS6.text" = "Tipo de Vehículo de Carga:";
-
-/* Class = "UILabel"; text = "Vehículo y Conductor"; ObjectID = "wat-7g-Gmz"; */
-"wat-7g-Gmz.text" = "Vehículo y Conductor";
-
-/* Class = "UITextField"; placeholder = "Primera Categoría de Evento"; ObjectID = "weK-X6-GVU"; */
-"weK-X6-GVU.placeholder" = "Primera Categoría de Evento";
-
-/* Class = "UILabel"; text = "Police Present in Area:"; ObjectID = "wjT-8c-6Co"; */
+/* Class = "IBUILabel"; text = "Policia Presente en el Área:"; ObjectID = "wjT-8c-6Co"; */
 "wjT-8c-6Co.text" = "Police Present in Area:";
 
-/* Class = "UIButton"; normalTitle = "Update Location"; ObjectID = "wqu-sg-2BI"; */
+/* Class = "IBUIButton"; normalTitle = "Actualizar Localización"; ObjectID = "wqu-sg-2BI"; */
 "wqu-sg-2BI.normalTitle" = "Update Location";
 
-/* Class = "UILabel"; text = "Fecha de Expiración:"; ObjectID = "wsw-7X-ImM"; */
-"wsw-7X-ImM.text" = "Fecha de Expiración:";
+/* Class = "IBUILabel"; text = "Fecha de Expiración:"; ObjectID = "wsw-7X-ImM"; */
+"wsw-7X-ImM.text" = "Expiration Date:";
 
-/* Class = "UITextField"; placeholder = "Fatalities"; ObjectID = "x2B-P9-OCk"; */
+/* Class = "IBUITextField"; placeholder = "Fatalidades"; ObjectID = "x2B-P9-OCk"; */
 "x2B-P9-OCk.placeholder" = "Fatalities";
 
-/* Class = "UILabel"; text = "Acciones al Momento del Accidente:"; ObjectID = "x34-oz-Yfi"; */
-"x34-oz-Yfi.text" = "Acciones al Momento del Accidente:";
+/* Class = "IBUITextField"; placeholder = "Condición Climática 1"; ObjectID = "xEZ-Jr-Tdf"; */
+"xEZ-Jr-Tdf.placeholder" = "Weather Condition 1";
 
-/* Class = "UITabBarItem"; title = "Vehículos"; ObjectID = "xCS-ha-DwE"; */
-"xCS-ha-DwE.title" = "Vehículos";
-
-/* Class = "UITextField"; placeholder = "Condición Climática 1"; ObjectID = "xEZ-Jr-Tdf"; */
-"xEZ-Jr-Tdf.placeholder" = "Condición Climática 1";
-
-/* Class = "UILabel"; text = "CONTRIBUTING CONDITIONS:"; ObjectID = "xel-T9-4tE"; */
+/* Class = "IBUILabel"; text = "CONDICIONES CONTRIBUYENTES:"; ObjectID = "xel-T9-4tE"; */
 "xel-T9-4tE.text" = "CONTRIBUTING CONDITIONS:";
 
-/* Class = "UILabel"; text = "Dirección de Viaje antes del Choque:"; ObjectID = "xic-7C-CIq"; */
-"xic-7C-CIq.text" = "Dirección de Viaje antes del Choque:";
-
-/* Class = "UILabel"; text = "INFORMACIÓN SOBRE LOS DAÑOS DEL VEHÍCULO:"; ObjectID = "xkc-lw-ytd"; */
-"xkc-lw-ytd.text" = "INFORMACIÓN SOBRE LOS DAÑOS DEL VEHÍCULO:";
-
-/* Class = "UILabel"; text = "Longitude:"; ObjectID = "xp4-lE-Krd"; */
+/* Class = "IBUILabel"; text = "Longitud:"; ObjectID = "xp4-lE-Krd"; */
 "xp4-lE-Krd.text" = "Longitude:";
 
-/* Class = "UILabel"; text = "Resultado de la Prueba:"; ObjectID = "xup-tG-FAi"; */
-"xup-tG-FAi.text" = "Resultado de la Prueba:";
-
-/* Class = "UITextField"; placeholder = "MPH"; ObjectID = "y9S-2W-uCK"; */
-"y9S-2W-uCK.placeholder" = "MPH";
-
-/* Class = "UILabel"; text = "Citación al Tribunal:"; ObjectID = "yfb-4f-LUw"; */
-"yfb-4f-LUw.text" = "Citación al Tribunal:";
-
-/* Class = "UILabel"; text = "Involved Units:"; ObjectID = "zyS-wC-6fz"; */
+/* Class = "IBUILabel"; text = "Unidades Involucradas:"; ObjectID = "zyS-wC-6fz"; */
 "zyS-wC-6fz.text" = "Involved Units:";

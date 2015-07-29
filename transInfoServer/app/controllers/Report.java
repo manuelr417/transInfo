@@ -30,7 +30,7 @@ public class Report extends Controller {
         ObjectNode json = Json.newObject();
         ArrayNode payload = json.arrayNode();
 
-        String query = "INSERT INTO Report (ReportTypeID, CaseNumber, OfficerUserID, CrashDate, CrashTime, PropertyID, LocationID) VALUES (?, ?, ?, ?, ?, ?, ?);";
+        String query = "INSERT INTO Report (ReportTypeID, CaseNumber, OfficerUserID, CrashDate, CrashTime, PropertyID, LocationID, ZoneTypeID) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
         Connection conn = DB.getConnection();
         PreparedStatement stmt;
         ResultSet rs;
@@ -57,6 +57,7 @@ public class Report extends Controller {
                 stmt.setObject(5, crashTime);
                 stmt.setObject(6, (values.containsKey("PropertyID") ? emptyToNull(values.get("PropertyID")[0]) : null));
                 stmt.setObject(7, (values.containsKey("LocationID") ? emptyToNull(values.get("LocationID")[0]) : null));
+                stmt.setObject(8, (values.containsKey("ZoneTypeID") ? emptyToNull(values.get("ZoneTypeID")[0]) : null));
             }
         } catch (SQLException e) {
             json.put("success", false);
@@ -79,6 +80,7 @@ public class Report extends Controller {
 
             boolean addedReportInvolvedUnit = addReportInvolvedUnit(conn, reportID,
                     (values.containsKey("VehicleQuantity") ? integerValueOf(values.get("VehicleQuantity")[0]) : -1),
+                    (values.containsKey("MotoristQuantity") ? integerValueOf(values.get("MotoristQuantity")[0]) : -1),
                     (values.containsKey("PedestrianQuantity") ? integerValueOf(values.get("PedestrianQuantity")[0]) : -1),
                     (values.containsKey("InjuredQuantity") ? integerValueOf(values.get("InjuredQuantity")[0]) : -1),
                     (values.containsKey("FatalitiesQuantity") ? integerValueOf(values.get("FatalitiesQuantity")[0]) : -1));
@@ -129,7 +131,7 @@ public class Report extends Controller {
         return ok(toJson(json));
     }
 
-    public static boolean addReportInvolvedUnit(Connection conn, int reportID, int vehicleQuantity, int pedestrianQuantity, int injuredQuantity, int fatalitiesQuantity) {
+    public static boolean addReportInvolvedUnit(Connection conn, int reportID, int vehicleQuantity, int motoristQuantity, int pedestrianQuantity, int injuredQuantity, int fatalitiesQuantity) {
         Logger.debug("Inserting ReportInvolvedUnit...");
 
         Map<String, String[]> values = request().body().asFormUrlEncoded();
@@ -137,7 +139,7 @@ public class Report extends Controller {
         ObjectNode json = Json.newObject();
         ArrayNode payload = json.arrayNode();
 
-        String query = "INSERT INTO ReportInvolvedUnit (ReportID, VehicleQuantity, PedestrianQuantity, InjuredQuantity, FatalitiesQuantity) VALUES (?, ?, ?, ?, ?);";
+        String query = "INSERT INTO ReportInvolvedUnit (ReportID, VehicleQuantity, MotoristQuantity, PedestrianQuantity, InjuredQuantity, FatalitiesQuantity) VALUES (?, ?, ?, ?, ?, ?);";
         PreparedStatement stmt;
         ResultSet rs;
 
@@ -147,9 +149,10 @@ public class Report extends Controller {
             if (values != null) {
                 stmt.setObject(1, reportID);
                 stmt.setObject(2, ((vehicleQuantity == -1) ? null: vehicleQuantity));
-                stmt.setObject(3, ((pedestrianQuantity == -1) ? null: pedestrianQuantity));
-                stmt.setObject(4, ((injuredQuantity == -1) ? null: injuredQuantity));
-                stmt.setObject(5, ((fatalitiesQuantity == -1) ? null: fatalitiesQuantity));
+                stmt.setObject(3, ((motoristQuantity == -1) ? null: motoristQuantity));
+                stmt.setObject(4, ((pedestrianQuantity == -1) ? null: pedestrianQuantity));
+                stmt.setObject(5, ((injuredQuantity == -1) ? null: injuredQuantity));
+                stmt.setObject(6, ((fatalitiesQuantity == -1) ? null: fatalitiesQuantity));
             }
         } catch (SQLException e) {
             Logger.error(e.getMessage());
@@ -253,7 +256,7 @@ public class Report extends Controller {
         ObjectNode json = Json.newObject();
         ArrayNode payload = json.arrayNode();
 
-        String query = "UPDATE Report SET ReportTypeID = ?, CaseNumber = ?, OfficerUserID = ?, CrashDate = ?, CrashTime = ?, PropertyID = ?, LocationID = ? WHERE ReportID = ?;";
+        String query = "UPDATE Report SET ReportTypeID = ?, CaseNumber = ?, OfficerUserID = ?, CrashDate = ?, CrashTime = ?, PropertyID = ?, LocationID = ?, ZoneTypeID = ? WHERE ReportID = ?;";
         Connection conn = DB.getConnection();
         PreparedStatement stmt;
         ResultSet rs;
@@ -280,7 +283,8 @@ public class Report extends Controller {
                 stmt.setObject(5, crashTime);
                 stmt.setObject(6, (values.containsKey("PropertyID") ? emptyToNull(values.get("PropertyID")[0]) : null));
                 stmt.setObject(7, (values.containsKey("LocationID") ? emptyToNull(values.get("LocationID")[0]) : null));
-                stmt.setObject(8, reportID);
+                stmt.setObject(8, (values.containsKey("ZoneTypeID") ? emptyToNull(values.get("ZoneTypeID")[0]) : null));
+                stmt.setObject(9, reportID);
             }
         } catch (SQLException e) {
             json.put("success", false);
@@ -305,6 +309,7 @@ public class Report extends Controller {
 
             boolean updateReportInvolvedUnit = updateReportInvolvedUnit(conn, reportID,
                     (values.containsKey("VehicleQuantity") ? integerValueOf(values.get("VehicleQuantity")[0]) : -1),
+                    (values.containsKey("MotoristQuantity") ? integerValueOf(values.get("MotoristQuantity")[0]) : -1),
                     (values.containsKey("PedestrianQuantity") ? integerValueOf(values.get("PedestrianQuantity")[0]) : -1),
                     (values.containsKey("InjuredQuantity") ? integerValueOf(values.get("InjuredQuantity")[0]) : -1),
                     (values.containsKey("FatalitiesQuantity") ? integerValueOf(values.get("FatalitiesQuantity")[0]) : -1));
@@ -355,7 +360,7 @@ public class Report extends Controller {
         return ok(toJson(json));
     }
 
-    public static boolean updateReportInvolvedUnit(Connection conn, int reportID, int vehicleQuantity, int pedestrianQuantity, int injuredQuantity, int fatalitiesQuantity) {
+    public static boolean updateReportInvolvedUnit(Connection conn, int reportID, int vehicleQuantity, int motoristQuantity, int pedestrianQuantity, int injuredQuantity, int fatalitiesQuantity) {
         Logger.debug("Updating ReportInvolvedUnit...");
 
         Map<String, String[]> values = request().body().asFormUrlEncoded();
@@ -363,7 +368,7 @@ public class Report extends Controller {
         ObjectNode json = Json.newObject();
         ArrayNode payload = json.arrayNode();
 
-        String query = "UPDATE ReportInvolvedUnit SET VehicleQuantity = ?, PedestrianQuantity = ?, InjuredQuantity = ?, FatalitiesQuantity = ? WHERE ReportID = ?;";
+        String query = "UPDATE ReportInvolvedUnit SET VehicleQuantity = ?, MotoristQuantity = ?, PedestrianQuantity = ?, InjuredQuantity = ?, FatalitiesQuantity = ? WHERE ReportID = ?;";
         PreparedStatement stmt;
         ResultSet rs;
 
@@ -372,10 +377,11 @@ public class Report extends Controller {
 
             if (values != null) {
                 stmt.setObject(1, ((vehicleQuantity == -1) ? null: vehicleQuantity));
-                stmt.setObject(2, ((pedestrianQuantity == -1) ? null: pedestrianQuantity));
-                stmt.setObject(3, ((injuredQuantity == -1) ? null: injuredQuantity));
-                stmt.setObject(4, ((fatalitiesQuantity == -1) ? null: fatalitiesQuantity));
-                stmt.setObject(5, reportID);
+                stmt.setObject(2, ((motoristQuantity == -1) ? null: motoristQuantity));
+                stmt.setObject(3, ((pedestrianQuantity == -1) ? null: pedestrianQuantity));
+                stmt.setObject(4, ((injuredQuantity == -1) ? null: injuredQuantity));
+                stmt.setObject(5, ((fatalitiesQuantity == -1) ? null: fatalitiesQuantity));
+                stmt.setObject(6, reportID);
             }
         } catch (SQLException e) {
             Logger.error(e.getMessage());

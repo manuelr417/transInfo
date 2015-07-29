@@ -219,6 +219,25 @@ GET     /reportTypes                controllers.Collections.getReportTypes()
         });
     }
 
+    public static Result getZoneTypes() {
+        return getCollection("ZoneType", new GetRows() {
+            @Override
+            public ObjectNode getRows(ResultSet rs) {
+                ObjectNode rec = Json.newObject();
+
+                try {
+                    rec.put("ZoneTypeID", rs.getInt("ZoneTypeID"));
+                    rec.put("DescriptionES", rs.getString("DescriptionES"));
+                    rec.put("DescriptionEN", rs.getString("DescriptionEN"));
+                } catch (SQLException e) {
+                    return null;
+                }
+
+                return rec;
+            }
+        });
+    }
+
     public static Result getReportTypes() {
         return getCollection("ReportType", new GetRows() {
             @Override
@@ -714,6 +733,25 @@ GET     /reportTypes                controllers.Collections.getReportTypes()
 
                 try {
                     rec.put("VehicleTypeID", rs.getInt("VehicleTypeID"));
+                    rec.put("DescriptionES", rs.getString("DescriptionES"));
+                    rec.put("DescriptionEN", rs.getString("DescriptionEN"));
+                } catch (SQLException e) {
+                    return null;
+                }
+
+                return rec;
+            }
+        });
+    }
+
+    public static Result getVehicleJurisdictions() {
+        return getCollection("VehicleJurisdiction", new GetRows() {
+            @Override
+            public ObjectNode getRows(ResultSet rs) {
+                ObjectNode rec = Json.newObject();
+
+                try {
+                    rec.put("VehicleJurisdictionID", rs.getInt("VehicleJurisdictionID"));
                     rec.put("DescriptionES", rs.getString("DescriptionES"));
                     rec.put("DescriptionEN", rs.getString("DescriptionEN"));
                 } catch (SQLException e) {

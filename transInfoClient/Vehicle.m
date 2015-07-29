@@ -10,7 +10,10 @@
 
 @implementation Vehicle
 
+@synthesize vehicleTypeKey;
+@synthesize occupants;
 @synthesize registrationPlate;
+@synthesize vehicleJurisdictionKey;
 @synthesize registrationState;
 @synthesize vehicleIdentificationNumber;
 @synthesize year;
@@ -20,7 +23,6 @@
 @synthesize insurance;
 @synthesize buyDate;
 @synthesize registrationExpirationDate;
-@synthesize passangers;
 @synthesize persons;
 @synthesize uuid;
 @synthesize damagedAreas;
@@ -31,6 +33,7 @@
     if (self) {
         self.persons = [[NSMutableArray alloc] init];
         self.damagedAreas = [[NSMutableArray alloc] init];
+        self.TCDTypes = [[NSMutableArray alloc] init];
         
         self.harmfulEventCategory1Key = @"-1";
         self.harmfulEventCategory2Key = @"-1";

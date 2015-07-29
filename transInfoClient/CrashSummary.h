@@ -33,6 +33,7 @@
 @property NSString *intersectingStreet;
 @property NSString *propertyID;
 @property NSString *locationID;
+@property NSString *zoneTypeID;
 @property NSString *totalWitnesses;
 @property NSString *totalMotorizedUnits;
 @property NSString *totalNonMotorizedUnits;
@@ -41,6 +42,7 @@
 @property NSDate *creationDate;
 
 @property NSString *vehicleQuantity;
+@property NSString *motoristsQuantity;
 @property NSString *pedestrianQuantity;
 @property NSString *injuredQuantity;
 @property NSString *fatalitiesQuantity;

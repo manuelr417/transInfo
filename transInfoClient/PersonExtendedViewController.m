@@ -331,7 +331,7 @@
         UITextField *field = elem[@"field"];
         BOOL isEnabled = ([elem[@"enabled"]  isEqual: @YES]);
         
-        NSLog(@"Setting Delegate for Element with Key: %@", elem[@"key"]);
+        //NSLog(@"Setting Delegate for Element with Key: %@", elem[@"key"]);
         
         field.delegate = self;
         field.enabled = isEnabled;
@@ -343,7 +343,7 @@
 }
 
 - (void)receiveNotification:(NSNotification*)notification {
-    NSLog(@"Update violation!");
+    //NSLog(@"Update violation!");
     
     NSDictionary *dict = [notification userInfo];
     Violation *violation = [dict objectForKey:@"violation"];
@@ -382,13 +382,13 @@
     self.editingPerson.alcoholResult = self.alcoholResultField.text;
     
     if (personUUID != nil) {
-        NSLog(@"Updating UUID: %@", personUUID);
+        //NSLog(@"Updating UUID: %@", personUUID);
         
         for (Person *p in crashSummary.individualPersons) {
             if ([p.uuid isEqualToString:personUUID]) {
                 NSUInteger index = [crashSummary.individualPersons indexOfObject:p];
                 
-                NSLog(@"Found at %lu, replacing!", (unsigned long)index);
+                //NSLog(@"Found at %lu, replacing!", (unsigned long)index);
                 
                 [crashSummary.individualPersons replaceObjectAtIndex:index withObject:self.editingPerson];
                 
@@ -403,7 +403,7 @@
                     if ([p.uuid isEqualToString:personUUID]) {
                         NSUInteger index = [v.persons indexOfObject:p];
                         
-                        NSLog(@"Found at %lu, replacing!", (unsigned long)index);
+                        //NSLog(@"Found at %lu, replacing!", (unsigned long)index);
                         
                         [v.persons replaceObjectAtIndex:index withObject:self.editingPerson];
                         
@@ -452,13 +452,13 @@
 - (void)loadDefaultForCollection:(NSString*)collectionName toField:(UITextField*)field withKey:(NSString*)key defaultValue:(NSString*)value {
     
     if ([value isEqualToString:@"-1"]) {
-        NSLog(@"Ignoring %@, value: %@", key, value);
+        //NSLog(@"Ignoring %@, value: %@", key, value);
         return;
     }
     
     NSArray *collection = [self.collections objectForKey:collectionName];
     
-    NSLog(@"Loading default for %@, value: %@", key, value);
+    //NSLog(@"Loading default for %@, value: %@", key, value);
     
     for (NSDictionary *dict in collection) {
         if ([[NSString stringWithFormat:@"%@", [dict objectForKey:key]] isEqualToString:value]) {
@@ -492,13 +492,13 @@
     
     for (NSDictionary *elem in self.viewElements) {
         if (textField == elem[@"field"] && [elem[@"enabled"] isEqual: @YES]) {
-            NSLog(@"Showing collection with ID: %@ (REST: %@)", elem[@"key"], elem[@"restMethod"]);
+            //NSLog(@"Showing collection with ID: %@ (REST: %@)", elem[@"key"], elem[@"restMethod"]);
             [self showCollection:elem[@"restMethod"] withIDColumn:elem[@"key"] withField:textField];
             return NO;
         }
     }
     
-    NSLog(@"%@ NO!", textField);
+    //NSLog(@"%@ NO!", textField);
     
     return YES;
 }

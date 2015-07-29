@@ -12,7 +12,11 @@
 
 @interface NewVehicleController : UIViewController <UITextFieldDelegate>
 
+@property (weak, nonatomic) IBOutlet UITextField *vehicleTypeField;
+@property (weak, nonatomic) IBOutlet UITextField *vehicleOccupantsField;
+
 @property (weak, nonatomic) IBOutlet UITextField *vehicleLicensePlateField;
+@property (weak, nonatomic) IBOutlet UITextField *vehicleJurisdictionField;
 @property (weak, nonatomic) IBOutlet UITextField *vehicleRegistrationStateField;
 
 @property (weak, nonatomic) IBOutlet UITextField *vehicleIdentificationNumberField;
@@ -25,7 +29,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *vehicleInsuranceField;
 @property (weak, nonatomic) IBOutlet UITextField *vehicleBuyDateField;
 @property (weak, nonatomic) IBOutlet UITextField *vehicleRegistrationExpirationDateField;
-@property (weak, nonatomic) IBOutlet UITextField *vehiclePassengersField;
 
 @property NSDate *vehicleBuyDate;
 @property NSDate *vehicleRegistrationExpirationDate;
@@ -36,6 +39,8 @@
 @property (nonatomic, strong) UIPopoverController *pickerPopover;
 
 @property Vehicle *editingVehicle;
+
+@property NSMutableArray *viewElements;
 
 - (void)showPickerView:(NSMutableDictionary*)elements withField:(UITextField*)field withIdentifier:(NSString*)identifier;
 - (void)setEditingModeFor:(Vehicle*)vehicle;

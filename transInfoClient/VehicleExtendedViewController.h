@@ -33,7 +33,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *totalLanesQuantityField;
 @property (weak, nonatomic) IBOutlet UITextField *totalLaneCategoryField;
 @property (weak, nonatomic) IBOutlet UITextField *totalLaneField;
-@property (weak, nonatomic) IBOutlet UITextField *TCDTypeField;
+@property (weak, nonatomic) IBOutlet UITextField *TCDTypesField;
 @property (weak, nonatomic) IBOutlet UITextField *TCDWorkingField;
 
 @property (weak, nonatomic) IBOutlet UITextField *harmfulEventCategory1Field;

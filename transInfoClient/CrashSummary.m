@@ -21,9 +21,13 @@ static dispatch_once_t onceToken;
     
     if (self) {
         self.reportID = @"-1";
-        self.reportTypeID = @"-1";
+        self.reportTypeID = @"999";
         self.crashTimeUnknown = NO;
         self.creationDate = [NSDate date];
+        
+        self.propertyID = @"999";
+        self.locationID = @"999";
+        self.zoneTypeID = @"999";
         
         self.crashConditions = [[CrashConditions alloc] init];
         self.vehicles = [[NSMutableArray alloc] init];
@@ -58,7 +62,7 @@ static dispatch_once_t onceToken;
 - (NSMutableDictionary*)getDictionary {
     NSMutableDictionary *postData = [[NSMutableDictionary alloc] init];
     
-    NSLog(@"Crash Date: %@", self.crashDate);
+    //NSLog(@"Crash Date: %@", self.crashDate);
     
     postData[@"ReportID"] = (self.reportID != nil) ? self.reportID : @"";
     postData[@"ReportTypeID"] = (self.reportTypeID != nil) ? self.reportTypeID : @"";
@@ -69,8 +73,10 @@ static dispatch_once_t onceToken;
     postData[@"CrashTimeUnknown"] = (self.crashTimeUnknown == YES) ? @1 : @0;
     postData[@"PropertyID"] = (self.propertyID != nil) ? self.propertyID : @"";
     postData[@"LocationID"] = (self.locationID != nil) ? self.locationID : @"";
+    postData[@"ZoneTypeID"] = (self.zoneTypeID != nil) ? self.zoneTypeID : @"";
     
     postData[@"VehicleQuantity"] = (self.vehicleQuantity != nil) ? self.vehicleQuantity : @"";
+    postData[@"MotoristQuantity"] = (self.motoristsQuantity != nil) ? self.motoristsQuantity : @"";
     postData[@"PedestrianQuantity"] = (self.pedestrianQuantity != nil) ? self.pedestrianQuantity : @"";
     postData[@"InjuredQuantity"] = (self.injuredQuantity != nil) ? self.injuredQuantity : @"";
     postData[@"FatalitiesQuantity"] = (self.fatalitiesQuantity != nil) ? self.fatalitiesQuantity : @"";
@@ -85,6 +91,8 @@ static dispatch_once_t onceToken;
     postData[@"DirectionID"] = (self.directionID != nil) ? self.directionID : @"";
     postData[@"NearToID"] = (self.nearToID != nil) ? self.nearToID : @"";
     postData[@"IntersectingStreet"] = (self.intersectingStreet != nil) ? self.intersectingStreet : @"";
+    
+    //NSLog(@"%@", postData);
     
     return postData;
 }

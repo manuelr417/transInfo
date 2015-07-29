@@ -11,7 +11,10 @@
 
 @interface Vehicle : NSObject
 
+@property NSString *vehicleTypeKey;
+@property NSString *occupants;
 @property NSString *registrationPlate;
+@property NSString *vehicleJurisdictionKey;
 @property NSString *registrationState;
 @property NSString *vehicleIdentificationNumber;
 @property NSString *year;
@@ -21,7 +24,6 @@
 @property NSString *insurance;
 @property NSDate *buyDate;
 @property NSDate *registrationExpirationDate;
-@property NSString *passangers;
 
 @property NSString *bodyTypeKey;
 @property NSString *directionOfTravelKey;
@@ -39,7 +41,7 @@
 @property NSString *totalLanesQuantity;
 @property NSString *totalLaneCategoryKey;
 @property NSString *totalLaneKey;
-@property NSString *TCDTypeKey;
+@property NSMutableArray *TCDTypes;
 @property NSString *TCDWorkingKey;
 
 @property NSString *harmfulEventCategory1Key;
