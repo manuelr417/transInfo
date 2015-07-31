@@ -39,6 +39,7 @@
 
 "pedestrians" = "Peatones";
 "cyclists" = "Ciclistas";
+"witnesses" = "Testigos";
 "other.persons" = "Otras Personas";
 
 "report.fourth.no-total-lanes-category.msg" = "Para poder seleccionar el Tipo de Carril es necesario haber seleccionado la Categoría del Carril.";

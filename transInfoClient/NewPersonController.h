@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "PickerViewController.h"
 #import "Person.h"
-#import <pdf417/PPBarcode.h>
+#import <MicroBlink/MicroBlink.h>
 
-@interface NewPersonController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, PPBarcodeDelegate>
+@interface NewPersonController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, PPScanDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *personTypeCategoryField;
 @property (weak, nonatomic) IBOutlet UITextField *personTypeField;
@@ -54,6 +54,9 @@
 
 @property Person *editingPerson;
 @property NSString *editingRegistrationPlate;
+
+@property (weak, nonatomic) IBOutlet UIButton *driverLicenseScanButton;
+
 
 - (void)showPickerView:(NSMutableDictionary*)elements withField:(UITextField*)field withIdentifier:(NSString*)identifier;
 - (void)setEditingModeFor:(Person*)person forRegistrationPlate:(NSString*)registrationPlate;

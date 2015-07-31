@@ -39,6 +39,7 @@
 
 "pedestrians" = "Pedestrians";
 "cyclists" = "Cyclists";
+"witnesses" = "Witnesses";
 "other.persons" = "Other Persons";
 
 "report.fourth.no-total-lanes-category.msg" = "You need to choose a Lane Category before choosing the Lane Type.";

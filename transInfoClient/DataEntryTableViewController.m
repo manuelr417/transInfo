@@ -37,13 +37,13 @@
         NSString *vehicleUUID = vehicle.uuid;
         
         if (vehicleUUID != nil) {
-            NSLog(@"Updating UUID: %@", vehicleUUID);
+            //NSLog(@"Updating UUID: %@", vehicleUUID);
             
             for (Vehicle *v in crashSummary.vehicles) {
                 if ([v.uuid isEqualToString:vehicleUUID]) {
                     NSUInteger index = [crashSummary.vehicles indexOfObject:v];
                     
-                    NSLog(@"Found at %lu, replacing!", (unsigned long)index);
+                    //NSLog(@"Found at %lu, replacing!", (unsigned long)index);
                     
                     [crashSummary.vehicles replaceObjectAtIndex:index withObject:vehicle];
                     
@@ -51,7 +51,7 @@
                 }
             }
         } else {
-            NSLog(@"Adding new car...");
+            //NSLog(@"Adding new car...");
             
             vehicle.uuid = [[NSUUID UUID] UUIDString];
             
@@ -68,22 +68,22 @@
         NSString *personUUID = person.uuid;
         BOOL pedestrianAdded = NO;
         
-        NSLog(@"Person UUID: %@", person.uuid);
+        //NSLog(@"Person UUID: %@", person.uuid);
         
         if (personUUID != nil) {
             for (Person *p in crashSummary.individualPersons) {
                 if ([p.uuid isEqualToString:personUUID]) {
                     NSUInteger index = [crashSummary.individualPersons indexOfObject:p];
                     
-                    NSLog(@"Found at %lu, replacing or deleting!", (unsigned long)index);
+                    //NSLog(@"Found at %lu, replacing or deleting!", (unsigned long)index);
                     
                     if ([person.typeCategoryKey isEqualToString:@"2"]) {
                     //if ([person.typeKey isEqualToString:@"3"] || [person.typeKey isEqualToString:@"7"]) {
                         [crashSummary.individualPersons replaceObjectAtIndex:index withObject:person];
-                        NSLog(@"Replacing!");
+                        //NSLog(@"Replacing!");
                     } else {
                         [crashSummary.individualPersons removeObjectAtIndex:index];
-                        NSLog(@"Deleting! %@", person.typeKey);
+                        //NSLog(@"Deleting! %@", person.typeKey);
                     }
                     
                     pedestrianAdded = YES;
@@ -97,7 +97,7 @@
                     if ([p.uuid isEqualToString:personUUID]) {
                         NSUInteger index = [v.persons indexOfObject:p];
                         
-                        NSLog(@"Found at %lu in vehicle %@, replacing!", (unsigned long)index, v.uuid);
+                        //NSLog(@"Found at %lu in vehicle %@, replacing!", (unsigned long)index, v.uuid);
                         
                         //person.vehicleUuid = v.uuid;
                         //[v.persons replaceObjectAtIndex:index withObject:person];
@@ -112,6 +112,7 @@
         //if ([person.typeKey isEqualToString:@"3"] || [person.typeKey isEqualToString:@"7"]) {
             if (!pedestrianAdded) {
                 person.uuid = [[NSUUID UUID] UUIDString];
+                //NSLog(@"%@", person);
                 [crashSummary.individualPersons addObject:person];
             }
         } else {
@@ -125,7 +126,8 @@
                 }
             }
         }
-        
+
+        //NSLog(@"Build Individual Persons!");
         [self buildIndividualPersons];
         [self.tableView reloadData];
         
@@ -142,7 +144,8 @@
     
     [self.individualPersons addObject:@{@"viewType" : @1, @"personTypes" : @[@"3", @"7"], @"persons" : [[NSMutableArray alloc] init]}];
     [self.individualPersons addObject:@{@"viewType" : @2, @"personTypes" : @[@"4", @"5"], @"persons" : [[NSMutableArray alloc] init]}];
-    [self.individualPersons addObject:@{@"viewType" : @3, @"personTypes" : @[@"8", @"9", @"10"], @"persons" : [[NSMutableArray alloc] init]}];
+    [self.individualPersons addObject:@{@"viewType" : @3, @"personTypes" : @[@"11"], @"persons" : [[NSMutableArray alloc] init]}];
+    [self.individualPersons addObject:@{@"viewType" : @4, @"personTypes" : @[@"8", @"9", @"10"], @"persons" : [[NSMutableArray alloc] init]}];
     
     for (NSDictionary *desc in self.individualPersons) {
         NSMutableArray *persons = desc[@"persons"];
@@ -250,7 +253,7 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:@"updateVehicles" object:nil userInfo:nil];
         } else {
             if (indexPath.section >= crashSummary.vehicles.count) { // Borrar Persona Individial
-                NSLog(@"Deleting person %ld", indexPath.row - 1);
+                //NSLog(@"Deleting person %ld", indexPath.row - 1);
                 
                 NSDictionary *viewDescription = [self.individualPersons objectAtIndex:(indexPath.section - crashSummary.vehicles.count)];
                 NSArray *persons = viewDescription[@"persons"];

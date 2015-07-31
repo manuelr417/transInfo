@@ -53,6 +53,10 @@
         NSMutableArray *tempKeys = [[NSMutableArray alloc] init];
         
         for (NSString *key in sortedDictionary) {
+            if ([key isEqualToString:@"999"]) {
+                continue;
+            }
+            
             [tempKeys addObject:key];
         }
         

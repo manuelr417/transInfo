@@ -25,62 +25,74 @@
 
 - (IBAction)driverLicenseTouchUpInside:(id)sender {
     NSError *error;
-    if ([PPBarcodeCoordinator isScanningUnsupported:&error]) {
+    
+    /** 0. Check if scanning is supported */
+    if ([PPCoordinator isScanningUnsupported:&error]) {
         NSString *messageString = [error localizedDescription];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Warning"
-                                                        message:messageString
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil, nil];
-        [alert show];
+        [[[UIAlertView alloc] initWithTitle:@"Warning"
+                                    message:messageString
+                                   delegate:nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil, nil] show];
+        
         return;
     }
     
-    // Create object which stores pdf417 framework settings
-    NSMutableDictionary* coordinatorSettings = [[NSMutableDictionary alloc] init];
+    /** 1. Initialize the Scanning settings */
     
-    // Set YES/NO for scanning pdf417 barcode standard (default YES, if available by license)
-    [coordinatorSettings setValue:@(YES) forKey:kPPRecognizePdf417Key];
+    // Initialize the scanner settings object. This initialize settings with all default values.
+    PPSettings *settings = [[PPSettings alloc] init];
     
-    // Set YES/NO for scanning US drivers license barcode standards (default YES, if available by license)
-    [coordinatorSettings setValue:@(NO) forKey:kPPRecognizeUSDLKey];
+    /** 2. Setup the license key */
     
-    // There are 4 resolution modes:
-    //      kPPUseVideoPreset640x480
-    //      kPPUseVideoPresetMedium
-    //      kPPUseVideoPresetHigh
-    //      kPPUseVideoPresetHighest
-    //      kPPUseVideoPresetPhoto
-    // Set only one.
-    [coordinatorSettings setValue:@(YES) forKey:kPPUseVideoPresetPhoto];
+    // Visit www.microblink.com to get the license key for your app
+    settings.licenseSettings.licenseKey = @"XRJASP4E-ZM3A3HUY-DP4LILAE-KVSC4PHH-V5MWVBLF-XHCUNLRF-PFYS3WGQ-H5BWGUCV";
     
-    // Set this to true to scan even barcode not compliant with standards
-    // For example, malformed PDF417 barcodes which were incorrectly encoded
-    // Use only if necessary because it slows down the recognition process
-    [coordinatorSettings setValue:@(YES) forKey:kPPScanUncertainBarcodes];
     
-    // Allocate the recognition coordinator object
-    PPBarcodeCoordinator *coordinator = [[PPBarcodeCoordinator alloc] initWithSettings:coordinatorSettings];
+    /**
+     * 3. Set up what is being scanned. See detailed guides for specific use cases.
+     * Here's an example for initializing PDF417 scanning
+     */
     
-    // Create camera view controller
-    UIViewController *cameraViewController = [coordinator cameraViewControllerWithDelegate:self];
+    // To specify we want to perform PDF417 recognition, initialize the PDF417 recognizer settings
+    PPPdf417RecognizerSettings *pdf417RecognizerSettings = [[PPPdf417RecognizerSettings alloc] init];
     
-    // present it modally
-    cameraViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentViewController:cameraViewController animated:YES completion:nil];
+    // Add PDF417 Recognizer setting to a list of used recognizer settings
+    [settings.scanSettings addRecognizerSettings:pdf417RecognizerSettings];
+    
+    // To specify we want to perform recognition of other barcode formats, initialize the ZXing recognizer settings
+    PPZXingRecognizerSettings *zxingRecognizerSettings = [[PPZXingRecognizerSettings alloc] init];
+    zxingRecognizerSettings.scanQR = YES; // we use just QR code
+    
+    // Add ZXingRecognizer setting to a list of used recognizer settings
+    [settings.scanSettings addRecognizerSettings:zxingRecognizerSettings];
+    
+    /** 4. Initialize the Scanning Coordinator object */
+    
+    PPCoordinator *coordinator = [[PPCoordinator alloc] initWithSettings:settings];
+    
+    /** Allocate and present the scanning view controller */
+    UIViewController<PPScanningViewController>* scanningViewController = [coordinator cameraViewControllerWithDelegate:self];
+    
+    /** You can use other presentation methods as well */
+    [self presentViewController:scanningViewController animated:YES completion:nil];
 }
 
-- (void)cameraViewController:(UIViewController<PPScanningViewController> *)cameraViewController didOutputResults:(NSArray *)results {
+- (void)scanningViewController:(UIViewController<PPScanningViewController> *)scanningViewController
+              didOutputResults:(NSArray *)results {
     NSArray *months = @[@"ene", @"feb", @"mar", @"abr", @"may", @"jun", @"jul", @"ago", @"sep", @"oct", @"nov", @"dic"];
     
-    for (PPBaseResult* result in results) {
-        if (([result resultType] == PPBaseResultTypeBarcode && [result isKindOfClass:[PPScanningResult class]])
-            || ([result resultType] == PPBaseResultTypeUSDL && [result isKindOfClass:[PPUSDLResult class]])) {
-            PPScanningResult* scanningResult = (PPScanningResult*)result;
+    // first, pause scanning until we process all the results
+    [scanningViewController pauseScanning];
+    
+    // Collect data from the result
+    for (PPRecognizerResult* result in results) {
+        
+        if ([result isKindOfClass:[PPPdf417RecognizerResult class]]) {
+            PPPdf417RecognizerResult *pdf417Result = (PPPdf417RecognizerResult *)result;
+
+            NSString *string = [[NSString alloc] initWithData:[pdf417Result data] encoding:NSASCIIStringEncoding];
             
-            NSData *data = scanningResult.data;
-            
-            NSString *string = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
             NSArray *split = [string componentsSeparatedByString:@"-"];
             
             if ([split count] < 10) {
@@ -133,7 +145,7 @@
             
             self.licenseExpirationDate = [[NSCalendar currentCalendar] dateFromComponents:comps];
             [self setLicenseExpirationDateFormat];
-    
+            
             if ([sex isEqualToString:@"M"]) {
                 self.editingPerson.genderKey = @"1";
             } else if ([sex isEqualToString:@"F"]) {
@@ -146,13 +158,13 @@
             
             NSLog(@"%@", string);
         }
-    }
+    };
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)cameraViewControllerWasClosed:(UIViewController<PPScanningViewController> *)cameraViewController {
-    [self dismissViewControllerAnimated:YES completion:nil];
+- (void)scanningViewControllerDidClose:(UIViewController<PPScanningViewController> *)scanningViewController {
+     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
@@ -225,7 +237,7 @@
     NSDictionary *personDictionary = @{@"Person" : person,
                                        @"vehicleLicensePlate" : vehicleLicensePlate};
     
-    //NSLog(@"Sending %@", personDictionary);
+    NSLog(@"Sending %@", personDictionary);
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"addPerson" object:nil userInfo:personDictionary];
     
@@ -262,6 +274,8 @@
             [self licenseAreaIsEnabled:NO];
         }
     }
+    
+    [self.driverLicenseScanButton setImage:[UIImage imageNamed:@"BarcodeScanner"] forState:UIControlStateNormal];
     
     //NSLog(@"Size 2: %f", self.view.frame.size.width);
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNotification:) name:@"getVehicles" object:nil];

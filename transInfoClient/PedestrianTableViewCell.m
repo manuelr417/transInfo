@@ -66,7 +66,8 @@
 
 /* 1 = Pedestrian
  * 2 = Cyclist
- * 3 = Other
+ * 3 = Witness
+ * 4 = Other
  */
 - (void)setViewType:(NSInteger)viewType {
     if (viewType == 1) {
@@ -76,6 +77,9 @@
         self.pedestrianNameLabel.text = NSLocalizedString(@"cyclists", nil);
         [self.pedestrianImageView setImage:[UIImage imageNamed:@"Biking"]];
     } else if (viewType == 3) {
+        self.pedestrianNameLabel.text = NSLocalizedString(@"witnesses", nil);
+        [self.pedestrianImageView setImage:[UIImage imageNamed:@"Witness"]];
+    } else if (viewType == 4) {
         self.pedestrianNameLabel.text = NSLocalizedString(@"other.persons", nil);
         [self.pedestrianImageView setImage:[UIImage imageNamed:@"Question Mark"]];
     }
