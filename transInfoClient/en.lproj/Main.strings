@@ -101,7 +101,7 @@
 "GQr-Nd-1MV.text" = "Insurance Company:";
 
 /* Class = "IBUILabel"; text = "Persona"; ObjectID = "Gdz-vY-evN"; */
-"Gdz-vY-evN.text" = "Person";
+"Gdz-vY-evN.text" = "2. Person";
 
 /* Class = "IBUILabel"; text = "Fecha de Expiración:"; ObjectID = "Gyb-Wa-nQt"; */
 "Gyb-Wa-nQt.text" = "Expiration Date:";
@@ -197,7 +197,7 @@
 "UPm-BM-lVi.text" = "Worker's Zone Type:";
 
 /* Class = "IBUILabel"; text = "Vehículo"; ObjectID = "Uda-Ht-s6q"; */
-"Uda-Ht-s6q.text" = "Vehicle";
+"Uda-Ht-s6q.text" = "1. Vehicle";
 
 /* Class = "IBUILabel"; text = "Marca:"; ObjectID = "Uqz-r0-5M8"; */
 "Uqz-r0-5M8.text" = "Make:";
@@ -261,6 +261,10 @@
 
 /* Class = "IBUILabel"; text = "Cantidad de Pasajeros:"; ObjectID = "dn0-xu-N3B"; */
 "dn0-xu-N3B.text" = "Occupants:";
+
+"7Kq-RP-0qf.text" = "Vehicle Type:";
+
+"dew-qj-g5j.text" = "Vehicle Jurisdiction:";
 
 /* Class = "IBUINavigationItem"; title = "Información Básica del Accidente"; ObjectID = "ebN-pd-J51"; */
 "ebN-pd-J51.title" = "Crash Basic Information";
@@ -407,7 +411,7 @@
 "vnI-B4-DWP.text" = "RELATED TO CONSTRUCTION OR MAINTENANCE ZONE:";
 
 /* Class = "IBUILabel"; text = "Dirección y/o Calle:"; ObjectID = "voR-69-ByJ"; */
-"voR-69-ByJ.text" = "Address and/or Street:";
+"voR-69-ByJ.text" = "Street Name:";
 
 /* Class = "IBUILabel"; text = "Distancia:"; ObjectID = "wQi-FF-NUQ"; */
 "wQi-FF-NUQ.text" = "Distance:";

@@ -232,6 +232,8 @@
     person.uuid = (self.editingPerson != nil) ? self.editingPerson.uuid : nil;
     
     if ([person.typeCategoryKey isEqualToString:@"-1"] || [person.typeKey isEqualToString:@"-1"]) {
+        [Utilities displayAlertWithMessage:@"Person Type and Person Type Category are required fields." withTitle:@"Missing required fields!"];
+        return;
         //return;
     }
     

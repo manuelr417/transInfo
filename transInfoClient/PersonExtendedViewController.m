@@ -470,7 +470,7 @@
 
 - (void)receivedCollection:(NSArray *)collection withName:(NSString *)collectionName {
     [self.collections setObject:collection forKey:collectionName];
-    
+    NSLog(@"%@", collection);
     if (self.editingPerson != nil) {
         for (NSDictionary *elem in self.viewElements) {
             if ([collectionName isEqualToString:elem[@"restMethod"]]) {
