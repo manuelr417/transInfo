@@ -132,10 +132,6 @@
                 fullName = [[NSString alloc] initWithFormat:@"%@ %@ %@ %@", firstName, middleName, lastName1, lastName2, nil];
             }
             
-            if (self.editingPerson == nil) {
-                self.editingPerson = [[Person alloc] init];
-            }
-            
             self.editingPerson.driverLicense = driverLicense;
             self.editingPerson.name = fullName;
             
@@ -146,14 +142,16 @@
             [self setLicenseExpirationDateFormat];
             
             if ([sex isEqualToString:@"M"]) {
-                self.editingPerson.genderKey = @"1";
+                self.genderKey = @"1";
             } else if ([sex isEqualToString:@"F"]) {
-                self.editingPerson.genderKey = @"2";
+                self.genderKey = @"2";
             } else {
-                self.editingPerson.genderKey = @"3";
+                self.genderKey = @"3";
             }
             
-            [self loadDefaultForCollection:@"genders" toField:self.genderField withKey:@"GenderID" defaultValue:self.editingPerson.genderKey];
+            //NSLog(@"genderKey= %@", self.editingPerson.genderKey);
+            
+            [self loadDefaultForCollection:@"genders" toField:self.genderField withKey:@"GenderID" defaultValue:self.genderKey];
             
             NSLog(@"%@", string);
         }
