@@ -129,7 +129,7 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         
         CrashSummary *crashSummary = [CrashSummary sharedCrashSummary];
-        Vehicle *vehicle = [crashSummary.vehicles objectAtIndex:indexPath.section];
+        Vehicle *vehicle = [crashSummary.vehicles objectAtIndex:indexPath.row];
         
         [vehicleExtendedController setEditingModeFor:vehicle];
     }

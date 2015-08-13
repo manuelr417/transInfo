@@ -46,8 +46,7 @@
     /** 2. Setup the license key */
     
     // Visit www.microblink.com to get the license key for your app
-    settings.licenseSettings.licenseKey = @"XRJASP4E-ZM3A3HUY-DP4LILAE-KVSC4PHH-V5MWVBLF-XHCUNLRF-PFYS3WGQ-H5BWGUCV";
-    
+    settings.licenseSettings.licenseKey = @"XRJASP4E-ZM3A3HUY-DP4LILAE-KVSC4PHH-V5MWVBLF-XHCUNLRF-PFYS3WGQ-H5BWGUCV"; 
     
     /**
      * 3. Set up what is being scanned. See detailed guides for specific use cases.
@@ -234,6 +233,10 @@
     person.phoneNumber = (self.personPhoneNumberField.text == nil) ? @"" : self.personPhoneNumberField.text;
     person.uuid = (self.editingPerson != nil) ? self.editingPerson.uuid : nil;
     
+    if ([person.typeCategoryKey isEqualToString:@"-1"] || [person.typeKey isEqualToString:@"-1"]) {
+        //return;
+    }
+    
     NSDictionary *personDictionary = @{@"Person" : person,
                                        @"vehicleLicensePlate" : vehicleLicensePlate};
     
@@ -293,6 +296,7 @@
     self.licenseTypeField.delegate = self;
     self.organDonorField.delegate = self;
     self.licenseExpirationDateField.delegate = self;
+    self.EMSNeededField.delegate = self;
     
     self.vehicleTableView.delegate = self;
     self.vehicleTableView.dataSource = self;
@@ -349,7 +353,7 @@
 - (void)loadCollections {
     self.collections = [[NSMutableDictionary alloc] init];
     
-    NSArray *collectionNames = @[@"personTypeCategories", @"personTypes", @"driverLicenseTypes", @"genders", @"organDonor", @"vehicleTypes"];
+    NSArray *collectionNames = @[@"personTypeCategories", @"personTypes", @"driverLicenseTypes", @"genders", @"organDonor", @"vehicleTypes", @"workzoneRelated"];
     
     NSMutableArray *collectionsManagers = [[NSMutableArray alloc] init];
     int i = 0;
@@ -384,6 +388,8 @@
         } else if ([collectionName isEqualToString:@"organDonor"]) {
             //self.organDonorField.text = [collection objectAtIndex:[self.organDonorKey longLongValue]];
             [self loadDefaultForCollection:collectionName toField:self.organDonorField withKey:@"OrganDonorID" defaultValue:self.editingPerson.organDonorKey];
+        } else if ([collectionName isEqualToString:@"workzoneRelated"]) {
+            [self loadDefaultForCollection:collectionName toField:self.EMSNeededField withKey:@"WorkzoneRelatedID" defaultValue:self.editingPerson.EMSNeededKey];
         }
     }
     
@@ -424,9 +430,9 @@
     } else if (textField == self.licenseExpirationDateField) {
         UIDatePickerOKView *customPicker = [[[NSBundle mainBundle] loadNibNamed:@"UIPickerOKView" owner:self options:nil] objectAtIndex:0];
         
-        /*if (self.licenseExpirationDate != nil) {
-         customPicker.datePicker.date = self.licenseExpirationDate;
-         }*/
+        if (self.licenseExpirationDate != nil) {
+            customPicker.datePicker.date = self.licenseExpirationDate;
+        }
         
         customPicker.datePicker.datePickerMode = UIDatePickerModeDate;
         [customPicker.datePicker addTarget:self action:@selector(datePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
@@ -436,6 +442,9 @@
         textField.inputView = customPicker;
     } else if (textField == self.vehicleTypeField) {
         [self showCollection:@"vehicleTypes" withIDColumn:@"VehicleTypeID" withField:textField];
+        return NO;
+    } else if (textField == self.EMSNeededField) {
+        [self showCollection:@"workzoneRelated" withIDColumn:@"WorkzoneRelatedID" withField:textField];
         return NO;
     }
     

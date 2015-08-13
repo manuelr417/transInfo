@@ -394,6 +394,12 @@
 /* Class = "IBUITabBarItem"; title = "Entrada de Datos"; ObjectID = "vFm-sF-8gE"; */
 "vFm-sF-8gE.title" = "Data Entry";
 
+"ZFN-ch-oej.title" = "Persons";
+
+"xCS-ha-DwE.title" = "Vehicles";
+
+"VD8-r7-WcL.title" = "Narrative";
+
 /* Class = "IBUILabel"; text = "INFORMACIÓN DE LA LICENCIA DE CONDUCIR:"; ObjectID = "vZr-Ne-TJx"; */
 "vZr-Ne-TJx.text" = "DRIVER LICENSE INFORMATION:";
 

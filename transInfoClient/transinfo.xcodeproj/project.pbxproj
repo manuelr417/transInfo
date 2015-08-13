@@ -19,6 +19,7 @@
 		D50C26CC1B6BE9CD00DA5E16 /* torchon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D50C26C11B6BE9CD00DA5E16 /* torchon@2x.png */; };
 		D50C26CD1B6BE9CD00DA5E16 /* torchon_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = D50C26C21B6BE9CD00DA5E16 /* torchon_pressed.png */; };
 		D50C26CE1B6BE9CD00DA5E16 /* torchon_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D50C26C31B6BE9CD00DA5E16 /* torchon_pressed@2x.png */; };
+		D50C26D11B6C116C00DA5E16 /* TransInfoModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D50C26CF1B6C116C00DA5E16 /* TransInfoModel.xcdatamodeld */; };
 		D51999271A350A0200EF2F6D /* CarViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D51999261A350A0200EF2F6D /* CarViewCell.xib */; };
 		D51999291A350CB700EF2F6D /* CarMembersViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D51999281A350CB700EF2F6D /* CarMembersViewCell.xib */; };
 		D519992D1A35535200EF2F6D /* SLExpandableTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D519992C1A35535200EF2F6D /* SLExpandableTableView.m */; };
@@ -116,6 +117,7 @@
 		D50C26C11B6BE9CD00DA5E16 /* torchon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "torchon@2x.png"; sourceTree = "<group>"; };
 		D50C26C21B6BE9CD00DA5E16 /* torchon_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = torchon_pressed.png; sourceTree = "<group>"; };
 		D50C26C31B6BE9CD00DA5E16 /* torchon_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "torchon_pressed@2x.png"; sourceTree = "<group>"; };
+		D50C26D01B6C116C00DA5E16 /* TransInfoModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TransInfoModel.xcdatamodel; sourceTree = "<group>"; };
 		D51999261A350A0200EF2F6D /* CarViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarViewCell.xib; sourceTree = "<group>"; };
 		D51999281A350CB700EF2F6D /* CarMembersViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarMembersViewCell.xib; sourceTree = "<group>"; };
 		D519992B1A35535200EF2F6D /* SLExpandableTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLExpandableTableView.h; sourceTree = "<group>"; };
@@ -339,6 +341,7 @@
 		D528522D1959CBEA00806467 = {
 			isa = PBXGroup;
 			children = (
+				D50C26CF1B6C116C00DA5E16 /* TransInfoModel.xcdatamodeld */,
 				D519992A1A35535200EF2F6D /* SLExpandableTableView */,
 				D51FEBDC19E3299000E9D39C /* Models */,
 				D51FEBD519D9D9D200E9D39C /* SWRevealViewController */,
@@ -648,6 +651,7 @@
 				D519993E1A35E32100EF2F6D /* Vehicle.m in Sources */,
 				D5DC12B11A0BB42400A445FD /* NewVehicleDriverController.m in Sources */,
 				D528524A1959CBEB00806467 /* AppDelegate.m in Sources */,
+				D50C26D11B6C116C00DA5E16 /* TransInfoModel.xcdatamodeld in Sources */,
 				D53472541A38777700AB670D /* NewDataEntryTableViewController.m in Sources */,
 				D5E8FBCE19A53B0600ED72EE /* Config.m in Sources */,
 				D5DDB456196B30930002F5EA /* MapPopoverViewController.m in Sources */,
@@ -914,6 +918,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D50C26CF1B6C116C00DA5E16 /* TransInfoModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D50C26D01B6C116C00DA5E16 /* TransInfoModel.xcdatamodel */,
+			);
+			currentVersion = D50C26D01B6C116C00DA5E16 /* TransInfoModel.xcdatamodel */;
+			path = TransInfoModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = D528522E1959CBEA00806467 /* Project object */;
 }

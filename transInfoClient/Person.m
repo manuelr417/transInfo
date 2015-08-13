@@ -26,6 +26,11 @@
 @synthesize zipCode;
 @synthesize phoneNumber;
 @synthesize uuid;
+@synthesize EMSNeededKey;
+@synthesize EMSTransportedTo;
+@synthesize EMSTransportedByKey;
+@synthesize EMSResponseNumber;
+@synthesize EMSAmbulanceCSP;
 @synthesize vehicleUuid;
 
 @synthesize rowKey;

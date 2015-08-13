@@ -35,6 +35,12 @@
 @property (weak, nonatomic) IBOutlet UISwitch *driverIsOwnerSwitch;
 @property (weak, nonatomic) IBOutlet UITextField *vehicleTypeField;
 
+@property (weak, nonatomic) IBOutlet UITextField *EMSNeededField;
+@property (weak, nonatomic) IBOutlet UITextField *EMSTransportedToField;
+@property (weak, nonatomic) IBOutlet UITextField *EMSTransportedByField;
+@property (weak, nonatomic) IBOutlet UITextField *EMSResponseNumberField;
+@property (weak, nonatomic) IBOutlet UITextField *EMSAmbulanceCSPField;
+
 @property (weak, nonatomic) IBOutlet UITableView *vehicleTableView;
 
 @property NSString *personTypeCategoryKey;

@@ -26,6 +26,11 @@
 @property NSString *zipCode;
 @property NSString *phoneNumber;
 @property NSString *uuid;
+@property NSString *EMSNeededKey;
+@property NSString *EMSTransportedTo;
+@property NSString *EMSTransportedByKey;
+@property NSString *EMSResponseNumber;
+@property NSString *EMSAmbulanceCSP;
 @property NSString *vehicleUuid;
 
 @property NSString *rowKey;
