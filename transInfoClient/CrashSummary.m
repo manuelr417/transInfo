@@ -14,6 +14,28 @@
 @synthesize vehicles;
 @synthesize individualPersons;
 
+
+- (NSMutableArray*)fetchTheData
+{
+    NSMutableArray *reports = [[NSMutableArray alloc] init];
+    
+    //  create fetch object, this object fetch’s the objects out of the database
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Report" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    NSError *error;
+    NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if (fetchedObjects != nil)
+    {
+        reports = [[NSMutableArray alloc]initWithArray:fetchedObjects];
+        NSLog(@"%@", reports);
+    }
+    
+    return reports;
+}
+/** CORE DATA **/
+
 static dispatch_once_t onceToken;
 
 - (id)init {
@@ -28,6 +50,7 @@ static dispatch_once_t onceToken;
         self.propertyID = @"999";
         self.locationID = @"999";
         self.zoneTypeID = @"999";
+        self.locationID = @"999";
         
         self.crashConditions = [[CrashConditions alloc] init];
         self.vehicles = [[NSMutableArray alloc] init];
@@ -98,6 +121,34 @@ static dispatch_once_t onceToken;
 }
 
 - (void)save {
+    NSMutableDictionary *dict = [self getDictionary];
+    
+    
+    
+    //** CORE DATA **//
+    NSManagedObject	*person = [NSEntityDescription insertNewObjectForEntityForName:@"Report" inManagedObjectContext:self.managedObjectContext];
+    
+    [person setValue:dict[@"ReportID"] forKey:@"reportID"];
+    [person setValue:dict[@"CaseNumber"] forKey:@"caseNumber"];
+    [person setValue:dict[@"CrashDate"] forKey:@"crashDate"];
+    [person setValue:dict[@"CrashTime"] forKey:@"crashTime"];
+    [person setValue:[[NSDate alloc] init] forKey:@"createdOn"];
+    [person setValue:dict[@"LocationID"] forKey:@"locationID"];
+    [person setValue:[[NSString alloc] initWithFormat:@"%@", dict[@"OfficerUserID"]] forKey:@"officerUserID"];
+    [person setValue:dict[@"PropertyID"] forKey:@"propertyID"];
+    [person setValue:dict[@"ReportTypeID"] forKey:@"reportTypeID"];
+    [person setValue:dict[@"ZoneTypeID"] forKey:@"zoneTypeID"];
+    
+    NSError *error;
+    
+    // here’s where the actual save happens, and if it doesn’t we print something out to the console
+    /*if (![self.managedObjectContext save:&error])
+    {
+        NSLog(@"Problem saving: %@", [error localizedDescription]);
+    }*/
+    
+    //** CORE DATA **/
+    
     restComm *conn;
     
     if ([self.reportID isEqualToString:@"-1"]) {
@@ -106,7 +157,7 @@ static dispatch_once_t onceToken;
         conn = [[restComm alloc] initWithURL:[NSString stringWithFormat:@"%@%@/%@", urlAPI, @"reports", self.reportID] withMethod:PUT];
     }
     
-    [conn setDataToRequest:[self getDictionary]];
+    [conn setDataToRequest:dict];
     [conn setDelegate:self];
     
     [conn makeCall];

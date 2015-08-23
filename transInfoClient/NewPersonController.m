@@ -212,7 +212,13 @@
         }
     }
     
-    Person *person = [[Person alloc] init];
+    Person *person;
+    
+    if (self.editingPerson == nil) {
+        person = [[Person alloc] init];
+    } else {
+        person = self.editingPerson;
+    }
     
     person.typeCategoryKey = (self.personTypeCategoryKey == nil) ? @"-1" : self.personTypeCategoryKey;
     person.typeKey = (self.personTypeKey == nil) ? @"-1" : self.personTypeKey;

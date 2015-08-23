@@ -504,6 +504,7 @@
 }
 
 - (void)keysSelected:(NSArray *)keys withIdentifier:(NSString *)identifier withOutField:(UITextField *)outField {
+    NSLog(@"%@", keys);
     for (NSDictionary *elem in self.viewElements) {
         if (outField == elem[@"field"] && [elem[@"enabled"] isEqual: @YES]) {
             if ([elem[@"multiple"] isEqual:@YES]) {

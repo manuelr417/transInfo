@@ -13,7 +13,7 @@
 //NSString *const urlAPI = @"http://10.10.30.9:9000/";
 NSString *const urlAPI = @"http://136.145.216.130:80/";
 #else
-//NSString *const urlAPI = @"http://10.10.30.9:9000/";
+//NSString *const urlAPI = @"http://127.0.0.1:9000/";
 NSString *const urlAPI = @"http://136.145.216.130:80/";
 #endif
 

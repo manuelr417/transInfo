@@ -12,6 +12,8 @@
 #import "Config.h"
 #import "CrashConditions.h"
 
+#import <CoreData/CoreData.h>
+
 @interface CrashSummary : NSObject
 
 @property NSString *reportID;
@@ -59,5 +61,7 @@
 - (Vehicle*)getVehicleWithUUID:(NSString*)uuid;
 
 - (void)save;
+
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end

@@ -145,7 +145,7 @@
     [self.individualPersons addObject:@{@"viewType" : @1, @"personTypes" : @[@"3", @"7"], @"persons" : [[NSMutableArray alloc] init]}];
     [self.individualPersons addObject:@{@"viewType" : @2, @"personTypes" : @[@"4", @"5"], @"persons" : [[NSMutableArray alloc] init]}];
     [self.individualPersons addObject:@{@"viewType" : @3, @"personTypes" : @[@"11"], @"persons" : [[NSMutableArray alloc] init]}];
-    [self.individualPersons addObject:@{@"viewType" : @4, @"personTypes" : @[@"8", @"9", @"10"], @"persons" : [[NSMutableArray alloc] init]}];
+    [self.individualPersons addObject:@{@"viewType" : @4, @"personTypes" : @[@"8", @"9", @"10", @"12"], @"persons" : [[NSMutableArray alloc] init]}];
     
     for (NSDictionary *desc in self.individualPersons) {
         NSMutableArray *persons = desc[@"persons"];
