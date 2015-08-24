@@ -223,6 +223,7 @@
             }
             
             self.popover = [[UIPopoverController alloc] initWithContentViewController:newPersonView];
+            self.popover.delegate = self;
             
             CGRect aFrame = [self.tableView rectForRowAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section]];
             [self.popover presentPopoverFromRect:[self.tableView convertRect:aFrame toView:self.view] inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];

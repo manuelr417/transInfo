@@ -64,3 +64,6 @@
 "violation.button.add" = "Add";
 
 "person.description.detail" = "%@ in vehicle with Registration Plate: %@";
+
+"popover.unsaved.title" = "Closing unsaved work";
+"popover.unsaved.msg" = "Do you want to close this popover without saving the work done?";

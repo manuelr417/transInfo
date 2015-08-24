@@ -11,7 +11,7 @@
 #import "Person.h"
 #import <MicroBlink/MicroBlink.h>
 
-@interface NewPersonController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, PPScanDelegate>
+@interface NewPersonController : UIViewController <UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate, PPScanDelegate, UIPopoverPresentationControllerDelegate, UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *personTypeCategoryField;
 @property (weak, nonatomic) IBOutlet UITextField *personTypeField;
@@ -35,6 +35,7 @@
 @property (weak, nonatomic) IBOutlet UISwitch *driverIsOwnerSwitch;
 @property (weak, nonatomic) IBOutlet UITextField *vehicleTypeField;
 
+
 @property (weak, nonatomic) IBOutlet UITextField *EMSNeededField;
 @property (weak, nonatomic) IBOutlet UITextField *EMSTransportedToField;
 @property (weak, nonatomic) IBOutlet UITextField *EMSTransportedByField;
@@ -49,6 +50,8 @@
 @property NSString *licenseTypeKey;
 @property NSString *organDonorKey;
 @property NSDate *licenseExpirationDate;
+@property NSString *EMSNeededKey;
+@property NSString *EMSTransportedByKey; //TOOD
 
 @property NSString *trash;
 @property UIView *activeField;

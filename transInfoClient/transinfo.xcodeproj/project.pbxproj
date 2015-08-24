@@ -64,6 +64,7 @@
 		D53472541A38777700AB670D /* NewDataEntryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D53472531A38777700AB670D /* NewDataEntryTableViewController.m */; };
 		D552535E19D4702600D8AEB6 /* CollectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D552535D19D4702600D8AEB6 /* CollectionManager.m */; };
 		D56D506D19F530F900F50237 /* ReportSecondStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D56D506C19F530F900F50237 /* ReportSecondStepViewController.m */; };
+		D57327601B8B5B89003BD4AB /* NarrativeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D573275F1B8B5B89003BD4AB /* NarrativeViewController.m */; };
 		D58A68231B81FDA200A66A6D /* Report.m in Sources */ = {isa = PBXBuildFile; fileRef = D58A68221B81FDA200A66A6D /* Report.m */; };
 		D59D80EE1B00C09F00C22E63 /* CrashConditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D59D80ED1B00C09F00C22E63 /* CrashConditions.m */; };
 		D5A2E3A21A3F1D4A00F11DC3 /* NewVehicleController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5A2E3A11A3F1D4A00F11DC3 /* NewVehicleController.m */; };
@@ -192,6 +193,8 @@
 		D552535D19D4702600D8AEB6 /* CollectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionManager.m; sourceTree = "<group>"; };
 		D56D506B19F530F900F50237 /* ReportSecondStepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportSecondStepViewController.h; sourceTree = "<group>"; };
 		D56D506C19F530F900F50237 /* ReportSecondStepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportSecondStepViewController.m; sourceTree = "<group>"; };
+		D573275E1B8B5B89003BD4AB /* NarrativeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NarrativeViewController.h; sourceTree = "<group>"; };
+		D573275F1B8B5B89003BD4AB /* NarrativeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NarrativeViewController.m; sourceTree = "<group>"; };
 		D58A68211B81FDA200A66A6D /* Report.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Report.h; sourceTree = "<group>"; };
 		D58A68221B81FDA200A66A6D /* Report.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Report.m; sourceTree = "<group>"; };
 		D59D80EC1B00C09F00C22E63 /* CrashConditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrashConditions.h; sourceTree = "<group>"; };
@@ -509,6 +512,8 @@
 				D522A0AD1AA496CB00BE54B8 /* PersonExtendedViewController.m */,
 				D51DE1441AB70F32003588F2 /* ViolationViewController.h */,
 				D51DE1451AB70F32003588F2 /* ViolationViewController.m */,
+				D573275E1B8B5B89003BD4AB /* NarrativeViewController.h */,
+				D573275F1B8B5B89003BD4AB /* NarrativeViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -693,6 +698,7 @@
 				D51FEBDF19E329C700E9D39C /* CrashSummary.m in Sources */,
 				D52852461959CBEB00806467 /* main.m in Sources */,
 				D528528A1962E0DC00806467 /* MainViewController.m in Sources */,
+				D57327601B8B5B89003BD4AB /* NarrativeViewController.m in Sources */,
 				D52C29D919AB746F00294FA0 /* MainTableViewController.m in Sources */,
 				D51999361A355B7B00EF2F6D /* DataEntryTableViewController.m in Sources */,
 				D5DDB4511962EE9C0002F5EA /* restComm.m in Sources */,

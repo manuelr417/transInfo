@@ -1831,6 +1831,26 @@ GET     /drugTestResults            controllers.Collections.getDrugTestResults()
         });
     }
 
+    public static Result getTransportedBy() {
+        return getCollection("TransportedBy", new GetRows() {
+            @Override
+            public ObjectNode getRows(ResultSet rs) {
+                ObjectNode rec = Json.newObject();
+
+                try {
+                    rec.put("TransportedByID", rs.getInt("TransportedByID"));
+                    rec.put("DescriptionES", rs.getString("DescriptionES"));
+                    rec.put("DescriptionEN", rs.getString("DescriptionEN"));
+
+                } catch (SQLException e) {
+                    return null;
+                }
+
+                return rec;
+            }
+        });
+    }
+
     public static Result getCollection(String table, GetRows callback) {
         Logger.debug("getCollection(" + table + ")");
 

@@ -64,3 +64,6 @@
 "violation.button.add" = "Añadir";
 
 "person.description.detail" = "%@ en vehículo con Tablilla: %@";
+
+"popover.unsaved.title" = "Cerrando trabajo sin guardar";
+"popover.unsaved.msg" = "¿Usted desea cerrar esta ventana sin guardar el trabajo realizado?";

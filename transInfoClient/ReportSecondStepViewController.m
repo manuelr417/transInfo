@@ -15,7 +15,7 @@
 @implementation ReportSecondStepViewController
 
 - (void)viewDidLoad {
-    [(UIScrollView *)self.view setContentSize:CGSizeMake(700,1100)];
+    [(UIScrollView *)self.view setContentSize:CGSizeMake(700,875)];
     [self registerForKeyboardNotifications];
     [self loadCollections];
     

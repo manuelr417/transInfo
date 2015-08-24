@@ -333,6 +333,8 @@
     } else {
         self.editingVehicle = [[Vehicle alloc] init];
     }
+    
+    self.parentViewController.popoverPresentationController.delegate = self;
 }
 
 - (IBAction)datePickerValueChanged:(id)sender {
@@ -360,6 +362,24 @@
     [self.pickerView setIdentifier:identifier];
     
     [self.pickerPopover presentPopoverFromRect:field.bounds inView:field permittedArrowDirections:UIPopoverArrowDirectionUnknown animated:YES];
+}
+
+- (BOOL)popoverPresentationControllerShouldDismissPopover:(UIPopoverPresentationController *)popoverPresentationController {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"popover.unsaved.title", nil)
+                                                    message:NSLocalizedString(@"popover.unsaved.msg", nil)
+                                                   delegate:self
+                                          cancelButtonTitle:@"No"
+                                          otherButtonTitles:@"Yes", nil];
+    
+    [alert show];
+    
+    return NO;
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) { // Close
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 @end

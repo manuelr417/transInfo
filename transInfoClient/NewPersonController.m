@@ -46,7 +46,8 @@
     /** 2. Setup the license key */
     
     // Visit www.microblink.com to get the license key for your app
-    settings.licenseSettings.licenseKey = @"XRJASP4E-ZM3A3HUY-DP4LILAE-KVSC4PHH-V5MWVBLF-XHCUNLRF-PFYS3WGQ-H5BWGUCV"; 
+    //settings.licenseSettings.licenseKey = @"XRJASP4E-ZM3A3HUY-DP4LILAE-KVSC4PHH-V5MWVBLF-XHCUNLRF-PFYS3WGQ-H5BWGUCV";
+    settings.licenseSettings.licenseKey = pdf417APIKey;
     
     /**
      * 3. Set up what is being scanned. See detailed guides for specific use cases.
@@ -182,6 +183,8 @@
     self.genderKey = self.editingPerson.genderKey;
     self.licenseTypeKey = self.editingPerson.licenseTypeKey;
     self.organDonorKey = self.editingPerson.organDonorKey;
+    self.EMSNeededKey = self.editingPerson.EMSNeededKey;
+    self.EMSTransportedByKey = self.editingPerson.EMSTransportedByKey;
     
     [self.navigationBar pushNavigationItem:item animated:NO];
     
@@ -237,6 +240,12 @@
     person.phoneNumber = (self.personPhoneNumberField.text == nil) ? @"" : self.personPhoneNumberField.text;
     person.uuid = (self.editingPerson != nil) ? self.editingPerson.uuid : nil;
     
+    person.EMSNeededKey = self.EMSNeededKey;
+    person.EMSTransportedTo = self.EMSTransportedToField.text;
+    person.EMSTransportedByKey = self.EMSTransportedByKey;
+    person.EMSResponseNumber = self.EMSResponseNumberField.text;
+    person.EMSAmbulanceCSP = self.EMSAmbulanceCSPField.text;
+    
     if ([person.typeCategoryKey isEqualToString:@"-1"] || [person.typeKey isEqualToString:@"-1"]) {
         [Utilities displayAlertWithMessage:@"Person Type and Person Type Category are required fields." withTitle:@"Missing required fields!"];
         return;
@@ -276,12 +285,21 @@
         self.genderKey = self.editingPerson.genderKey;
         self.licenseTypeKey = self.editingPerson.licenseTypeKey;
         self.organDonorKey = self.editingPerson.organDonorKey;
+        self.EMSTransportedByKey = self.editingPerson.EMSTransportedByKey;
+        
+        self.EMSNeededKey = self.editingPerson.EMSNeededKey;
+        self.EMSTransportedToField.text = self.editingPerson.EMSTransportedTo;
+        //self.EMSTransportedByField.text = self.editingPerson.EMSTransportedByKey; // TODO
+        self.EMSResponseNumberField.text = self.editingPerson.EMSResponseNumber;
+        self.EMSAmbulanceCSPField.text = self.editingPerson.EMSAmbulanceCSP;
         
         if ([self.editingPerson.typeKey isEqualToString:@"1"]) {
             [self licenseAreaIsEnabled:YES];
         } else {
             [self licenseAreaIsEnabled:NO];
         }
+        
+        [self EMSAreaIsEnabled:[self.editingPerson.EMSNeededKey isEqualToString:@"1"]];
     }
     
     [self.driverLicenseScanButton setImage:[UIImage imageNamed:@"BarcodeScanner"] forState:UIControlStateNormal];
@@ -289,6 +307,8 @@
     //NSLog(@"Size 2: %f", self.view.frame.size.width);
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveNotification:) name:@"getVehicles" object:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"requestVehicles" object:nil userInfo:nil];
+    
+    self.parentViewController.popoverPresentationController.delegate = self;
 }
 
 - (void)viewDidLoad {
@@ -303,6 +323,7 @@
     self.organDonorField.delegate = self;
     self.licenseExpirationDateField.delegate = self;
     self.EMSNeededField.delegate = self;
+    self.EMSTransportedByField.delegate = self;
     
     self.vehicleTableView.delegate = self;
     self.vehicleTableView.dataSource = self;
@@ -359,7 +380,7 @@
 - (void)loadCollections {
     self.collections = [[NSMutableDictionary alloc] init];
     
-    NSArray *collectionNames = @[@"personTypeCategories", @"personTypes", @"driverLicenseTypes", @"genders", @"organDonor", @"vehicleTypes", @"workzoneRelated"];
+    NSArray *collectionNames = @[@"personTypeCategories", @"personTypes", @"driverLicenseTypes", @"genders", @"organDonor", @"vehicleTypes", @"workzoneRelated", @"transportedBy"];
     
     NSMutableArray *collectionsManagers = [[NSMutableArray alloc] init];
     int i = 0;
@@ -396,6 +417,8 @@
             [self loadDefaultForCollection:collectionName toField:self.organDonorField withKey:@"OrganDonorID" defaultValue:self.editingPerson.organDonorKey];
         } else if ([collectionName isEqualToString:@"workzoneRelated"]) {
             [self loadDefaultForCollection:collectionName toField:self.EMSNeededField withKey:@"WorkzoneRelatedID" defaultValue:self.editingPerson.EMSNeededKey];
+        } else if ([collectionName isEqualToString:@"transportedBy"]) {
+            [self loadDefaultForCollection:collectionName toField:self.EMSTransportedByField withKey:@"TransportedByID" defaultValue:self.editingPerson.EMSTransportedByKey];
         }
     }
     
@@ -451,6 +474,9 @@
         return NO;
     } else if (textField == self.EMSNeededField) {
         [self showCollection:@"workzoneRelated" withIDColumn:@"WorkzoneRelatedID" withField:textField];
+        return NO;
+    } else if (textField == self.EMSTransportedByField) {
+        [self showCollection:@"transportedBy" withIDColumn:@"TransportedByID" withField:textField];
         return NO;
     }
     
@@ -513,6 +539,12 @@
         self.genderKey = keys[0];
     } else if ([identifier isEqualToString:@"organDonor"]) {
         self.organDonorKey = keys[0];
+    } else if ([identifier isEqualToString:@"workzoneRelated"]) {
+        self.EMSNeededKey = keys[0];
+        
+        [self EMSAreaIsEnabled:[self.EMSNeededKey isEqualToString:@"1"]];
+    } else if ([identifier isEqualToString:@"transportedBy"]) {
+        self.EMSTransportedByKey = keys[0];
     }
 }
 
@@ -521,6 +553,22 @@
     self.licenseNumberField.enabled = isEnabled;
     self.organDonorField.enabled = isEnabled;
     self.licenseExpirationDateField.enabled = isEnabled;
+}
+
+- (void)EMSAreaIsEnabled:(BOOL)isEnabled {
+    self.EMSTransportedToField.enabled = isEnabled;
+    self.EMSTransportedByField.enabled = isEnabled;
+    self.EMSResponseNumberField.enabled = isEnabled;
+    self.EMSAmbulanceCSPField.enabled = isEnabled;
+    
+    if (!isEnabled) {
+        self.EMSTransportedToField.text = @"";
+        self.EMSTransportedByField.text = @"";
+        self.EMSResponseNumberField.text = @"";
+        self.EMSAmbulanceCSPField.text = @"";
+        
+        self.EMSTransportedByKey = @"999";
+    }
 }
 
 - (IBAction)showCollection:(NSString*)collectionName withIDColumn:(NSString*)IDColumn withField:(id)field {
@@ -571,6 +619,24 @@
     [self.pickerView setIdentifier:identifier];
     
     [self.pickerPopover presentPopoverFromRect:field.bounds inView:field permittedArrowDirections:UIPopoverArrowDirectionUnknown animated:YES];
+}
+
+- (BOOL)popoverPresentationControllerShouldDismissPopover:(UIPopoverPresentationController *)popoverPresentationController {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"popover.unsaved.title", nil)
+                                                    message:NSLocalizedString(@"popover.unsaved.msg", nil)
+                                                   delegate:self
+                                          cancelButtonTitle:@"No"
+                                          otherButtonTitles:@"Yes", nil];
+    
+    [alert show];
+    
+    return NO;
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) { // Close
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 @end

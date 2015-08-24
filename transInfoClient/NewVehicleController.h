@@ -10,7 +10,7 @@
 #import "PickerViewController.h"
 #import "Vehicle.h"
 
-@interface NewVehicleController : UIViewController <UITextFieldDelegate>
+@interface NewVehicleController : UIViewController <UITextFieldDelegate, UIPopoverPresentationControllerDelegate, UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *vehicleTypeField;
 @property (weak, nonatomic) IBOutlet UITextField *vehicleOccupantsField;

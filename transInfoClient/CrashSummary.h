@@ -49,6 +49,11 @@
 @property NSString *injuredQuantity;
 @property NSString *fatalitiesQuantity;
 
+@property NSString *policeNotifiedTime;
+@property NSString *policeArrivalTime;
+@property NSString *EMSNotifiedTime;
+@property NSString *EMSArrivalTime;
+
 @property CrashConditions *crashConditions;
 
 @property NSMutableArray *vehicles;

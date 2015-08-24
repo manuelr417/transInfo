@@ -11,6 +11,7 @@
 extern NSString *const urlAPI;
 extern NSString *const edmundsAPIKey;
 extern NSString *const edmundsVINDecoder;
+extern NSString *const pdf417APIKey;
 
 @interface Config : NSObject
 

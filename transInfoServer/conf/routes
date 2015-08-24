@@ -101,6 +101,8 @@ GET     /alcoholTestResults         controllers.Collections.getAlcoholTestResult
 GET     /drugTestTypes              controllers.Collections.getDrugTestTypes()
 GET     /drugTestResults            controllers.Collections.getDrugTestResults()
 
+GET     /transportedBy              controllers.Collections.getTransportedBy()
+
 # Crash Reports
 POST    /reports                    controllers.Report.addReport()
 PUT     /reports/:reportID          controllers.Report.updateReport(reportID: Integer)
