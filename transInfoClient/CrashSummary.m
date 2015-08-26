@@ -126,7 +126,7 @@ static dispatch_once_t onceToken;
     
     
     //** CORE DATA **//
-    NSManagedObject	*person = [NSEntityDescription insertNewObjectForEntityForName:@"Report" inManagedObjectContext:self.managedObjectContext];
+    /*NSManagedObject	*person = [NSEntityDescription insertNewObjectForEntityForName:@"Report" inManagedObjectContext:self.managedObjectContext];
     
     [person setValue:dict[@"ReportID"] forKey:@"reportID"];
     [person setValue:dict[@"CaseNumber"] forKey:@"caseNumber"];
@@ -139,7 +139,7 @@ static dispatch_once_t onceToken;
     [person setValue:dict[@"ReportTypeID"] forKey:@"reportTypeID"];
     [person setValue:dict[@"ZoneTypeID"] forKey:@"zoneTypeID"];
     
-    NSError *error;
+    NSError *error;*/
     
     // here’s where the actual save happens, and if it doesn’t we print something out to the console
     /*if (![self.managedObjectContext save:&error])

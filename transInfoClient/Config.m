@@ -21,7 +21,7 @@ NSString *const edmundsAPIKey = @"qfqgf76tf8qbpxdtce36gm2z";
 NSString *const edmundsVINDecoder = @"https://api.edmunds.com/v1/api/toolsrepository/vindecoder?vin=%@&fmt=json&api_key=%@";
 
 // Visit www.microblink.com to get the license key for your app
-NSString *const pdf417APIKey = @"XRJASP4E-ZM3A3HUY-DP4LILAE-KVSC4PHH-V5MWVBLF-XHCUNLRF-PFYS3WGQ-H5BWGUCV";
+NSString *const pdf417APIKey = @"YE6EQ2K4-L2EPA75E-EMJHRAO4-X7TF6MCR-67ZP2XNR-L4YFD57S-7VO3CXZQ-KH32G7PR";
 
 @implementation Config
 

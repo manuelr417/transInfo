@@ -56,13 +56,13 @@ NSUserDefaults *userDefaults;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self.username setBorderStyle:UITextBorderStyleBezel];
+    //[self.username setBorderStyle:UITextBorderStyleBezel];
     
-    CGRect frameRect = self.username.frame;
-    frameRect.size.height = 60;
-    self.username.frame = frameRect;
+    //CGRect frameRect = self.username.frame;
+    //frameRect.size.height = 60;
+    //self.username.frame = frameRect;
     
-    [self.username setBorderStyle:UITextBorderStyleRoundedRect];
+    //[self.username setBorderStyle:UITextBorderStyleRoundedRect];
     
     self.username.delegate = self;
     self.password.delegate = self;
