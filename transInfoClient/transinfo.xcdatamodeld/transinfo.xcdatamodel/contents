@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14E46" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8195" systemVersion="15A284" minimumToolsVersion="Xcode 4.3">
     <entity name="Report" representedClassName="Report" syncable="YES">
         <attribute name="caseNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="crashDate" optional="YES" attributeType="Date" syncable="YES"/>
@@ -11,17 +11,18 @@
         <attribute name="reportID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="reportTypeID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="zoneTypeID" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="reportInvolvedUnit" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ReportInvolvedUnit" inverseName="report" inverseEntity="ReportInvolvedUnit" syncable="YES"/>
     </entity>
-    <entity name="ReportInvolvedUnit" parentEntity="Report" syncable="YES">
-        <attribute name="fatalitiesQuantity" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="injuredQuantity" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="motoristQuantity" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="pedestrianQuantity" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="reportInvolvedUnitID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="vehicleQuantity" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+    <entity name="ReportInvolvedUnit" representedClassName="ReportInvolvedUnit" syncable="YES">
+        <attribute name="fatalitiesQuantity" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="injuredQuantity" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="motoristQuantity" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pedestrianQuantity" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="vehicleQuantity" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="report" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Report" inverseName="reportInvolvedUnit" inverseEntity="Report" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Report" positionX="-4140" positionY="-693" width="128" height="193"/>
-        <element name="ReportInvolvedUnit" positionX="-3773" positionY="-666" width="128" height="133"/>
+        <element name="Report" positionX="-4212" positionY="-657" width="128" height="208"/>
+        <element name="ReportInvolvedUnit" positionX="-3908" positionY="-673" width="128" height="133"/>
     </elements>
 </model>

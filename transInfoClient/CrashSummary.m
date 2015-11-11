@@ -7,6 +7,7 @@
 //
 
 #import "CrashSummary.h"
+#import "AppDelegate.h"
 
 @implementation CrashSummary
 
@@ -73,7 +74,10 @@ static dispatch_once_t onceToken;
     static CrashSummary *sharedCrashSummary = nil;
     //static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        
         sharedCrashSummary = [[self alloc] init];
+        sharedCrashSummary.managedObjectContext = appDelegate.managedObjectContext;
     });
     return sharedCrashSummary;
 }
@@ -120,34 +124,63 @@ static dispatch_once_t onceToken;
     return postData;
 }
 
-- (void)save {
+- (void)coreDataSave {
     NSMutableDictionary *dict = [self getDictionary];
     
+    NSError *error;
+    NSManagedObject	*report;
+    NSManagedObject *reportInvolvedUnit;
     
+    if (self.coreDataObjectID != nil) {
+        NSLog(@"Trying to load ObjectID: %@", self.coreDataObjectID);
+        report = [self.managedObjectContext existingObjectWithID:[self coreDataObjectID] error:&error];
+        
+        reportInvolvedUnit = [report valueForKey:@"reportInvolvedUnit"];
+       
+        //reportInvolvedUnit = [self.managedObjectContext existingObjectWithID:[self coreDataObjectID] error:&error]
+    } else {
+        report = [NSEntityDescription insertNewObjectForEntityForName:@"Report" inManagedObjectContext:self.managedObjectContext];
+        
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"ReportInvolvedUnit" inManagedObjectContext:self.managedObjectContext];
+        reportInvolvedUnit = [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedObjectContext];
+        
+        //reportInvolvedUnit = [NSEntityDescription insertNewObjectForEntityForName:@"ReportInvolvedUnit" inManagedObjectContext:self.managedObjectContext];
+    }
     
-    //** CORE DATA **//
-    /*NSManagedObject	*person = [NSEntityDescription insertNewObjectForEntityForName:@"Report" inManagedObjectContext:self.managedObjectContext];
+    [report setValue:dict[@"ReportID"] forKey:@"reportID"];
+    [report setValue:dict[@"CaseNumber"] forKey:@"caseNumber"];
+    [report setValue:dict[@"CrashDate"] forKey:@"crashDate"];
+    [report setValue:dict[@"CrashTime"] forKey:@"crashTime"];
+    [report setValue:[[NSDate alloc] init] forKey:@"createdOn"];
+    [report setValue:dict[@"LocationID"] forKey:@"locationID"];
+    [report setValue:[[NSString alloc] initWithFormat:@"%@", dict[@"OfficerUserID"]] forKey:@"officerUserID"];
+    [report setValue:dict[@"PropertyID"] forKey:@"propertyID"];
+    [report setValue:dict[@"ReportTypeID"] forKey:@"reportTypeID"];
+    [report setValue:dict[@"ZoneTypeID"] forKey:@"zoneTypeID"];
     
-    [person setValue:dict[@"ReportID"] forKey:@"reportID"];
-    [person setValue:dict[@"CaseNumber"] forKey:@"caseNumber"];
-    [person setValue:dict[@"CrashDate"] forKey:@"crashDate"];
-    [person setValue:dict[@"CrashTime"] forKey:@"crashTime"];
-    [person setValue:[[NSDate alloc] init] forKey:@"createdOn"];
-    [person setValue:dict[@"LocationID"] forKey:@"locationID"];
-    [person setValue:[[NSString alloc] initWithFormat:@"%@", dict[@"OfficerUserID"]] forKey:@"officerUserID"];
-    [person setValue:dict[@"PropertyID"] forKey:@"propertyID"];
-    [person setValue:dict[@"ReportTypeID"] forKey:@"reportTypeID"];
-    [person setValue:dict[@"ZoneTypeID"] forKey:@"zoneTypeID"];
-    
-    NSError *error;*/
+    if (reportInvolvedUnit != nil) {
+        [reportInvolvedUnit setValue:dict[@"VehicleQuantity"] forKey:@"vehicleQuantity"];
+        [reportInvolvedUnit setValue:dict[@"MotoristQuantity"] forKey:@"motoristQuantity"];
+        [reportInvolvedUnit setValue:dict[@"PedestrianQuantity"] forKey:@"pedestrianQuantity"];
+        [reportInvolvedUnit setValue:dict[@"InjuredQuantity"] forKey:@"injuredQuantity"];
+        [reportInvolvedUnit setValue:dict[@"FatalitiesQuantity"] forKey:@"fatalitiesQuantity"];
+        
+        [report setValue:reportInvolvedUnit forKey:@"reportInvolvedUnit"];
+    }
     
     // here’s where the actual save happens, and if it doesn’t we print something out to the console
-    /*if (![self.managedObjectContext save:&error])
-    {
+    if (![self.managedObjectContext save:&error]) {
         NSLog(@"Problem saving: %@", [error localizedDescription]);
-    }*/
-    
-    //** CORE DATA **/
+    } else {
+        self.coreDataObjectID = [report objectID];
+        NSLog(@"Saved %@", [report objectID]);
+    }
+}
+
+- (void)save {
+    NSMutableDictionary *dict = [self getDictionary];
+
+    [self coreDataSave];
     
     restComm *conn;
     

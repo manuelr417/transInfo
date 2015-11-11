@@ -16,6 +16,8 @@
 
 @interface CrashSummary : NSObject
 
+@property NSManagedObjectID *coreDataObjectID;
+
 @property NSString *reportID;
 @property NSString *reportTypeID;
 @property NSString *caseNumber;
