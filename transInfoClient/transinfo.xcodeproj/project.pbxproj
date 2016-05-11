@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07DF86401BD459BD004B3C94 /* ReportInvolvedUnit+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 07DF863D1BD459BD004B3C94 /* ReportInvolvedUnit+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		07DF86411BD459BD004B3C94 /* ReportInvolvedUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 07DF863F1BD459BD004B3C94 /* ReportInvolvedUnit.m */; settings = {ASSET_TAGS = (); }; };
+		07DF86461BD459EB004B3C94 /* Report+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 07DF86431BD459EB004B3C94 /* Report+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
+		07DF86471BD459EB004B3C94 /* Report.m in Sources */ = {isa = PBXBuildFile; fileRef = 07DF86451BD459EB004B3C94 /* Report.m */; settings = {ASSET_TAGS = (); }; };
 		D50C26B61B6BE79500DA5E16 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D50C26B51B6BE79500DA5E16 /* SWRevealViewController.m */; };
 		D50C26C41B6BE9CD00DA5E16 /* MicroBlink.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D50C26B81B6BE9CD00DA5E16 /* MicroBlink.framework */; };
 		D50C26C51B6BE9CD00DA5E16 /* en.strings in Resources */ = {isa = PBXBuildFile; fileRef = D50C26BA1B6BE9CD00DA5E16 /* en.strings */; };
@@ -65,7 +69,6 @@
 		D552535E19D4702600D8AEB6 /* CollectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D552535D19D4702600D8AEB6 /* CollectionManager.m */; };
 		D56D506D19F530F900F50237 /* ReportSecondStepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D56D506C19F530F900F50237 /* ReportSecondStepViewController.m */; };
 		D57327601B8B5B89003BD4AB /* NarrativeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D573275F1B8B5B89003BD4AB /* NarrativeViewController.m */; };
-		D58A68231B81FDA200A66A6D /* Report.m in Sources */ = {isa = PBXBuildFile; fileRef = D58A68221B81FDA200A66A6D /* Report.m */; };
 		D59D80EE1B00C09F00C22E63 /* CrashConditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D59D80ED1B00C09F00C22E63 /* CrashConditions.m */; };
 		D5A2E3A21A3F1D4A00F11DC3 /* NewVehicleController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5A2E3A11A3F1D4A00F11DC3 /* NewVehicleController.m */; };
 		D5A2E3A51A3F257E00F11DC3 /* NewPersonController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5A2E3A41A3F257E00F11DC3 /* NewPersonController.m */; };
@@ -106,6 +109,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		07DF863C1BD459BD004B3C94 /* ReportInvolvedUnit+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ReportInvolvedUnit+CoreDataProperties.h"; sourceTree = "<group>"; };
+		07DF863D1BD459BD004B3C94 /* ReportInvolvedUnit+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ReportInvolvedUnit+CoreDataProperties.m"; sourceTree = "<group>"; };
+		07DF863E1BD459BD004B3C94 /* ReportInvolvedUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportInvolvedUnit.h; sourceTree = "<group>"; };
+		07DF863F1BD459BD004B3C94 /* ReportInvolvedUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportInvolvedUnit.m; sourceTree = "<group>"; };
+		07DF86421BD459EB004B3C94 /* Report+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Report+CoreDataProperties.h"; sourceTree = "<group>"; };
+		07DF86431BD459EB004B3C94 /* Report+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Report+CoreDataProperties.m"; sourceTree = "<group>"; };
+		07DF86441BD459EB004B3C94 /* Report.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Report.h; sourceTree = "<group>"; };
+		07DF86451BD459EB004B3C94 /* Report.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Report.m; sourceTree = "<group>"; };
 		D50C26B41B6BE79500DA5E16 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		D50C26B51B6BE79500DA5E16 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		D50C26B81B6BE9CD00DA5E16 /* MicroBlink.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MicroBlink.framework; sourceTree = "<group>"; };
@@ -195,8 +206,6 @@
 		D56D506C19F530F900F50237 /* ReportSecondStepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportSecondStepViewController.m; sourceTree = "<group>"; };
 		D573275E1B8B5B89003BD4AB /* NarrativeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NarrativeViewController.h; sourceTree = "<group>"; };
 		D573275F1B8B5B89003BD4AB /* NarrativeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NarrativeViewController.m; sourceTree = "<group>"; };
-		D58A68211B81FDA200A66A6D /* Report.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Report.h; sourceTree = "<group>"; };
-		D58A68221B81FDA200A66A6D /* Report.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Report.m; sourceTree = "<group>"; };
 		D59D80EC1B00C09F00C22E63 /* CrashConditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrashConditions.h; sourceTree = "<group>"; };
 		D59D80ED1B00C09F00C22E63 /* CrashConditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrashConditions.m; sourceTree = "<group>"; };
 		D5A2E3A01A3F1D4A00F11DC3 /* NewVehicleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewVehicleController.h; sourceTree = "<group>"; };
@@ -478,8 +487,8 @@
 				D52852891962E0DC00806467 /* MainViewController.m */,
 				D5DDB455196B30930002F5EA /* MapPopoverViewController.m */,
 				D5DDB454196B30930002F5EA /* MapPopoverViewController.h */,
-				D52C29D819AB746F00294FA0 /* MainTableViewController.m */,
 				D52C29D719AB746F00294FA0 /* MainTableViewController.h */,
+				D52C29D819AB746F00294FA0 /* MainTableViewController.m */,
 				D52C29DC19B0C42000294FA0 /* ComplaintTableViewCell.h */,
 				D52C29DD19B0C42000294FA0 /* ComplaintTableViewCell.m */,
 				D51FEBD919D9F66900E9D39C /* SidebarViewController.h */,
@@ -539,8 +548,14 @@
 			isa = PBXGroup;
 			children = (
 				D50C26CF1B6C116C00DA5E16 /* transinfo.xcdatamodeld */,
-				D58A68211B81FDA200A66A6D /* Report.h */,
-				D58A68221B81FDA200A66A6D /* Report.m */,
+				07DF86421BD459EB004B3C94 /* Report+CoreDataProperties.h */,
+				07DF86431BD459EB004B3C94 /* Report+CoreDataProperties.m */,
+				07DF86441BD459EB004B3C94 /* Report.h */,
+				07DF86451BD459EB004B3C94 /* Report.m */,
+				07DF863C1BD459BD004B3C94 /* ReportInvolvedUnit+CoreDataProperties.h */,
+				07DF863D1BD459BD004B3C94 /* ReportInvolvedUnit+CoreDataProperties.m */,
+				07DF863E1BD459BD004B3C94 /* ReportInvolvedUnit.h */,
+				07DF863F1BD459BD004B3C94 /* ReportInvolvedUnit.m */,
 			);
 			name = "Core Data";
 			sourceTree = "<group>";
@@ -589,7 +604,7 @@
 		D528522E1959CBEA00806467 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "University of Puerto Rico Mayagüez Campus";
 				TargetAttributes = {
 					D52852351959CBEB00806467 = {
@@ -677,16 +692,19 @@
 				D5E8FBD119A689B400ED72EE /* Utilities.m in Sources */,
 				D51DE1491AB71665003588F2 /* Violation.m in Sources */,
 				D552535E19D4702600D8AEB6 /* CollectionManager.m in Sources */,
+				07DF86461BD459EB004B3C94 /* Report+CoreDataProperties.m in Sources */,
 				D5DDB459196B47E80002F5EA /* CurrentLocationPin.m in Sources */,
 				D522A0AB1AA414F300BE54B8 /* PersonsTableViewController.m in Sources */,
+				07DF86471BD459EB004B3C94 /* Report.m in Sources */,
 				D52C29EF19C0AB1300294FA0 /* UIDatePickerOKView.m in Sources */,
 				D5B947341A763A5100E444DC /* VehicleExtendedViewController.m in Sources */,
 				D52C29F219C1CA3B00294FA0 /* PickerViewController.m in Sources */,
 				D522A0AE1AA496CB00BE54B8 /* PersonExtendedViewController.m in Sources */,
 				D51FEBDB19D9F66900E9D39C /* SidebarViewController.m in Sources */,
-				D58A68231B81FDA200A66A6D /* Report.m in Sources */,
 				D51DE1461AB70F32003588F2 /* ViolationViewController.m in Sources */,
+				07DF86411BD459BD004B3C94 /* ReportInvolvedUnit.m in Sources */,
 				D5DDB45C196B5A9D0002F5EA /* ReportFirstStepViewController.m in Sources */,
+				07DF86401BD459BD004B3C94 /* ReportInvolvedUnit+CoreDataProperties.m in Sources */,
 				D5B947311A7633BE00E444DC /* VehiclesTableViewController.m in Sources */,
 				D52C29DE19B0C42000294FA0 /* ComplaintTableViewCell.m in Sources */,
 				D50C26B61B6BE79500DA5E16 /* SWRevealViewController.m in Sources */,
@@ -763,8 +781,10 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -803,6 +823,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -838,6 +859,7 @@
 				GCC_PREFIX_HEADER = "transinfo/transinfo-Prefix.pch";
 				INFOPLIST_FILE = "transinfo/transinfo-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.uprm.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -861,6 +883,7 @@
 				GCC_PREFIX_HEADER = "transinfo/transinfo-Prefix.pch";
 				INFOPLIST_FILE = "transinfo/transinfo-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.uprm.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -883,6 +906,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "transinfoTests/transinfoTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.uprm.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -901,6 +925,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "transinfo/transinfo-Prefix.pch";
 				INFOPLIST_FILE = "transinfoTests/transinfoTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.uprm.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;

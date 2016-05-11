@@ -165,6 +165,13 @@
      [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)scanningViewController:(UIViewController<PPScanningViewController> *)scanningViewController didFindError:(NSError *)error {
+    
+}
+
+- (void)scanningViewControllerUnauthorizedCamera:(UIViewController<PPScanningViewController> *)scanningViewController {
+    
+}
 
 - (void)setEditingModeFor:(Person*)person forRegistrationPlate:(NSString*)registrationPlate {
     self.editingPerson = person;

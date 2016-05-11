@@ -1,5 +1,5 @@
 //
-//  Report.h
+//  ReportInvolvedUnit.h
 //  transinfo
 //
 //  Created by Omar G Soto Fortuño on 10/18/15.
@@ -9,11 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class ReportInvolvedUnit;
+@class Report;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Report : NSManagedObject
+@interface ReportInvolvedUnit : NSManagedObject
 
 // Insert code here to declare functionality of your managed object subclass
 
@@ -21,4 +21,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
-#import "Report+CoreDataProperties.h"
+#import "ReportInvolvedUnit+CoreDataProperties.h"
